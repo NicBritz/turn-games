@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="{% static 'images/new-logo.svg' %}"/>
+        <link rel="shortcut icon" href="{% static 'images/turn-games-logo.svg' %}"/>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -63,6 +63,10 @@
 
 </head>
 <body>
+
+<header>
+    {% include 'includes/desktop-nav.html' %}
+</header>
 <!-- messages -->
 {% if messages %}
 {% endif %}

@@ -1,0 +1,108 @@
+{% load static %}
+<div class="columns has-background-dark texture is-vcentered is-gapless px-3 py-3">
+    <!-- Head Logo -->
+    <div class="column is-one-third ">
+        <div class="main-logo-container pb-3">
+            <a class="is-flex is-justified-center is-baseline " href="{% url 'home' %}">
+                <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-logo.svg' %} "
+                     alt="Saturn Games Logo">
+                <span class="main-logo pl-2 is-size-2 has-text-light has-text-weight-bold pt-4 has-text-shadow-3">
+                    T<span class="is-size-4 has-text-weight-medium">urn</span>
+                    G<span class="is-size-4 has-text-weight-medium">ames</span>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="column is-one-third ">
+        <!-- Search bar -->
+        <form method="GET" action="">
+            <div class="field has-addons is-justified-center pb-3">
+                <div class="control">
+                    <input class="input" type="text" placeholder="Search for games" name="q">
+                </div>
+                <button class="control button is-link" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- Account and Basket -->
+    <div class="column is-one-third ">
+        <div class="buttons is-justified-center">
+            <!-- Account -->
+            <div class="navbar-item ">
+                <div class="dropdown is-hoverable" id="navbar-account-menu">
+                    <div class="dropdown-trigger">
+                        <button class="button is-warning" aria-haspopup="true" aria-controls="account-menu-items">
+                            <span class="icon is-medium">
+                                 <i class="fas fa-user-circle "></i>
+                            </span>
+                            <span>Account</span>
+                            <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu dropdown-buttons" id="account-menu-items" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                        <a href="#" class="dropdown-item ">Management</a>
+                                        <hr class="dropdown-divider">
+                                    {% endif %}
+                                    <a href="#" class="dropdown-item bg-light">Profile</a>
+                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                {% else %}
+                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Basket -->
+            <div class="navbar-item">
+                <div class="dropdown is-hoverable " id="navbar-basket-quick-view">
+                    <div class="dropdown-trigger">
+                        <button class="button is-success" aria-haspopup="true" aria-controls="basket-menu-items">
+                            <span class="icon is-medium">
+                                 <i class="fas fa-shopping-basket "></i>
+                            </span>
+                            <span>
+                                    {% if grand_total %}
+                                        £{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        £0.00
+                                    {% endif %}
+                                </span>
+                            <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu dropdown-buttons" id="basket-menu-items" role="menu">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <p>item 1 - £99.00</p>
+                            </div>
+                            <hr class="dropdown-divider">
+                            <div class="dropdown-item">
+                                <p>item 2 - £99.00</p>
+                            </div>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                View Basket
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

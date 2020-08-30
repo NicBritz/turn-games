@@ -1,6 +1,6 @@
-* {
-    box-sizing: border-box;
-}
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
 
 body {
     font-family: 'Montserrat', serif;
@@ -13,22 +13,24 @@ body {
 }
 
 /* main logo size */
-.main-logo-container {
-    position: relative;
-    top: 25px;
-}
-
-.main-logo {
-    font-weight: 500;
-}
 
 .main-logo-image {
-    max-height: 3rem !important;
+    max-height: 2.3rem !important;
     -webkit-transition: -webkit-transform 1s ease-in-out;
     transition: transform 1s ease-in-out;
 }
 
 .image-spin {
     -webkit-transform: rotate(45deg);
-    transform: rotate(45deg)
+    transform: rotate(45deg);
+}
+
+
+/* Helper Classes */
+.has-text-shadow-3{
+     text-shadow: 3px 3px black;
+}
+
+.is-justified-center{
+    justify-content: center!important;
 }
