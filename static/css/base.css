@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', serif;
+    line-height: 0;
+}
+
+/* menu texture src:https://www.transparenttextures.com/ */
+.texture {
+    background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598628776/saturn/carbon-fibre-v2_fwvvpj.png);
+}
+
+/* main logo size */
+.main-logo-container {
+    position: relative;
+    top: 25px;
+}
+
+.main-logo {
+    font-weight: 500;
+}
+
+.main-logo-image {
+    max-height: 3rem !important;
+    -webkit-transition: -webkit-transform 1s ease-in-out;
+    transition: transform 1s ease-in-out;
+}
+
+.image-spin {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
