@@ -1,5 +1,5 @@
 {% load static %}
-<div class="columns has-background-dark texture is-vcentered is-gapless px-3 py-3">
+<div class="columns has-background-dark texture is-vcentered is-gapless px-3 pt-3 mb-0">
     <!-- Head Logo -->
     <div class="column is-one-third ">
         <div class="main-logo-container pb-3">
@@ -32,10 +32,10 @@
     <div class="column is-one-third ">
         <div class="buttons is-justified-center">
             <!-- Account -->
-            <div class="navbar-item ">
-                <div class="dropdown is-hoverable" id="navbar-account-menu">
+            <div class="navbar-item pt-0">
+                <div class="dropdown is-hoverable is-right" id="navbar-account-menu">
                     <div class="dropdown-trigger">
-                        <button class="button is-warning" aria-haspopup="true" aria-controls="account-menu-items">
+                        <button class="button is-warning " aria-haspopup="true" aria-controls="account-menu-items">
                             <span class="icon is-medium">
                                  <i class="fas fa-user-circle "></i>
                             </span>
@@ -45,7 +45,7 @@
                             </span>
                         </button>
                     </div>
-                    <div class="dropdown-menu dropdown-buttons" id="account-menu-items" role="menu">
+                    <div class="dropdown-menu dropdown-buttons is-z-60" id="account-menu-items" role="menu">
                         <div class="dropdown-content">
                             <div class="dropdown-item">
                                 {% if request.user.is_authenticated %}
@@ -65,8 +65,8 @@
                 </div>
             </div>
             <!-- Basket -->
-            <div class="navbar-item">
-                <div class="dropdown is-hoverable " id="navbar-basket-quick-view">
+            <div class="navbar-item pt-0">
+                <div class="dropdown is-hoverable is-right" id="navbar-basket-quick-view ">
                     <div class="dropdown-trigger">
                         <button class="button is-success" aria-haspopup="true" aria-controls="basket-menu-items">
                             <span class="icon is-medium">
@@ -84,7 +84,7 @@
                             </span>
                         </button>
                     </div>
-                    <div class="dropdown-menu dropdown-buttons" id="basket-menu-items" role="menu">
+                    <div class="dropdown-menu dropdown-buttons is-z-60 " id="basket-menu-items" role="menu">
                         <div class="dropdown-content">
                             <div class="dropdown-item">
                                 <p>item 1 - £99.00</p>

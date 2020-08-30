@@ -1,0 +1,74 @@
+<nav class="navbar is-dark  py-0 texture " role="navigation" aria-label="main navigation">
+    <div>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbar-menu" class="navbar-menu">
+        <div class="navbar-end mx-auto">
+            <!-- home button -->
+            <a class="navbar-item has-text-weight-medium" href="{% url 'home' %}">
+                           <span class="icon has-text-info mr-2">
+                            <i class="fas fa-home"></i>
+                            </span> Home
+            </a>
+
+            <!-- all games menu -->
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-weight-medium">
+                                <span class="icon has-text-danger mr-2">
+                            <i class="fas fa-gamepad"></i>
+                            </span>
+                    All Games</a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">By popularity</a>
+                    <a class="navbar-item">By platform</a>
+                    <a class="navbar-item">By price</a>
+                </div>
+            </div>
+
+            <!-- Genre Menu -->
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-weight-medium">
+                                <span class="icon has-text-warning mr-2">
+                            <i class="fas fa-dice"></i>
+                            </span>
+                    Genres</a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="#">Action</a>
+                    <a class="navbar-item" href="#">Adventure</a>
+                    <a class="navbar-item" href="#">Casual</a>
+                    <a class="navbar-item" href="#">Indie</a>
+                    <a class="navbar-item" href="#">RPG</a>
+                    <a class="navbar-item" href="#">Massively Multiplayer</a>
+                    <a class="navbar-item" href="#">Racing</a>
+                    <a class="navbar-item" href="#">Simulation</a>
+                    <a class="navbar-item" href="#">Sports</a>
+                    <a class="navbar-item" href="#">Strategy</a>
+                </div>
+            </div>
+
+            <!-- specials menu -->
+            <div class="navbar-item has-dropdown is-hoverable ">
+                <a class="navbar-link has-text-weight-medium">
+                                <span class="icon mr-2 has-text-success">
+                            <i class="fas fa-piggy-bank"></i>
+                            </span>
+                    Specials</a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">New</a>
+                    <a class="navbar-item">Popular</a>
+                    <a class="navbar-item">All Specials</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
