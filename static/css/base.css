@@ -1,3 +1,4 @@
+/* Global styles */
 * {
     box-sizing: border-box;
 }
@@ -7,12 +8,17 @@ body {
     line-height: 0;
 }
 
+/* Navigation menu */
+
 /* menu texture src:https://www.transparenttextures.com/ */
 .texture {
-    background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598628776/saturn/carbon-fibre-v2_fwvvpj.png);
+    background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598792843/saturn/bright-squares_zbegjs.png);
 }
 
-/* main logo size */
+/* main logo styles */
+.main-logo {
+    font-weight: 500;
+}
 
 .main-logo-image {
     max-height: 2.3rem !important;
@@ -25,21 +31,48 @@ body {
     transform: rotate(45deg);
 }
 
-
 /* Helper Classes */
-.has-text-shadow-3{
-     text-shadow: 3px 3px black;
+.has-text-shadow-3 {
+    text-shadow: 3px 3px black;
 }
 
-.is-justified-center{
-    justify-content: center!important;
+.is-justified-center {
+    justify-content: center !important;
 }
 
-.mx-auto{
+.mx-auto {
     margin-right: auto;
     margin-left: auto;
 }
 
-.is-z-60{
+.is-z-60 {
     z-index: 60;
 }
+
+/* Media Queries */
+@media (max-width: 991px) {
+
+    .navbar {
+        position: relative;
+        top: -45px;
+    }
+
+    .navbar-item {
+        padding-left: 0;
+    }
+
+    .menu-button-group {
+        justify-content: normal !important;
+    }
+
+    .menu-button {
+        font-size: 0.75rem;
+        padding: 0 1em;
+    }
+
+    .dropdown.is-right .dropdown-menu {
+        left: 0;
+        right: 0;
+    }
+}
+

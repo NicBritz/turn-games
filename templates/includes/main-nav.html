@@ -1,4 +1,6 @@
 <nav class="navbar is-dark  py-0 texture " role="navigation" aria-label="main navigation">
+
+    <!-- menu burger button -->
     <div>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
            data-target="navbarBasicExample">
@@ -9,9 +11,10 @@
     </div>
 
     <div id="navbar-menu" class="navbar-menu">
-        <div class="navbar-end mx-auto">
-            <!-- home button -->
-            <a class="navbar-item has-text-weight-medium" href="{% url 'home' %}">
+        <div class="navbar-end mx-auto px-5">
+
+            <!-- home link -->
+            <a class="navbar-item has-text-weight-bold" href="{% url 'home' %}">
                            <span class="icon has-text-info mr-2">
                             <i class="fas fa-home"></i>
                             </span> Home
@@ -19,7 +22,7 @@
 
             <!-- all games menu -->
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-weight-medium">
+                <a class="navbar-link has-text-weight-bold">
                                 <span class="icon has-text-danger mr-2">
                             <i class="fas fa-gamepad"></i>
                             </span>
@@ -34,7 +37,7 @@
 
             <!-- Genre Menu -->
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-weight-medium">
+                <a class="navbar-link has-text-weight-bold">
                                 <span class="icon has-text-warning mr-2">
                             <i class="fas fa-dice"></i>
                             </span>
@@ -56,7 +59,7 @@
 
             <!-- specials menu -->
             <div class="navbar-item has-dropdown is-hoverable ">
-                <a class="navbar-link has-text-weight-medium">
+                <a class="navbar-link has-text-weight-bold">
                                 <span class="icon mr-2 has-text-success">
                             <i class="fas fa-piggy-bank"></i>
                             </span>
