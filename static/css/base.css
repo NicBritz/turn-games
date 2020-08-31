@@ -6,6 +6,7 @@
 body {
     font-family: 'Montserrat', serif;
     line-height: 0;
+    background: #000000;
 }
 
 /* Navigation menu */
@@ -74,5 +75,62 @@ body {
         left: 0;
         right: 0;
     }
+
+    /*.carousel {*/
+    /*    overflow: hidden;*/
+    /*    height: 30vh;*/
+    /*}*/
+
+    /*.carousel-cell img {*/
+    /*    height: 30vh;*/
+    /*}*/
+
+    .flickity-button {
+        display: none;
+    }
+
+    .main-slider {
+        padding: 0;
+        margin: 0;
+    }
 }
 
+
+/* Test flickity */
+
+.carousel {
+    width: 95%;
+}
+
+
+/* position dots up a bit */
+.flickity-page-dots {
+    bottom: -22px;
+}
+
+/* dots are lines */
+.flickity-page-dots .dot {
+    height: 5px;
+    width: 40px;
+    margin: 0;
+    border-radius: 0;
+    background: #EEEEEE;
+}
+
+.carousel-cell {
+    display: block;
+    width: 100%;
+    margin-right: 10px;
+    text-align: inherit;
+}
+
+.carousel-cell img {
+    display: block;
+}
+
+.main-slider {
+    text-align: center;
+    text-align: -webkit-center;
+    position: relative;
+    top: -35px;
+}
