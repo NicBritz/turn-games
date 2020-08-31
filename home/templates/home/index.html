@@ -6,6 +6,48 @@
 
 {% block content %}
 
-    <h1>This is from index!</h1>
+    <div class="section main-slider ">
+        <!-- Flickity carousel  -->
+        <div class="carousel">
+            <a class="carousel-cell " href="/test1">
+                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_HollowKnightSilksong_image1600w.jpg"
+                     alt="submerged"/>
+            </a>
+            <a class="carousel-cell" href="/test2">
+                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_FinalFantasyVIIIRemastered_image1600w.jpg"
+                     alt="look-out"/>
+            </a>
+            <a class="carousel-cell" href="/test2">
+                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_SuperKirbyClash_image1600w.jpg"
+                     alt="look-out"/>
+            </a>
 
+        </div>
+    </div>
+
+
+
+    <section class="section">
+
+    </section>
+
+    <!-- End Carousel -->
+
+
+
+
+{% endblock %}
+
+{% block post-custom-js %}
+    {{ block.super }}
+    <script>
+        $('.carousel').flickity({
+            // options
+            cellAlign: 'left',
+            contain: true,
+            imagesLoaded: true,
+            autoPlay: 3000,
+            wrapAround: true,
+        });
+    </script>
 {% endblock %}
