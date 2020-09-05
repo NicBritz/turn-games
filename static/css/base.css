@@ -80,11 +80,9 @@ body {
     /*    overflow: hidden;*/
     /*    height: 30vh;*/
     /*}*/
-
     /*.carousel-cell img {*/
     /*    height: 30vh;*/
     /*}*/
-
     .flickity-button {
         display: none;
     }
@@ -133,4 +131,13 @@ body {
     text-align: -webkit-center;
     position: relative;
     top: -35px;
+}
+
+.card-title {
+    font-size: 0.85em;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px 5px #EEEEEE;
+    transform: scale(1.01);
 }

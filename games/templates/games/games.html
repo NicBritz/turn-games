@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load  static %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <div class="columns is-multiline is-mobile">
+                {% for game in games %}
+                    <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+                        <a href="#" class="game-card">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-fullwidth ">
+                                        <img src="{{ game.header_image_url }}"
+                                             alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content px-0 pb-0">
+                                    <div class="media px-3">
+                                        <div class="media-content">
+                                            <p class="title card-title">{{ game.name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="content px-3 ">
+                                        <div class="is-size-7 ">{{ game.release_date }}</div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <div class="card-footer-item"><p><span><i
+                                                class="fas fa-thumbs-up mr-2 has-text-success"></i></span>{{ game.positive_ratings }}
+                                        </p></div>
+                                        <div class="card-footer-item"><p><span><i
+                                                class="fas fa-thumbs-down mr-2 has-text-danger-dark"></i></span>{{ game.negative_ratings }}
+                                        </p></div>
+                                    </footer>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
