@@ -2,13 +2,13 @@
 <div class="columns has-background-dark texture is-vcentered is-gapless px-3 pt-5 mb-0 ">
 
     <!-- Head Logo -->
-    <div class=" column is-12-mobile is-6-tablet is-4-desktop">
+    <div class=" column is-12-mobile is-4-tablet is-4-desktop is-z-60">
         <div class="main-logo-container pb-3">
             <a class="is-flex is-justified-center is-baseline " href="{% url 'home' %}">
                 <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-logo.svg' %} "
                      alt="Saturn Games Logo">
                 <span class="main-logo pl-2 is-size-2 has-text-light has-text-weight-bold pt-4 has-text-shadow-3">
-                    T<span class="is-size-3 has-text-weight-medium">urn</span>
+                    T<span class="is-size-3 has-text-weight-medium">urn </span>
                     G<span class="is-size-3 has-text-weight-medium">ames</span>
                 </span>
             </a>
@@ -16,9 +16,9 @@
     </div>
 
     <!-- Search bar -->
-    <div class="column is-12-mobile is-6-tablet is-4-desktop">
+    <div class="column is-12-mobile is-4-tablet is-4-desktop is-z-60">
         <form method="GET" action="">
-            <div class="field has-addons is-justified-center pb-3">
+            <div class="field has-addons is-justified-center pb-3 px-4 ">
                 <div class="control">
                     <input class="input" type="text" placeholder="Search for games" name="q">
                 </div>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Account and Basket -->
-    <div class="column is-12-mobile is-6-tablet is-4-desktop">
+    <div class="column is-12-mobile is-12-tablet is-4-desktop">
         <div class="buttons is-justified-center menu-button-group">
 
             <!-- Account button-->
