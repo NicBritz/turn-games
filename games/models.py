@@ -3,6 +3,11 @@ from django.db import models
 
 # Category Model
 class Category(models.Model):
+
+    # clean up group name in Django admin area
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     """ This model handles all the fields for a game category"""
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
