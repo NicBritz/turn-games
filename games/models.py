@@ -28,7 +28,7 @@ class Genre(models.Model):
 
 
 # Tags Model
-class Tags(models.Model):
+class Tag(models.Model):
     """ This model handles all the fields for a game tag """
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
@@ -51,14 +51,14 @@ class Game(models.Model):
     developer = models.CharField(max_length=254, null=True, blank=True)
     publisher = models.CharField(max_length=254, null=True, blank=True)
     platforms = models.CharField(max_length=254, null=True, blank=True)
-    required_age = models.DecimalField(max_digits=3, decimal_places=0, null=True, blank=True)
-    positive_ratings = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
-    negative_ratings = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    required_age = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
+    positive_ratings = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
+    negative_ratings = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
     categories = models.ManyToManyField(Category)
     genres = models.ManyToManyField(Genre)
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.name
