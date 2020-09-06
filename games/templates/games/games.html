@@ -2,8 +2,21 @@
 {% load  static %}
 
 {% block content %}
+    <div class="container pt-3">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-info">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title">Games</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-info">
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="section">
+        <div class="section pt-0">
             <div class="columns is-multiline is-mobile">
                 {% for game in games %}
                     <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
@@ -19,7 +32,7 @@
                                 </div>
 
                                 <div class="card-content px-0 pb-0 pt-2">
-                                        <!-- Game Title -->
+                                    <!-- Game Title -->
                                     <div class="media px-3 py-1 my-2">
                                         <div class="media-content">
                                             <p class="title card-title">{{ game.name }}</p>
@@ -32,7 +45,8 @@
 
                                     <footer class="card-footer">
                                         <!-- Game ratings -->
-                                        <div class="card-footer-item has-background-black has-text-white"><p class="pr-2 is-size-7"><span><i
+                                        <div class="card-footer-item has-background-black has-text-white"><p
+                                                class="pr-2 is-size-7"><span><i
                                                 class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i></span>{{ game.positive_ratings }}
                                         </p>
                                             <p class="pr-3 is-size-7">

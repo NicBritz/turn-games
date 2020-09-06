@@ -138,6 +138,6 @@ body {
 }
 
 .card:hover {
-    box-shadow: 0 0 10px 5px #EEEEEE;
+    box-shadow: 0 0 8px 4px #393939;
     transform: scale(1.01);
 }
