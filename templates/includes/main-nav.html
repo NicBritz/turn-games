@@ -22,13 +22,11 @@
 
             <!-- all games menu -->
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-weight-bold">
-                                <span class="icon has-text-danger mr-2">
-                            <i class="fas fa-gamepad"></i>
-                            </span>
-                    All Games</a>
+                <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
+                        class="fas fa-gamepad"></i></span>Games</a>
 
                 <div class="navbar-dropdown">
+                    <a class="navbar-item" href="{% url 'games' %}">All</a>
                     <a class="navbar-item">By popularity</a>
                     <a class="navbar-item">By platform</a>
                     <a class="navbar-item">By price</a>
