@@ -23,13 +23,17 @@
             <!-- all games menu -->
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
-                        class="fas fa-gamepad"></i></span>Games</a>
+                        class="fas fa-gamepad"></i></span>Category</a>
 
                 <div class="navbar-dropdown">
                     <a class="navbar-item" href="{% url 'games' %}">All</a>
-                    <a class="navbar-item">By popularity</a>
-                    <a class="navbar-item">By platform</a>
-                    <a class="navbar-item">By price</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=single_player">Single-player</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=co_op">Co-op</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=multi_player">Multi-player</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=mmo">MMO</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=full_controller_support">Full controller support</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=partial_controller_support">Partial Controller Support</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=vr_support">VR Support</a>
                 </div>
             </div>
 

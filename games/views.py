@@ -7,11 +7,18 @@ from .models import Game, Category
 def all_games(request):
     """ returns the all products view  """
     query = None
+    category = None
 
     games = Game.objects.all()
 
     # check if the request is a get request
     if request.GET:
+
+        # check if filtering by category
+        if "category" in request.GET:
+            category = request.GET['category']
+            games = games.filter(categories__name__iexact=category)
+            category_selected = Category.objects.filter(name__exact=category)
 
         # check if it is a search query
         if "q" in request.GET:
