@@ -33,7 +33,6 @@
                     <a class="navbar-item" href="{% url 'games' %}?category=mmo">MMO</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=full_controller_support">Full controller support</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=partial_controller_support">Partial Controller Support</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=vr_support">VR Support</a>
                 </div>
             </div>
 
@@ -46,16 +45,16 @@
                     Genres</a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" href="#">Action</a>
-                    <a class="navbar-item" href="#">Adventure</a>
-                    <a class="navbar-item" href="#">Casual</a>
-                    <a class="navbar-item" href="#">Indie</a>
-                    <a class="navbar-item" href="#">RPG</a>
-                    <a class="navbar-item" href="#">Massively Multiplayer</a>
-                    <a class="navbar-item" href="#">Racing</a>
-                    <a class="navbar-item" href="#">Simulation</a>
-                    <a class="navbar-item" href="#">Sports</a>
-                    <a class="navbar-item" href="#">Strategy</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=action">Action</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=adventure">Adventure</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=casual">Casual</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=education">Education</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=indie">Indie</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=racing">Racing</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=rpg">RPG</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=simulation">Simulation</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=sports">Sports</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=strategy">Strategy</a>
                 </div>
             </div>
 
@@ -68,9 +67,8 @@
                     Specials</a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item">New</a>
-                    <a class="navbar-item">Popular</a>
-                    <a class="navbar-item">All Specials</a>
+                    <a class="navbar-item" href="{% url 'games' %}?special_offers=featured">Featured</a>
+                    <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted">Discounted</a>
                 </div>
             </div>
 

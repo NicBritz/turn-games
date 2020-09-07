@@ -5,7 +5,7 @@ from .models import Game, Category, Genre, Tag
 
 # clean up Game admin in django admin area
 class GameAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "developer", "publisher", "price", "featured")
+    list_display = ("name", "description", "developer", "publisher", "price", "discounted", "discount_percent", "featured")
     ordering = ("name",)
 
 

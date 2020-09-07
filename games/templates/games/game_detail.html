@@ -79,7 +79,7 @@
                             <p class="is-size-7">Genres:</p>
                             <p class=" is-size-7 has-text-weight-normal pt-1">
                                 {% for genre in game.genres.all %}
-                                    {{ genre.get_friendly_name }},
+                                    <a class="mr-1" href="{% url 'games' %}?genre={{ genre.name }}">{{ genre.get_friendly_name }}, </a>
                                 {% endfor %}
                             </p>
                         </div>
@@ -88,7 +88,7 @@
                             <p class="is-size-7">Tags:</p>
                             <p class=" is-size-7 has-text-weight-normal pt-1">
                                 {% for tag in game.tags.all %}
-                                    {{ tag.get_friendly_name }},
+                                    <a class="mr-1" href="{% url 'games' %}?tag={{ tag.name }}">{{ tag.get_friendly_name }}, </a>
                                 {% endfor %}
                             </p>
                         </div>
