@@ -1,3 +1,4 @@
+from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
@@ -10,41 +11,62 @@ def all_games(request):
     category = None
     genre = None
     tag = None
+    search_term = None
     current_selection = None
+    sort = None
+    direction = None
 
     games = Game.objects.all()
 
     # check if the request is a get request
     if request.GET:
 
+        # sorting and ordering
+        if "sort" in request.GET:
+            sort_key = request.GET["sort"]
+            sort = sort_key
+
+            if "direction" in request.GET:
+                direction = request.GET["direction"]
+                if direction == "desc":
+                    sort_key = f"-{sort_key}"
+
+            games = games.order_by(sort_key)
+
         # check if filtering by category
         if "category" in request.GET:
-            category = request.GET['category']
-            games = games.filter(categories__name__iexact=category)
-            current_selection = Category.objects.filter(name__iexact=category)
+            category = request.GET["category"]
+
+            if category == "all":
+                games = Game.objects.all()
+                current_selection = "All"
+            else:
+                games = games.filter(categories__name__iexact=category)
+                current_selection = Category.objects.filter(name__iexact=category)
 
         # check if filtering by Genre
         if "genre" in request.GET:
-            genre = request.GET['genre']
+            genre = request.GET["genre"]
             games = games.filter(genres__name__iexact=genre)
             current_selection = Genre.objects.filter(name__iexact=genre)
 
         # check if filtering by Tag
         if "tag" in request.GET:
-            tag = request.GET['tag']
+            tag = request.GET["tag"]
             games = games.filter(tags__name__iexact=tag)
             current_selection = Tag.objects.filter(name__iexact=tag)
 
         # check if filtering by discount1
         if "special_offers" in request.GET:
-            offer = request.GET['special_offers']
-            print(offer)
-            if offer == 'discounted':
-                games = games.filter(discounted=True)
-            elif offer == 'featured':
-                games = games.filter(featured=True)
+            offer = request.GET["special_offers"]
 
-            current_selection = 'Special Offers: ' + offer
+            if offer == "discounted":
+                games = games.filter(discounted=True)
+                current_selection = "Discounted"
+
+            elif offer == "featured":
+                games = games.filter(featured=True)
+                current_selection = "Featured"
 
         # check if it is a search query
         if "q" in request.GET:
@@ -58,10 +80,13 @@ def all_games(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             games = games.filter(queries)
 
+    sorting = f"{sort}_{direction}"
+
     context = {
         "games": games,
         "search_term": query,
-        "current_selection": current_selection
+        "current_selection": current_selection,
+        "sorting": sorting,
     }
     return render(request, "games/games.html", context)
 
