@@ -2,8 +2,8 @@
 {% load  static %}
 
 {% block content %}
-    <div class="container pt-3">
-    <div class="columns mb-0">
+    <div class="container pt-3 game-selection-container">
+    <div class="columns mb-0 is-multiline is-mobile">
         <div class="column ">
             <hr class="has-background-info">
         </div>
@@ -15,17 +15,9 @@
         </div>
     </div>
     <div class="section pt-0">
-        <div class="columns has-text-left">
-            <div class="column">
-                {% if current_selection != None or search_term != None %}
-                    <a class=" button is-danger is-outlined has-text-weight-bold" href="{% url 'games' %}"><span>Clear</span>
-                        <span class="icon is-small">
-                        <i class="fas fa-times"></i>
-                            </span></a>
-                {% endif %}
-            </div>
-            <div class="column has-text-centered">
-
+        <div class="columns is-mobile is-multiline">
+            <div class="column my-0 py-0"></div>
+            <div class="column has-text-centered is-12-mobile">
                 {% if current_selection == None and search_term == None %}
                     <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold"> All </p>
                     <p class="has-text-white is-line-1 mt-1 ">{{ games.count }} games</p>
@@ -33,23 +25,35 @@
 
                 {% if search_term != None %}
                     <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold "><span class="is-size-6 mr-2"><i
-                            class="fas fa-search fa-xs"></i> </span> {{ search_term }} </p>
+                            class="fas fa-search fa-xs"></i> </span> {{ search_term }} <a class=" has-text-danger"
+                                                                                          href="{% url 'games' %}">
+                        <span class="ml-3">
+                        <i class="fas fa-times has-text-danger fa-lg"></i>
+                            </span></a></p>
                     <p class="has-text-white is-line-1 mt-1 ">{{ games.count }} games</p>
                 {% endif %}
 
                 {% if current_selection == 'Discounted' or current_selection == 'Featured' %}
                     <p class="has-text-white is-line-1 has-text-weight-bold"><span class="is-size-6 mr-2"><i
-                            class="fas fa-piggy-bank fa-xs"></i> </span>{{ current_selection }} </p>
+                            class="fas fa-piggy-bank fa-xs"></i> </span>{{ current_selection }} <a
+                            class=" has-text-danger" href="{% url 'games' %}">
+                        <span class="ml-3">
+                        <i class="fas fa-times has-text-danger fa-lg"></i>
+                            </span></a></p>
                     <p class="has-text-white is-line-1 mt-1">{{ games.count }} games</p>
                 {% else %}
                     {% for selection in current_selection %}
                         <p class="has-text-white is-line-1 has-text-weight-bold"><span class="is-size-6 mr-2"><i
-                                class="fas fa-tags fa-xs"></i> </span> {{ selection.friendly_name }} </p>
+                                class="fas fa-tags fa-xs"></i> </span> {{ selection.friendly_name }} <a
+                                class=" has-text-danger" href="{% url 'games' %}">
+                        <span class="ml-3">
+                        <i class="fas fa-times has-text-danger fa-lg"></i>
+                            </span></a></p>
                         <p class="has-text-white is-line-1 mt-1">{{ games.count }} Games</p>
                     {% endfor %}
                 {% endif %}
             </div>
-            <div class="column has-text-right">
+            <div class="column has-text-centered is-12-mobile">
                 <div class="field">
                     <div class="control is-dark">
                         <div class="select is-info ">

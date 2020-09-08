@@ -97,13 +97,17 @@ body {
         right: 0;
     }
 
-    /*.carousel {*/
-    /*    overflow: hidden;*/
-    /*    height: 30vh;*/
-    /*}*/
-    /*.carousel-cell img {*/
-    /*    height: 30vh;*/
-    /*}*/
+    .game-selection-container {
+        position: relative;
+        top: -35px;
+    }
+
+    .top-button {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+    }
+
     .flickity-button {
         display: none;
     }
@@ -153,6 +157,7 @@ body {
     position: relative;
     top: -35px;
 }
+
 
 .card-title {
     font-size: 0.85em;
