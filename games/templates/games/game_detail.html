@@ -6,7 +6,7 @@
     <div class="container pt-3">
         <div class="columns mb-0">
             <div class="column ">
-                <hr class="has-background-grey-dark" >
+                <hr class="has-background-grey-dark">
             </div>
             <div class="column has-text-centered is-narrow">
                 <h2 class="has-text-white title has-text-weight-light">Details</h2>
@@ -15,123 +15,146 @@
                 <hr class="has-background-grey-dark">
             </div>
         </div>
+
+        <div class="column">
+            <button id='back-button' class="button back-button is-danger is-outlined has-background-black">
+                <span class="icon is-small ">
+                  <i class="fas fa-arrow-left"></i>
+                </span>
+            </button>
+        </div>
+
     </div>
     <div class="container">
-        <div class="section pt-0">
-            <div class="columns is-multiline is-mobile">
-                <div class="column is-half">
-                    <div class="columns is-multiline is-mobile">
-                        <div class="column is-12">
-                            <a href="{{ game.header_image_url }}" target="_blank" class="image is-fullwidth ">
-                                <img src="{{ game.header_image_url }}"
-                                     alt="Placeholder image">
-                            </a>
-                        </div>
-
-                        <div class="column is-12 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7 ">Description:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.description }} </p>
-                        </div>
-
+    <div class="section pt-0">
+        <div class="columns is-multiline is-mobile">
+            <div class="column is-half">
+                <div class="columns is-multiline is-mobile">
+                    <div class="column is-12">
+                        <a href="{{ game.header_image_url }}" target="_blank" class="image is-fullwidth ">
+                            <img src="{{ game.header_image_url }}"
+                                 alt="Placeholder image">
+                        </a>
                     </div>
+
+                    <div class="column is-12 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7 ">Description:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.description }} </p>
+                    </div>
+
                 </div>
-                <div class="column is-half title has-text-white has-text-centered">
-                    <div class="columns is-multiline is-mobile">
+            </div>
+            <div class="column is-half title has-text-white has-text-centered">
+                <div class="columns is-multiline is-mobile">
 
-                        <div class="column is-12 title has-text-white has-text-centered has-text-weight-bold is-line-1">
-                            <h3>{{ game.name }}</h3>
-                        </div>
+                    <div class="column is-12 title has-text-white has-text-centered has-text-weight-bold is-line-1">
+                        <h3>{{ game.name }}</h3>
+                    </div>
 
-                        <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Developer:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.developer }} </p>
-                        </div>
+                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7">Developer:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.developer }} </p>
+                    </div>
 
-                        <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Publisher:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.publisher }} </p>
-                        </div>
+                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7">Publisher:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.publisher }} </p>
+                    </div>
 
-                        <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Platforms:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.platforms }} </p>
-                        </div>
+                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7">Platforms:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.platforms }} </p>
+                    </div>
 
-                        <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Released:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.release_date }} </p>
-                        </div>
+                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7">Released:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.release_date }} </p>
+                    </div>
 
                     <div class="column is-12">
 
                     </div>
 
-                        <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                            <p class="is-size-7">Categories:</p>
-                            <p class=" is-size-7 has-text-weight-normal pt-1">
-                                {% for category in game.categories.all %}
-                                    <a class="mr-1" href="{% url 'games' %}?category={{ category.name }}">{{ category.get_friendly_name }}, </a>
-                                {% endfor %}
-                            </p>
-                        </div>
+                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
+                        <p class="is-size-7">Categories:</p>
+                        <p class=" is-size-7 has-text-weight-normal pt-1">
+                            {% for category in game.categories.all %}
+                                <a class="mr-1"
+                                   href="{% url 'games' %}?category={{ category.name }}">{{ category.get_friendly_name }}, </a>
+                            {% endfor %}
+                        </p>
+                    </div>
 
-                        <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                            <p class="is-size-7">Genres:</p>
-                            <p class=" is-size-7 has-text-weight-normal pt-1">
-                                {% for genre in game.genres.all %}
-                                    <a class="mr-1" href="{% url 'games' %}?genre={{ genre.name }}">{{ genre.get_friendly_name }}, </a>
-                                {% endfor %}
-                            </p>
-                        </div>
+                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
+                        <p class="is-size-7">Genres:</p>
+                        <p class=" is-size-7 has-text-weight-normal pt-1">
+                            {% for genre in game.genres.all %}
+                                <a class="mr-1"
+                                   href="{% url 'games' %}?genre={{ genre.name }}">{{ genre.get_friendly_name }}, </a>
+                            {% endfor %}
+                        </p>
+                    </div>
 
-                        <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                            <p class="is-size-7">Tags:</p>
-                            <p class=" is-size-7 has-text-weight-normal pt-1">
-                                {% for tag in game.tags.all %}
-                                    <a class="mr-1" href="{% url 'games' %}?tag={{ tag.name }}">{{ tag.get_friendly_name }}, </a>
-                                {% endfor %}
-                            </p>
-                        </div>
+                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
+                        <p class="is-size-7">Tags:</p>
+                        <p class=" is-size-7 has-text-weight-normal pt-1">
+                            {% for tag in game.tags.all %}
+                                <a class="mr-1"
+                                   href="{% url 'games' %}?tag={{ tag.name }}">{{ tag.get_friendly_name }}, </a>
+                            {% endfor %}
+                        </p>
+                    </div>
 
                     <div class="column is-12 is-background">
                         <hr class="has-background-grey-dark">
                     </div>
 
                     <div class="column is-6 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Ratings:</p>
-                            <p class=" is-size-6 has-text-weight-normal pt-1">
+                        <p class="is-size-7">Ratings:</p>
+                        <p class=" is-size-6 has-text-weight-normal pt-1">
                                 <span>
                                     <i class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i>
                                 </span>
-                                {{ game.positive_ratings }}
+                            {{ game.positive_ratings }}
 
-                            </p>
+                        </p>
                         <p class=" is-size-6 has-text-weight-normal pt-1 ">
                                 <span>
                                 <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
                                 </span>
-                                {{ game.negative_ratings }}
-                            </p>
-                        </div>
+                            {{ game.negative_ratings }}
+                        </p>
+                    </div>
 
-                        <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                            <p class="is-size-7">Price:</p>
-                            <p class=" is-size-5 has-text-weight-normal pt-1"> £ {{ game.price }} </p>
-                        </div>
-                        <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                            <button class="button is-success mt-1 is-hoverable">
+                    <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
+                        <p class="is-size-7">Price:</p>
+                        <p class=" is-size-5 has-text-weight-normal pt-1"> £ {{ game.price }} </p>
+                    </div>
+                    <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
+                        <button class="button is-success mt-1 is-hoverable">
                                 <span class="icon">
                                   <i class="fas fa-cart-plus"></i>
                                 </span>
-                                <span>Buy</span>
-                            </button>
-                        </div>
+                            <span>Buy</span>
+                        </button>
                     </div>
-
                 </div>
+
+            </div>
 
         </div>
     </div>
 
 {% endblock %}
 
+{% block post-custom-js %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+        $('#back-button').click(function (e) {
+            window.history.back();
+        })
+    </script>
+
+
+{% endblock %}

@@ -14,19 +14,29 @@ body {
 .texture {
     background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598792843/saturn/bright-squares_zbegjs.png);
 }
-.cover{
-    height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: black;
-	z-index: -1;
+
+.top-button {
+    position: fixed;
+    bottom: 10px;
+    right: 60px;
 }
 
-.is-line-1{
+
+.cover {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: black;
+    margin: 0;
+    z-index: -1;
+}
+
+.is-line-1 {
     line-height: 1.2;
 }
+
 /* main logo styles */
 .main-logo {
     font-weight: 500;
