@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
+from games.models import Game
 
 def view_cart(request):
     """ view the items in the shopping cart """
@@ -8,6 +10,7 @@ def view_cart(request):
 
 def add_to_cart(request, game_id):
     """ Adds a game to the cart """
+    game = Game.objects.get(pk=game_id)
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', [])
 
@@ -15,6 +18,7 @@ def add_to_cart(request, game_id):
         cart.append(game_id)
 
     request.session['cart'] = cart
+    messages.info(request, f'Added {game.name} to your cart')
 
     return redirect(redirect_url)
 
