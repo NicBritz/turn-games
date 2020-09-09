@@ -89,19 +89,33 @@
 
                         </a>
                     </div>
-                    <div class="dropdown-menu dropdown-buttons is-z-60 " id="basket-menu-items" role="menu">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <p>item 1 - £99.00</p>
-                            </div>
-                            <hr class="dropdown-divider">
-                            <div class="dropdown-item">
-                                <p>item 2 - £99.00</p>
-                            </div>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                View Basket
-                            </a>
+                    <div class="dropdown-menu dropdown-buttons is-z-60" id="basket-menu-items" role="menu">
+                        <div class="dropdown-content has-background-black ">
+                            {% if cart_items|length > 0 %}
+                            {% for item in cart_items reversed %}
+                                <div class="dropdown-item">
+                                    <div class="columns is-mobile is-multiline">
+                                        <div class="column is-12">
+                                            <img class="image " src="{{ item.game.header_image_url }}"
+                                                 alt="{{ item.game.name }}">
+                                        </div>
+                                        <div class="column is-8 mt-0 pt-0 has-text-white">
+                                            <p>{{ item.game.name }} </p>
+                                        </div>
+                                        <div class="column is-4 mt-0 pt-0 has-text-white">
+                                            <p>£{{ item.game.price }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <hr class="dropdown-divider">
+                            {% endfor %}
+
+                                {% else %}
+                                <div class="dropdown-item">
+                                <p class="has-text-white has-text-centered"> Empty </p>
+                                </div>
+                            {% endif %} 
+
                         </div>
                     </div>
                 </div>

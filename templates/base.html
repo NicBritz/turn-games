@@ -72,6 +72,33 @@
 
 <!-- messages -->
 {% if messages %}
+    <div class="container mt-5 is-line-1">
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column is-6 has-text-weight-medium">
+                {% for message in messages %}
+                    <!-- render appropriate message src:
+                    https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html-->
+                    {% with message.level as level %}
+                        <!-- Error -->
+                        {% if level == 40 %}
+                            {% include 'includes/messages/message_error.html' %}
+                            <!-- Warning -->
+                        {% elif level == 30 %}
+                            {% include 'includes/messages/message_warning.html' %}
+                            <!-- Success -->
+                        {% elif level == 25 %}
+                            {% include 'includes/messages/message_success.html' %}
+                            <!-- Info -->
+                        {% else %}
+                            {% include 'includes/messages/message_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+            <div class="column"></div>
+        </div>
+    </div>
 {% endif %}
 
 <!-- page header -->
@@ -85,6 +112,25 @@
 {% block post-custom-js %}
     <!-- Base JS -->
     <script src="{% static 'js/base.js' %}"></script>
+    <script type="text/javascript">
+        {#    From Bulma Documentation: https://bulma.io/documentation/elements/notification/#}
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+
+                setInterval(function () {
+                        $notification.parentNode.removeChild($notification);
+                    },
+                    3000
+                )
+            });
+        })
+        ;
+    </script>
 {% endblock %}
 </body>
 </html>

@@ -1,4 +1,3 @@
-from django.db.models.functions import Lower
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
@@ -7,6 +6,7 @@ from .models import Game, Category, Genre, Tag
 
 def all_games(request):
     """ returns the all products view  """
+
     query = None
     category = None
     genre = None
@@ -30,7 +30,7 @@ def all_games(request):
                 direction = request.GET["direction"]
                 if direction == "desc":
                     sort_key = f"-{sort_key}"
-
+            # order teh games according to the selection
             games = games.order_by(sort_key)
 
         # check if filtering by category
@@ -99,4 +99,5 @@ def game_detail(request, game_id):
     context = {
         "game": game,
     }
+
     return render(request, "games/game_detail.html", context)
