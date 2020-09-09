@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load  static %}
+
+
+{% block content %}
+    <div class="container pt-3">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-dark">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">Shopping Cart</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-dark">
+            </div>
+        </div>
+
+    <div class="section is-line-1">
+        {% if cart_items %}
+            <div class="table"></div>
+        {% else %}
+            <div class="columns">
+            <div class="column is-12 has-text-centered">
+                <p class="has-text-white">There are items in your cart.</p>
+                <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+            </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
