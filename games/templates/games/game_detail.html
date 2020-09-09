@@ -17,11 +17,11 @@
         </div>
 
         <div class="column">
-            <button id='back-button' class="button back-button is-danger is-outlined has-background-black">
+            <a href="{% url 'games' %}" class="button back-button is-danger is-outlined has-background-black">
                 <span class="icon is-small ">
                   <i class="fas fa-arrow-left"></i>
                 </span>
-            </button>
+            </a>
         </div>
 
     </div>
@@ -147,17 +147,5 @@
             </div>
         </div>
     </div>
-
-{% endblock %}
-
-{% block post-custom-js %}
-    {{ block.super }}
-
-    <script type="text/javascript">
-        $('#back-button').click(function (e) {
-            window.history.back();
-        })
-    </script>
-
 
 {% endblock %}
