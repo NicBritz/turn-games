@@ -21,7 +21,14 @@ body {
     right: 60px;
 }
 
+.image-small{
+    width: 25%;
+}
 
+.table th{
+    color: white!important;
+    font-size: 1.2rem;
+}
 .cover {
     position: fixed;
     height: 100%;

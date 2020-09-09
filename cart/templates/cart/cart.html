@@ -4,29 +4,81 @@
 
 {% block content %}
     <div class="container pt-3">
-        <div class="columns mb-0">
-            <div class="column ">
-                <hr class="has-background-grey-dark">
-            </div>
-            <div class="column has-text-centered is-narrow">
-                <h2 class="has-text-white title has-text-weight-light">Shopping Cart</h2>
-            </div>
-            <div class="column ">
-                <hr class="has-background-grey-dark">
-            </div>
+    <div class="columns mb-0">
+        <div class="column ">
+            <hr class="has-background-grey-dark">
         </div>
+        <div class="column has-text-centered is-narrow">
+            <h2 class="has-text-white title has-text-weight-light">Shopping Cart</h2>
+        </div>
+        <div class="column ">
+            <hr class="has-background-grey-dark">
+        </div>
+    </div>
 
     <div class="section is-line-1">
         {% if cart_items %}
-            <div class="table"></div>
+            <table class="table has-background-black has-text-white">
+                <thead>
+                <tr>
+                    <th>Game Info</th>
+                    <th></th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                {% for item in cart_items %}
+                    <tr >
+                        <td class="image-small ">
+                            <img class="image" src="{{ item.game.header_image_url }}" alt="image">
+                        </td>
+                        <td>
+                            <p class="py-3">{{ item.game.name }}</p>
+                        </td>
+                        <td>
+                            <p>£ {{ item.game.price }}</p>
+                        </td>
+                        <td>
+                            <p>{{ item.game.discount_percent }}%</p>
+                        </td>
+                        <td>
+                            <p>£{{ item.game_discount_price|floatformat:2 }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan="5" class="has-text-white has-text-right pt-3">
+                        <p class="py-2"> Cart Total: £ {{ total|floatformat:2 }}</p>
+                        <p class="py-2"> Tax: £ {{ tax|floatformat:2 }}</p>
+                        <p class="is-size-4 py-2"> Grand Total: <strong class="has-text-white"> £ {{ grand_total|floatformat:2 }}</strong></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+
+                            <div class=" has-text-right">
+                                <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+                                <a class="button is-outlined is-warning mt-3" href="{% url 'games' %}"> <span
+                                        class="icon is-small mr-3">
+                                        <i class="fas fa-lock"></i>
+                                         </span> Checkout</a>
+                            </div>
+
+                    </td>
+                </tr>
+            </table>
         {% else %}
             <div class="columns">
-            <div class="column is-12 has-text-centered">
-                <p class="has-text-white">There are items in your cart.</p>
-                <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
-            </div>
+                <div class="column is-12 has-text-centered">
+                    <p class="has-text-white">There are items in your cart.</p>
+                    <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+                </div>
             </div>
         {% endif %}
+
+
     </div>
 
 {% endblock %}
