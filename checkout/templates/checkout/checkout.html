@@ -8,44 +8,103 @@
 
 {% block content %}
     <div class="container pt-3">
-    <div class="columns mb-0">
-        <div class="column ">
-            <hr class="has-background-grey-dark">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">Checkout</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
         </div>
-        <div class="column has-text-centered is-narrow">
-            <h2 class="has-text-white title has-text-weight-light">Checkout</h2>
-        </div>
-        <div class="column ">
-            <hr class="has-background-grey-dark">
-        </div>
-    </div>
+        <!-- Checkout Steps -->
+        <div class="section is-line-1 mt-0 pt-0">
+            <div class="columns is-mobile">
+                <div class="column">
+                    <ul class="steps is-narrow is-medium is-centered has-content-centered">
+                        <!-- Shopping Cart -->
+                        <li class="steps-segment ">
+                            <a href="{% url 'view_cart' %}" class="has-text-dark">
+                                <span class="steps-marker">
+                                    <span class="icon"><i class="fa fa-shopping-cart"></i></span>
+                                </span>
+                                <div class="steps-content">
+                                    <p class="heading has-text-white">Shopping Cart</p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- User Information -->
+                        <li class="steps-segment is-active">
+                            <a href="#" class="has-text-dark">
+                                <span class="steps-marker">
+                                    <span class="icon"><i class="fa fa-user"></i></span>
+                                </span>
+                                <div class="steps-content">
+                                    <p class="heading has-text-white">User Information</p>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Payment -->
+                        <li class="steps-segment ">
+                            <span class="steps-marker">
+                                <span class="icon"><i class="fa fa-usd"></i></span>
+                            </span>
+                            <div class="steps-content">
+                                <p class="heading">Payment</p>
+                            </div>
+                        </li>
+                        <!-- Complete -->
+                        <li class="steps-segment">
+                            <span class="steps-marker">
+                                <span class="icon"><i class="fa fa-check"></i></span>
+                            </span>
+                            <div class="steps-content">
+                                <p class="heading">Confirmation</p>
+                            </div>
+                        </li>
 
-    <div class="section is-line-1">
-        <div class="columns is-mobile is-multiline ">
-            <div class="column is-half is-offset-one-quarter">
-                <form action=" {% url 'checkout' %}" method="POST">
-                    {% csrf_token %}
-                    <label for="order_form.full_name.id_for_label"
-                           class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-id-card"> </i> Full
-                        Name</label>
-                    {{ order_form.full_name }}
-                    <p class="help is-danger pb-1">* Required</p>
-                    <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
-                            class="fas fa-envelope"></i> Email Address</label>
-                    {{ order_form.email }}
-                    <p class="help is-danger pb-1">* Required</p>
-                    <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-phone"></i>
-                        Phone Number</label>
-                    {{ order_form.phone_number }}
-                    <p class="help is-danger pb-1">* Required</p>
-
-                    <button type="submit" class="button is-primary is-outlined is-pulled-right mt-3">
-                        Submit
-                    </button>
-                </form>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <div class="section is-line-1">
+            <div class="columns is-mobile is-multiline ">
+                <div class="column is-half is-offset-one-quarter">
+                    <form action=" {% url 'checkout' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="order_form.full_name.id_for_label"
+                               class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-id-card"> </i>
+                            Full
+                            Name</label>
+                        {{ order_form.full_name }}
+                        <p class="help is-danger pb-1">* Required</p>
+                        <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
+                                class="fas fa-envelope"></i> Email Address</label>
+                        {{ order_form.email }}
+                        <p class="help is-danger pb-1">* Required</p>
+                        <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
+                                class="fas fa-phone"></i>
+                            Phone Number</label>
+                        {{ order_form.phone_number }}
+                        <p class="help is-danger pb-1">* Required</p>
+
+                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3">
+                            <span
+                                    class="icon is-small mr-3">
+                                        <i class="fas fa-lock"></i>
+                                         </span> Checkout
+                        </button>
+
+                        <a  href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left">
+                            Shopping Cart
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
