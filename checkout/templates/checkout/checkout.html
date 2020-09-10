@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load  static %}
+
+<!-- custom css imports -->
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-3">
+    <div class="columns mb-0">
+        <div class="column ">
+            <hr class="has-background-grey-dark">
+        </div>
+        <div class="column has-text-centered is-narrow">
+            <h2 class="has-text-white title has-text-weight-light">Checkout</h2>
+        </div>
+        <div class="column ">
+            <hr class="has-background-grey-dark">
+        </div>
+    </div>
+
+    <div class="section is-line-1">
+        <div class="columns is-mobile is-multiline ">
+            <div class="column is-half is-offset-one-quarter">
+                <form action=" {% url 'checkout' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="order_form.full_name.id_for_label"
+                           class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-id-card"> </i> Full
+                        Name</label>
+                    {{ order_form.full_name }}
+                    <p class="help is-danger pb-1">* Required</p>
+                    <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
+                            class="fas fa-envelope"></i> Email Address</label>
+                    {{ order_form.email }}
+                    <p class="help is-danger pb-1">* Required</p>
+                    <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-phone"></i>
+                        Phone Number</label>
+                    {{ order_form.phone_number }}
+                    <p class="help is-danger pb-1">* Required</p>
+
+                    <button type="submit" class="button is-primary is-outlined is-pulled-right mt-3">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
