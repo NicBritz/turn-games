@@ -90,14 +90,14 @@
                         <div class="mb-3 has-text-danger" id="card-errors" role="alert"></div>
 
 
-                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3" is="submit-payment-button">
+                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3"  id="submit-payment-button">
                             <span
                                     class="icon is-small mr-3">
                                         <i class="fas fa-lock"></i>
                                          </span> Submit
                         </button>
 
-                        <a href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left">
+                        <a href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left ">
                             Shopping Cart
                         </a>
 
@@ -112,5 +112,6 @@
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
+    {#    Stripe Script #}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

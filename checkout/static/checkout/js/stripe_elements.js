@@ -54,16 +54,14 @@ paymentForm.addEventListener('submit', function (event) {
     event.preventDefault();
     // stop multiple submits by disabling th element ans submit button
     card.update({'disabled': true});
+    $('#submit-payment-button').addClass("is-loading");
     $('#submit-payment-button').attr('disabled', true);
+
 
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
-            // billing_details: {
-            //   name: $.trim(form.full_name.value),
-            //   phone: $.trim(form.phone_number.value),
-            //   email: $.trim(form.email.value),
-            // }
+
         },
     }).then(function (result) {
         if (result.error) {
@@ -77,6 +75,7 @@ paymentForm.addEventListener('submit', function (event) {
             $(errorDiv).html(html);
             // enable element and submit button
             card.update({'disabled': false});
+            $('#submit-payment-button').removeClass('is-loading');
             $('#submit-payment-button').attr('disabled', false);
         } else {
             if (result.paymentIntent.status === 'succeeded') {

@@ -92,6 +92,7 @@ def checkout(request):
 def checkout_success(request, order_number):
     """ render the success view """
     order = get_object_or_404(Order, order_number=order_number)
+    order_tax = order.grand_total - order.order_total
 
     messages.success(
         request,
@@ -104,8 +105,6 @@ def checkout_success(request, order_number):
         del request.session["cart"]
 
     template = "checkout/checkout_success.html"
-    context = {
-        "order": order,
-    }
+    context = {"order": order, "order_tax": order_tax}
 
     return render(request, template, context)

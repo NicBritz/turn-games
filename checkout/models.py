@@ -7,7 +7,6 @@ from django.conf import settings
 from games.models import Game
 
 
-
 class Order(models.Model):
     """
     A model to keep track of all orders and order details
