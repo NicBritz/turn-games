@@ -64,24 +64,23 @@
 
         <div class="section is-line-1">
             <div class="columns is-mobile is-multiline ">
-                <div class="column is-6 is-offset-one-third">
-                    <form action=" {% url 'checkout' %}" method="POST">
+                <div class="column is-6 is-offset-3">
+                    <form action=" {% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
                         <label for="order_form.full_name.id_for_label"
                                class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-id-card"> </i>
                             Full
                             Name</label>
                         {{ order_form.full_name }}
-                        <p class="help is-danger pb-1">* Required</p>
+
                         <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
                                 class="fas fa-envelope"></i> Email Address</label>
                         {{ order_form.email }}
-                        <p class="help is-danger pb-1">* Required</p>
+
                         <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
                                 class="fas fa-phone"></i>
                             Phone Number</label>
                         {{ order_form.phone_number }}
-                        <p class="help is-danger pb-1">* Required</p>
 
                         <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-credit-card"></i>
                             Card Details</label>
@@ -89,19 +88,19 @@
                         <div class="mb-3" id="card-element"></div>
                         <!-- Used to display form errors -->
                         <div class="mb-3 has-text-danger" id="card-errors" role="alert"></div>
-                        <p class="help is-danger pb-1">* Required</p>
 
 
-                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3">
+                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3" is="submit-payment-button">
                             <span
                                     class="icon is-small mr-3">
                                         <i class="fas fa-lock"></i>
-                                         </span> Checkout
+                                         </span> Submit
                         </button>
 
                         <a href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left">
                             Shopping Cart
                         </a>
+
                     </form>
                 </div>
             </div>

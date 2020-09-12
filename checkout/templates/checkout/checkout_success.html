@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% load static %}
+
+<!-- custom css imports -->
+{% block custom-css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}" />
+{% endblock %} {% block content %}
+<div class="container pt-3">
+  <div class="columns mb-0">
+    <div class="column">
+      <hr class="has-background-grey-lighter" />
+    </div>
+    <div class="column has-text-centered is-narrow">
+      <h2 class="has-text-white title has-text-weight-light">Success</h2>
+    </div>
+    <div class="column">
+      <hr class="has-background-grey-lighter" />
+    </div>
+  </div>
+  <!-- Checkout Steps -->
+  <div class="section is-line-1 mt-0 pt-0">
+    <div class="columns is-mobile">
+      <div class="column">
+        <ul class="steps is-narrow is-medium is-centered has-content-centered">
+          <!-- Shopping Cart -->
+          <li class="steps-segment">
+            <a href="{% url 'view_cart' %}" class="has-text-dark">
+              <span class="steps-marker">
+                <span class="icon"><i class="fa fa-shopping-cart"></i></span>
+              </span>
+              <div class="steps-content">
+                <p class="heading has-text-white">Shopping Cart</p>
+              </div>
+            </a>
+          </li>
+
+          <!-- Payment -->
+          <li class="steps-segment">
+            <a href="{% url 'checkout' %}" class="has-text-dark">
+              <span class="steps-marker">
+                <span class="icon"><i class="fa fa-usd"></i></span>
+              </span>
+              <div class="steps-content">
+                <p class="heading has-text-white">Payment</p>
+              </div>
+            </a>
+          </li>
+          <!-- Complete -->
+          <li class="steps-segment is-active">
+            <span class="steps-marker">
+              <span class="icon"><i class="fa fa-check"></i></span>
+            </span>
+            <div class="steps-content">
+              <p class="heading">Confirmation</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section is-line-1">
+    <div class="columns is-mobile is-multiline">
+      <div class="column is-6 is-offset-3">
+        <h3 class="has-text-white">Thank you for your order.</h3>
+        <p class="has-text-white">A confirmation email has been sent to <strong class="has-text-white">{{ order.email }}</strong>.
+        </p>
+        <h4 class="has-text-white">Order Details:</h4>
+      </div>
+      <div class="column is-6 is-offset-3">
+        <p class="has-text-white">Customer Name:</p>
+        <p class="has-text-white">{{ order.full_name }}</p>
+      </div>
+      <div class="column is-6 is-offset-3">
+        <p class="has-text-white">Customer Email:</p>
+        <p class="has-text-white">{{ order.email }}</p>
+      </div>
+      <div class="column is-6 is-offset-3">
+        <p class="has-text-white">Order Number:</p>
+        <p class="has-text-white">{{ order.order_number }}</p>
+      </div>
+      <div class="column is-6 is-offset-3">
+        <p class="has-text-white">Order Date:</p>
+        <p class="has-text-white">{{ order.date }}</p>
+      </div>
+
+      <div class="column is-6 is-offset-3">
+        <p class="has-text-white">Order:</p>
+        {% for item in order.lineitems.all%}
+        <p class="has-text-white">{{ item.name }}</p>
+        {% endfor %}
+      </div>
+      <div class="column is-6 is-offset-3">
+        <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

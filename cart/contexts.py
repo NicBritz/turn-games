@@ -24,7 +24,7 @@ def cart_contents(request):
 
         # append the values to the cart items list
         cart_items.append(
-            {"game_id": item, "game_discount_price": discounted_price, "game": game,}
+            {"game_id": game.id, "game_discount_price": discounted_price, "game": game, }
         )
     # calculate the tax
     tax = total * Decimal(settings.TAX_PERCENTAGE)
