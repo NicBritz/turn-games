@@ -4,8 +4,21 @@
 
 {% block head_title %}{% trans "Account Inactive" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
+{% block inner_content %}
+    <div class="section py-0 my-0">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">Account Inactive</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+        </div>
+    </div>
 
-<p>{% trans "This account is inactive." %}</p>
+<p class="has-text-white">{% trans "This account is inactive." %}</p>
+
 {% endblock %}

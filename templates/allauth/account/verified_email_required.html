@@ -4,20 +4,33 @@
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Verify Your E-mail Address" %}</h1>
+{% block inner_content %}
+    <div class="section py-0 my-0">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">{% trans "Verify Your E-mail Address" %}</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+        </div>
+    </div>
 
-{% url 'account_email' as email_url %}
+    {% url 'account_email' as email_url %}
 
-<p>{% blocktrans %}This part of the site requires us to verify that
-you are who you claim to be. For this purpose, we require that you
-verify ownership of your e-mail address. {% endblocktrans %}</p>
+    <p class="has-text-white is-line-1">{% blocktrans %}This part of the site requires us to verify that
+        you are who you claim to be. For this purpose, we require that you
+        verify ownership of your e-mail address. {% endblocktrans %}</p>
 
-<p>{% blocktrans %}We have sent an e-mail to you for
-verification. Please click on the link inside this e-mail. Please
-contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+    <p class="has-text-white is-line-1">{% blocktrans %}We have sent an e-mail to you for
+        verification. Please click on the link inside this e-mail. Please
+        contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
 
-<p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
-
+    <p class="has-text-danger is-line-1">{% blocktrans %}<strong class="has-text-danger">
+        Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.
+    {% endblocktrans %}</p>
 
 {% endblock %}
