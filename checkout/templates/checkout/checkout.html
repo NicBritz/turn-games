@@ -24,6 +24,7 @@
             <div class="columns is-mobile">
                 <div class="column">
                     <ul class="steps is-narrow is-medium is-centered has-content-centered">
+
                         <!-- Shopping Cart -->
                         <li class="steps-segment ">
                             <a href="{% url 'view_cart' %}" class="has-text-dark">
@@ -62,41 +63,118 @@
             </div>
         </div>
 
+        <!-- Checkout Form -->
         <div class="section is-line-1">
             <div class="columns is-mobile is-multiline ">
-                <div class="column is-6 is-offset-3">
+                <div class="column is-4 is-offset-4">
                     <form action=" {% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
-                        <label for="order_form.full_name.id_for_label"
-                               class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-id-card"> </i>
-                            Full
-                            Name</label>
-                        {{ order_form.full_name }}
 
-                        <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
-                                class="fas fa-envelope"></i> Email Address</label>
-                        {{ order_form.email }}
+                        <fieldset class="has-text-white ">
+                            <legend class="has-text-centered"><i class="fas fa-id-card px-2 has-text-info"></i> Personal
+                                Details
+                            </legend>
+                            <!-- Name -->
+                            <label for="order_form.full_name.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Full Name
+                                <span class="has-text-danger"> * </span>
+                            </label>
+                            {{ order_form.full_name }}
+                            <!-- Email -->
+                            <label for="order_form.email.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                </i> Email Address
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            {{ order_form.email }}
+                            <!-- Phone Number -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Phone Number
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            {{ order_form.phone_number }}
+                        </fieldset>
 
-                        <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i
-                                class="fas fa-phone"></i>
-                            Phone Number</label>
-                        {{ order_form.phone_number }}
+                        <fieldset class="has-text-white mt-5">
+                            <legend class="has-text-centered"><i class="fas fa-home px-2 has-text-info"></i>Address
+                                Details
+                            </legend>
+                            <!-- Address 1 -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Address 1
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            {{ order_form.street_address1 }}
+                            <!-- Address 2 -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Address 2
+                            </label>
+                            {{ order_form.street_address2 }}
+                            <!-- Town -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Town / City
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            {{ order_form.town_or_city }}
+                            <!-- Postcode -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Postcode
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            {{ order_form.postcode }}
+                            <!-- County -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                County
+                            </label>
+                            {{ order_form.county }}
+                            <!-- Country -->
+                            <label for="order_form.phone_number.id_for_label"
+                                   class="label has-text-white mt-3 has-text-weight-medium">
+                                Country
+                                <span class="has-text-danger"> *</span>
+                            </label>
+                            <div class="control has-icons-left">
+                                <div class="select is-fullwidth">
+                                    {{ order_form.country }}
+                                </div>
+                                <div class="icon is-small is-left">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                            </div>
+                        </fieldset>
 
-                        <label for="" class="label has-text-white mt-3 has-text-weight-medium"><i class="fas fa-credit-card"></i>
-                            Card Details</label>
-                        <!-- A Stripe card element will go here -->
+                         <fieldset class="has-text-white mt-5">
+                            <legend class="has-text-centered"><i class="fas fa-credit-card px-2 has-text-info"></i>Card Details
+                            </legend>
+                             <!-- Card Details -->
+                             <label for="" class="label has-text-white mt-3 has-text-weight-medium">
+                                 Card Details
+                                 <span class="has-text-danger"> *</span>
+                             </label>
+                        </fieldset>
+
+                        <!-- A Stripe card element -->
                         <div class="mb-3" id="card-element"></div>
-                        <!-- Used to display form errors -->
+                        <!-- Stripe error display -->
                         <div class="mb-3 has-text-danger" id="card-errors" role="alert"></div>
+                        <!-- Client secret to send the intent -->
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
 
-
-                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3"  id="submit-payment-button">
-                            <span
-                                    class="icon is-small mr-3">
-                                        <i class="fas fa-lock"></i>
-                                         </span> Submit
+                        <!-- Submit button -->
+                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3"
+                                id="submit-payment-button">
+                            <span class="icon is-small mr-3">
+                                <i class="fas fa-lock"></i>
+                            </span> Submit
                         </button>
-
+                        <!-- Back to cart button -->
                         <a href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left ">
                             Shopping Cart
                         </a>

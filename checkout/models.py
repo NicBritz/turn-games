@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from games.models import Game
+from django_countries.fields import CountryField
 
 
 class Order(models.Model):
@@ -18,6 +19,18 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
+    # billing details / address info
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    postcode = models.CharField(max_length=20, null=False, blank=False)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    country = CountryField(blank_label="...", null=False, blank=False)
+    # Original Cart
+    original_cart = models.TextField(null=False, blank=False, default="")
+    # Payment id
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default="")
+
     # Order Information
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0

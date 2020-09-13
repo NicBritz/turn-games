@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -6,6 +7,31 @@ from django.conf import settings
 from cart.contexts import cart_contents
 from games.models import Game
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_data(request):
+    """ caches the current users order """
+    try:
+        # get the payment intend id
+        intent_id = request.POST.get("client_secret").split("_secret")[0]
+        # add the api key
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        # update the metadata to include custom content
+        stripe.PaymentIntent.modify(
+            intent_id,
+            metadata={
+                "cart": json.dumps(request.session.get("cart", [])),
+                "username": request.user,
+            },
+        )
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(
+            request, "We were unable to process your order. Please try again later."
+        )
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -15,20 +41,32 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == "POST":
+
         # get the cart contents
         cart = request.session.get("cart", [])
-        print(cart)
+
         # get the post data
         form_data = {
-            "full_name": request.POST["full_name"],
-            "email": request.POST["email"],
-            "phone_number": request.POST["phone_number"],
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'country': request.POST['country'],
+            'postcode': request.POST['postcode'],
+            'town_or_city': request.POST['town_or_city'],
+            'street_address1': request.POST['street_address1'],
+            'street_address2': request.POST['street_address2'],
+            'county': request.POST['county'],
         }
         order_form = OrderForm(form_data)
 
         # check if the form is valid and save
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            # get the payment intend id
+            intent_id = request.POST.get("client_secret").split("_secret")[0]
+            order.stripe_pid = intent_id
+            order.original_cart = json.dumps(cart)
+            order.save()
             # create the line items for the order from the cart contents
             for current_game in cart:
                 try:
