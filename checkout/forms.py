@@ -9,6 +9,12 @@ class OrderForm(forms.ModelForm):
             "full_name",
             "email",
             "phone_number",
+            "street_address1",
+            "street_address2",
+            "town_or_city",
+            "postcode",
+            "county",
+            "country",
         )
 
     def __init__(self, *args, **kwargs):
@@ -21,5 +27,9 @@ class OrderForm(forms.ModelForm):
         self.fields["full_name"].widget.attrs["autofocus"] = True
 
         for field in self.fields:
-            # customize the form style
-            self.fields[field].widget.attrs["class"] = "input"
+            if field == 'country':
+                # country field has select class
+                self.fields[field].widget.attrs["class"] = " "
+            else:
+                # all other fields have input class
+                self.fields[field].widget.attrs["class"] = "input"
