@@ -4,8 +4,20 @@
 
 {% block head_title %}{% trans "Sign Up Closed" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Sign Up Closed" %}</h1>
+{% block inner_content %}
+    <div class="section py-0 my-0">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">{% trans "Sign Up Closed" %}</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+        </div>
+    </div>
 
-<p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+<p class="has-text-white is-line-1">{% trans "We are sorry, but the sign up is currently closed." %}</p>
 {% endblock %}

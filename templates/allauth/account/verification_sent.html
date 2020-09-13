@@ -4,9 +4,21 @@
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
-{% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
+{% block inner_content %}
+    <div class="section py-0 my-0">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">{% trans "Verify Your E-mail Address" %}</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+        </div>
+    </div>
 
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+    <p class="has-text-white">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
 
 {% endblock %}

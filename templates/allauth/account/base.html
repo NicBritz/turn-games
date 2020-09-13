@@ -1,1 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
+<!-- custom css imports -->
+{% block custom-css %}
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="{% static 'css/all_auth.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-6  is-line-1">
+        <div class="columns is-mobile is-multiline">
+            <div class="column is-6 is-offset-3 has-text-centered">
+                <div class="allauth-form-content">
+                    {% block inner_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

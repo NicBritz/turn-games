@@ -4,18 +4,34 @@
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Sign Out" %}</h1>
+{% block inner_content %}
+    <div class="section py-0 my-0">
+        <div class="columns mb-0">
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+            <div class="column has-text-centered is-narrow">
+                <h2 class="has-text-white title has-text-weight-light">{% trans "Sign Out" %}</h2>
+            </div>
+            <div class="column ">
+                <hr class="has-background-grey-lighter">
+            </div>
+        </div>
+    </div>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
-
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+    <p class="has-text-white">{% trans 'Are you sure you want to sign out?' %}</p>
+    <div class="columns is-mobile ">
+        <div class="column is-6 is-offset-3">
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button class="button is-outlined is-danger mt-5 is-fullwidth"
+                        type="submit">{% trans 'Sign Out' %}</button>
+            </form>
+        </div>
+    </div>
 
 
 {% endblock %}
