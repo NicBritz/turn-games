@@ -21,24 +21,31 @@
         </div>
     </div>
 
+    <div class="columns is-mobile is-multiline">
+        {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
+            <div class="column is-12">
+                <p class="has-text-white">{% blocktrans with confirmation.email_address.email as email %}Please confirm
+                    that
+                    <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}
+                    .{% endblocktrans %}</p>
+            </div>
+            <div class="column is-6 is-offset-3">
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                    {% csrf_token %}
+                    <button class="button is-outlined is-success is-fullwidth mt-5 "
+                            type="submit">{% trans 'Confirm' %}</button>
+                </form>
+            </div>
+        {% else %}
+            {% url 'account_email' as email_url %}
+            <p class="has-text-white">{% blocktrans %}This e-mail confirmation link expired or is invalid. Please
+                <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+        {% endif %}
 
-{% if confirmation %}
+    </div>
 
-{% user_display confirmation.email_address.user as user_display %}
 
-<p class="has-text-white">{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
 
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
-</form>
-
-{% else %}
-
-{% url 'account_email' as email_url %}
-
-<p class="has-text-white">{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
-{% endif %}
 
 {% endblock %}
