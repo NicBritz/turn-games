@@ -20,5 +20,76 @@
             </div>
         </div>
     </div>
+    <div class="columns is-mobile is-multiline is-line-1">
+        <div class="column is-4"></div>
+        <div class="column is-4">
+            <form action="{% url "profile" %}" method="POST" id="profile-form">
+                {% csrf_token %}
+
+                <!-- Phone Number -->
+                <label for="profile_form.default_phone_number id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Phone Number
+                </label>
+                {{ profile_form.default_phone_number }}
+
+                <!-- default street address1 -->
+                <label for="profile_form.default_street_address1.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Street Address 1
+                </label>
+                {{ profile_form.default_street_address1 }}
+
+                <!-- default street address2 -->
+                <label for="profile_form.default_street_address2.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Street Address 2
+                </label>
+                {{ profile_form.default_street_address2 }}
+
+                <!-- Town or city -->
+                <label for="profile_form.default_town_or_city.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Town or City
+                </label>
+                {{ profile_form.default_town_or_city }}
+
+                <!-- County -->
+                <label for="profile_form.default_county.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    County
+                </label>
+                {{ profile_form.default_county }}
+
+                <!-- Postcode -->
+                <label for="profile_form.default_postcode.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Postcode
+                </label>
+                {{ profile_form.default_postcode }}
+
+                <!-- Country -->
+                <label for="order_form.default_country.id_for_label"
+                       class="label has-text-white mt-3 has-text-weight-medium">
+                    Country
+                </label>
+
+                <div class="control has-icons-left">
+                    <div class="select is-fullwidth">
+                        {{ profile_form.default_country }}
+                    </div>
+                    <div class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="button is-outlined is-success mt-3 is-fullwidth">Update</button>
+            </form>
+        </div>
+        <div class="column">
+            <p class="has-text-white">{{ previous_orders }}</p>
+        </div>
+    </div>
 
 {% endblock %}
