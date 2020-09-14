@@ -88,7 +88,10 @@
             </form>
         </div>
         <div class="column">
-            <p class="has-text-white">{{ previous_orders }}</p>
+            <p class="has-text-white">Orders</p>
+            {% for order in previous_orders %}
+                <a href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:6 }}</a>
+            {% endfor %}
         </div>
     </div>
 
