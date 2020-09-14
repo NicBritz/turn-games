@@ -49,24 +49,35 @@ body {
     z-index: -1;
 }
 
-.is-line-1 {
-    line-height: 1.2;
-}
+
 
 /* main logo styles */
 .main-logo {
     font-weight: 500;
 }
 
+/* logo animation setup */
 .main-logo-image {
     max-height: 2.3rem !important;
     -webkit-transition: -webkit-transform 1s ease-in-out;
     transition: transform 1s ease-in-out;
 }
 
+/* logo animation */
 .image-spin {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+/* Card Styles */
+
+.card-title {
+    font-size: 0.85em;
+}
+
+.card:hover {
+    box-shadow: 0 0 8px 4px #393939;
+    transform: scale(1.01);
 }
 
 /* Helper Classes */
@@ -83,8 +94,22 @@ body {
     margin-left: auto;
 }
 
+.is-line-1 {
+    line-height: 1.2;
+}
+
 .is-z-60 {
     z-index: 60;
+}
+
+.discount{
+    position: relative;
+    top: -1em;
+    left: -1em;
+}
+
+.has-line-through{
+    text-decoration: line-through;
 }
 
 /* Media Queries */
@@ -135,51 +160,4 @@ body {
 }
 
 
-/* Test flickity */
 
-.carousel {
-    width: 95%;
-}
-
-
-/* position dots up a bit */
-.flickity-page-dots {
-    bottom: -22px;
-}
-
-/* dots are lines */
-.flickity-page-dots .dot {
-    height: 5px;
-    width: 40px;
-    margin: 0;
-    border-radius: 0;
-    background: #EEEEEE;
-}
-
-.carousel-cell {
-    display: block;
-    width: 100%;
-    margin-right: 10px;
-    text-align: inherit;
-}
-
-.carousel-cell img {
-    display: block;
-}
-
-.main-slider {
-    text-align: center;
-    text-align: -webkit-center;
-    position: relative;
-    top: -35px;
-}
-
-
-.card-title {
-    font-size: 0.85em;
-}
-
-.card:hover {
-    box-shadow: 0 0 8px 4px #393939;
-    transform: scale(1.01);
-}

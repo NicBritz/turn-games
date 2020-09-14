@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load  static %}
+{% load mathfilters %}
 
 {% block content %}
     <div class="container pt-3 game-selection-container">
@@ -22,7 +23,6 @@
                     <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold"> All </p>
                     <p class="has-text-white is-line-1 mt-1 ">{{ games.count }} games</p>
                 {% endif %}
-
                 {% if search_term != None %}
                     <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold "><span class="is-size-6 mr-2"><i
                             class="fas fa-search fa-xs"></i> </span> {{ search_term }} <a class=" has-text-danger"
@@ -53,6 +53,7 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            <!-- Sort By Dropdown Box  -->
             <div class="column has-text-centered is-12-mobile">
                 <div class="field">
                     <div class="control is-dark">
@@ -115,6 +116,12 @@
                                     <div class="content px-3 ">
                                         <div class="is-size-7 ">{{ game.release_date }}</div>
                                     </div>
+                                    <!-- Discount -->
+                                    {% if game.discounted %}
+                                        <p class=" is-size-4 has-text-success has-text-right has-text-weight-bold discount">
+                                            - {{ game.discount_percent|floatformat }}%
+                                        </p>
+                                    {% endif %}
 
                                     <footer class="card-footer">
                                         <!-- Game ratings -->
@@ -130,19 +137,38 @@
                                         </div>
                                         <!-- Game pricing -->
                                         <div class="card-footer-item has-background-black">
-                                            <p class=" is-size-4 has-text-white">
-                                                £ {{ game.price }}
-                                            </p>
+                                            {% if game.discounted %}
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3">
+                                                    £ {{ game.price }}
+                                                </p>
+                                                <p class=" is-size-4 has-text-white ">
+                                                    {% with discount_amount=game.discount_percent|div:100 %}
+                                                        {% with discounted_value=game.price|mul:discount_amount %}
+                                                            £ {{ game.price|sub:discounted_value|floatformat:2 }}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                </p>
+                                            {% else %}
+                                                {% if game.price|floatformat == '0' %}
+                                                    <p class=" is-size-4 has-text-success ">
+                                                        Free
+                                                    </p>
+                                                    {% else %}
+                                                    <p class=" is-size-4 has-text-white ">
+                                                        £ {{ game.price }}
+                                                    </p>
+                                                {% endif %}
+                                            {% endif %}
                                         </div>
                                     </footer>
                                 </div>
                             </div>
                         </a>
                     </div>
-
                 {% endfor %}
             </div>
         </div>
+        <!-- Back to top Button -->
         <div>
             <button id='top-button' class="button top-button is-success is-outlined has-background-black">
                 <span class="icon is-small ">
@@ -158,12 +184,13 @@
 {% block post-custom-js %}
     {{ block.super }}
 
+    {# Back to top script #}
     <script type="text/javascript">
         $('#top-button').click(function (e) {
             window.scrollTo(0, 0)
         })
     </script>
-
+    {# Sort Dropdown script  #}
     <script type="text/javascript">
         $("#sort-dropdown").change(function () {
             var selector = $(this);

@@ -1,0 +1,34 @@
+/* flickity - main slider */
+/* Main container */
+.main-slider {
+    text-align: center;
+    text-align: -webkit-center;
+    position: relative;
+    top: -35px;
+}
+
+
+/* position dots up a bit */
+.flickity-page-dots {
+    bottom: -22px;
+}
+
+/* dots are lines */
+.flickity-page-dots .dot {
+    height: 5px;
+    width: 40px;
+    margin: 0;
+    border-radius: 0;
+    background: #EEEEEE;
+}
+/* image container */
+.carousel-cell {
+    display: block;
+    width: 100%;
+    margin-right: 10px;
+    text-align: inherit;
+}
+/* image */
+.carousel-cell img {
+    display: block;
+}

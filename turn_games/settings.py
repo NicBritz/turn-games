@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "games",
     "cart",
     "checkout",
+    "mathfilters"
 ]
 
 MIDDLEWARE = [

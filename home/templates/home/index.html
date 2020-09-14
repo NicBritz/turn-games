@@ -1,54 +1,144 @@
 {% extends "base.html" %}
 {% load  static %}
+{% load mathfilters %}
 
-{% block page-header %}
+<!-- custom css imports -->
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <div class="section mt-6 ">
+            <div class="columns is-mobile is-multiline">
+                <div class="column"></div>
+                <div class="column is-8">
+                    <div class=" main-slider ">
+                        <!-- Flickity carousel  -->
+                        <div class="carousel">
+                            {% for game in featured_specials %}
+                                <a class="carousel-cell has-background-black-bis "
+                                   href="{% url 'games' %}{{ game.id }}">
+                                    <img class="image is-fullwidth" src="{{ game.header_image_url }}"
+                                         alt="{{ game.name }}"/>
+                                    <p class="has-text-white is-z-60 is-line-1 my-3 px-3 py-3 has-background-black-bis
+                                    is-size-6 has-text-weight-medium">
+                                        {{ game.description }}
+                                    </p>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="column"></div>
+            </div>
+        </div>
+        <div class="section py-0">
+            <div class="columns is-mobile is-multiline">
+                {% for game in featured_specials %}
+                    <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
+                        <a href="{% url 'game_detail' game.id %}" class="game-card">
+                            <div class="card">
+                                <!-- Game header image -->
+                                <div class="card-image">
+                                    <figure class="image is-fullwidth ">
+                                        <img src="{{ game.header_image_url }}"
+                                             alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content px-0 pb-0 pt-2">
+                                    <!-- Game Title -->
+                                    <div class="media px-3 py-1 my-2">
+                                        <div class="media-content">
+                                            <p class="title card-title is-line-1">{{ game.name }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Game release date -->
+                                    <div class="content px-3 ">
+                                        <div class="is-size-7 ">{{ game.release_date }}</div>
+                                    </div>
+                                    <!-- Discount -->
+                                    {% if game.discounted %}
+                                        <p class=" is-size-4 has-text-success has-text-right has-text-weight-bold discount">
+                                            - {{ game.discount_percent|floatformat }}%
+                                        </p>
+                                    {% endif %}
 
-
-    <div class="section main-slider ">
-        <!-- Flickity carousel  -->
-        <div class="carousel">
-            <a class="carousel-cell " href="/test1">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_HollowKnightSilksong_image1600w.jpg"
-                     alt="submerged"/>
-            </a>
-            <a class="carousel-cell" href="/test2">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_FinalFantasyVIIIRemastered_image1600w.jpg"
-                     alt="look-out"/>
-            </a>
-            <a class="carousel-cell" href="/test2">
-                <img src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_SuperKirbyClash_image1600w.jpg"
-                     alt="look-out"/>
-            </a>
-
+                                    <footer class="card-footer">
+                                        <!-- Game ratings -->
+                                        <div class="card-footer-item has-background-black has-text-white"><p
+                                                class="pr-2 is-size-7"><span><i
+                                                class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i></span>{{ game.positive_ratings }}
+                                        </p>
+                                            <p class="pr-3 is-size-7">
+                                                <span>
+                                                <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
+                                            </span>{{ game.negative_ratings }}
+                                            </p>
+                                        </div>
+                                        <!-- Game pricing -->
+                                        <div class="card-footer-item has-background-black">
+                                            {% if game.discounted %}
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3">
+                                                    £ {{ game.price }}
+                                                </p>
+                                                <p class=" is-size-4 has-text-white ">
+                                                    {% with discount_amount=game.discount_percent|div:100 %}
+                                                        {% with discounted_value=game.price|mul:discount_amount %}
+                                                            £ {{ game.price|sub:discounted_value|floatformat:2 }}
+                                                        {% endwith %}
+                                                    {% endwith %}
+                                                </p>
+                                            {% else %}
+                                                {% if game.price|floatformat == '0' %}
+                                                    <p class=" is-size-4 has-text-success ">
+                                                        Free
+                                                    </p>
+                                                    {% else %}
+                                                    <p class=" is-size-4 has-text-white ">
+                                                        £ {{ game.price }}
+                                                    </p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    </footer>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-
-
-
-    <section class="section">
-
-    </section>
-
-    <!-- End Carousel -->
-
-
-
+    <div>
+        <button id='top-button' class="button top-button is-success is-outlined has-background-black">
+                <span class="icon is-small ">
+                  <i class="fas fa-arrow-up"></i>
+                </span>
+        </button>
+    </div>
 
 {% endblock %}
 
 {% block post-custom-js %}
     {{ block.super }}
+    {#  Flickity script  #}
     <script>
         $('.carousel').flickity({
             // options
             cellAlign: 'left',
             contain: true,
             imagesLoaded: true,
-            autoPlay: 3000,
+            autoPlay: 5000,
             wrapAround: true,
         });
     </script>
+
+    {# Back to top script #}
+    <script type="text/javascript">
+        $('#top-button').click(function () {
+            window.scrollTo(0, 0)
+        })
+    </script>
+
 {% endblock %}
