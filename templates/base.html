@@ -70,8 +70,10 @@
 </head>
 <body>
 <header>
+    {% block header %}
     {% include 'includes/main-header.html' %}
     {% include 'includes/main-nav.html' %}
+    {% endblock %}
 </header>
 <div class="cover">
 </div>
@@ -131,11 +133,9 @@
                 setInterval(function () {
                         $notification.parentNode.removeChild($notification);
                     },
-                    3000
-                )
+                    3000)
             });
-        })
-        ;
+        });
     </script>
 {% endblock %}
 </body>

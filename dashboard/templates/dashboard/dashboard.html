@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load  static %}
+<!-- custom css imports -->
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+{% block header %}
+    <!-- START NAV -->
+    <nav class="navbar navbar is-dark py-0 has-text-centered">
+        <div class="container">
+            <div class="navbar-brand mt-3">
+                <a class="is-flex is-justified-center is-baseline " href="{% url 'home' %}">
+                    <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-logo.svg' %} "
+                         alt="Saturn Games Logo">
+                    <span class="main-logo pl-2 is-size-2 has-text-light has-text-weight-bold pt-4 has-text-shadow-3">
+                    T<span class="is-size-3 has-text-weight-medium">urn </span>
+                    G<span class="is-size-3 has-text-weight-medium">ames</span>
+                    <span class="is-size-4 has-text-weight-normal mx-5">Admin Dashboard</span>
+                </span>
+                </a>
+                <div class="navbar-burger burger" data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{% url 'home' %}">
+                        Site Home
+                    </a>
+                    <a class="navbar-item" href="admin.html">
+                        Orders
+                    </a>
+                    <a class="navbar-item" href="admin.html">
+                        Inventory
+                    </a>
+                    <a class="navbar-item" href="admin.html">
+                        Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAV -->
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <div class="columns">
+                <div class="column is-3 ">
+                    <aside class="menu is-hidden-mobile">
+                        <p class="menu-label has-text-white">
+                            General
+                        </p>
+                        <ul class="menu-list">
+                            <li><a class="is-active">Dashboard</a></li>
+                            <li><a>Users</a></li>
+                            <li><a>Other</a></li>
+                        </ul>
+                        <p class="menu-label has-text-white">
+                            Manage Inventory
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Add Game</a></li>
+                            <li><a>Delete Game</a></li>
+                            <li><a>Update Game</a></li>
+                        </ul>
+
+                        <p class="menu-label has-text-white">
+                            Manage Categories
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Add Category</a></li>
+                            <li><a>Delete Category</a></li>
+                        </ul>
+
+                        <p class="menu-label has-text-white">
+                            Manage Genres
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Add Genre</a></li>
+                            <li><a>Delete Genre</a></li>
+                        </ul>
+
+                         <p class="menu-label has-text-white">
+                            Manage Tags
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Add Tag</a></li>
+                            <li><a>Delete Tag</a></li>
+                        </ul>
+
+                        <p class="menu-label has-text-white">
+                            Transactions
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Payments</a></li>
+                            <li><a>Transfers</a></li>
+                            <li><a>Balance</a></li>
+                            <li><a>Reports</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column is-9">
+                    <section class="hero is-info welcome is-small mb-4">
+                        <div class="hero-body ">
+                            <div class="container">
+                                <h1 class="title">
+                                    Hello, Admin.
+                                </h1>
+                                <h2 class="subtitle">
+                                    I hope you are having a great day!
+                                </h2>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="info-tiles">
+                        <div class="tile is-ancestor has-text-centered">
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">{{ all_users.count }}</p>
+                                    <p class="subtitle">Users</p>
+                                </article>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">{{ all_games.count }}</p>
+                                    <p class="subtitle">Games</p>
+                                </article>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">{{ all_orders.count }}</p>
+                                    <p class="subtitle">Orders</p>
+                                </article>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">£ {{ total_sales }}</p>
+                                    <p class="subtitle">Total Sales</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="columns">
+                        <div class="column is-12">
+                            <div class="card events-card">
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        Events
+                                    </p>
+                                    <a href="#" class="card-header-icon" aria-label="more options">
+                  <span class="icon">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                                    </a>
+                                </header>
+                                <div class="card-table is-line-1">
+                                    <div class="content">
+                                        <table class="table is-fullwidth is-striped">
+                                            <tbody>
+                                            {% for log in logs %}
+                                                <tr>
+                                                    {% if log.action_flag == 1 %}
+                                                        <td class="is-size-6">
+                                                            <i class="fas fa-plus mr-3 has-text-success fa-xl">
+                                                            </i>{{ log }}</td>
+                                                    {% elif log.action_flag == 2 %}
+                                                        <td class="is-size-6">
+                                                            <i class="fas fa-edit mr-3 has-text-warning fa-xl">
+                                                            </i>{{ log }}</td>
+                                                    {% elif log.action_flag == 3 %}
+                                                        <td class="is-size-6">
+                                                            <i class="fas fa-times mr-3 has-text-danger fa-xl">
+                                                            </i>{{ log }}</td>
+                                                    {% else %}
+                                                        <td class="is-size-6">
+                                                            <i class="fas fa-info mr-3 has-text-info fa-xl">
+                                                            </i>{{ log }}</td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <footer class="card-footer">
+                                    <a href="#" class="card-footer-item">View All</a>
+                                </footer>
+                            </div>
+                        </div>
+{#                        <div class="column is-6">#}
+{#                            <div class="card">#}
+{#                                <header class="card-header">#}
+{#                                    <p class="card-header-title">#}
+{#                                        Inventory Search#}
+{#                                    </p>#}
+{#                                    <a href="#" class="card-header-icon" aria-label="more options">#}
+{#                  <span class="icon">#}
+{#                    <i class="fa fa-angle-down" aria-hidden="true"></i>#}
+{#                  </span>#}
+{#                                    </a>#}
+{#                                </header>#}
+{#                                <div class="card-content">#}
+{#                                    <div class="content">#}
+{#                                        <div class="control has-icons-left has-icons-right">#}
+{#                                            <input class="input " type="text" placeholder="">#}
+{#                                            <span class="icon is-medium is-left">#}
+{#                      <i class="fa fa-search"></i>#}
+{#                    </span>#}
+{#                                            <span class="icon is-medium is-right">#}
+{#                      <i class="fa fa-check"></i>#}
+{#                    </span>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card">#}
+{#                                <header class="card-header">#}
+{#                                    <p class="card-header-title">#}
+{#                                        User Search#}
+{#                                    </p>#}
+{#                                    <a href="#" class="card-header-icon" aria-label="more options">#}
+{#                  <span class="icon">#}
+{#                    <i class="fa fa-angle-down" aria-hidden="true"></i>#}
+{#                  </span>#}
+{#                                    </a>#}
+{#                                </header>#}
+{#                                <div class="card-content">#}
+{#                                    <div class="content">#}
+{#                                        <div class="control has-icons-left has-icons-right">#}
+{#                                            <input class="input" type="text" placeholder="">#}
+{#                                            <span class="icon is-medium is-left">#}
+{#                      <i class="fa fa-search"></i>#}
+{#                    </span>#}
+{#                                            <span class="icon is-medium is-right">#}
+{#                      <i class="fa fa-check"></i>#}
+{#                    </span>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

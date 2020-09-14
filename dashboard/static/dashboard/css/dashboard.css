@@ -1,0 +1,10 @@
+/* Card Styles */
+
+.card-title {
+    font-size: 0.85em;
+}
+
+.card:hover {
+    box-shadow: none;
+    transform: scale(1);
+}
