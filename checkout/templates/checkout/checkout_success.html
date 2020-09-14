@@ -21,7 +21,6 @@
                 <hr class="has-background-grey-lighter"/>
             </div>
         </div>
-
         <!-- Checkout Steps section -->
         <div class="section is-line-1 mt-5 pt-0 mb-0">
             <div class="columns is-mobile">
@@ -159,13 +158,20 @@
                         <span class="is-pulled-right">{{ order.grand_total }}</span>
                     </p>
                 </div>
-                <!-- Keep shopping button -->
-                <div class="column is-8 is-offset-2 has-text-right">
-                    <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">
-                        Keep Shopping</a>
-                </div>
+                {% if  from_profile %}
+                    <!-- Keep shopping button -->
+                    <div class="column is-8 is-offset-2 has-text-right">
+                        <a class="button is-outlined is-info mt-3" href="{% url 'profile' %}">
+                            Back to User Profile </a>
+                    </div>
+                {% else %}
+                    <!-- Keep shopping button -->
+                    <div class="column is-8 is-offset-2 has-text-right">
+                        <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">
+                            Keep Shopping</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
-
 {% endblock %}

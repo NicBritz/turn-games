@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+from profiles.models import UserProfile
 from django.conf import settings
 from cart.contexts import cart_contents
 from games.models import Game
@@ -73,7 +74,7 @@ def checkout(request):
                     # get the game record
                     game = Game.objects.get(id=current_game)
                     # add a record to the line items
-                    order_line_item = OrderLineItem(order=order, game=game,)
+                    order_line_item = OrderLineItem(order=order, game=game, )
                     # save the record
                     order_line_item.save()
 
@@ -113,8 +114,26 @@ def checkout(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total, currency=settings.STRIPE_CURRENCY
         )
-        # create the order form
-        order_form = OrderForm()
+
+        # Prefill the form with any info the user maintains in their profile
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': request.user,
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
         template = "checkout/checkout.html"
 
@@ -131,6 +150,12 @@ def checkout_success(request, order_number):
     """ render the success view """
     order = get_object_or_404(Order, order_number=order_number)
     order_tax = order.grand_total - order.order_total
+
+    # add a order to a user
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile
+        order.save()
 
     messages.success(
         request,

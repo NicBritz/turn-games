@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "games",
     "cart",
     "checkout",
-    "mathfilters"
+    "mathfilters",
 ]
 
 MIDDLEWARE = [
@@ -74,7 +74,7 @@ TEMPLATES = [
                 # For allauth
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.media',
+                "django.template.context_processors.media",
                 # Cart Items
                 "cart.contexts.cart_contents",
             ],
@@ -151,7 +151,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 TAX_PERCENTAGE = 0.2
 
 # Stripe
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY", "")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
+STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET", "")
+STRIPE_CURRENCY = "gbp"
+
+# email for confirmation
+DEFAULT_FROM_EMAIL = "turngames@example.com"

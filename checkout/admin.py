@@ -26,6 +26,7 @@ class OrderAdmin(admin.ModelAdmin):
         "order_number",
         "stripe_pid",
         "date",
+        "user_profile",
         "full_name",
         "email",
         "phone_number",
