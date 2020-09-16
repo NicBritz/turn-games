@@ -1,4 +1,19 @@
-$(document).ready(function () {
+//   From Bulma Documentation: https://bulma.io/documentation/elements/notification/
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all the relevant notification classes
+    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+
+        let $notification = $delete.parentNode;
+
+        $delete.addEventListener('click', () => {
+            $notification.parentNode.removeChild($notification);
+        });
+
+        setInterval(function () {
+            $notification.parentNode.removeChild($notification);
+        }, 3000);
+    });
+
     // Show mobile menu on click
     $(".navbar-burger").click(function () {
         $(".navbar-burger").toggleClass("is-active");

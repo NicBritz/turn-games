@@ -10,17 +10,20 @@
 
 /* position dots up a bit */
 .flickity-page-dots {
-    bottom: -22px;
+    bottom: -10px;
 }
 
 /* dots are lines */
 .flickity-page-dots .dot {
+    display: none;
     height: 5px;
-    width: 40px;
+    width: 10px;
     margin: 0;
     border-radius: 0;
     background: #EEEEEE;
 }
+
+
 /* image container */
 .carousel-cell {
     display: block;
@@ -32,3 +35,4 @@
 .carousel-cell img {
     display: block;
 }
+

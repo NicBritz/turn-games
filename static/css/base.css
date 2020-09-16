@@ -5,7 +5,6 @@
 
 body {
     font-family: 'Montserrat', serif;
-    line-height: 0;
 }
 
 /* Navigation menu */
@@ -20,8 +19,8 @@ body {
 }
 
 .dropdown-content {
-  max-height: 30em;
-  overflow: auto;
+    max-height: 30em;
+    overflow: auto;
 }
 
 .top-button {
@@ -30,14 +29,15 @@ body {
     right: 60px;
 }
 
-.image-small{
+.image-small {
     width: 25%;
 }
 
-.table th{
-    color: white!important;
+.table th {
+    color: white !important;
     font-size: 1.2rem;
 }
+
 .cover {
     position: fixed;
     height: 100%;
@@ -48,7 +48,6 @@ body {
     margin: 0;
     z-index: -1;
 }
-
 
 
 /* main logo styles */
@@ -68,6 +67,11 @@ body {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+/*!* navbar buttons *!*/
+/*#mobile-account, #mobile-cart{*/
+/*        display: none;*/
+/*    }*/
 
 /* Card Styles */
 
@@ -102,22 +106,37 @@ body {
     z-index: 60;
 }
 
-.discount{
+.discount {
     position: relative;
     top: -1em;
     left: -1em;
 }
 
-.has-line-through{
+.has-line-through {
     text-decoration: line-through;
+}
+
+.is-mobile-only {
+    display: none;
+}
+
+/* hide search on non mobile / tablet */
+#mobile-search-bar{
+    display: none;
 }
 
 /* Media Queries */
 @media (max-width: 991px) {
+    #mobile-search-bar{
+    display: block;
+}
 
-    .navbar {
-        position: relative;
-        top: -45px;
+    #nav-buttons, #search-bar {
+        display: none;
+    }
+
+    .is-mobile-only {
+        display: flex;
     }
 
     .navbar-item {
