@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $delete.addEventListener('click', () => {
             $notification.parentNode.removeChild($notification);
         });
-
+        // remove notification after a few seconds
         setInterval(function () {
             $notification.parentNode.removeChild($notification);
         }, 3000);
@@ -29,4 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#logo-image').removeClass("image-spin");
         }
     )
+
+    // Desktop Search Modal
+    $("#search-button").click(function(){
+        $('#search-modal').addClass("is-active");
+        $("#search-field:text").focus();
+    });
+
+    $('.modal-close').click(function (){
+        $("#search-modal").removeClass('is-active');
+    })
+
 });

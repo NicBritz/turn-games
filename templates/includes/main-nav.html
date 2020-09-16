@@ -1,22 +1,82 @@
-<nav class="navbar is-black  py-0 texture " role="navigation" aria-label="main navigation">
+{% load static %}
 
-    <!-- menu burger button -->
-    <div>
+<nav class="navbar is-dark has-background-black-bis is-fixed-top pt-4 is-spaced pl-0" role="navigation"
+     aria-label="main navigation">
+
+    <!-- Main Logo -->
+    <div class="navbar-brand px-3">
+        <a class="navbar-item main-logo-container is-flex is-justified-center is-baseline " href="{% url 'home' %}">
+            <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-full-logo.webp' %} "
+                 alt="turn games logo text ">
+        </a>
+        <!-- END: Main Logo -->
+
+        <!-- Burger Menu  button -->
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
            data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
+        <!-- END: menu burger button -->
     </div>
-    <!-- END: menu burger button -->
 
     <div id="navbar-menu" class="navbar-menu">
-        <div class="navbar-end mx-auto px-1">
+        <div class="navbar-start mx-auto px-1 ">
 
-            <!-- Search bar (mobile only) -->
-            <div class="columns is-mobile">
-                <div class="column is-12 is-z-60" id="mobile-search-bar">
+            <!-- Search bar and buttons (mobile only) -->
+            <div class="columns is-mobile is-multiline has-background-black-bis" id="mobile-search-and-buttons-bar">
+                <div class="column is-5 is-z-70 has-text-right is-offset-1">
+                    <div class="dropdown is-hoverable" id="navbar-account-menu">
+                        <div class="dropdown-trigger">
+                            <button class="button is-fullwidth is-warning" aria-haspopup="true"
+                                    aria-controls="account-menu-items">
+                            <span class="icon is-medium">
+                                 <i class="fas fa-user-circle"></i>
+                            </span>
+                                <span>Account</span>
+                                <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu dropdown-buttons is-z-60 " id="account-menu-items" role="menu">
+                            <div class="dropdown-content pt-0">
+                                <div class="dropdown-item px-0 pt-0">
+                                    {% if request.user.is_authenticated %}
+                                        <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user }}</p>
+                                        {% if request.user.is_superuser %}
+                                            <a href="{% url 'dashboard' %}" class="dropdown-item ">Admin Dashboard</a>
+                                            <hr class="dropdown-divider">
+                                        {% endif %}
+                                        <a href="{% url 'profile' %}" class="dropdown-item bg-light">Profile</a>
+                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                                    {% else %}
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6 is-z-70 has-text-left">
+                    <!-- Basket button -->
+                    <a href="{% url 'view_cart' %}" class="button is-success" >
+                            <span class="icon is-medium">
+                                 <i class="fas fa-shopping-cart "></i>
+                            </span>
+                        <span>
+                                {% if grand_total %}
+                                    £{{ grand_total|floatformat:2 }}
+                                {% else %}
+                                    £0.00
+                                {% endif %}
+                            </span>
+                    </a>
+                </div>
+
+                <div class="column is-10 is-z-60 is-offset-1">
                     <form method="GET" action="{% url 'games' %}">
                         <div class="field has-addons is-justified-center py-0 px-0">
                             <div class="control">
@@ -34,10 +94,10 @@
             <!-- END: Search bar (mobile only) -->
 
             <!-- home link -->
-            <a class="navbar-item has-text-weight-bold has-text-centered" href="{% url 'home' %}">
-                           <span class="icon has-text-info mr-2">
-                            <i class="fas fa-home"></i>
-                            </span> Home
+            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
+                           <span class="icon has-text-info">
+                            <i class="fas fa-home fa-lg"></i>
+                            </span>
             </a>
 
             <!-- Categories menu -->
@@ -97,6 +157,85 @@
             </div>
             <!-- END: Specials Menu -->
 
+            <!-- Search button (desktop only) -->
+            <a class="navbar-item has-text-weight-bold has-text-centered is-hoverable hide-mobile"
+               id="search-button">
+                           <span class="icon has-text-info">
+                            <i class="fas fa-search fa-lg "></i>
+                            </span>
+            </a>
+            <!-- END: Search button (desktop only) -->
         </div>
+
+        <!-- Account menu Menu (desktop only) -->
+        <div class="navbar-item has-dropdown is-hoverable has-text-centered hide-mobile">
+            <a class="navbar-link has-text-weight-bold has-text-white">
+                                <span class="icon mr-2 has-text-warning">
+                            <i class="fas fa-user-circle fa-lg"></i>
+                            </span>
+                <span class="minify">Account</span></a>
+            <div class="navbar-dropdown has-text-centered is-right">
+                {% if request.user.is_authenticated %}
+                    <p class="has-text-centered has-background-black-ter has-text-white is-size-5">{{ request.user }}</p>
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'dashboard' %}" class="navbar-item">Admin
+                            Dashboard</a>
+                        <hr class="dropdown-divider">
+                    {% endif %}
+                    <a href="{% url 'profile' %}" class="navbar-item bg-light">Profile</a>
+                    <a href="{% url 'account_logout' %}" class="navbar-item">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="navbar-item pt-3">Register</a>
+                    <a href="{% url 'account_login' %}" class="navbar-item">Login</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- END: Account Menu (desktop only) -->
+
+        <!-- Basket menu (desktop only) -->
+        <div class="navbar-item has-dropdown is-hoverable has-text-centered hide-mobile">
+            <a class="navbar-link has-text-weight-bold has-text-white" href="{% url 'view_cart' %}">
+                                <span class="icon mr-2 has-text-success">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            </span>
+                {% if grand_total %}
+                    £{{ grand_total|floatformat:2 }}
+                {% else %}
+                    £0.00
+                {% endif %}
+            </a>
+            <div class="navbar-dropdown has-text-centered is-right dropdown-content">
+                <p class="has-text-centered has-background-black-ter has-text-white is-size-5">Cart</p>
+                {% if cart_items|length > 0 %}
+                    <!-- render games in cart -->
+                    {% for item in cart_items reversed %}
+                        <a href="{% url 'game_detail' item.game.id %}">
+                            <div class="dropdown-item">
+                                <div class="columns is-mobile is-multiline">
+                                    <div class="column is-12">
+                                        <img class="image" src="{{ item.game.header_image_url }}"
+                                             alt="{{ item.game.name }}">
+                                    </div>
+                                    <div class="column is-8 mt-0 pt-0">
+                                        <p>{{ item.game.name }} </p>
+                                    </div>
+                                    <div class="column is-4 mt-0 pt-0 pr-3 has-text-weight-medium">
+                                        <p>£{{ item.game.price }} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <hr class="navbar-divider">
+                    {% endfor %}
+                    <!-- END: render games in cart -->
+                {% else %}
+                    <div class="navbar-item">
+                        <p class="has-text-centered"> Empty </p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- END: Basket Menu  (desktop only) -->
     </div>
+
 </nav>
