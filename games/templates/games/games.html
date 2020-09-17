@@ -3,100 +3,33 @@
 {% load mathfilters %}
 
 {% block content %}
-    <div class="container pt-3 game-selection-container">
-    <div class="columns mb-0 is-multiline is-mobile">
-        <div class="column ">
-            <hr class="has-background-info">
-        </div>
-        <div class="column has-text-centered is-narrow">
-            <h2 class="has-text-white title">Games</h2>
-        </div>
-        <div class="column ">
-            <hr class="has-background-info">
-        </div>
-    </div>
-    <div class="section pt-0">
-        <div class="columns is-mobile is-multiline">
-            <div class="column my-0 py-0"></div>
-            <div class="column has-text-centered is-12-mobile">
-                {% if current_selection == None and search_term == None %}
-                    <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold"> All </p>
-                    <p class="has-text-white is-line-1 mt-1 ">{{ games.count }} games</p>
-                {% endif %}
-                {% if search_term != None %}
-                    <p class="has-text-white is-line-1 is-size-5 has-text-weight-bold "><span class="is-size-6 mr-2"><i
-                            class="fas fa-search fa-xs"></i> </span> {{ search_term }} <a class=" has-text-danger"
-                                                                                          href="{% url 'games' %}">
-                        <span class="ml-3">
-                        <i class="fas fa-times has-text-danger fa-lg"></i>
-                            </span></a></p>
-                    <p class="has-text-white is-line-1 mt-1 ">{{ games.count }} games</p>
-                {% endif %}
-
-                {% if current_selection == 'Discounted' or current_selection == 'Featured' %}
-                    <p class="has-text-white is-line-1 has-text-weight-bold"><span class="is-size-6 mr-2"><i
-                            class="fas fa-piggy-bank fa-xs"></i> </span>{{ current_selection }} <a
-                            class=" has-text-danger" href="{% url 'games' %}">
-                        <span class="ml-3">
-                        <i class="fas fa-times has-text-danger fa-lg"></i>
-                            </span></a></p>
-                    <p class="has-text-white is-line-1 mt-1">{{ games.count }} games</p>
-                {% else %}
-                    {% for selection in current_selection %}
-                        <p class="has-text-white is-line-1 has-text-weight-bold"><span class="is-size-6 mr-2"><i
-                                class="fas fa-tags fa-xs"></i> </span> {{ selection.friendly_name }} <a
-                                class=" has-text-danger" href="{% url 'games' %}">
-                        <span class="ml-3">
-                        <i class="fas fa-times has-text-danger fa-lg"></i>
-                            </span></a></p>
-                        <p class="has-text-white is-line-1 mt-1">{{ games.count }} Games</p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <!-- Sort By Dropdown Box  -->
-            <div class="column has-text-centered is-12-mobile">
-                <div class="field">
-                    <div class="control is-dark">
-                        <div class="select is-info ">
-                            <select id="sort-dropdown" class="has-background-black has-text-light">
-                                <option value="none" {% if sorting == 'None_None' %}selected{% endif %}>Sort by...
-                                </option>
-                                <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price
-                                    (High - Low)
-                                </option>
-                                <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price (Low
-                                    - High)
-                                </option>
-                                <option value="positive_ratings_desc"
-                                        {% if sorting == 'positive_ratings_desc' %}selected{% endif %}>Rating (High -
-                                    Low)
-                                </option>
-                                <option value="positive_ratings_asc"
-                                        {% if sorting == 'positive_ratings_asc' %}selected{% endif %}>Rating (Low -
-                                    High)
-                                </option>
-                                <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>Title (Z -
-                                    A)
-                                </option>
-                                <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>Title (A -
-                                    Z)
-                                </option>
-                            </select>
-                        </div>
-                    </div>
+    <div class="container game-selection-container mb-2">
+        <!-- Heading section -->
+        <div class="section pb-2 pt-2 mt-2">
+            <div class="columns mb-0 is-multiline is-mobile">
+                <div class="column ">
+                    <hr class="has-background-info">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title">Games</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-info">
                 </div>
             </div>
         </div>
-    </div>
+        <!-- END: Heading section -->
 
-    <div class="container">
+        <!-- sort dropdown section -->
+        {% include 'includes/sort_dropdown.html' %}
+        <!-- sort dropdown section -->
+
         <div class="section pt-0">
             <div class="columns is-multiline is-mobile">
                 {% for game in games %}
                     <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
                         <a href="{% url 'game_detail' game.id %}" class="game-card">
                             <div class="card">
-
                                 <!-- Game header image -->
                                 <div class="card-image">
                                     <figure class="image is-fullwidth ">
@@ -104,14 +37,15 @@
                                              alt="Placeholder image">
                                     </figure>
                                 </div>
-
-                                <div class="card-content px-0 pb-0 pt-2">
-                                    <!-- Game Title -->
+                                <!-- END: Game header image -->
+                                <!-- Game Title -->
+                                <div class="card-content px-0 pb-0 pt-2 ">
                                     <div class="media px-3 py-1 my-2">
                                         <div class="media-content">
-                                            <p class="title card-title is-line-1">{{ game.name }}</p>
+                                            <p class="title card-title is-size-5">{{ game.name }}</p>
                                         </div>
                                     </div>
+                                    <!-- END: Game Title -->
                                     <!-- Game release date -->
                                     <div class="content px-3 mb-3">
                                         <div class="is-size-6">
@@ -125,21 +59,22 @@
                                         </div>
                                     </div>
                                     <!-- END: Game release date -->
-
                                     <footer class="card-footer">
                                         <!-- Game ratings -->
                                         <div class="card-footer-item has-background-black has-text-white"><p
-                                                class="pr-2 is-size-7"><span><i
+                                                class="pr-2 is-size-7 has-text-weight-medium"><span><i
                                                 class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i></span>{{ game.positive_ratings }}
                                         </p>
-                                            <p class="pr-3 is-size-7">
+                                            <p class="pr-3 is-size-7 has-text-weight-medium">
                                                 <span>
                                                 <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
                                             </span>{{ game.negative_ratings }}
                                             </p>
                                         </div>
+                                        <!-- END: Game ratings -->
                                         <!-- Game pricing -->
                                         <div class="card-footer-item has-background-black">
+                                            <!-- discount calculations -->
                                             {% if game.discounted %}
                                                 <p class=" is-size-6 has-text-danger has-line-through mr-3">
                                                     £ {{ game.price }}
@@ -151,18 +86,22 @@
                                                         {% endwith %}
                                                     {% endwith %}
                                                 </p>
+                                                <!-- END: discount calculations -->
                                             {% else %}
+                                                <!-- show free of game is 0 value -->
                                                 {% if game.price|floatformat == '0' %}
                                                     <p class=" is-size-4 has-text-success ">
                                                         Free
                                                     </p>
                                                 {% else %}
+                                                    <!-- show game price in all other scenarios -->
                                                     <p class=" is-size-4 has-text-white ">
                                                         £ {{ game.price }}
                                                     </p>
                                                 {% endif %}
                                             {% endif %}
                                         </div>
+                                        <!-- END: Game pricing -->
                                     </footer>
                                 </div>
                             </div>
@@ -171,9 +110,9 @@
                 {% endfor %}
             </div>
         </div>
-        <!-- Back to top Button -->
+        <!-- Display back to top button -->
         <div>
-            <button id='top-button' class="button top-button is-success is-outlined has-background-black">
+            <button id='top-button' class="button top-button is-success is-outlined ">
                 <span class="icon is-small ">
                   <i class="fas fa-arrow-up"></i>
                 </span>
@@ -181,51 +120,11 @@
         </div>
     </div>
 
-
 {% endblock %}
 
 {% block post-custom-js %}
     {{ block.super }}
-
-    {# Back to top script #}
-    <script type="text/javascript">
-        $('#top-button').click(function (e) {
-            window.scrollTo(0, 0)
-        })
-    </script>
-    {# Sort Dropdown script  #}
-    <script type="text/javascript">
-        $("#sort-dropdown").change(function () {
-            var selector = $(this);
-            var currentUrl = new URL(window.location);
-
-            var sort, direction;
-
-            var selectedVal = selector.val();
-
-            if (selectedVal !== "none") {
-
-                var values = selectedVal.split("_");
-
-                if (values[0] !== 'positive') {
-                    sort = values[0];
-                    direction = values[1];
-                } else {
-                    sort = `${values[0]}_${values[1]}`
-                    direction = values[2]
-                }
-
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-
-                window.location.replace(currentUrl);
-            } else {
-                currentUrl.searchParams.delete("sort");
-                currentUrl.searchParams.delete("direction");
-
-                window.location.replace(currentUrl);
-            }
-        })
-    </script>
+    {#  Games Script #}
+    <script src="{% static 'games/js/games.js' %}"></script>
 
 {% endblock %}

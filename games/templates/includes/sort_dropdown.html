@@ -1,0 +1,87 @@
+<div class="columns is-mobile is-multiline">
+    <div class="column my-0 py-0"></div>
+
+    <div class="column has-text-centered is-12-mobile">
+        <!-- Show all if there is no filter -->
+        {% if current_selection == None and search_term == None %}
+            <p class="has-text-white is-size-5 has-text-weight-bold"> All </p>
+            <!-- Show game count  -->
+            <p class="has-text-white mt-1 ">{{ games.count }} games</p>
+        {% endif %}
+        <!-- if there is a search term show text of term and a clear icon -->
+        {% if search_term != None %}
+            <p class="has-text-white is-size-5 has-text-weight-bold ">
+                Showing <span class="has-text-weight-normal"> {{ games.count }} </span> games for</p>
+            <p class="has-text-white is-size-5 ">
+                <em> " {{ search_term }} " </em>
+                <a class=" has-text-danger" href="{% url 'games' %}">
+                    <span class="ml-2"><i class="fas fa-times has-text-danger "></i></span>
+                </a>
+            </p>
+        {% endif %}
+        <!-- if filtered for specials show and savings icon -->
+        {% if current_selection == 'Discounted' or current_selection == 'Featured' %}
+            <p class="has-text-white has-text-weight-bold">
+                <span class="is-size-6 mr-2">
+                    <i class="fas fa-piggy-bank "></i>
+                </span>{{ current_selection }}
+                <a class=" has-text-danger" href="{% url 'games' %}">
+                        <span class="ml-3"><i class="fas fa-times has-text-danger"></i>
+                        </span>
+                </a>
+            </p>
+            <p class="has-text-white mt-1">{{ games.count }} games</p>
+        {% else %}
+            <!-- otherwise show tag icon -->
+            {% for selection in current_selection %}
+                <p class="has-text-white has-text-weight-bold">
+                    <span class="is-size-6 mr-2">
+                    <i class="fas fa-tags fa-xs"></i>
+                    </span>
+                    {{ selection.friendly_name }}
+                    <a class=" has-text-danger" href="{% url 'games' %}">
+                        <span class="ml-3"><i class="fas fa-times has-text-danger"></i>
+                        </span>
+                    </a>
+                </p>
+                <p class="has-text-white mt-1">{{ games.count }} Games</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Sort By Dropdown Box  -->
+    <div class="column has-text-centered is-12-mobile">
+        <div class="field">
+            <div class="control is-dark">
+                <div class="select is-info ">
+                    <select aria-label="sort selection" id="sort-dropdown" class="has-background-black has-text-light">
+                        <option value="none" {% if sorting == 'None_None' %}selected{% endif %}
+                                class="has-text-grey-dark">
+                            Sort by...
+                        </option>
+                        <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>
+                            Price (High - Low)
+                        </option>
+                        <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>
+                            Price (Low - High)
+                        </option>
+                        <option value="positive_ratings_desc"
+                                {% if sorting == 'positive_ratings_desc' %}selected{% endif %}>
+                            Rating (High - Low)
+                        </option>
+                        <option value="positive_ratings_asc"
+                                {% if sorting == 'positive_ratings_asc' %}selected{% endif %}>
+                            Rating (Low - High)
+                        </option>
+                        <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>
+                            Title (Z - A)
+                        </option>
+                        <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>
+                            Title (A - Z)
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

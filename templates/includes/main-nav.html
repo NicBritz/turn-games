@@ -109,14 +109,14 @@
                         class="fas fa-gamepad"></i></span>Category</a>
 
                 <div class="navbar-dropdown is-z-60">
-                    <a class="navbar-item" href="{% url 'games' %}">All</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=single_player">Single-player</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=co_op">Co-op</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=multi_player">Multi-player</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=mmo">MMO</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=full_controller_support">Full controller
+                    <a class="navbar-item" href="{% url 'games' %}?sort=name&direction=asc">All</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=single_player&sort=name&direction=asc">Single-player</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">Co-op</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=multi_player&sort=name&direction=asc">Multi-player</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=mmo&sort=name&direction=asc">MMO</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=full_controller_support&sort=name&direction=asc">Full controller
                         support</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=partial_controller_support">Partial
+                    <a class="navbar-item" href="{% url 'games' %}?category=partial_controller_support&sort=name&direction=asc">Partial
                         Controller Support</a>
                 </div>
             </div>
@@ -132,15 +132,14 @@
 
                 <div class="navbar-dropdown has-text-centered">
                     <a class="navbar-item" href="{% url 'games' %}?genre=action&sort=name&direction=asc">Action</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=adventure">Adventure</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=casual">Casual</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=education">Education</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=indie">Indie</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=racing">Racing</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=rpg">RPG</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=simulation">Simulation</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=sports">Sports</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=strategy">Strategy</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=adventure&sort=name&direction=asc">Adventure</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=casual&sort=name&direction=asc">Casual</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=education&sort=name&direction=asc">Education</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=indie&sort=name&direction=asc">Indie</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=rpg&sort=name&direction=asc">RPG</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=simulation&sort=name&direction=asc">Simulation</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=sports&sort=name&direction=asc">Sports</a>
+                    <a class="navbar-item" href="{% url 'games' %}?genre=strategy&sort=name&direction=asc">Strategy</a>
                 </div>
             </div>
             <!-- END: Genre Menu -->
@@ -151,11 +150,12 @@
                                 <span class="icon mr-2 has-text-success">
                             <i class="fas fa-piggy-bank"></i>
                             </span>
-                    Specials</a>
+                    Specials
+                </a>
 
                 <div class="navbar-dropdown has-text-centered">
-                    <a class="navbar-item" href="{% url 'games' %}?special_offers=featured">Featured</a>
-                    <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted">Discounted</a>
+                    <a class="navbar-item" href="{% url 'games' %}?special_offers=featured&sort=name&direction=asc">Featured</a>
+                    <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted&sort=name&direction=asc">Discounted</a>
                 </div>
             </div>
             <!-- END: Specials Menu -->
