@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
-<!-- custom javascript imports -->
+<!-- custom pre javascript imports -->
 {% block custom-js %}
     <!-- Flickity JavaScript src: https://flickity.metafizzy.co/ -->
     <script src="{% static 'home/js/flickity.pkgd.min.js' %}"></script>
@@ -23,7 +23,8 @@
                 <div class="column is-8-desktop is-offset-2-desktop">
                     <div class=" main-slider ">
                         <div class="carousel">
-                            {% for game in featured_specials %}
+                            <!-- random 10 games in main slider -->
+                            {% for game in random_slider_content %}
                                 <a class="carousel-cell has-background-black-bis "
                                    href="{% url 'games' %}{{ game.id }}">
                                     <img class="image is-fullwidth" src="{{ game.header_image_url }}"
@@ -39,6 +40,8 @@
                 </div>
             </div>
         </div>
+        <!-- END: main flickity carousel slider -->
+
         <!-- Game cards section -->
         <div class="section py-0 mt-0">
             <div class="columns is-mobile is-multiline">
@@ -53,38 +56,44 @@
                                              alt="Placeholder image">
                                     </figure>
                                 </div>
-                                <div class="card-content px-0 pb-0 pt-2">
-                                    <!-- Game Title -->
+                                <!-- END: Game header image -->
+                                <!-- Game Title -->
+                                <div class="card-content px-0 pb-0 pt-2 ">
                                     <div class="media px-3 py-1 my-2">
                                         <div class="media-content">
-                                            <p class="title card-title is-line-1">{{ game.name }}</p>
+                                            <p class="title card-title is-size-5">{{ game.name }}</p>
                                         </div>
                                     </div>
+                                    <!-- END: Game Title -->
                                     <!-- Game release date -->
-                                    <div class="content px-3 ">
-                                        <div class="is-size-7 ">{{ game.release_date }}</div>
+                                    <div class="content px-3 mb-3">
+                                        <div class="is-size-6">
+                                            {{ game.release_date }}
+                                            <!-- Discount -->
+                                            <span class=" is-size-4 has-text-success has-text-weight-bold is-pulled-right pr-5">
+                                                {% if game.discounted %}
+                                                    - {{ game.discount_percent|floatformat }}%
+                                                {% endif %}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <!-- Discount -->
-                                    {% if game.discounted %}
-                                        <p class=" is-size-4 has-text-success has-text-right has-text-weight-bold discount">
-                                            - {{ game.discount_percent|floatformat }}%
-                                        </p>
-                                    {% endif %}
-
+                                    <!-- END: Game release date -->
                                     <footer class="card-footer">
                                         <!-- Game ratings -->
                                         <div class="card-footer-item has-background-black has-text-white"><p
-                                                class="pr-2 is-size-7"><span><i
+                                                class="pr-2 is-size-7 has-text-weight-medium"><span><i
                                                 class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i></span>{{ game.positive_ratings }}
                                         </p>
-                                            <p class="pr-3 is-size-7">
+                                            <p class="pr-3 is-size-7 has-text-weight-medium">
                                                 <span>
                                                 <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
                                             </span>{{ game.negative_ratings }}
                                             </p>
                                         </div>
+                                        <!-- END: Game ratings -->
                                         <!-- Game pricing -->
                                         <div class="card-footer-item has-background-black">
+                                            <!-- discount calculations -->
                                             {% if game.discounted %}
                                                 <p class=" is-size-6 has-text-danger has-line-through mr-3">
                                                     £ {{ game.price }}
@@ -96,18 +105,22 @@
                                                         {% endwith %}
                                                     {% endwith %}
                                                 </p>
+                                                <!-- END: discount calculations -->
                                             {% else %}
+                                                <!-- show free of game is 0 value -->
                                                 {% if game.price|floatformat == '0' %}
                                                     <p class=" is-size-4 has-text-success ">
                                                         Free
                                                     </p>
                                                 {% else %}
+                                                    <!-- show game price in all other scenarios -->
                                                     <p class=" is-size-4 has-text-white ">
                                                         £ {{ game.price }}
                                                     </p>
                                                 {% endif %}
                                             {% endif %}
                                         </div>
+                                        <!-- END: Game pricing -->
                                     </footer>
                                 </div>
                             </div>
@@ -116,9 +129,12 @@
                 {% endfor %}
             </div>
         </div>
+        <!-- END: Game cards section -->
     </div>
+
+    <!-- Display back to top button -->
     <div>
-        <button id='top-button' class="button top-button is-success is-outlined has-background-black">
+        <button id='top-button' class="button top-button is-success is-outlined ">
                 <span class="icon is-small ">
                   <i class="fas fa-arrow-up"></i>
                 </span>
@@ -129,6 +145,6 @@
 
 {% block post-custom-js %}
     {{ block.super }}
-    {#  Home Script #}
+    {#  Homepage Script #}
     <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}
