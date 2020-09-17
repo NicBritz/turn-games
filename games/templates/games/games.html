@@ -113,15 +113,18 @@
                                         </div>
                                     </div>
                                     <!-- Game release date -->
-                                    <div class="content px-3 ">
-                                        <div class="is-size-7 ">{{ game.release_date }}</div>
+                                    <div class="content px-3 mb-3">
+                                        <div class="is-size-6">
+                                            {{ game.release_date }}
+                                            <!-- Discount -->
+                                            <span class=" is-size-4 has-text-success has-text-weight-bold is-pulled-right pr-5">
+                                                {% if game.discounted %}
+                                                    - {{ game.discount_percent|floatformat }}%
+                                                {% endif %}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <!-- Discount -->
-                                    {% if game.discounted %}
-                                        <p class=" is-size-4 has-text-success has-text-right has-text-weight-bold discount">
-                                            - {{ game.discount_percent|floatformat }}%
-                                        </p>
-                                    {% endif %}
+                                    <!-- END: Game release date -->
 
                                     <footer class="card-footer">
                                         <!-- Game ratings -->
@@ -153,7 +156,7 @@
                                                     <p class=" is-size-4 has-text-success ">
                                                         Free
                                                     </p>
-                                                    {% else %}
+                                                {% else %}
                                                     <p class=" is-size-4 has-text-white ">
                                                         £ {{ game.price }}
                                                     </p>
