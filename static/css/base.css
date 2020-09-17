@@ -1,57 +1,33 @@
 /* Global styles */
 * {
     box-sizing: border-box;
-}
-
-body {
     /* main font */
     font-family: 'Montserrat', serif;
 }
 
-/* Navigation menu */
-
-/* menu texture src:https://www.transparenttextures.com/ */
-.texture {
-    background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598792843/saturn/bright-squares_zbegjs.png);
+/* ------------> NAVIGATION MENUS <------------  */
+/* logo setup */
+.main-logo-image {
+    max-height: 2.3rem !important;
 }
 
-/* footer icons */
-.discord-hover:hover span, .discord-hover {
-    background-color: #121212 !important;
-    color: #7289da !important;
-}
+/* Dropdown menu styling */
 
-.insta-hover:hover span, .insta-hover {
-    background-color: #121212 !important;
-    color: #8a3ab9 !important;
-}
-
-.fb-hover:hover span, .fb-hover {
-    background-color: #121212 !important;
-    color: #3b5998 !important;
-}
-
-.twitch-hover:hover span, .twitch-hover {
-    background-color: #121212 !important;
-    color: #6441a5 !important;
-}
-
-/* Dropdown styling */
+/* remove borders */
 .navbar-dropdown {
     border: none;
 }
-
-
+/* set image sizing */
 .navbar-item img {
     max-height: none;
 }
 
-.navbar-basket {
-    white-space: normal !important;
-}
-
 .image-small {
     width: 25%;
+}
+/* handle text wrapping and container styling */
+.navbar-basket {
+    white-space: normal !important;
 }
 
 .dropdown-content {
@@ -59,7 +35,10 @@ body {
     max-width: 250px;
     max-height: 60vh;
     overflow-y: auto;
-
+}
+/* hover on basket items */
+.basket-menu-item:hover > .dropdown-item{
+    background-color: #e5e5e5;
 }
 
 /* change dropdown arrow color on navbar */
@@ -72,12 +51,7 @@ body {
     position: fixed;
     bottom: 10px;
     right: 60px;
-}
-
-/* cart items table */
-.table th {
-    color: white !important;
-    font-size: 1.2rem;
+    z-index: 999;
 }
 
 /* site background */
@@ -93,12 +67,31 @@ body {
 }
 
 
-/* logo animation setup */
-.main-logo-image {
-    max-height: 2.3rem !important;
+/* FOOTER */
 
+/* Discord social link (brand colors)*/
+.discord-hover:hover span, .discord-hover {
+    background-color: #121212 !important;
+    color: #7289da !important;
 }
 
+/* Instagram social link (brand colors)*/
+.insta-hover:hover span, .insta-hover {
+    background-color: #121212 !important;
+    color: #8a3ab9 !important;
+}
+
+/* Facebook social link (brand colors)*/
+.fb-hover:hover span, .fb-hover {
+    background-color: #121212 !important;
+    color: #3b5998 !important;
+}
+
+/* Twitch social link (brand colors)*/
+.twitch-hover:hover span, .twitch-hover {
+    background-color: #121212 !important;
+    color: #6441a5 !important;
+}
 
 /* hide account and cart buttons in body*/
 .button-section {
@@ -111,11 +104,10 @@ body {
     display: inline-flex;
 }
 
-/* hide search on non mobile / tablet */
-#mobile-search-and-buttons-bar {
+/* hide on non mobile / tablet */
+#mobile-search-and-buttons-bar, #social-buttons-bar {
     display: none;
 }
-
 
 /* Card Styles */
 
@@ -164,13 +156,14 @@ body {
     text-decoration: line-through;
 }
 
+/* Media Queries */
+
+/* to handle some edge cases */
 @media (max-width: 1220px) {
     .minify {
         display: none;
     }
 }
-
-/* Media Queries */
 
 @media (max-width: 1023px) {
     .hide-mobile {
@@ -186,6 +179,10 @@ body {
     .button-section {
         display: block;
     }
+    /* enable mobile search form */
+    #mobile-search-and-buttons-bar, #social-buttons-bar {
+        display: flex;
+    }
 
 }
 
@@ -193,11 +190,6 @@ body {
     /* padding for account and cart buttons*/
     .button-section {
         padding-top: 130px;
-    }
-
-    /* enable mobile search form */
-    #mobile-search-and-buttons-bar {
-        display: flex;
     }
 
     #nav-buttons, #search-bar {

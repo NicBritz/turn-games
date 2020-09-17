@@ -26,6 +26,7 @@
 
             <!-- Search bar and buttons (mobile only) -->
             <div class="columns is-mobile is-multiline has-background-black-bis" id="mobile-search-and-buttons-bar">
+                <!-- END: Account dropdown (mobile only) -->
                 <div class="column is-5 is-z-70 has-text-right is-offset-1">
                     <div class="dropdown is-hoverable" id="navbar-account-menu">
                         <div class="dropdown-trigger">
@@ -60,9 +61,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- END: Account dropdown (mobile only) -->
+                <!-- Basket button (mobile only)-->
                 <div class="column is-6 is-z-70 has-text-left">
-                    <!-- Basket button -->
-                    <a href="{% url 'view_cart' %}" class="button is-success" >
+                    <a href="{% url 'view_cart' %}" class="button is-success">
                             <span class="icon is-medium">
                                  <i class="fas fa-shopping-cart "></i>
                             </span>
@@ -75,7 +77,8 @@
                             </span>
                     </a>
                 </div>
-
+                <!-- END: Basket button -->
+                <!-- Search bar (mobile only) -->
                 <div class="column is-10 is-z-60 is-offset-1">
                     <form method="GET" action="{% url 'games' %}">
                         <div class="field has-addons is-justified-center py-0 px-0">
@@ -90,8 +93,8 @@
                         </div>
                     </form>
                 </div>
+                <!-- END: Search bar (mobile only) -->
             </div>
-            <!-- END: Search bar (mobile only) -->
 
             <!-- home link -->
             <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
@@ -157,12 +160,53 @@
             </div>
             <!-- END: Specials Menu -->
 
+            <!-- Socials (mobile only) -->
+            <div class="columns is-mobile is-multiline has-background-black-bis" id="social-buttons-bar">
+                <div class="column is-3 is-z-70 has-text-centered pr-0">
+                    <!-- Discord link -->
+                    <a class="has-text-weight-bold has-text-centered discord-hover" href="https://discord.com"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-discord fa-2x "></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered px-0">
+                    <!-- instagram link -->
+                    <a class=" has-text-weight-bold has-text-centered insta-hover"
+                       href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-instagram-square fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered px-0">
+                    <!-- Facebook link -->
+                    <a class=" has-text-weight-bold has-text-centered fb-hover" href="https://www.facebook.com"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-facebook-square fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered pl-0">
+                    <!-- Twitch link -->
+                    <a class=" has-text-weight-bold has-text-centered twitch-hover" href="https://www.twitch.tv"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-twitch fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <!-- END: Socials (mobile only) -->
+
             <!-- Search button (desktop only) -->
             <a class="navbar-item has-text-weight-bold has-text-centered is-hoverable hide-mobile"
                id="search-button">
-                           <span class="icon has-text-info">
-                            <i class="fas fa-search fa-lg "></i>
-                            </span>
+                   <span class="icon has-text-info">
+                    <i class="fas fa-search fa-lg "></i>
+                    </span>
             </a>
             <!-- END: Search button (desktop only) -->
         </div>
@@ -205,12 +249,12 @@
                 {% endif %}
             </a>
             <div class="navbar-dropdown has-text-centered is-right dropdown-content">
-                <p class="has-text-centered has-background-black-ter has-text-white is-size-5">Cart</p>
+                <p class="has-text-centered has-background-black-ter has-text-white is-size-5 mb-4">Cart</p>
                 {% if cart_items|length > 0 %}
                     <!-- render games in cart -->
                     {% for item in cart_items reversed %}
-                        <a href="{% url 'game_detail' item.game.id %}">
-                            <div class="dropdown-item">
+                        <a href="{% url 'game_detail' item.game.id %}" class="basket-menu-item">
+                            <div class="dropdown-item my-0 py-0 is-z-60">
                                 <div class="columns is-mobile is-multiline">
                                     <div class="column is-12">
                                         <img class="image" src="{{ item.game.header_image_url }}"

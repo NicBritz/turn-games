@@ -65,16 +65,20 @@
 <div class="cover">
 </div>
 
+<!-- Spacer section to drop content bellow navbar -->
+<div class="section"></div>
 
-<!-- Desktop search modal -->
+<!-- Search modal (desktop only)-->
 <div class="modal" id="search-modal">
     <div class="modal-background"></div>
     <div class="modal-content">
         <p class="has-text-centered mb-3 has-text-white is-size-4">Search for games</p>
+        <!-- search form -->
         <form method="GET" action="{% url 'games' %}" is="search-form">
             <div class="field has-addons is-justified-center">
                 <div class="control">
-                    <input class="input has-background-black-bis has-text-white" id="search-field" type="text"
+                    <input aria-label="search input" class="input has-background-black-bis has-text-white"
+                           id="search-field" type="text"
                            name="q"/>
                 </div>
                 <button class="control button is-link" type="submit">
@@ -89,72 +93,17 @@
 <!-- END: Desktop search modal -->
 
 <!-- Information messages -->
-{% if messages %}
-    <div class="container is-line-1 my-2 mx-2">
-        <div class="columns">
-            <div class="column is-12-mobil is-10-tablet is-offset-1-tablet is-8-desktop
-                            is-offset-2-desktop has-text-weight-medium">
-                {% for message in messages %}
-                    <!-- render appropriate message src:
-                    https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html-->
-                    {% with message.level as level %}
-                        <!-- Error -->
-                        {% if level == 40 %}
-                            {% include 'includes/messages/message_error.html' %}
-                            <!-- Warning -->
-                        {% elif level == 30 %}
-                            {% include 'includes/messages/message_warning.html' %}
-                            <!-- Success -->
-                        {% elif level == 25 %}
-                            {% include 'includes/messages/message_success.html' %}
-                            <!-- Info -->
-                        {% else %}
-                            {% include 'includes/messages/message_info.html' %}
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </div>
-            <div class="column"></div>
-        </div>
-    </div>
-{% endif %}
-<!-- END: Information messages -->
+{% include 'includes/messages.html' %}
 
 <!-- page main content -->
 {% block content %}
 {% endblock %}
-<footer>
-    <div class="navbar is-dark has-background-black-bis is-fixed-bottom">
-        <div id="navbar-menu" class="navbar-menu">
-            <div class="navbar-start mx-auto ">
-                <!-- Discord link -->
-                <a class="navbar-item has-text-weight-bold has-text-centered discord-hover" href="{% url 'home' %}">
-                           <span class="icon has-text-grey">
-                            <i class="fab fa-discord fa-2x "></i>
-                            </span>
-                </a>
-                <!-- instagram link -->
-                <a class="navbar-item has-text-weight-bold has-text-centered insta-hover" href="{% url 'home' %}">
-                           <span class="icon has-text-grey">
-                            <i class="fab fa-instagram-square fa-2x"></i>
-                            </span>
-                </a>
-                <!-- Facebook link -->
-                <a class="navbar-item has-text-weight-bold has-text-centered fb-hover" href="{% url 'home' %}">
-                           <span class="icon has-text-grey">
-                            <i class="fab fa-facebook-square fa-2x"></i>
-                            </span>
-                </a>
-                <!-- Twitch link -->
-                <a class="navbar-item has-text-weight-bold has-text-centered twitch-hover" href="{% url 'home' %}">
-                           <span class="icon has-text-grey">
-                            <i class="fab fa-twitch fa-2x"></i>
-                            </span>
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
+
+<!-- Spacer section to lift content above footer navbar -->
+<div class="section"></div>
+
+<!-- footer (desktop only)-->
+{% include 'includes/footer.html' %}
 
 <!-- custom post load js -->
 {% block post-custom-js %}

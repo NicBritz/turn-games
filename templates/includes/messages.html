@@ -1,0 +1,29 @@
+{% if messages %}
+    <div class="container is-z-70">
+            <div class="columns is-mobile is-justified-center">
+                <div class="column is-12-mobile is-10-tablet is-8-desktop
+                             has-text-weight-medium px-5">
+                    {% for message in messages %}
+                        <!-- render appropriate message src:
+                        https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html-->
+                        {% with message.level as level %}
+                            <!-- Error -->
+                            {% if level == 40 %}
+                                {% include 'includes/messages/message_error.html' %}
+                                <!-- Warning -->
+                            {% elif level == 30 %}
+                                {% include 'includes/messages/message_warning.html' %}
+                                <!-- Success -->
+                            {% elif level == 25 %}
+                                {% include 'includes/messages/message_success.html' %}
+                                <!-- Info -->
+                            {% else %}
+                                {% include 'includes/messages/message_info.html' %}
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endif %}
