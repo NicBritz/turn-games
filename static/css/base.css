@@ -38,7 +38,7 @@
 }
 /* hover on basket items */
 .basket-menu-item:hover > .dropdown-item{
-    background-color: #e5e5e5;
+    background-color: #f3f2f2;
 }
 
 /* change dropdown arrow color on navbar */
@@ -71,25 +71,25 @@
 
 /* Discord social link (brand colors)*/
 .discord-hover:hover span, .discord-hover {
-    background-color: #121212 !important;
+    background-color: #242424 !important;
     color: #7289da !important;
 }
 
 /* Instagram social link (brand colors)*/
 .insta-hover:hover span, .insta-hover {
-    background-color: #121212 !important;
+    background-color: #242424 !important;
     color: #8a3ab9 !important;
 }
 
 /* Facebook social link (brand colors)*/
 .fb-hover:hover span, .fb-hover {
-    background-color: #121212 !important;
+    background-color: #242424 !important;
     color: #3b5998 !important;
 }
 
 /* Twitch social link (brand colors)*/
 .twitch-hover:hover span, .twitch-hover {
-    background-color: #121212 !important;
+    background-color: #242424 !important;
     color: #6441a5 !important;
 }
 

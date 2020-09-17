@@ -1,4 +1,5 @@
 /* flickity - main slider */
+
 /* Main container */
 .main-slider {
     text-align: center;
@@ -7,22 +8,18 @@
     top: -35px;
 }
 
-
 /* position dots up a bit */
 .flickity-page-dots {
-    bottom: -10px;
+    bottom: -15px;
 }
 
 /* dots are lines */
 .flickity-page-dots .dot {
-    display: none;
     height: 5px;
-    width: 10px;
-    margin: 0;
-    border-radius: 0;
-    background: #EEEEEE;
+    width: 5px;
+    margin: 5px;
+    background: #fff;
 }
-
 
 /* image container */
 .carousel-cell {
@@ -31,6 +28,7 @@
     margin-right: 10px;
     text-align: inherit;
 }
+
 /* image */
 .carousel-cell img {
     display: block;
