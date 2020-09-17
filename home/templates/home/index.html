@@ -4,17 +4,24 @@
 
 <!-- custom css imports -->
 {% block custom-css %}
+    <!-- Flickity - css for image slider -->
+    <link rel="stylesheet" href="{% static 'home/css/flickity.css' %}">
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+<!-- custom javascript imports -->
+{% block custom-js %}
+    <!-- Flickity JavaScript src: https://flickity.metafizzy.co/ -->
+    <script src="{% static 'home/js/flickity.pkgd.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <div class="section mt-6 ">
+        <!-- main flickity carousel slider -->
+        <div class="section mt-5">
             <div class="columns is-mobile is-multiline">
-                <div class="column"></div>
-                <div class="column is-8">
+                <div class="column is-8-desktop is-offset-2-desktop">
                     <div class=" main-slider ">
-                        <!-- Flickity carousel  -->
                         <div class="carousel">
                             {% for game in featured_specials %}
                                 <a class="carousel-cell has-background-black-bis "
@@ -30,10 +37,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="column"></div>
             </div>
         </div>
-        <div class="section py-0">
+        <!-- Game cards section -->
+        <div class="section py-0 mt-0">
             <div class="columns is-mobile is-multiline">
                 {% for game in featured_specials %}
                     <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
@@ -94,7 +101,7 @@
                                                     <p class=" is-size-4 has-text-success ">
                                                         Free
                                                     </p>
-                                                    {% else %}
+                                                {% else %}
                                                     <p class=" is-size-4 has-text-white ">
                                                         £ {{ game.price }}
                                                     </p>
@@ -122,23 +129,6 @@
 
 {% block post-custom-js %}
     {{ block.super }}
-    {#  Flickity script  #}
-    <script>
-        $('.carousel').flickity({
-            // options
-            cellAlign: 'left',
-            contain: true,
-            imagesLoaded: true,
-            autoPlay: 5000,
-            wrapAround: true,
-        });
-    </script>
-
-    {# Back to top script #}
-    <script type="text/javascript">
-        $('#top-button').click(function () {
-            window.scrollTo(0, 0)
-        })
-    </script>
-
+    {#  Home Script #}
+    <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}

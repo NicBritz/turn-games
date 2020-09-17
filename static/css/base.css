@@ -1,72 +1,112 @@
 /* Global styles */
 * {
     box-sizing: border-box;
-}
-
-body {
+    /* main font */
     font-family: 'Montserrat', serif;
-    line-height: 0;
 }
 
-/* Navigation menu */
-
-/* menu texture src:https://www.transparenttextures.com/ */
-.texture {
-    background: url(https://res.cloudinary.com/dajuujhvs/image/upload/v1598792843/saturn/bright-squares_zbegjs.png);
+/* ------------> NAVIGATION MENUS <------------  */
+/* logo setup */
+.main-logo-image {
+    max-height: 2.3rem !important;
 }
 
+/* Dropdown menu styling */
+
+/* remove borders */
+.navbar-dropdown {
+    border: none;
+}
+/* set image sizing */
 .navbar-item img {
     max-height: none;
 }
 
-.dropdown-content {
-  max-height: 30em;
-  overflow: auto;
+.image-small {
+    width: 25%;
+}
+/* handle text wrapping and container styling */
+.navbar-basket {
+    white-space: normal !important;
 }
 
+.dropdown-content {
+    width: max-content;
+    max-width: 250px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+/* hover on basket items */
+.basket-menu-item:hover > .dropdown-item{
+    background-color: #e5e5e5;
+}
+
+/* change dropdown arrow color on navbar */
+.navbar-link:not(.is-arrowless)::after {
+    border-color: #fff;
+}
+
+/* back to top button */
 .top-button {
     position: fixed;
     bottom: 10px;
     right: 60px;
+    z-index: 999;
 }
 
-.image-small{
-    width: 25%;
-}
-
-.table th{
-    color: white!important;
-    font-size: 1.2rem;
-}
+/* site background */
 .cover {
     position: fixed;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
-    background: black;
+    background: #0a0a0a;
     margin: 0;
     z-index: -1;
 }
 
 
+/* FOOTER */
 
-/* main logo styles */
-.main-logo {
-    font-weight: 500;
+/* Discord social link (brand colors)*/
+.discord-hover:hover span, .discord-hover {
+    background-color: #121212 !important;
+    color: #7289da !important;
 }
 
-/* logo animation setup */
-.main-logo-image {
-    max-height: 2.3rem !important;
-    -webkit-transition: -webkit-transform 1s ease-in-out;
-    transition: transform 1s ease-in-out;
+/* Instagram social link (brand colors)*/
+.insta-hover:hover span, .insta-hover {
+    background-color: #121212 !important;
+    color: #8a3ab9 !important;
 }
 
-/* logo animation */
-.image-spin {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
+/* Facebook social link (brand colors)*/
+.fb-hover:hover span, .fb-hover {
+    background-color: #121212 !important;
+    color: #3b5998 !important;
+}
+
+/* Twitch social link (brand colors)*/
+.twitch-hover:hover span, .twitch-hover {
+    background-color: #121212 !important;
+    color: #6441a5 !important;
+}
+
+/* hide account and cart buttons in body*/
+.button-section {
+    display: none;
+    padding-top: 100px;
+}
+
+/* show account and cart buttons in navbar */
+.button-navbar {
+    display: inline-flex;
+}
+
+/* hide on non mobile / tablet */
+#mobile-search-and-buttons-bar, #social-buttons-bar {
+    display: none;
 }
 
 /* Card Styles */
@@ -102,22 +142,58 @@ body {
     z-index: 60;
 }
 
-.discount{
+.is-z-70 {
+    z-index: 70;
+}
+
+.discount {
     position: relative;
     top: -1em;
     left: -1em;
 }
 
-.has-line-through{
+.has-line-through {
     text-decoration: line-through;
 }
 
 /* Media Queries */
-@media (max-width: 991px) {
 
-    .navbar {
-        position: relative;
-        top: -45px;
+/* to handle some edge cases */
+@media (max-width: 1220px) {
+    .minify {
+        display: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    .hide-mobile {
+        display: none;
+    }
+
+    /* hide account and cart buttons in navbar */
+    .button-navbar {
+        display: none;
+    }
+
+    /* show account and cart buttons in body*/
+    .button-section {
+        display: block;
+    }
+    /* enable mobile search form */
+    #mobile-search-and-buttons-bar, #social-buttons-bar {
+        display: flex;
+    }
+
+}
+
+@media (max-width: 991px) {
+    /* padding for account and cart buttons*/
+    .button-section {
+        padding-top: 130px;
+    }
+
+    #nav-buttons, #search-bar {
+        display: none;
     }
 
     .navbar-item {
