@@ -5,7 +5,7 @@ from django.db.models import Q
 
 def index(request):
     """
-    Renders the home page passing in all the products
+    Renders the games page passing in all the products
     """
 
     # get all games in the database
