@@ -1,151 +1,186 @@
 {% extends "base.html" %}
+{% load mathfilters %}
 {% load  static %}
 
 {% block content %}
-
-    <div class="container pt-3">
-        <div class="columns mb-0">
-            <div class="column ">
-                <hr class="has-background-grey-dark">
-            </div>
-            <div class="column has-text-centered is-narrow">
-                <h2 class="has-text-white title has-text-weight-light">Details</h2>
-            </div>
-            <div class="column ">
-                <hr class="has-background-grey-dark">
-            </div>
-        </div>
-
-        <div class="column">
-            <a href="{% url 'games' %}" class="button back-button is-danger is-outlined has-background-black">
-                <span class="icon is-small ">
-                  <i class="fas fa-arrow-left"></i>
-                </span>
-            </a>
-        </div>
-
-    </div>
-    <div class="container">
-    <div class="section pt-0">
-        <div class="columns is-multiline is-mobile">
-            <div class="column is-half">
-                <div class="columns is-multiline is-mobile">
-                    <div class="column is-12">
-                        <a href="{{ game.header_image_url }}" target="_blank" class="image is-fullwidth ">
-                            <img src="{{ game.header_image_url }}"
-                                 alt="Placeholder image">
-                        </a>
-                    </div>
-
-                    <div class="column is-12 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7 ">Description:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.description }} </p>
-                    </div>
-
+    <div class="container mb-2">
+        <!-- page heading section -->
+        <div class="section pb-2 pt-2 mt-2">
+            <div class="columns is-mobile .is-multiline mb-0">
+                <div class="column ">
+                    <hr class="has-background-grey-dark">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title ">Details</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-dark">
                 </div>
             </div>
-            <div class="column is-half title has-text-white has-text-centered">
-                <div class="columns is-multiline is-mobile">
+            <!-- page heading section -->
+            <div class="column is-12 mb-3">
+                <a href="{% url 'games' %}?sort=name&direction=asc"
+                   class="button back-button is-danger is-outlined ">
+                <span class="icon is-small mr-2">
+                  <i class="fas fa-arrow-left"></i>
+                </span>
+                    BACK
+                </a>
+            </div>
+        </div>
+        <!-- END: heading section -->
 
-                    <div class="column is-12 title has-text-white has-text-centered has-text-weight-bold is-line-1">
-                        <h3>{{ game.name }}</h3>
+        <!-- content section -->
+        <div class="section pt-0">
+            <div class="columns is-multiline is-mobile">
+
+                <!-- Name -->
+                <div class="column is-12 title has-text-white has-text-centered has-text-weight-bold ">
+                    <h3>{{ game.name }}</h3>
+                </div>
+
+                <!-- image section -->
+                <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-6-desktop is-offset-0-desktop">
+                    <div class="columns is-multiline is-mobile">
+                        <div class="column is-12 pt-0">
+                            <a href="{{ game.header_image_url }}" target="_blank" class="image is-fullwidth ">
+                                <img src="{{ game.header_image_url }}"
+                                     alt="{{ game.name }} image">
+                            </a>
+                        </div>
+                        <!-- description section -->
+                        <div class="column is-12 has-text-white has-text-left pt-0">
+                            <p class="is-size-6 has-text-grey">Description:</p>
+                            <p class=" is-size-6 pt-1"> {{ game.description }} </p>
+                        </div>
+
                     </div>
-
-                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Developer:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.developer }} </p>
-                    </div>
-
-                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Publisher:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.publisher }} </p>
-                    </div>
-
-                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Platforms:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.platforms }} </p>
-                    </div>
-
-                    <div class="column is-6 has-text-white has-text-left has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Released:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1"> {{ game.release_date }} </p>
-                    </div>
-
-                    <div class="column is-12">
-
-                    </div>
-
-                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                        <p class="is-size-7">Categories:</p>
-                        <p class=" is-size-7 has-text-weight-normal pt-1">
-                            {% for category in game.categories.all %}
-                                <a class="mr-1"
-                                   href="{% url 'games' %}?category={{ category.name }}">{{ category.get_friendly_name }}, </a>
-                            {% endfor %}
-                        </p>
-                    </div>
-
-                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                        <p class="is-size-7">Genres:</p>
-                        <p class=" is-size-7 has-text-weight-normal pt-1">
-                            {% for genre in game.genres.all %}
-                                <a class="mr-1"
-                                   href="{% url 'games' %}?genre={{ genre.name }}">{{ genre.get_friendly_name }}, </a>
-                            {% endfor %}
-                        </p>
-                    </div>
-
-                    <div class="column is-4 has-text-white has-text-left pt-0 is-line-1">
-                        <p class="is-size-7">Tags:</p>
-                        <p class=" is-size-7 has-text-weight-normal pt-1">
-                            {% for tag in game.tags.all %}
-                                <a class="mr-1"
-                                   href="{% url 'games' %}?tag={{ tag.name }}">{{ tag.get_friendly_name }}, </a>
-                            {% endfor %}
-                        </p>
-                    </div>
-
-                    <div class="column is-12 is-background">
-                        <hr class="has-background-grey-dark">
-                    </div>
-
-                    <div class="column is-6 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Ratings:</p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1">
+                    <!-- Buy Section -->
+                    <div class="column is-12 ">
+                        <hr class="has-background-grey-dark ">
+                        <div class="columns is-mobile is-multiline mb-0 pb-0">
+                            <!-- ratings Section -->
+                            <div class="column is-6 has-text-white has-text-centered pt-0 ">
+                                <p class="is-size-6 has-text-grey">Ratings:</p>
+                                <p class=" is-size-6 l pt-1">
                                 <span>
                                     <i class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i>
                                 </span>
-                            {{ game.positive_ratings }}
-
-                        </p>
-                        <p class=" is-size-6 has-text-weight-normal pt-1 ">
+                                    {{ game.positive_ratings }}
+                                </p>
+                                <p class=" is-size-6 has-text-weight-normal pt-1 ">
                                 <span>
                                 <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
                                 </span>
-                            {{ game.negative_ratings }}
-                        </p>
-                    </div>
-
-                    <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                        <p class="is-size-7">Price:</p>
-                        <p class=" is-size-5 has-text-weight-normal pt-1"> £ {{ game.price }} </p>
-                    </div>
-                    <div class="column is-3 has-text-white has-text-centered has-text-weight-light pt-0 is-line-1">
-                        <form action="{% url 'add_to_cart' game.id %}" method="POST">
-
-                            {% csrf_token %}
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            <button class="button is-success mt-1 is-hoverable" type="submit">
+                                    {{ game.negative_ratings }}
+                                </p>
+                            </div>
+                            <!-- Price Section -->
+                            <div class="column is-6 has-text-white has-text-centered pt-0">
+                                <p class="is-size-6 has-text-grey">Price:</p>
+                                <!-- discount calculations -->
+                                {% if game.discounted %}
+                                    <p class=" is-size-5 has-text-danger has-line-through mr-3">
+                                        £ {{ game.price }}
+                                    </p>
+                                    <p class=" is-size-5 has-text-white ">
+                                        {% with discount_amount=game.discount_percent|div:100 %}
+                                            {% with discounted_value=game.price|mul:discount_amount %}
+                                                £ {{ game.price|sub:discounted_value|floatformat:2 }}
+                                            {% endwith %}
+                                        {% endwith %}
+                                    </p>
+                                    <!-- END: discount calculations -->
+                                {% else %}
+                                    <!-- show free of game is 0 value -->
+                                    {% if game.price|floatformat == '0' %}
+                                        <p class=" is-size-4 has-text-success ">
+                                            Free
+                                        </p>
+                                    {% else %}
+                                        <!-- show game price in all other scenarios -->
+                                        <p class=" is-size-4 has-text-white ">
+                                            £ {{ game.price }}
+                                        </p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- END: Game pricing -->
+                        <!-- Buy button  -->
+                        <div class="column is-12 has-text-white has-text-centered pt-0 ">
+                            <form action="{% url 'add_to_cart' game.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                <button class="button is-success is-outlined" id="buy-button" type="submit">
                                 <span class="icon">
                                   <i class="fas fa-cart-plus"></i>
                                 </span>
-                                <span>Buy</span>
-                            </button>
-                        </form>
+                                    <span>Buy</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr class="has-background-grey-dark mt-0">
+                </div>
+
+                <!-- info section -->
+                <div class="column is-12-mobile is-10-tablet is-offset-1-tablet is-6-desktop is-offset-0-desktop title has-text-white has-text-centered ">
+                    <div class="columns is-multiline is-mobile">
+
+                        <!-- Developer  -->
+                        <div class="column is-6 has-text-white has-text-left pt-0">
+                            <p class="is-size-6 has-text-grey">Developer:</p>
+                            <p class="is-size-6 pt-1"> {{ game.developer }} </p>
+                        </div>
+                        <!-- Publisher  -->
+                        <div class="column is-6 has-text-white has-text-left pt-0">
+                            <p class="is-size-6 has-text-grey">Publisher:</p>
+                            <p class="is-size-6 pt-1"> {{ game.publisher }} </p>
+                        </div>
+                        <!-- Platforms  -->
+                        <div class="column is-6 has-text-white has-text-left pt-0">
+                            <p class="is-size-6 has-text-grey">Platforms:</p>
+                            <p class="is-size-6 pt-1"> {{ game.platforms }} </p>
+                        </div>
+                        <!-- Released  -->
+                        <div class="column is-6 has-text-white has-text-left pt-0">
+                            <p class="is-size-6 has-text-grey">Released:</p>
+                            <p class="is-size-6 pt-1"> {{ game.release_date }} </p>
+                        </div>
+                        <!-- Categories  -->
+                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 mb-6">
+                            <p class="is-size-6 has-text-grey">Categories:</p>
+                            {% for category in game.categories.all %}
+                                <p class=" is-size-6 pt-1">
+                                    <a class="mr-1"
+                                       href="{% url 'games' %}?category={{ category.name }}">{{ category.get_friendly_name }}   </a>
+                                </p>
+                            {% endfor %}
+                        </div>
+                        <!-- Genres  -->
+                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 ">
+                            <p class="is-size-6 has-text-grey">Genres:</p>
+                            {% for genre in game.genres.all %}
+                                <p class=" is-size-6 pt-1">
+                                    <a class="mr-1"
+                                       href="{% url 'games' %}?genre={{ genre.name }}">{{ genre.get_friendly_name }}</a>
+                                </p>
+                            {% endfor %}
+                        </div>
+                        <!-- Tags  -->
+                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 ">
+                            <p class="is-size-6 has-text-grey">Tags:</p>
+                            {% for tag in game.tags.all %}
+                                <p class=" is-size-6 pt-1">
+                                    <a class="mr-1"
+                                       href="{% url 'games' %}?tag={{ tag.name }}">{{ tag.get_friendly_name }} </a>
+                                </p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
