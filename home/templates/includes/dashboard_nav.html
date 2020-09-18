@@ -1,0 +1,98 @@
+{% load static %}
+<!-- START NAV -->
+<nav class="navbar is-dark has-background-black-ter is-fixed-top pt-4 is-spaced pl-0">
+    <!-- Main Logo -->
+    <div class="navbar-brand px-3">
+        <a class="navbar-item main-logo-container is-flex is-justified-center is-baseline " href="{% url 'home' %}">
+            <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-full-logo.webp' %} "
+                 alt="turn games logo text ">
+        </a>
+        <!-- END: Main Logo -->
+
+        <!-- Burger Menu  button -->
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <!-- END: menu burger button -->
+    </div>
+    <div id="navbar-menu" class="navbar-menu">
+
+        <div class="navbar-start mx-auto px-1 ">
+
+            <!-- site home link -->
+            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
+                           <span class="icon has-text-info mr-2">
+                            <i class="fas fa-home "></i>
+                            </span>
+                Site Home
+            </a>
+
+            <!-- Dashboard link -->
+            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'dashboard' %}">
+                           <span class="icon has-text-warning mr-2">
+                            <i class="fas fa-tools "></i>
+                            </span>
+                Dashboard
+            </a>
+
+            <!-- Games menu -->
+            <div class="navbar-item has-dropdown is-hoverable has-text-centered">
+                <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
+                        class="fas fa-gamepad"></i></span>Games</a>
+
+                <div class="navbar-dropdown is-z-60">
+                    <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">VIEW</a>
+                    <a class="navbar-item" href="{% url 'add_game' %}">ADD</a>
+                    <a class="navbar-item" href="{% url 'games' %}?category=single_player&sort=name&direction=asc">EDIT
+                        / DELETE</a>
+                </div>
+            </div>
+            <!-- END: Game menu -->
+
+            <!-- Socials (mobile only) -->
+            <div class="columns is-mobile is-multiline has-background-black-ter" id="social-buttons-bar">
+                <div class="column is-3 is-z-70 has-text-centered pr-0">
+                    <!-- Discord link -->
+                    <a class="has-text-weight-bold has-text-centered discord-hover" href="https://discord.com"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-discord fa-2x "></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered px-0">
+                    <!-- instagram link -->
+                    <a class=" has-text-weight-bold has-text-centered insta-hover"
+                       href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-instagram-square fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered px-0">
+                    <!-- Facebook link -->
+                    <a class=" has-text-weight-bold has-text-centered fb-hover" href="https://www.facebook.com"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-facebook-square fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+                <div class="column is-3 is-z-70 has-text-centered pl-0">
+                    <!-- Twitch link -->
+                    <a class=" has-text-weight-bold has-text-centered twitch-hover" href="https://www.twitch.tv"
+                       target="_blank" rel="noopener noreferrer">
+                           <span class="icon has-text-grey">
+                            <i class="fab fa-twitch fa-2x"></i>
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <!-- END: Socials (mobile only) -->
+        </div>
+    </div>
+</nav>
+<!-- END NAV -->

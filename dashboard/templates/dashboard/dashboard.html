@@ -4,51 +4,17 @@
 {% block custom-css %}
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
 {% endblock %}
+
 <!-- custom js imports -->
 {% block custom-js %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 {% endblock %}
 
+<!-- Dashboard Navbar -->
 {% block header %}
-    <!-- START NAV -->
-    <nav class="navbar is-dark py-1 has-text-centered mt-0">
-        <div class="container">
-            <div class="navbar-brand mt-3">
-                <a class="is-flex is-justified-center is-baseline " href="{% url 'home' %}">
-                    <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-logo.svg' %} "
-                         alt="Saturn Games Logo">
-                    <span class="main-logo pl-2 is-size-2 has-text-light has-text-weight-bold pt-4 has-text-shadow-3">
-                    T<span class="is-size-3 has-text-weight-medium">urn </span>
-                    G<span class="is-size-3 has-text-weight-medium">ames</span>
-                    <span class="is-size-4 has-text-weight-normal mx-5">Admin Dashboard</span>
-                </span>
-                </a>
-                <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="{% url 'home' %}">
-                        Site Home
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        Orders
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        Inventory
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        Reports
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- END NAV -->
+    {% include 'includes/dashboard_nav.html' %}
 {% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="section">
@@ -97,7 +63,7 @@
                     <div class="columns">
                         <div class="column is-4">
                             <div class="card events-card">
-                            <canvas id="myChart" width="100" height="100"></canvas>
+                                <canvas id="myChart" width="100" height="100"></canvas>
                             </div>
                         </div>
                     </div>
@@ -209,44 +175,6 @@
 
 <!-- custom post load js -->
 {% block post-custom-js %}
-
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 10, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+    {{ block.super }}
+    <script src="{% static 'dashboard/js/dashboard.js' %}" type="text/javascript"></script>
 {% endblock %}
