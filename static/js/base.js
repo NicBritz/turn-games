@@ -8,10 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
         $delete.addEventListener('click', () => {
             $notification.parentNode.removeChild($notification);
         });
+
         // remove notification after a few seconds
-        setInterval(function () {
-            $notification.parentNode.removeChild($notification);
+        setTimeout(function () {
+                $notification.parentNode.removeChild($notification);
         }, 3000);
+
+
     });
 
     // Show mobile menu on click
@@ -31,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
     )
 
     // Desktop Search Modal
-    $("#search-button").click(function(){
+    $("#search-button").click(function () {
         $('#search-modal').addClass("is-active");
         $("#search-field:text").focus();
     });
 
-    $('.modal-close').click(function (){
+    $('.modal-close').click(function () {
         $("#search-modal").removeClass('is-active');
     })
 

@@ -9,169 +9,159 @@
 <!-- main content -->
 {% block content %}
     <div class="container pt-3">
-        <!-- Heading area-->
-        <div class="columns mb-0">
-            <div class="column">
-                <hr class="has-background-grey-lighter"/>
+        <div class="section mt-0 pt-0">
+            <div class="columns mb-0">
+                <!-- hearer section -->
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title">Checkout</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
             </div>
-            <div class="column has-text-centered is-narrow">
-                <h2 class="has-text-white title has-text-weight-light">Success</h2>
-            </div>
-            <div class="column">
-                <hr class="has-background-grey-lighter"/>
-            </div>
-        </div>
-        <!-- Checkout Steps section -->
-        <div class="section is-line-1 mt-5 pt-0 mb-0">
+            <!-- END: hearer section -->
+            <!-- Checkout Steps -->
             <div class="columns is-mobile">
                 <div class="column">
-                    <ul class="steps is-narrow is-medium is-centered has-content-centered">
+                    <ul class="steps is-medium is-horizontal is-centered has-content-centered">
                         <!-- Shopping Cart -->
-                        <li class="steps-segment">
+                        <li class="steps-segment ">
                             <a href="{% url 'view_cart' %}" class="has-text-dark">
-                            <span class="steps-marker">
-                            <span class="icon"><i class="fa fa-shopping-cart"></i></span>
-                            </span>
-                                <div class="steps-content">
-                                    <p class="heading has-text-white">Shopping Cart</p>
-                                </div>
+                                <span class="steps-marker">
+                                    <span class="icon"><i class="fa fa-shopping-cart"></i></span>
+                                </span>
                             </a>
                         </li>
                         <!-- Payment -->
                         <li class="steps-segment">
                             <a href="{% url 'checkout' %}" class="has-text-dark">
                             <span class="steps-marker">
-                            <span class="icon"><i class="fa fa-usd"></i></span>
+                                <span class="icon"><i class="fa fa-usd"></i></span>
                             </span>
-                                <div class="steps-content">
-                                    <p class="heading has-text-white">Payment</p>
-                                </div>
                             </a>
                         </li>
                         <!-- Complete -->
                         <li class="steps-segment is-active">
                             <span class="steps-marker">
-                              <span class="icon"><i class="fa fa-check"></i></span>
+                                <span class="icon"><i class="fa fa-check"></i></span>
                             </span>
-                            <div class="steps-content">
-                                <p class="heading has-text-white">Confirmation</p>
-                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <!-- END: Checkout Steps -->
         <!-- order section -->
-        <div class="section is-line-1 pt-0">
-            <div class="columns is-mobile is-multiline">
-                <!-- Checkout Message -->
-                <div class="column is-6 is-offset-3 has-text-centered">
-                    <p class="has-text-white">
-                        Thank you for your order. A confirmation email has been sent to
-                        <strong class="has-text-white">{{ order.email }}</strong>.
-                    </p>
-                </div>
-                <!-- Checkout details heading -->
-                <div class="column is-8 is-offset-2 mt-0 has-text-centered is-size-3">
-                    <hr class="has-background-grey-lighter my-3"/>
-                    <p class="has-text-white py-0">Order Details</p>
-                    <hr class="has-background-grey-lighter my-3"/>
-                </div>
+        <div class="section pt-0">
+            <div class="columns is-mobile is-justified-center">
+                <div class="column is-12-mobile is-10-desktop">
+                    <div class="columns is-mobile is-multiline is-justified-center">
+                        <!-- Checkout Message -->
+                        <div class="column is-12 has-text-centered mt-5">
+                            <p class="has-text-white">
+                                Thank you for your order. A confirmation email has been sent to
+                                <strong class="has-text-white">{{ order.email }}</strong>.
+                            </p>
+                        </div>
+                        <!-- Checkout details heading -->
+                        <div class="column is-12 mt-0 has-text-centered is-size-3 ">
+                            <hr class="has-background-grey-lighter my-3"/>
+                            <p class="has-text-white py-0">Order Details</p>
+                            <hr class="has-background-grey-lighter my-3"/>
+                        </div>
 
-                <div class="column is-6 is-offset-3 py-0">
-                    <div class="columns is-mobile is-multiline">
-                        <!-- fullname -->
-                        <div class="column is-4 py-1">
-                            <p class="has-text-white">Name:</p>
+                        <div class="column is-12 py-0 ">
+                            <div class="columns is-mobile is-multiline">
+                                <!-- fullname -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Name:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.full_name }}
+                                    </p>
+                                </div>
+                                <!-- email -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Email:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.email }}
+                                    </p>
+                                </div>
+                                <!-- number -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Phone:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.phone_number }}
+                                    </p>
+                                </div>
+                                <!-- order number -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Order:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.order_number|truncatechars:20 }}
+                                    </p>
+                                </div>
+                                <!-- date -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Date:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.date }}
+                                    </p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="column is-8 py-1">
-                            <p class="has-text-white has-text-white has-text-weight-medium is-size-6">
-                                {{ order.full_name }}
+                        <!-- Checkout summery heading -->
+                        <div class="column is-12 mt-0 has-text-centered is-size-4">
+                            <hr class="has-background-grey-lighter my-3"/>
+                            <p class="has-text-white py-0">Order Summery</p>
+                            <hr class="has-background-grey-lighter my-3"/>
+                        </div>
+                        <!-- ordered items -->
+                        {% for item in order.line_items.all %}
+                            <div class="column is-12">
+                                <p class="has-text-white px-6 ">
+                                    {{ item.game.name }}
+                                    <span class="is-pulled-right"> £{{ item.game.price }} </span>
+                                </p>
+                            </div>
+                        {% endfor %}
+                        <div class="column is-12">
+                            <hr class="has-background-grey-lighter my-3"/>
+                            <!-- subtotal -->
+                            <p class="has-text-white my-3">
+                                Subtotal: <span class="is-pulled-right">{{ order.order_total }}</span>
+                            </p>
+                            <!-- tax -->
+                            <p class="has-text-white my-3">
+                                Tax: <span class="is-pulled-right">{{ order_tax }}</span>
+                            </p>
+                            <!-- grand total -->
+                            <p class="has-text-white is-size-5">
+                                Grand Total:
+                                <span class="is-pulled-right">{{ order.grand_total }}</span>
                             </p>
                         </div>
-                        <!-- email -->
-                        <div class="column is-4 py-1">
-                            <p class="has-text-white">Email:</p>
-                        </div>
-                        <div class="column is-8 py-1">
-                            <p class="has-text-white has-text-white has-text-weight-medium is-size-6">
-                                {{ order.email }}
-                            </p>
-                        </div>
-                        <!-- contact number -->
-                        <div class="column is-4 py-1">
-                            <p class="has-text-white">Number:</p>
-                        </div>
-                        <div class="column is-8 py-1">
-                            <p class="has-text-white has-text-white has-text-weight-medium is-size-6">
-                                {{ order.phone_number }}
-                            </p>
-                        </div>
-                        <!-- order number -->
-                        <div class="column is-4 py-1">
-                            <p class="has-text-white">Order Number:</p>
-                        </div>
-                        <div class="column is-8 py-1">
-                            <p class="has-text-white has-text-white has-text-weight-medium is-size-6">
-                                {{ order.order_number }}
-                            </p>
-                        </div>
-                        <!-- Date -->
-                        <div class="column is-4 py-1">
-                            <p class="has-text-white">Order Date:</p>
-                        </div>
-                        <div class="column is-8 py-1">
-                            <p class="has-text-white has-text-white has-text-weight-medium is-size-6">
-                                {{ order.date }}
-                            </p>
-                        </div>
+                        {% if  from_profile %}
+                            <!-- Keep shopping button -->
+                            <div class="column is-8 is-offset-2 has-text-right">
+                                <a class="button is-outlined is-info mt-3" href="{% url 'profile' %}">
+                                    Back to User Profile </a>
+                            </div>
+                        {% else %}
+                            <!-- Keep shopping button -->
+                            <div class="column is-12 has-text-right">
+                                <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">
+                                    Keep Shopping</a>
+                            </div>
+                        {% endif %}
                     </div>
+
                 </div>
-                <!-- Checkout summery heading -->
-                <div class="column is-8 is-offset-2 mt-0 has-text-centered is-size-4">
-                    <hr class="has-background-grey-lighter my-3"/>
-                    <p class="has-text-white py-0">Order Summery</p>
-                    <hr class="has-background-grey-lighter my-3"/>
-                </div>
-                <!-- ordered items -->
-                {% for item in order.line_items.all %}
-                    <div class="column is-8 is-offset-2">
-                        <p class="has-text-white px-6 is-size-6">
-                            {{ item.game.name }}
-                            <span class="is-pulled-right"> £{{ item.game.price }} </span>
-                        </p>
-                    </div>
-                {% endfor %}
-                <div class="column is-8 is-offset-2">
-                    <hr class="has-background-grey-lighter my-3"/>
-                    <!-- subtotal -->
-                    <p class="has-text-white my-3">
-                        Subtotal: <span class="is-pulled-right">{{ order.order_total }}</span>
-                    </p>
-                    <!-- tax -->
-                    <p class="has-text-white my-3">
-                        Tax: <span class="is-pulled-right">{{ order_tax }}</span>
-                    </p>
-                    <!-- grand total -->
-                    <p class="has-text-white is-size-5">
-                        Grand Total:
-                        <span class="is-pulled-right">{{ order.grand_total }}</span>
-                    </p>
-                </div>
-                {% if  from_profile %}
-                    <!-- Keep shopping button -->
-                    <div class="column is-8 is-offset-2 has-text-right">
-                        <a class="button is-outlined is-info mt-3" href="{% url 'profile' %}">
-                            Back to User Profile </a>
-                    </div>
-                {% else %}
-                    <!-- Keep shopping button -->
-                    <div class="column is-8 is-offset-2 has-text-right">
-                        <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">
-                            Keep Shopping</a>
-                    </div>
-                {% endif %}
             </div>
+
         </div>
     </div>
 {% endblock %}
