@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="columns is-mobile is-multiline">
+    <div class="columns is-mobile is-multiline is-justified-center">
         {% if confirmation %}
             {% user_display confirmation.email_address.user as user_display %}
             <div class="column is-12">
@@ -30,7 +30,7 @@
                     <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}
                     .{% endblocktrans %}</p>
             </div>
-            <div class="column is-6 is-offset-3">
+            <div class="column is-10">
                 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
                     {% csrf_token %}
                     <button class="button is-outlined is-success is-fullwidth mt-5 "

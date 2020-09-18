@@ -18,16 +18,16 @@
             </div>
         </div>
     </div>
-    <div class="columns is-mobile is-multiline">
+    <div class="columns is-mobile is-multiline is-justified-center">
         {% if user.emailaddress_set.all %}
 
-            <div class="column is-12">
+            <div class="column is-10">
                 <p class="has-text-white">
                     {% trans 'The following e-mail addresses are associated with your account:' %}
                 </p>
             </div>
 
-            <div class="column is-12">
+            <div class="column is-10">
                 <form action="{% url 'account_email' %}" class="email_list" method="post">
                     {% csrf_token %}
                     <fieldset class="blockLabels">
@@ -65,7 +65,7 @@
                 </form>
             </div>
 
-            <div class="column is-12">
+            <div class="column is-10">
         {% else %}
             <p class="has-text-danger">
                 <strong>{% trans 'Warning:' %}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}
@@ -73,7 +73,7 @@
         {% endif %}
             <h3 class="has-text-white ">{% trans "Add an E-mail Address" %}</h3>
         </div>
-        <div class="column is-6 is-offset-3 has-text-left pt-0">
+        <div class="column is-10 has-text-left pt-0">
             <form method="post" action="{% url 'account_email' %}" class="add_email">
                 {% csrf_token %}
                 {{ form.as_p }}

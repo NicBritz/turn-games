@@ -21,15 +21,15 @@
 
     {% url 'account_email' as email_url %}
 
-    <p class="has-text-white is-line-1">{% blocktrans %}This part of the site requires us to verify that
+    <p class="has-text-white">{% blocktrans %}This part of the site requires us to verify that
         you are who you claim to be. For this purpose, we require that you
         verify ownership of your e-mail address. {% endblocktrans %}</p>
 
-    <p class="has-text-white is-line-1">{% blocktrans %}We have sent an e-mail to you for
+    <p class="has-text-white">{% blocktrans %}We have sent an e-mail to you for
         verification. Please click on the link inside this e-mail. Please
         contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
 
-    <p class="has-text-danger is-line-1">{% blocktrans %}<strong class="has-text-danger">
+    <p class="has-text-danger">{% blocktrans %}<strong class="has-text-danger">
         Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.
     {% endblocktrans %}</p>
 

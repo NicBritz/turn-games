@@ -18,13 +18,13 @@
             </div>
         </div>
     </div>
-    <div class="columns is-mobile is-multiline">
-        <div class="column is-12">
+    <div class="columns is-mobile is-multiline is-justified-center">
+        <div class="column is-10">
             <p class="has-text-white">{% blocktrans %}Already have an account? Then please
                 <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
             </p>
         </div>
-        <div class="column is-6 is-offset-3 has-text-left">
+        <div class="column is-10 has-text-left">
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
