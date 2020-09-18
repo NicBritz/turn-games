@@ -8,44 +8,38 @@
 
 {% block content %}
     <div class="container pt-3">
-        <div class="columns mb-0">
-            <div class="column ">
-                <hr class="has-background-grey-lighter">
+        <div class="section mt-0 pt-0">
+            <div class="columns mb-0">
+                <!-- hearer section -->
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title">Checkout</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
             </div>
-            <div class="column has-text-centered is-narrow">
-                <h2 class="has-text-white title has-text-weight-light">Checkout</h2>
-            </div>
-            <div class="column ">
-                <hr class="has-background-grey-lighter">
-            </div>
-        </div>
-        <!-- Checkout Steps -->
-        <div class="section is-line-1 mt-0 pt-0">
+            <!-- END: hearer section -->
+            <!-- Checkout Steps -->
             <div class="columns is-mobile">
                 <div class="column">
-                    <ul class="steps is-narrow is-medium is-centered has-content-centered">
-
+                    <ul class="steps is-medium is-horizontal is-centered has-content-centered">
                         <!-- Shopping Cart -->
                         <li class="steps-segment ">
                             <a href="{% url 'view_cart' %}" class="has-text-dark">
                                 <span class="steps-marker">
                                     <span class="icon"><i class="fa fa-shopping-cart"></i></span>
                                 </span>
-                                <div class="steps-content">
-                                    <p class="heading has-text-white">Shopping Cart</p>
-                                </div>
                             </a>
                         </li>
-
                         <!-- Payment -->
                         <li class="steps-segment is-active">
                             <a href="{% url 'checkout' %}" class="has-text-dark">
                             <span class="steps-marker">
                                 <span class="icon"><i class="fa fa-usd"></i></span>
                             </span>
-                                <div class="steps-content">
-                                    <p class="heading has-text-white">Payment</p>
-                                </div>
                             </a>
                         </li>
                         <!-- Complete -->
@@ -53,23 +47,20 @@
                             <span class="steps-marker">
                                 <span class="icon"><i class="fa fa-check"></i></span>
                             </span>
-                            <div class="steps-content">
-                                <p class="heading">Confirmation</p>
-                            </div>
                         </li>
 
                     </ul>
                 </div>
             </div>
         </div>
+        <!-- END: Checkout Steps -->
 
         <!-- Checkout Form -->
-        <div class="section is-line-1">
-            <div class="columns is-mobile is-multiline ">
-                <div class="column is-4 is-offset-4">
+        <div class="section">
+            <div class="columns is-mobile is-multiline is-justified-center">
+                <div class="column is-10-mobile is-6-tablet is-6-desktop">
                     <form action=" {% url 'checkout' %}" method="POST" id="payment-form">
                         {% csrf_token %}
-
                         <fieldset class="has-text-white ">
                             <legend class="has-text-centered"><i class="fas fa-id-card px-2 has-text-info"></i> Personal
                                 Details
@@ -84,7 +75,7 @@
                             <!-- Email -->
                             <label for="order_form.email.id_for_label"
                                    class="label has-text-white mt-3 has-text-weight-medium">
-                                </i> Email Address
+                                Email Address
                                 <span class="has-text-danger"> *</span>
                             </label>
                             {{ order_form.email }}
@@ -96,7 +87,6 @@
                             </label>
                             {{ order_form.phone_number }}
                         </fieldset>
-
                         <fieldset class="has-text-white mt-5">
                             <legend class="has-text-centered"><i class="fas fa-home px-2 has-text-info"></i>Address
                                 Details
@@ -149,17 +139,16 @@
                                 </div>
                             </div>
                         </fieldset>
-
-                         <fieldset class="has-text-white mt-5">
-                            <legend class="has-text-centered"><i class="fas fa-credit-card px-2 has-text-info"></i>Card Details
+                        <fieldset class="has-text-white mt-5">
+                            <legend class="has-text-centered"><i class="fas fa-credit-card px-2 has-text-info"></i>Card
+                                Details
                             </legend>
-                             <!-- Card Details -->
-                             <label for="" class="label has-text-white mt-3 has-text-weight-medium">
-                                 Card Details
-                                 <span class="has-text-danger"> *</span>
-                             </label>
+                            <!-- Card Details -->
+                            <label for="" class="label has-text-white mt-3 has-text-weight-medium">
+                                Card Details
+                                <span class="has-text-danger"> *</span>
+                            </label>
                         </fieldset>
-
                         <!-- A Stripe card element -->
                         <div class="mb-3" id="card-element"></div>
                         <!-- Stripe error display -->
@@ -167,18 +156,24 @@
                         <!-- Client secret to send the intent -->
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
 
-                        <!-- Submit button -->
-                        <button type="submit" class="button is-warning is-outlined is-pulled-right mt-3"
-                                id="submit-payment-button">
+                        <div class="columns is-mobile is-multiline">
+                            <div class="column is-12">
+                                <!-- Submit button -->
+                                <button type="submit" class="button is-warning is-outlined is-fullwidth"
+                                        id="submit-payment-button">
                             <span class="icon is-small mr-3">
                                 <i class="fas fa-lock"></i>
                             </span> Submit
-                        </button>
-                        <!-- Back to cart button -->
-                        <a href="{% url 'view_cart' %}" class="button is-primary is-outlined  mt-3 is-pulled-left ">
-                            Shopping Cart
-                        </a>
-
+                                </button>
+                            </div>
+                            <div class="column is-12">
+                                <!-- Back to cart button -->
+                                <a href="{% url 'view_cart' %}"
+                                   class="button is-primary is-outlined is-fullwidth">
+                                    Shopping Cart
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
