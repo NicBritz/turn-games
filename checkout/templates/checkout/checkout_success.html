@@ -16,42 +16,14 @@
                     <hr class="has-background-grey-lighter">
                 </div>
                 <div class="column has-text-centered is-narrow">
-                    <h2 class="has-text-white title">Checkout</h2>
+                    <h2 class="has-text-white title">Order details</h2>
                 </div>
                 <div class="column ">
                     <hr class="has-background-grey-lighter">
                 </div>
             </div>
             <!-- END: hearer section -->
-            <!-- Checkout Steps -->
-            <div class="columns is-mobile">
-                <div class="column">
-                    <ul class="steps is-medium is-horizontal is-centered has-content-centered">
-                        <!-- Shopping Cart -->
-                        <li class="steps-segment ">
-                            <a href="{% url 'view_cart' %}" class="has-text-dark">
-                                <span class="steps-marker">
-                                    <span class="icon"><i class="fa fa-shopping-cart"></i></span>
-                                </span>
-                            </a>
-                        </li>
-                        <!-- Payment -->
-                        <li class="steps-segment">
-                            <a href="{% url 'checkout' %}" class="has-text-dark">
-                            <span class="steps-marker">
-                                <span class="icon"><i class="fa fa-usd"></i></span>
-                            </span>
-                            </a>
-                        </li>
-                        <!-- Complete -->
-                        <li class="steps-segment is-active">
-                            <span class="steps-marker">
-                                <span class="icon"><i class="fa fa-check"></i></span>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
         <!-- END: Checkout Steps -->
         <!-- order section -->
@@ -60,20 +32,14 @@
                 <div class="column is-12-mobile is-10-desktop">
                     <div class="columns is-mobile is-multiline is-justified-center">
                         <!-- Checkout Message -->
-                        <div class="column is-12 has-text-centered mt-5">
+                        <div class="column is-12 has-text-centered mb-4">
                             <p class="has-text-white">
                                 Thank you for your order. A confirmation email has been sent to
                                 <strong class="has-text-white">{{ order.email }}</strong>.
                             </p>
                         </div>
-                        <!-- Checkout details heading -->
-                        <div class="column is-12 mt-0 has-text-centered is-size-3 ">
-                            <hr class="has-background-grey-lighter my-3"/>
-                            <p class="has-text-white py-0">Order Details</p>
-                            <hr class="has-background-grey-lighter my-3"/>
-                        </div>
 
-                        <div class="column is-12 py-0 ">
+                        <div class="column is-12  ">
                             <div class="columns is-mobile is-multiline">
                                 <!-- fullname -->
                                 <div class="column is-12 py-1">
@@ -122,7 +88,7 @@
                         <!-- ordered items -->
                         {% for item in order.line_items.all %}
                             <div class="column is-12">
-                                <p class="has-text-white px-6 ">
+                                <p class="has-text-white ">
                                     {{ item.game.name }}
                                     <span class="is-pulled-right"> £{{ item.game.price }} </span>
                                 </p>
@@ -145,8 +111,8 @@
                             </p>
                         </div>
                         {% if  from_profile %}
-                            <!-- Keep shopping button -->
-                            <div class="column is-8 is-offset-2 has-text-right">
+                            <!-- Back to profile -->
+                            <div class="column is-12 has-text-right">
                                 <a class="button is-outlined is-info mt-3" href="{% url 'profile' %}">
                                     Back to User Profile </a>
                             </div>
