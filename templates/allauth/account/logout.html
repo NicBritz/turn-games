@@ -20,8 +20,8 @@
     </div>
 
     <p class="has-text-white">{% trans 'Are you sure you want to sign out?' %}</p>
-    <div class="columns is-mobile ">
-        <div class="column is-6 is-offset-3">
+    <div class="columns is-mobile is-justified-center">
+        <div class="column is-10">
             <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 {% if redirect_field_value %}
