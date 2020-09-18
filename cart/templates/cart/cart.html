@@ -1,34 +1,32 @@
 {% extends "base.html" %}
 {% load  static %}
 
-
 {% block content %}
     <div class="container pt-3">
-    <div class="columns mb-0">
-        <div class="column ">
-            <hr class="has-background-grey-lighter">
-        </div>
-        <div class="column has-text-centered is-narrow">
-            <h2 class="has-text-white title has-text-weight-light">Shopping Cart</h2>
-        </div>
-        <div class="column ">
-            <hr class="has-background-grey-lighter">
-        </div>
-    </div>
-        <!-- Checkout Steps -->
-        <div class="section is-line-1 mt-0 pt-0">
+        <div class="section mt-0 pt-0">
+            <div class="columns mb-0">
+                <!-- hearer section -->
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title">Shopping Cart</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+            </div>
+            <!-- END: hearer section -->
+            <!-- Checkout Steps -->
             <div class="columns is-mobile">
                 <div class="column">
-                    <ul class="steps is-narrow is-medium is-centered has-content-centered">
+                    <ul class="steps is-medium is-horizontal is-centered has-content-centered">
                         <!-- Shopping Cart -->
                         <li class="steps-segment is-active">
                             <a href="{% url 'view_cart' %}" class="has-text-dark">
                                 <span class="steps-marker">
                                     <span class="icon"><i class="fa fa-shopping-cart"></i></span>
                                 </span>
-                                <div class="steps-content">
-                                    <p class="heading has-text-white">Shopping Cart</p>
-                                </div>
                             </a>
                         </li>
                         <!-- Payment -->
@@ -37,9 +35,6 @@
                             <span class="steps-marker">
                                 <span class="icon"><i class="fa fa-usd"></i></span>
                             </span>
-                            <div class="steps-content">
-                                <p class="heading">Payment</p>
-                            </div>
                             </a>
                         </li>
                         <!-- Complete -->
@@ -47,89 +42,188 @@
                             <span class="steps-marker">
                                 <span class="icon"><i class="fa fa-check"></i></span>
                             </span>
-                            <div class="steps-content">
-                                <p class="heading">Confirmation</p>
-                            </div>
                         </li>
 
                     </ul>
                 </div>
             </div>
+            <!-- Checkout Steps -->
         </div>
-
-    <div class="section is-line-1">
-        {% if cart_items %}
-            <table class="table has-background-black has-text-white">
-                <thead>
-                <tr>
-                    <th>Remove</th>
-                    <th>Game Info</th>
-                    <th></th>
-                    <th>Price</th>
-                    <th>Discount</th>
-                    <th>Subtotal</th>
-                </tr>
-                </thead>
-                {% for item in cart_items %}
-                    <tr>
-                        <td class="is-vcentered has-text-centered">
-                            <a href="{% url 'remove_from_cart' item.game.id %}"
-                               class="button back-button is-danger has-background-black is-medium">
-                                    <span class="icon is-large">
-                                      <i class="fas fa-backspace has-text-danger fa-2x fa-flip-horizontal"></i>
-                                    </span>
-                            </a>
-                        </td>
-                        <td class="image-small ">
-                            <img class="image" src="{{ item.game.header_image_url }}" alt="image">
-                        </td>
-                        <td class="is-vcentered ">
-                            <p class="py-3 is-size-5">{{ item.game.name }}</p>
-                        </td>
-                        <td class="is-vcentered">
-                            <p>£ {{ item.game.price }}</p>
-                        </td>
-                        <td class="is-vcentered ">
-                            <p>{{ item.game.discount_percent }}%</p>
-                        </td>
-                        <td class="is-vcentered ">
-                            <p>£{{ item.game_discount_price|floatformat:2 }}</p>
-                        </td>
-                    </tr>
-                {% endfor %}
-                <tr>
-                    <td colspan="6" class="has-text-white has-text-right pt-3">
-                        <p class="py-2"> Cart Total: £ {{ total|floatformat:2 }}</p>
-                        <p class="py-2"> Tax: £ {{ tax|floatformat:2 }}</p>
-                        <p class="is-size-4 py-2"> Grand Total: <strong class="has-text-white">
-                            £ {{ grand_total|floatformat:2 }}</strong></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <div class=" has-text-right">
-                            <a class="button is-outlined is-info mt-3 is-pulled-left" href="{% url 'games' %}">Keep Shopping</a>
-                            <a class="button is-warning is-outlined is-pulled-right mt-3 ml-3 " href="{% url 'checkout' %}">
-                            <span
-                                    class="icon is-small mr-3 ">
+        <!-- Cart section -->
+        <div class="section">
+            <div class="columns is-mobile is-justified-center">
+                <!-- Cart table (excl. mobile) -->
+                <div class="column is-8 hide-mobile show-desktop-block">
+                    {% if cart_items %}
+                        <table class="table has-background-black-ter has-text-white is-fullwidth "
+                               aria-describedby="table of items in shopping cart">
+                            <tr>
+                                <!-- Cart table headers -->
+                                <th scope="col"></th>
+                                <th scope="col" class="has-text-white">Game</th>
+                                <th scope="col"></th>
+                                <th scope="col" class="has-text-white">Price</th>
+                                <th scope="col" class="has-text-white">Discount</th>
+                                <th scope="col" class="has-text-white">Subtotal</th>
+                            </tr>
+                            {% for item in cart_items %}
+                                <tr>
+                                    <!-- Remove from cart -->
+                                    <td class="is-vcentered ">
+                                        <a href="{% url 'remove_from_cart' item.game.id %}" class="icon">
+                                            <i class="fas fa-times has-text-danger mr-1"></i>
+                                        </a>
+                                    </td>
+                                    <!-- Game image -->
+                                    <td class="is-vcentered image-small px-0">
+                                        <img class="image " src="{{ item.game.header_image_url }}"
+                                             alt="{{ item.game.name }} image">
+                                    </td>
+                                    <!-- Game name -->
+                                    <td class="is-vcentered px-0">
+                                        <p class="px-2 py-2 is-size-6 has-text-centered">{{ item.game.name }}</p>
+                                    </td>
+                                    <!-- Game price -->
+                                    <td class="is-vcentered px-0">
+                                        <p class="has-text-centered">£ {{ item.game.price }}</p>
+                                    </td>
+                                    <!-- Game discount amount -->
+                                    <td class="is-vcentered px-0">
+                                        {% if  item.game.discount_percent|floatformat != "0" %}
+                                            <p class="has-text-danger has-text-centered">
+                                                - {{ item.game.discount_percent|floatformat }}%</p>
+                                        {% endif %}
+                                    </td>
+                                    <!-- Game subtotal -->
+                                    <td class="is-vcentered px-0">
+                                        <p class="has-text-centered">£{{ item.game_discount_price|floatformat:2 }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- Game price Totals -->
+                            <tr>
+                                <td colspan="6" class="has-text-white has-text-right pt-3 pr-5">
+                                    <p class="py-1"> Cart Total: £ {{ total|floatformat:2 }}</p>
+                                    <p class="py-1"> Tax: £ {{ tax|floatformat:2 }}</p>
+                                    <p class="is-size-5 py-1"> Grand Total: <strong class="has-text-white">
+                                        £ {{ grand_total|floatformat:2 }}</strong></p>
+                                </td>
+                            </tr>
+                            <!-- Buttons -->
+                            <tr>
+                                <td colspan="6">
+                                    <div class=" has-text-right">
+                                        <a class="button is-outlined is-info mt-3 is-pulled-left"
+                                           href="{% url 'games' %}">Keep
+                                            Shopping</a>
+                                        <a class="button is-warning is-outlined is-pulled-right mt-3 ml-3 "
+                                           href="{% url 'checkout' %}">
+                                        <span class="icon is-small mr-3 ">
                                         <i class="fas fa-lock"></i>
-                                         </span> Checkout
-                        </a>
+                                         </span>
+                                            Checkout
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                         </div>
-                    </td>
-                </tr>
-            </table>
-        {% else %}
-            <div class="columns">
-                <div class="column is-12 has-text-centered">
-                    <p class="has-text-white">There are items in your cart.</p>
-                    <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
-                </div>
+                    {% else %}
+                        <!-- Empty cart  -->
+                        <div class="columns">
+                            <div class="column is-12 has-text-centered">
+                                <p class="has-text-white">There are items in your cart.</p>
+                                <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+                            </div>
+                        </div>
+                    {% endif %}
             </div>
-        {% endif %}
+            <!-- Cart table ( mobile) -->
+            <div class="column is-12 hide-desktop show-mobile-block">
+                {% if cart_items %}
+                    <table class="table has-background-black-ter has-text-white is-fullwidth"
+                           aria-describedby="table of items in shopping cart">
+                        <tr>
+                            <!-- Cart table headers -->
+                            <th scope="col" class="has-text-white"></th>
+                            <th scope="col" class="has-text-white">Discount</th>
+                            <th scope="col" class="has-text-white">Subtotal</th>
+                        </tr>
+                        {% for item in cart_items %}
+                            <tr>
+                                <!-- Remove from cart -->
+                                <td class="is-vcentered has-text-centered">
+                                    <a href="{% url 'remove_from_cart' item.game.id %}" class="icon">
+                                        <i class="fas fa-times has-text-danger mr-1"></i>
+                                    </a>
+                                </td>
+                                <!-- Game image -->
+                                <td class="is-vcentered image-small" colspan="2">
+                                    <img class="image " src="{{ item.game.header_image_url }}"
+                                         alt="{{ item.game.name }} image">
+                                    <!-- Game name -->
+                                    <p class=" py-2 is-size-6 has-text-centered">{{ item.game.name }}</p>
 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <!-- Game discount amount -->
+                                <td class="is-vcentered ">
+                                    {% if  item.game.discount_percent|floatformat != "0" %}
+                                        <p class="has-text-danger has-text-centered is-size-5">
+                                            - {{ item.game.discount_percent|floatformat }}%</p>
+                                    {% endif %}
+                                </td>
+                                <!-- Game subtotal -->
+                                <td class="is-vcentered ">
+                                    <p class="has-text-centered is-size-5">
+                                        £{{ item.game_discount_price|floatformat:2 }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <!-- Game price Totals -->
+                        <tr>
+                            <td colspan="3" class="has-text-white has-text-left pt-3 pr-5">
+                                <p class="py-1"> Cart Total: £ {{ total|floatformat:2 }}</p>
+                                <p class="py-1"> Tax: £ {{ tax|floatformat:2 }}</p>
+                                <p class="is-size-5 py-1"> Grand Total: <strong class="has-text-white">
+                                    £ {{ grand_total|floatformat:2 }}</strong></p>
+                            </td>
+                        </tr>
+                        <!-- Buttons -->
+                        <tr>
+                            <!-- secure checkout button -->
+                            <td colspan="3">
+                                    <a class="button is-warning is-outlined is-pulled-right"
+                                       href="{% url 'checkout' %}">
+                                        <span class="icon is-small mr-3 ">
+                                        <i class="fas fa-lock"></i>
+                                         </span>
+                                        Checkout
+                                    </a>
+                            </td>
 
+                        </tr>
+                        <tr>
+                            <!-- keep shopping button -->
+                            <td colspan="3">
+                                <a class="button is-outlined is-info is-pulled-right"
+                                   href="{% url 'games' %}">Keep
+                                    Shopping</a>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                {% else %}
+                    <!-- Empty cart  -->
+                    <div class="columns">
+                        <div class="column is-12 has-text-centered">
+                            <p class="has-text-white">There are items in your cart.</p>
+                            <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
+                        </div>
+                    </div>
+                {% endif %}
+        </div>
     </div>
-
 {% endblock %}
-
