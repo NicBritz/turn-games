@@ -1,3 +1,10 @@
+$(document).ready(function () {
+    $('#id_header_image').change(function (e) {
+        var fileName = e.target.files[0].name;
+        alert('The file "' + fileName + '" has been selected.');
+    });
+});
+
 // Chart
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
