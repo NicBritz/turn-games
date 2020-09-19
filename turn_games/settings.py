@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "j7&hc5s%p3jlgltejel#my)_1^364yh5+)=39&ez3mdf2n(8fe"
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# only use debug if there is a development variable
+DEBUG = "DEVELOPMENT" in os.environ
 
-ALLOWED_HOSTS = ['turn-games.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["turn-games.herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -111,24 +111,15 @@ WSGI_APPLICATION = "turn_games.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-if 'DATABASE_URL' in os.environ:
+if "DATABASE_URL" in os.environ:
     # Adding the remote database on heroku
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 else:
     DATABASES = {
         # Adding the local database
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
 
@@ -139,9 +130,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 # Internationalization
