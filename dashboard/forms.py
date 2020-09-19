@@ -3,28 +3,13 @@ from games.models import Game, Category, Genre, Tag
 
 
 class GameForm(forms.ModelForm):
-    category_multi = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True)
-
-    genre_multi = forms.ModelMultipleChoiceField(
-        queryset=Genre.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True)
-
-    tag_multi = forms.ModelMultipleChoiceField(
-        queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True)
 
     class Meta:
         model = Game
         fields = ('name', 'header_image_url', 'header_image', 'release_date',
                   'developer', 'publisher', 'platforms', 'price',
-                  'discount_percent', 'categories', 'genres','featured', 'discounted',
-                  'tags', 'description', 'header_image', 'category_multi',
-                  'genre_multi', 'tag_multi')
+                  'discount_percent', 'categories', 'genres', 'featured', 'discounted',
+                  'tags', 'description', 'header_image',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

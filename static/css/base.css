@@ -150,6 +150,11 @@
     z-index: 70;
 }
 
+.is-z-1000{
+    z-index: 1000;
+}
+
+
 .discount {
     position: relative;
     top: -1em;

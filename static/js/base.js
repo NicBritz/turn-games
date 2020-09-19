@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $notification.parentNode.removeChild($notification);
         }, 3000);
 
-
     });
 
     // Show mobile menu on click

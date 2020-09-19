@@ -21,7 +21,7 @@
                     <hr class="has-background-grey-dark">
                 </div>
                 <div class="column has-text-centered is-narrow">
-                    <h2 class="has-text-white title">Add Game</h2>
+                    <h2 class="has-text-white title">Edit Game</h2>
                 </div>
                 <div class="column ">
                     <hr class="has-background-grey-dark">
@@ -31,7 +31,7 @@
 
         <div class="section pt-0">
 
-            <form action="{% url "add_game" %}" method="POST" id="add-game-form"
+            <form action="{% url "edit_game" game.id %}" method="POST" id="edit-game-form"
                   enctype="multipart/form-data">
                 {% csrf_token %}
 
@@ -181,7 +181,7 @@
                 </div>
                 <div class="column"></div>
                 <div class="column is-12-mobile is-4-desktop">
-                    <button type="submit" class="button is-outlined is-success mt-3 is-fullwidth ">Add Game
+                    <button type="submit" class="button is-outlined is-success mt-3 is-fullwidth ">Update Game
                     </button>
                 </div>
             </div>

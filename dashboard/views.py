@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from profiles.models import User
 from checkout.models import Order
@@ -54,3 +54,31 @@ def add_game(request):
         "game_form": game_form,
     }
     return render(request, "dashboard/add_game.html", context)
+
+
+def edit_game(request, game_id):
+    """ Edit game in database """
+
+    game = get_object_or_404(Game, pk=game_id)
+
+    if request.method == "POST":
+        game_form = GameForm(request.POST, request.FILES, instance=game)
+        if game_form.is_valid():
+            game = game_form.save()
+            messages.success(request, f"Successfully updated {game.name}!")
+            return redirect(reverse("game_detail", args=[game.id]))
+        else:
+            messages.error(
+                request, "Failed to update the Game. Please ensure the form is valid!"
+            )
+    else:
+        game_form = GameForm(instance=game)
+        messages.info(request, f'you are now editing {game.name}!')
+
+    template = "dashboard/edit_game.html"
+    context = {
+        'game_form': game_form,
+        'game': game,
+    }
+
+    return render(request, template, context)

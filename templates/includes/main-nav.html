@@ -41,13 +41,13 @@
                             </span>
                             </button>
                         </div>
-                        <div class="dropdown-menu dropdown-buttons is-z-60 " id="account-menu-items" role="menu">
+                        <div class="dropdown-menu dropdown-buttons is-z-1000 " id="account-menu-items" role="menu">
                             <div class="dropdown-content pt-0">
                                 <div class="dropdown-item px-0 pt-0">
                                     {% if request.user.is_authenticated %}
                                         <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user }}</p>
                                         {% if request.user.is_superuser %}
-                                            <a href="{% url 'dashboard' %}" class="dropdown-item ">Admin Dashboard</a>
+                                            <a href="{% url 'dashboard' %}" class="dropdown-item mx-auto px-3">Admin Dashboard</a>
                                             <hr class="dropdown-divider">
                                         {% endif %}
                                         <a href="{% url 'profile' %}" class="dropdown-item bg-light">Profile</a>
@@ -63,7 +63,7 @@
                 </div>
                 <!-- END: Account dropdown (mobile only) -->
                 <!-- Basket button (mobile only)-->
-                <div class="column is-6 is-z-70 has-text-left">
+                <div class="column is-6 is-z-1000 has-text-left">
                     <a href="{% url 'view_cart' %}" class="button is-success">
                             <span class="icon is-medium">
                                  <i class="fas fa-shopping-cart "></i>
@@ -79,7 +79,7 @@
                 </div>
                 <!-- END: Basket button -->
                 <!-- Search bar (mobile only) -->
-                <div class="column is-10 is-z-60 is-offset-1">
+                <div class="column is-10 is-z-1000 is-offset-1">
                     <form method="GET" action="{% url 'games' %}">
                         <div class="field has-addons is-justified-center py-0 px-0">
                             <div class="control">
@@ -108,7 +108,7 @@
                 <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
                         class="fas fa-gamepad"></i></span>Category</a>
 
-                <div class="navbar-dropdown is-z-60">
+                <div class="navbar-dropdown is-z-1000">
                     <a class="navbar-item" href="{% url 'games' %}?sort=name&direction=asc">All</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=single_player&sort=name&direction=asc">Single-player</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">Co-op</a>
@@ -130,7 +130,7 @@
                             </span>
                     Genres</a>
 
-                <div class="navbar-dropdown has-text-centered">
+                <div class="navbar-dropdown has-text-centered is-z-1000">
                     <a class="navbar-item" href="{% url 'games' %}?genre=action&sort=name&direction=asc">Action</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=adventure&sort=name&direction=asc">Adventure</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=casual&sort=name&direction=asc">Casual</a>
@@ -153,7 +153,7 @@
                     Specials
                 </a>
 
-                <div class="navbar-dropdown has-text-centered">
+                <div class="navbar-dropdown has-text-centered is-z-1000">
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=featured&sort=name&direction=asc">Featured</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted&sort=name&direction=asc">Discounted</a>
                 </div>
@@ -171,7 +171,7 @@
                             </span>
                     </a>
                 </div>
-                <div class="column is-3 is-z-70 has-text-centered px-0">
+                <div class="column is-3 is-z-1000 has-text-centered px-0">
                     <!-- instagram link -->
                     <a class=" has-text-weight-bold has-text-centered insta-hover"
                        href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
@@ -180,7 +180,7 @@
                             </span>
                     </a>
                 </div>
-                <div class="column is-3 is-z-70 has-text-centered px-0">
+                <div class="column is-3 is-z-1000 has-text-centered px-0">
                     <!-- Facebook link -->
                     <a class=" has-text-weight-bold has-text-centered fb-hover" href="https://www.facebook.com"
                        target="_blank" rel="noopener noreferrer">
@@ -189,7 +189,7 @@
                             </span>
                     </a>
                 </div>
-                <div class="column is-3 is-z-70 has-text-centered pl-0">
+                <div class="column is-3 is-z-1000 has-text-centered pl-0">
                     <!-- Twitch link -->
                     <a class=" has-text-weight-bold has-text-centered twitch-hover" href="https://www.twitch.tv"
                        target="_blank" rel="noopener noreferrer">
@@ -218,7 +218,7 @@
                             <i class="fas fa-user-circle fa-lg"></i>
                             </span>
                 <span class="minify">Account</span></a>
-            <div class="navbar-dropdown has-text-centered is-right">
+            <div class="navbar-dropdown has-text-centered is-right is-z-1000">
                 {% if request.user.is_authenticated %}
                     <p class="has-text-centered has-background-black-ter has-text-white is-size-5">{{ request.user }}</p>
                     {% if request.user.is_superuser %}
@@ -248,7 +248,7 @@
                     £0.00
                 {% endif %}
             </a>
-            <div class="navbar-dropdown has-text-centered is-right dropdown-content">
+            <div class="navbar-dropdown has-text-centered is-right dropdown-content is-z-1000">
                 <p class="has-text-centered has-background-black-ter has-text-white is-size-5 mb-4">Cart</p>
                 {% if cart_items|length > 0 %}
                     <!-- render games in cart -->

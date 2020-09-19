@@ -1,9 +1,9 @@
 from django.db import models
+import datetime
 
 
 # Category Model
 class Category(models.Model):
-
     # clean up group name in Django admin area
     class Meta:
         verbose_name_plural = "Categories"
@@ -53,9 +53,12 @@ class Game(models.Model):
 
     name = models.CharField(max_length=254)
     description = models.TextField()
-    header_image_url = models.URLField(max_length=1024, null=True, blank=True)
+    header_image_url = models.URLField(
+        max_length=1024, null=True,
+        blank=True,
+        default='https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg')
     header_image = models.ImageField(null=True, blank=True)
-    release_date = models.DateField(null=True, blank=True)
+    release_date = models.DateField(null=True, blank=True, default=datetime.date.today)
     developer = models.CharField(max_length=254, null=True, blank=True)
     publisher = models.CharField(max_length=254, null=True, blank=True)
     platforms = models.CharField(max_length=254, null=True, blank=True)
