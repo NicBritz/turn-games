@@ -177,12 +177,14 @@
                     </div>
                 </div>
                 <div class="column is-12-mobile is-4-desktop">
-                    <a href="{% url 'dashboard' %}" class="button is-outlined is-danger mt-3 is-fullwidth">Cancel</a>
+                    <a href="{% url 'dashboard' %}" class="button is-outlined is-warning mt-3 is-fullwidth">Cancel</a>
                 </div>
-                <div class="column"></div>
                 <div class="column is-12-mobile is-4-desktop">
                     <button type="submit" class="button is-outlined is-success mt-3 is-fullwidth ">Update Game
                     </button>
+                </div>
+                <div class="column is-12-mobile is-4-desktop">
+                    <a href="{% url 'delete_game' game.id %}" class="button is-outlined is-danger mt-3 is-fullwidth">Delete</a>
                 </div>
             </div>
         </div>

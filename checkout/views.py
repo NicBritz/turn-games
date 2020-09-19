@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import OrderForm
@@ -35,6 +36,7 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
+@login_required
 def checkout(request):
     """ Adds a checkout view """
 
@@ -48,15 +50,15 @@ def checkout(request):
 
         # get the post data
         form_data = {
-            'full_name': request.POST['full_name'],
-            'email': request.POST['email'],
-            'phone_number': request.POST['phone_number'],
-            'country': request.POST['country'],
-            'postcode': request.POST['postcode'],
-            'town_or_city': request.POST['town_or_city'],
-            'street_address1': request.POST['street_address1'],
-            'street_address2': request.POST['street_address2'],
-            'county': request.POST['county'],
+            "full_name": request.POST["full_name"],
+            "email": request.POST["email"],
+            "phone_number": request.POST["phone_number"],
+            "country": request.POST["country"],
+            "postcode": request.POST["postcode"],
+            "town_or_city": request.POST["town_or_city"],
+            "street_address1": request.POST["street_address1"],
+            "street_address2": request.POST["street_address2"],
+            "county": request.POST["county"],
         }
         order_form = OrderForm(form_data)
 
@@ -74,7 +76,7 @@ def checkout(request):
                     # get the game record
                     game = Game.objects.get(id=current_game)
                     # add a record to the line items
-                    order_line_item = OrderLineItem(order=order, game=game, )
+                    order_line_item = OrderLineItem(order=order, game=game,)
                     # save the record
                     order_line_item.save()
 
@@ -119,17 +121,19 @@ def checkout(request):
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
-                order_form = OrderForm(initial={
-                    'full_name': request.user,
-                    'email': profile.user.email,
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
-                })
+                order_form = OrderForm(
+                    initial={
+                        "full_name": request.user,
+                        "email": profile.user.email,
+                        "phone_number": profile.default_phone_number,
+                        "country": profile.default_country,
+                        "postcode": profile.default_postcode,
+                        "town_or_city": profile.default_town_or_city,
+                        "street_address1": profile.default_street_address1,
+                        "street_address2": profile.default_street_address2,
+                        "county": profile.default_county,
+                    }
+                )
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
         else:
@@ -145,7 +149,7 @@ def checkout(request):
 
         return render(request, template, context)
 
-
+@login_required
 def checkout_success(request, order_number):
     """ render the success view """
     order = get_object_or_404(Order, order_number=order_number)

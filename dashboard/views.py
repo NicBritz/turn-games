@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from profiles.models import User
 from checkout.models import Order
@@ -8,13 +9,19 @@ from django.contrib.admin.models import LogEntry
 from decimal import Decimal
 
 
+@login_required
 def dashboard(request):
     """
    renders the main admin dashboard
     """
 
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     # log entry src https://stackoverflow.com/questions/5746624/showing-django-admin-actions-on-template
-    logs = LogEntry.objects.select_related().all().order_by('-id')[:5]
+    logs = LogEntry.objects.select_related().all().order_by("-id")[:5]
 
     all_games = Game.objects.all()
     all_users = User.objects.all()
@@ -24,19 +31,27 @@ def dashboard(request):
     for order in all_orders:
         total_sales += order.grand_total
 
-    context = {"logs": logs,
-               "all_games": all_games,
-               "all_orders": all_orders,
-               "total_sales": total_sales,
-               "all_users": all_users}
+    context = {
+        "logs": logs,
+        "all_games": all_games,
+        "all_orders": all_orders,
+        "total_sales": total_sales,
+        "all_users": all_users,
+    }
 
     return render(request, "dashboard/dashboard.html", context)
 
 
+@login_required
 def add_game(request):
     """
     Renders a view to add a product to the database
     """
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     if request.method == "POST":
         game_form = GameForm(request.POST, request.FILES)
         if game_form.is_valid():
@@ -56,8 +71,14 @@ def add_game(request):
     return render(request, "dashboard/add_game.html", context)
 
 
+@login_required
 def edit_game(request, game_id):
     """ Edit game in database """
+
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
 
     game = get_object_or_404(Game, pk=game_id)
 
@@ -73,12 +94,27 @@ def edit_game(request, game_id):
             )
     else:
         game_form = GameForm(instance=game)
-        messages.info(request, f'you are now editing {game.name}!')
+        messages.info(request, f"you are now editing {game.name}!")
 
     template = "dashboard/edit_game.html"
     context = {
-        'game_form': game_form,
-        'game': game,
+        "game_form": game_form,
+        "game": game,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_game(request, game_id):
+    """ Delete game in database """
+
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
+    game = get_object_or_404(Game, pk=game_id)
+    game.delete()
+    messages.success(request, "Game deleted!")
+    return redirect(reverse("dashboard"))
