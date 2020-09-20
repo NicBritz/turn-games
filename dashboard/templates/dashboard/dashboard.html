@@ -40,12 +40,14 @@
                                     <p class="subtitle">Users</p>
                                 </article>
                             </div>
-                            <div class="tile is-parent">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_games.count }}</p>
-                                    <p class="subtitle">Games</p>
-                                </article>
-                            </div>
+
+                                <a class="tile is-parent" href="{% url 'games_management' %}">
+                                    <article class="tile is-child box">
+                                        <p class="title">{{ all_games.count }}</p>
+                                        <p class="subtitle">Games</p>
+                                    </article>
+                                </a>
+
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_orders.count }}</p>
