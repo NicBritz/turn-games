@@ -54,24 +54,26 @@ class Game(models.Model):
     name = models.CharField(max_length=254)
     description = models.TextField()
     header_image_url = models.URLField(
-        max_length=1024, null=True,
+        max_length=1024,
+        null=True,
         blank=True,
-        default='https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg')
+        default="https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg",
+    )
     header_image = models.ImageField(null=True, blank=True)
     release_date = models.DateField(null=True, blank=True, default=datetime.date.today)
     developer = models.CharField(max_length=254, null=True, blank=True)
     publisher = models.CharField(max_length=254, null=True, blank=True)
     platforms = models.CharField(max_length=254, null=True, blank=True)
     required_age = models.DecimalField(
-        max_digits=10, decimal_places=0, null=True, blank=True
+        max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
     positive_ratings = models.DecimalField(
-        max_digits=10, decimal_places=0, null=True, blank=True
+        max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
     negative_ratings = models.DecimalField(
-        max_digits=10, decimal_places=0, null=True, blank=True
+        max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     featured = models.BooleanField(default=False)
     discounted = models.BooleanField(default=False)
     discount_percent = models.DecimalField(
