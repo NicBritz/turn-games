@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import OrderForm
@@ -36,7 +35,7 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-@login_required
+
 def checkout(request):
     """ Adds a checkout view """
 
@@ -149,7 +148,7 @@ def checkout(request):
 
         return render(request, template, context)
 
-@login_required
+
 def checkout_success(request, order_number):
     """ render the success view """
     order = get_object_or_404(Order, order_number=order_number)

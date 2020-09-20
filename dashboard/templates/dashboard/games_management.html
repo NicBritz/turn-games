@@ -38,6 +38,7 @@
                                     <p class="subtitle">Users</p>
                                 </article>
                             </a>
+
                             <a class="tile is-parent" href="{% url 'games_management' %}">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_games.count }}</p>
@@ -45,12 +46,13 @@
                                 </article>
                             </a>
 
-                            <div class="tile is-parent">
+                            <a class="tile is-parent" href="{% url 'order_management' %}">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_orders.count }}</p>
                                     <p class="subtitle">Orders</p>
                                 </article>
-                            </div>
+                            </a>
+
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">£ {{ total_sales }}</p>
@@ -119,7 +121,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="has-text-centered is-vcentered is-hidden-mobile">
-                                                        <img src="{{ game.header_image_url }}" width="100px"
+                                                        <img src="{{ game.header_image_url }}" width="200px"
                                                              alt="{{ game.name }} thumbnail">
                                                     </td>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">

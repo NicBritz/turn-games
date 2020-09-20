@@ -24,7 +24,7 @@
                         <div class="hero-body ">
                             <div class="container">
                                 <h1 class="title">
-                                    User Management
+                                    Order history
                                 </h1>
                             </div>
                         </div>
@@ -45,18 +45,21 @@
                                     <p class="subtitle">Games</p>
                                 </article>
                             </a>
+
                             <a class="tile is-parent" href="{% url 'order_management' %}">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_orders.count }}</p>
                                     <p class="subtitle">Orders</p>
                                 </article>
                             </a>
+
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">£ {{ total_sales }}</p>
                                     <p class="subtitle">Total Sales</p>
                                 </article>
                             </div>
+
                         </div>
                     </section>
 
@@ -65,8 +68,8 @@
                             <!-- if there is a search term show text of term and a clear icon -->
                             {% if search_term != None %}
                                 <p class="has-text-white is-size-5 has-text-weight-bold ">
-                                    Showing <span class="has-text-weight-normal"> {{ filtered_users.count }} </span>
-                                    users for
+                                    Showing <span class="has-text-weight-normal"> {{ filtered_orders.count }} </span>
+                                    Orders for
                                 </p>
                                 <p class="has-text-white is-size-5 ">
                                     <em> " {{ search_term }} " </em>
@@ -79,7 +82,7 @@
                         <div class="column is-12">
                             <div class="card events-card">
                                 <header class="card-header ">
-                                    <form method="GET" action="{% url 'user_management' %}">
+                                    <form method="GET" action="{% url 'order_management' %}">
                                         <div class="field has-addons is-justified-center mx-3 my-3">
                                             <div class="control">
                                                 <input class="input " type="text" placeholder="Search for games"
@@ -98,26 +101,27 @@
                                         <table class="table is-fullwidth is-striped"
                                                aria-describedby="table of all games in database">
                                             <tr>
-                                                <th scope="col" class="has-text-black">Username</th>
-                                                <th scope="col" class="has-text-black">Last Seen</th>
-                                                <th scope="col" class="has-text-centered px-0 mx-0">Del.</th>
+
+                                                <th scope="col" class="has-text-black">Order</th>
+                                                <th scope="col" class="has-text-black">Date</th>
+                                                <th scope="col" class="has-text-centered px-0 mx-0">Amount</th>
                                             </tr>
                                             <tbody>
-                                            {% for user in filtered_users %}
+                                            {% for order in filtered_orders %}
                                                 <tr>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium ">
-                                                                {{ user.username }}
+                                                        <a
+                                                                href="{% url 'order_view' order.order_number %}">{{ order.order_number|truncatechars:6 }}
+                                                        </a>
                                                     </td>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
-                                                        {{ user.last_login }}
+                                                          {{ order.date }}
+
                                                     </td>
-                                                    <td class="has-text-centered is-vcentered">
-                                                        {% if not user.is_superuser %}
-                                                            <a href="{% url 'delete_user' user.id %}">
-                                                                <i class="far fa-trash-alt has-text-danger"></i>
-                                                            </a>
-                                                        {% endif %}
+                                                   <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
+                                                                £ {{ order.grand_total }}
                                                     </td>
+
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
