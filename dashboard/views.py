@@ -165,7 +165,6 @@ def user_management(request):
     all_games = Game.objects.all()
     all_users = User.objects.all()
     all_orders = Order.objects.all()
-    all_games = all_games.order_by("name")
     filtered_users = all_users.order_by("username")
     search_term = None
 
@@ -201,12 +200,61 @@ def user_management(request):
 def delete_user(request, user_id):
     """ Delete game in database """
 
+    user = get_object_or_404(User, pk=user_id)
+
     # redirect to home if not superuser
     if not request.user.is_superuser:
         messages.error(request, "Sorry, only admin uses can do that.")
         return redirect(reverse("home"))
 
-    user = get_object_or_404(User, pk=user_id)
     user.delete()
     messages.success(request, "User deleted!")
     return redirect(reverse("user_management"))
+
+
+@login_required
+def order_management(request):
+    """ User management view """
+    all_games = Game.objects.all()
+    all_users = User.objects.all()
+    all_orders = Order.objects.all()
+    filtered_orders = all_orders.order_by("-date")
+    search_term = None
+
+    total_sales = Decimal(0)
+    for order in all_orders:
+        total_sales += order.grand_total
+
+    # check if it is a search query
+    if "q" in request.GET:
+        query = request.GET["q"]
+        search_term = query
+        # If the user has not entered any text display an error
+        if not query:
+            messages.error(request, "No search text entered!")
+            return redirect(reverse("user_management"))
+
+        # filter search based on name
+        filtered_orders = all_orders.filter(Q(order_number__icontains=query))
+
+    context = {
+        "all_games": all_games,
+        "all_users": all_users,
+        "all_orders": all_orders,
+        "total_sales": total_sales,
+        "filtered_orders": filtered_orders,
+        "search_term": search_term,
+    }
+
+    return render(request, "dashboard/order_management.html", context)
+
+
+@login_required
+def order_view(request, order_number):
+    """ render the success view """
+    order = get_object_or_404(Order, order_number=order_number)
+    order_tax = order.grand_total - order.order_total
+
+    context = {"order": order, "order_tax": order_tax}
+
+    return render(request, "dashboard/order_view.html", context)

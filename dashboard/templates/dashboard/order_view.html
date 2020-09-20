@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- custom css imports -->
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+<!-- main content -->
+{% block content %}
+
+    <div class="container pt-3">
+        <div class="section mt-0 pt-0">
+            <div class="columns mb-0">
+                <!-- hearer section -->
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title">Order details</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-lighter">
+                </div>
+            </div>
+            <!-- END: hearer section -->
+        </div>
+        <!-- END: Checkout Steps -->
+        <!-- order section -->
+        <div class="section pt-0">
+            <div class="columns is-mobile is-justified-center">
+                <div class="column is-12-mobile is-10-desktop">
+                    <div class="columns is-mobile is-multiline is-justified-center">
+
+                        <div class="column is-12  ">
+                            <div class="columns is-mobile is-multiline">
+                                <!-- fullname -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Name:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.full_name }}
+                                    </p>
+                                </div>
+                                <!-- email -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Email:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.email }}
+                                    </p>
+                                </div>
+                                <!-- number -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Phone:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.phone_number }}
+                                    </p>
+                                </div>
+                                <!-- order number -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Order:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.order_number }}
+                                    </p>
+                                </div>
+                                <!-- date -->
+                                <div class="column is-12 py-1">
+                                    <p class="has-text-white has-text-grey">Date:</p>
+                                    <p class="has-text-white has-text-white">
+                                        {{ order.date }}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Checkout summery heading -->
+                        <div class="column is-12 mt-0 has-text-centered is-size-4">
+                            <hr class="has-background-grey-lighter my-3"/>
+                            <p class="has-text-white py-0">Order Summery</p>
+                            <hr class="has-background-grey-lighter my-3"/>
+                        </div>
+                        <!-- ordered items -->
+                        {% for item in order.line_items.all %}
+                            <div class="column is-12">
+                                <p class="has-text-white ">
+                                    {{ item.game.name }}
+                                    <span class="is-pulled-right"> £{{ item.game.price }} </span>
+                                </p>
+                            </div>
+                        {% endfor %}
+                        <div class="column is-12">
+                            <hr class="has-background-grey-lighter my-3"/>
+                            <!-- subtotal -->
+                            <p class="has-text-white my-3">
+                                Subtotal: <span class="is-pulled-right">{{ order.order_total }}</span>
+                            </p>
+                            <!-- tax -->
+                            <p class="has-text-white my-3">
+                                Tax: <span class="is-pulled-right">{{ order_tax }}</span>
+                            </p>
+                            <!-- grand total -->
+                            <p class="has-text-white is-size-5">
+                                Grand Total:
+                                <span class="is-pulled-right">{{ order.grand_total }}</span>
+                            </p>
+                        </div>
+
+                        <!-- back tyo dash -->
+                        <div class="column is-12 has-text-right">
+                            <a class="button is-outlined is-info mt-3" href="{% url 'order_management' %}">
+                                Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

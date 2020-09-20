@@ -41,19 +41,20 @@
                                 </article>
                             </a>
 
-                                <a class="tile is-parent" href="{% url 'games_management' %}">
-                                    <article class="tile is-child box">
-                                        <p class="title">{{ all_games.count }}</p>
-                                        <p class="subtitle">Games</p>
-                                    </article>
-                                </a>
+                            <a class="tile is-parent" href="{% url 'games_management' %}">
+                                <article class="tile is-child box">
+                                    <p class="title">{{ all_games.count }}</p>
+                                    <p class="subtitle">Games</p>
+                                </article>
+                            </a>
 
-                            <div class="tile is-parent">
+                            <a class="tile is-parent" href="{% url 'order_management' %}">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_orders.count }}</p>
                                     <p class="subtitle">Orders</p>
                                 </article>
-                            </div>
+                            </a>
+
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">£ {{ total_sales }}</p>
