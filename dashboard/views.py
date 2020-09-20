@@ -7,6 +7,7 @@ from games.models import Game
 from .forms import GameForm
 from django.contrib.admin.models import LogEntry
 from decimal import Decimal
+from django.db.models import Q
 
 
 @login_required
@@ -118,3 +119,30 @@ def delete_game(request, game_id):
     game.delete()
     messages.success(request, "Game deleted!")
     return redirect(reverse("dashboard"))
+
+
+@login_required
+def games_management(request):
+    """ Game management view """
+    all_games = Game.objects.all()
+    all_games = all_games.order_by('name')
+    search_term = None
+    # check if it is a search query
+    if "q" in request.GET:
+        query = request.GET["q"]
+        search_term = query
+        # If the user has not entered any text display an error
+        if not query:
+            messages.error(request, "No search text entered!")
+            return redirect(reverse("games_management"))
+
+        # filter search based on name
+        all_games = all_games.filter(Q(name__icontains=query))
+
+
+    context = {
+        "all_games": all_games,
+        "search_term": search_term,
+    }
+
+    return render(request, "dashboard/games_management.html", context)

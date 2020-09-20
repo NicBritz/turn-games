@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load  static %}
+<!-- custom css imports -->
+{% block custom-css %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+<!-- custom js imports -->
+{% block custom-js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+{% endblock %}
+
+<!-- Dashboard Navbar -->
+{% block header %}
+    {% include 'includes/dashboard_nav.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <div class="columns">
+                <div class="column is-12">
+                    <section class="hero is-info welcome is-small mb-4">
+                        <div class="hero-body ">
+                            <div class="container">
+                                <h1 class="title">
+                                    Game Management
+                                </h1>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="info-tiles">
+                        <div class="tile is-ancestor has-text-centered">
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">0</p>
+                                    <p class="subtitle">Users</p>
+                                </article>
+                            </div>
+
+                            <a class="tile is-parent" href="{% url 'games_management' %}">
+                                <article class="tile is-child box">
+                                    <p class="title">{{ all_games.count }}</p>
+                                    <p class="subtitle">Games</p>
+                                </article>
+                            </a>
+
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">0</p>
+                                    <p class="subtitle">Orders</p>
+                                </article>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">0</p>
+                                    <p class="subtitle">Total Sales</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="columns is-multiline is-mobile is-justified-center">
+                        <div class="my-3">
+                            <!-- if there is a search term show text of term and a clear icon -->
+                            {% if search_term != None %}
+                                <p class="has-text-white is-size-5 has-text-weight-bold ">
+                                    Showing <span class="has-text-weight-normal"> {{ all_games.count }} </span> games for
+                                </p>
+                                <p class="has-text-white is-size-5 ">
+                                    <em> " {{ search_term }} " </em>
+                                    <a class=" has-text-danger" href="{% url 'games_management' %}">
+                                        <span class="ml-2"><i class="fas fa-times has-text-danger "></i></span>
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div class="column is-12">
+                            <div class="card events-card">
+                                <header class="card-header ">
+                                    <a href="{% url 'add_game' %}" class="button is-success mx-3 my-3 px-1"
+                                       aria-label="more options">
+                                        <i class="fa fa-plus px-1" aria-hidden="true"></i> <span
+                                            class="is-hidden-mobile">Add</span>
+                                    </a>
+                                    <form method="GET" action="{% url 'games_management' %}">
+                                        <div class="field has-addons is-justified-center mx-3 my-3">
+                                            <div class="control">
+                                                <input class="input " type="text" placeholder="Search for games"
+                                                       name="q">
+                                            </div>
+                                            <button class="control button is-link" type="submit">
+                                                            <span class="icon">
+                                                                <i class="fas fa-search"></i>
+                                                            </span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </header>
+                                <div class="card-table">
+                                    <div class="content">
+                                        <table class="table is-fullwidth is-striped"
+                                               aria-describedby="table of all games in database">
+                                            <tr>
+                                                <th scope="col" class="has-text-centered px-0 mx-0 ">Edit</th>
+                                                <th scope="col" class="has-text-centered px-0 mx-0 is-hidden-mobile">
+                                                    Image
+                                                </th>
+                                                <th scope="col" class="has-text-black">Game Title</th>
+                                                <th scope="col" class="has-text-centered px-0 mx-0">Del.</th>
+                                            </tr>
+                                            <tbody>
+                                            {% for game in all_games %}
+                                                <tr>
+                                                    <td class="has-text-centered is-vcentered">
+                                                        <a href="{% url 'edit_game' game.id %}">
+                                                            <i class="fas fa-edit has-text-warning"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="has-text-centered is-vcentered is-hidden-mobile">
+                                                        <img src="{{ game.header_image_url }}" width="100px"
+                                                             alt="{{ game.name }} thumbnail">
+                                                    </td>
+                                                    <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
+                                                        <a
+                                                                href="{% url 'game_detail' game.id %}">{{ game.name }}
+                                                        </a>
+                                                    </td>
+                                                    <td class="has-text-centered is-vcentered">
+                                                        <a href="{% url 'delete_game' game.id %}">
+                                                            <i class="far fa-trash-alt has-text-danger"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <footer class="card-footer">
+                                    <a href="{% url 'games_management' %}" class="card-footer-item">View All</a>
+                                </footer>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

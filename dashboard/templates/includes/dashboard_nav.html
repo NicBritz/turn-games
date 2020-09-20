@@ -33,20 +33,21 @@
             <!-- Dashboard link -->
             <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'dashboard' %}">
                            <span class="icon has-text-warning mr-2">
-                            <i class="fas fa-tools "></i>
+                               <i class="fas fa-chart-line"></i>
+
                             </span>
                 Dashboard
             </a>
 
             <!-- Games menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
-                <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
-                        class="fas fa-gamepad"></i></span>Games</a>
+                <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"> <i
+                        class="fas fa-tools "></i></span>Management</a>
 
                 <div class="navbar-dropdown is-z-60">
-                    <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">VIEW</a>
-                    <a class="navbar-item" href="{% url 'add_game' %}">ADD</a>
-                    <a class="navbar-item" href="{% url 'edit_game' 969 %}">EDIT</a>
+                    <a class="navbar-item" href="{% url 'games_management' %}">Game Management</a>
+                    <a class="navbar-item" href="{% url 'games_management' %}">User Management</a>
+                    <a class="navbar-item" href="{% url 'games_management' %}">Order Management</a>
                 </div>
             </div>
             <!-- END: Game menu -->
