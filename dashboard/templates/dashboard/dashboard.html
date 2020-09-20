@@ -34,12 +34,12 @@
                     </section>
                     <section class="info-tiles">
                         <div class="tile is-ancestor has-text-centered">
-                            <div class="tile is-parent">
+                            <a class="tile is-parent" href="{% url 'user_management' %}">
                                 <article class="tile is-child box">
                                     <p class="title">{{ all_users.count }}</p>
                                     <p class="subtitle">Users</p>
                                 </article>
-                            </div>
+                            </a>
 
                                 <a class="tile is-parent" href="{% url 'games_management' %}">
                                     <article class="tile is-child box">

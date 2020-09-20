@@ -118,15 +118,23 @@ def delete_game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
     game.delete()
     messages.success(request, "Game deleted!")
-    return redirect(reverse("dashboard"))
+    return redirect(reverse("games_management"))
 
 
 @login_required
 def games_management(request):
     """ Game management view """
     all_games = Game.objects.all()
-    all_games = all_games.order_by('name')
+    all_users = User.objects.all()
+    all_orders = Order.objects.all()
+    all_games = all_games.order_by("name")
+    filtered_games = all_games.order_by("name")
     search_term = None
+
+    total_sales = Decimal(0)
+    for order in all_orders:
+        total_sales += order.grand_total
+
     # check if it is a search query
     if "q" in request.GET:
         query = request.GET["q"]
@@ -137,12 +145,68 @@ def games_management(request):
             return redirect(reverse("games_management"))
 
         # filter search based on name
-        all_games = all_games.filter(Q(name__icontains=query))
-
+        filtered_games = all_games.filter(Q(name__icontains=query))
 
     context = {
         "all_games": all_games,
+        "all_users": all_users,
+        "all_orders": all_orders,
+        "total_sales": total_sales,
+        "filtered_games": filtered_games,
         "search_term": search_term,
     }
 
     return render(request, "dashboard/games_management.html", context)
+
+
+@login_required
+def user_management(request):
+    """ User management view """
+    all_games = Game.objects.all()
+    all_users = User.objects.all()
+    all_orders = Order.objects.all()
+    all_games = all_games.order_by("name")
+    filtered_users = all_users.order_by("username")
+    search_term = None
+
+    total_sales = Decimal(0)
+    for order in all_orders:
+        total_sales += order.grand_total
+
+    # check if it is a search query
+    if "q" in request.GET:
+        query = request.GET["q"]
+        search_term = query
+        # If the user has not entered any text display an error
+        if not query:
+            messages.error(request, "No search text entered!")
+            return redirect(reverse("user_management"))
+
+        # filter search based on name
+        filtered_users = all_users.filter(Q(username__icontains=query))
+
+    context = {
+        "all_games": all_games,
+        "all_users": all_users,
+        "all_orders": all_orders,
+        "total_sales": total_sales,
+        "filtered_users": filtered_users,
+        "search_term": search_term,
+    }
+
+    return render(request, "dashboard/user_management.html", context)
+
+
+@login_required
+def delete_user(request, user_id):
+    """ Delete game in database """
+
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
+    user = get_object_or_404(User, pk=user_id)
+    user.delete()
+    messages.success(request, "User deleted!")
+    return redirect(reverse("user_management"))
