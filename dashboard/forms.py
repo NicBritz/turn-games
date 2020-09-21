@@ -6,10 +6,10 @@ class GameForm(forms.ModelForm):
 
     class Meta:
         model = Game
-        fields = ('name', 'header_image_url', 'header_image', 'release_date',
+        fields = ('name', 'header_image_url', 'release_date',
                   'developer', 'publisher', 'platforms', 'price',
                   'discount_percent', 'categories', 'genres', 'featured', 'discounted',
-                  'tags', 'description', 'header_image',)
+                  'tags', 'description',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -31,12 +31,11 @@ class GameForm(forms.ModelForm):
         # Make the fullname autofocused
         self.fields["name"].widget.attrs["autofocus"] = True
 
-        inputs = ['name', 'header_image_url', 'header_image', 'release_date',
+        inputs = ['name', 'header_image_url', 'release_date',
                   'developer', 'publisher', 'platforms', 'price', 'discount_percent']
         multiples = ['categories', 'genres', 'tags']
         checkboxes = ['featured', 'discounted', ]
         text_areas = ['description']
-        file_inputs = ['header_image']
 
         for field_name, field in self.fields.items():
             if field_name in inputs:
@@ -44,9 +43,6 @@ class GameForm(forms.ModelForm):
 
             if field_name in text_areas:
                 field.widget.attrs["class"] = "textarea"
-
-            if field_name in file_inputs:
-                field.widget.attrs["class"] = "file-input"
 
             if field_name in checkboxes:
                 field.widget.attrs["class"] = "checkbox"

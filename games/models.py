@@ -59,14 +59,10 @@ class Game(models.Model):
         blank=True,
         default="https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg",
     )
-    header_image = models.ImageField(null=True, blank=True)
     release_date = models.DateField(null=True, blank=True, default=datetime.date.today)
     developer = models.CharField(max_length=254, null=True, blank=True)
     publisher = models.CharField(max_length=254, null=True, blank=True)
     platforms = models.CharField(max_length=254, null=True, blank=True)
-    required_age = models.DecimalField(
-        max_digits=10, decimal_places=0, null=True, blank=True, default=0
-    )
     positive_ratings = models.DecimalField(
         max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
@@ -79,7 +75,6 @@ class Game(models.Model):
     discount_percent = models.DecimalField(
         max_digits=6, decimal_places=2, blank=True, default=0
     )
-
     categories = models.ManyToManyField(Category, blank=True)
     genres = models.ManyToManyField(Genre, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)

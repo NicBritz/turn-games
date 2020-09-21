@@ -7,7 +7,9 @@ from games.models import Game
 from .forms import GameForm
 from django.contrib.admin.models import LogEntry
 from decimal import Decimal
-from django.db.models import Q
+from django.db.models import Q, Sum
+from datetime import timedelta
+from django.utils import timezone
 
 
 @login_required
@@ -27,6 +29,19 @@ def dashboard(request):
     all_games = Game.objects.all()
     all_users = User.objects.all()
     all_orders = Order.objects.all()
+    orders_per_month = []
+
+    last_month = timezone.now() - timedelta(days=30)
+
+    orders_per_day = (
+        all_orders.filter(date__gt=last_month)
+        .extra(select={"day": "date(date)"})
+        .values("day")
+        .annotate(sum=Sum("grand_total"))
+    )
+
+    for day in orders_per_day:
+        orders_per_month.append(float(day["sum"]))
 
     total_sales = Decimal(0)
     for order in all_orders:
@@ -38,6 +53,7 @@ def dashboard(request):
         "all_orders": all_orders,
         "total_sales": total_sales,
         "all_users": all_users,
+        "orders_per_month": orders_per_month,
     }
 
     return render(request, "dashboard/dashboard.html", context)
