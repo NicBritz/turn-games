@@ -18,9 +18,9 @@
 {% block content %}
     <div class="container">
         <!-- main flickity carousel slider -->
-        <div class="section mt-5">
-            <div class="columns is-mobile is-multiline">
-                <div class="column is-8-desktop is-offset-2-desktop">
+        <div class="section mt-5 mb-0 pb-0">
+            <div class="columns is-mobile is-multiline is-justified-center">
+                <div class="column is-6-desktop">
                     <div class=" main-slider ">
                         <div class="carousel">
                             <!-- random 10 games in main slider -->
@@ -41,6 +41,22 @@
             </div>
         </div>
         <!-- END: main flickity carousel slider -->
+
+        <div class="section mt-0 pt-0">
+            <div class="columns mb-0">
+                <!-- hearer section -->
+                <div class="column ">
+                    <hr class="has-background-grey-lighter my-1">
+                </div>
+                <div class="column has-text-centered is-narrow">
+                    <h2 class="has-text-white title my-0">Specials</h2>
+                </div>
+                <div class="column ">
+                    <hr class="has-background-grey-lighter my-1">
+                </div>
+            </div>
+            <!-- END: hearer section -->
+        </div>
 
         <!-- Game cards section -->
         <div class="section py-0 mt-0">
@@ -95,7 +111,7 @@
                                         <div class="card-footer-item has-background-black px-0">
                                             <!-- discount calculations -->
                                             {% if game.discounted %}
-                                                <p class=" is-size-6 has-text-danger has-line-through mr-3">
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price">
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">
@@ -132,14 +148,6 @@
         <!-- END: Game cards section -->
     </div>
 
-    <!-- Display back to top button -->
-    <div>
-        <button id='top-button' class="button top-button is-success is-outlined ">
-                <span class="icon is-small ">
-                  <i class="fas fa-arrow-up"></i>
-                </span>
-        </button>
-    </div>
 
 {% endblock %}
 

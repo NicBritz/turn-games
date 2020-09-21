@@ -138,27 +138,27 @@
                     <div class="columns is-multiline is-mobile">
 
                         <!-- Developer  -->
-                        <div class="column is-6 has-text-white has-text-left pt-0">
+                        <div class="column is-6-desktop is-12-mobile has-text-white has-text-left pt-0">
                             <p class="is-size-6 has-text-grey">Developer:</p>
                             <p class="is-size-6 pt-1"> {{ game.developer }} </p>
                         </div>
                         <!-- Publisher  -->
-                        <div class="column is-6 has-text-white has-text-left pt-0">
+                        <div class="column is-6-desktop is-12-mobile has-text-white has-text-left pt-0">
                             <p class="is-size-6 has-text-grey">Publisher:</p>
                             <p class="is-size-6 pt-1"> {{ game.publisher }} </p>
                         </div>
                         <!-- Platforms  -->
-                        <div class="column is-6 has-text-white has-text-left pt-0">
+                        <div class="column is-6-desktop is-12-mobile has-text-white has-text-left pt-0">
                             <p class="is-size-6 has-text-grey">Platforms:</p>
                             <p class="is-size-6 pt-1"> {{ game.platforms }} </p>
                         </div>
                         <!-- Released  -->
-                        <div class="column is-6 has-text-white has-text-left pt-0">
+                        <div class="column is-6-desktop is-12-mobile has-text-white has-text-left pt-0">
                             <p class="is-size-6 has-text-grey">Released:</p>
                             <p class="is-size-6 pt-1"> {{ game.release_date }} </p>
                         </div>
                         <!-- Categories  -->
-                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 mb-6">
+                        <div class="column is-4-desktop is-12-mobile has-text-white has-text-centered mt-5 pt-0 ">
                             <p class="is-size-6 has-text-grey">Categories:</p>
                             {% for category in game.categories.all %}
                                 <p class=" is-size-6 pt-1">
@@ -168,7 +168,7 @@
                             {% endfor %}
                         </div>
                         <!-- Genres  -->
-                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 ">
+                        <div class="column is-4-desktop is-12-mobile has-text-white has-text-centered mt-5 pt-0 ">
                             <p class="is-size-6 has-text-grey">Genres:</p>
                             {% for genre in game.genres.all %}
                                 <p class=" is-size-6 pt-1">
@@ -178,7 +178,7 @@
                             {% endfor %}
                         </div>
                         <!-- Tags  -->
-                        <div class="column is-4 has-text-white has-text-left mt-5 pt-0 ">
+                        <div class="column is-4-desktop is-12-mobile has-text-white has-text-centered mt-5 pt-0 ">
                             <p class="is-size-6 has-text-grey">Tags:</p>
                             {% for tag in game.tags.all %}
                                 <p class=" is-size-6 pt-1">

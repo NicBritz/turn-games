@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // remove notification after a few seconds
         setTimeout(function () {
-                $notification.parentNode.removeChild($notification);
+            $notification.parentNode.removeChild($notification);
         }, 3000);
 
     });
@@ -20,17 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     $(".navbar-burger").click(function () {
         $(".navbar-burger").toggleClass("is-active");
         $("#navbar-menu").toggleClass("is-active");
+        //fix the body to stop scrolling when in menu
+        // src:https://stackoverflow.com/questions/27230955/
+        // how-to-disable-scrolling-in-the-background-when-the-mobile-menu-is-open
+        $('body').toggleClass("fixed-position");
     });
 
-    // Spin logo on mouse hover
-    $(".main-logo-container").mouseenter(function () {
-        if (!$('#logo-image').hasClass(".image-spin")) {
-            $('#logo-image').addClass("image-spin")
-        }
-    }).mouseleave(function () {
-            $('#logo-image').removeClass("image-spin");
-        }
-    )
 
     // Desktop Search Modal
     $("#search-button").click(function () {
@@ -41,5 +36,32 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.modal-close').click(function () {
         $("#search-modal").removeClass('is-active');
     })
+
+    //dropdowns
+    $('#category-btn').click(function () {
+        $('#category-menu').toggleClass('is-hidden-mobile');
+    })
+    $('#genre-btn').click(function () {
+        $('#genre-menu').toggleClass('is-hidden-mobile');
+    })
+    $('#specials-btn').click(function () {
+        $('#specials-menu').toggleClass('is-hidden-mobile');
+    })
+    $('#account-btn').click(function () {
+        $('#account-menu').toggleClass('is-hidden-mobile');
+    })
+
+// Back to top script
+    $('#top-button').click(function () {
+        window.scrollTo(0, 0)
+    })
+
+    window.onscroll = function () {
+        if (pageYOffset >= 200) {
+            $('#top-button').removeClass('is-hidden').fadeIn('slow');
+        } else {
+            $('#top-button').fadeOut('slow');
+        }
+    };
 
 });

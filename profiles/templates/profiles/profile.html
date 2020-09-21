@@ -15,7 +15,8 @@
                     <hr class="has-background-grey-lighter">
                 </div>
                 <div class="column has-text-centered is-narrow">
-                    <h2 class="has-text-white title">Welcome {{ request.user|upper }} </h2>
+                    <h2 class="has-text-white title is-size-4">Welcome</h2>
+                    <h2 class="has-text-white title is-size-4">{{ request.user|upper }} </h2>
                 </div>
                 <div class="column ">
                     <hr class="has-background-grey-lighter">
@@ -24,7 +25,7 @@
         </div>
         <!-- END: header section -->
         <!-- profile section -->
-        <div class="section py-0">
+        <div class="section py-0 px-0">
             <div class="columns is-mobile is-multiline is-justified-center">
                 <div class="column is-10-mobile is-6-desktop has-text-grey">
                     <div class="columns is-mobile is-multiline is-justified-center">
@@ -88,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-12-mobile is-6-desktop has-text-grey mt-3">
+                <div class="column is-10-mobile is-6-desktop has-text-grey mt-3 ">
                     <h3 class="mb-4">Previous Orders</h3>
                     <table class="table has-background-black-ter has-text-white is-fullwidth "
                            aria-describedby="table of previous orders">
@@ -106,7 +107,7 @@
                                 </td>
                                 <!-- order date -->
                                 <td>
-                                    <p class="is-size-7-mobile">{{ order.date }}</p>
+                                    <p class="is-size-7-mobile">{{ order.date.date }}</p>
                                 </td>
                                 <!-- order total -->
                                 <td>

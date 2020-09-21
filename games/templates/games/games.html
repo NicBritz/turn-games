@@ -76,7 +76,7 @@
                                         <div class="card-footer-item has-background-black px-0">
                                             <!-- discount calculations -->
                                             {% if game.discounted %}
-                                                <p class=" is-size-6 has-text-danger has-line-through mr-3">
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price">
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">
@@ -109,14 +109,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-        <!-- Display back to top button -->
-        <div>
-            <button id='top-button' class="button top-button is-success is-outlined ">
-                <span class="icon is-small ">
-                  <i class="fas fa-arrow-up"></i>
-                </span>
-            </button>
         </div>
     </div>
 
