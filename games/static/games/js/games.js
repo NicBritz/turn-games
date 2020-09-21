@@ -1,11 +1,5 @@
 $(document).ready(function () {
 
-    // Back to top script
-    $('#top-button').click(function () {
-        window.scrollTo(0, 0);
-    })
-
-
 // Sort Dropdown script
     $("#sort-dropdown").change(function () {
         let sort, direction;

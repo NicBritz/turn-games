@@ -7,7 +7,7 @@
     <div class="navbar-brand px-3">
         <a class="navbar-item main-logo-container is-flex is-justified-center is-baseline " href="{% url 'home' %}">
             <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-full-logo.webp' %} "
-                 alt="turn games logo text ">
+                 alt="turn games logo">
         </a>
         <!-- END: Main Logo -->
 
@@ -21,69 +21,20 @@
         <!-- END: menu burger button -->
     </div>
 
-    <div id="navbar-menu" class="navbar-menu">
+    <div id="navbar-menu" class="navbar-menu pb-0">
         <div class="navbar-start mx-auto px-1 ">
 
-            <!-- Search bar and buttons (mobile only) -->
-            <div class="columns is-mobile is-multiline has-background-black-ter" id="mobile-search-and-buttons-bar">
-                <!-- END: Account dropdown (mobile only) -->
-                <div class="column is-5 is-z-70 has-text-right is-offset-1">
-                    <div class="dropdown is-hoverable" id="navbar-account-menu">
-                        <div class="dropdown-trigger">
-                            <button class="button is-fullwidth is-warning" aria-haspopup="true"
-                                    aria-controls="account-menu-items">
-                            <span class="icon is-medium">
-                                 <i class="fas fa-user-circle"></i>
-                            </span>
-                                <span>Account</span>
-                                <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu dropdown-buttons is-z-1000 " id="account-menu-items" role="menu">
-                            <div class="dropdown-content pt-0">
-                                <div class="dropdown-item px-0 pt-0">
-                                    {% if request.user.is_authenticated %}
-                                        <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user }}</p>
-                                        {% if request.user.is_superuser %}
-                                            <a href="{% url 'dashboard' %}" class="dropdown-item mx-auto px-3">Admin Dashboard</a>
-                                            <hr class="dropdown-divider">
-                                        {% endif %}
-                                        <a href="{% url 'profile' %}" class="dropdown-item bg-light">Profile</a>
-                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                                    {% else %}
-                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Account dropdown (mobile only) -->
-                <!-- Basket button (mobile only)-->
-                <div class="column is-6 is-z-1000 has-text-left">
-                    <a href="{% url 'view_cart' %}" class="button is-success">
-                            <span class="icon is-medium">
-                                 <i class="fas fa-shopping-cart "></i>
-                            </span>
-                        <span>
-                                {% if grand_total %}
-                                    £{{ grand_total|floatformat:2 }}
-                                {% else %}
-                                    £0.00
-                                {% endif %}
-                            </span>
-                    </a>
-                </div>
+            <!-- Search bar (mobile only) -->
+            <div class="columns is-mobile is-multiline has-background-black-ter is-justified-center"
+                 id="mobile-search-and-buttons-bar">
                 <!-- END: Basket button -->
                 <!-- Search bar (mobile only) -->
-                <div class="column is-10 is-z-60 is-offset-1">
+                <div class="column is-10 is-z-70">
                     <form method="GET" action="{% url 'games' %}">
                         <div class="field has-addons is-justified-center py-0 px-0">
                             <div class="control">
-                                <input class="input" type="text" placeholder="Search for games" name="q">
+                                <input aria-label="search input" class="input" type="text"
+                                       placeholder="Search for games" name="q">
                             </div>
                             <button class="control button is-link" type="submit">
                                 <span class="icon">
@@ -93,30 +44,50 @@
                         </div>
                     </form>
                 </div>
-                <!-- END: Search bar (mobile only) -->
             </div>
+            <!-- END: Search bar (mobile only) -->
+            <!-- Basket link -->
+            <a class="navbar-item has-text-weight-bold has-text-centered is-hidden-desktop"
+               href="{% url 'view_cart' %}">
+                           <span class="icon has-text-success">
+                            <i class="fas fa-shopping-cart "></i>
+                            </span><span>
+                {% if grand_total %}
+                    £{{ grand_total|floatformat:2 }}
+                {% else %}
+                    £0.00
+                {% endif %}
+            </span>
+            </a>
+            <hr class="dropdown-divider">
+
 
             <!-- home link -->
             <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
                            <span class="icon has-text-info">
-                            <i class="fas fa-home fa-lg"></i>
-                            </span>
+                            <i class="fas fa-home fa-lg is-hidden-mobile"></i>
+                            <i class="fas fa-home is-hidden-desktop mr-2"></i>
+                            </span><span class="is-hidden-desktop">Home</span>
             </a>
+
 
             <!-- Categories menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
-                <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"><i
-                        class="fas fa-gamepad"></i></span>Category</a>
+                <div class="navbar-link has-text-weight-bold" id="category-btn"><span class="icon has-text-danger mr-2"><i
+                        class="fas fa-gamepad"></i></span>Category
+                </div>
 
-                <div class="navbar-dropdown is-z-1000">
+                <div class="navbar-dropdown is-z-1000 is-hidden-mobile" id="category-menu">
                     <a class="navbar-item" href="{% url 'games' %}?sort=name&direction=asc">All</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=single_player&sort=name&direction=asc">Single-player</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">Co-op</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=multi_player&sort=name&direction=asc">Multi-player</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=mmo&sort=name&direction=asc">MMO</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=full_controller_support&sort=name&direction=asc">Full controller
+                    <a class="navbar-item"
+                       href="{% url 'games' %}?category=full_controller_support&sort=name&direction=asc">Full controller
                         support</a>
-                    <a class="navbar-item" href="{% url 'games' %}?category=partial_controller_support&sort=name&direction=asc">Partial
+                    <a class="navbar-item"
+                       href="{% url 'games' %}?category=partial_controller_support&sort=name&direction=asc">Partial
                         Controller Support</a>
                 </div>
             </div>
@@ -124,20 +95,24 @@
 
             <!-- Genre Menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
-                <a class="navbar-link has-text-weight-bold">
+                <div class="navbar-link has-text-weight-bold" id="genre-btn">
                                 <span class="icon has-text-warning mr-2">
                             <i class="fas fa-dice"></i>
                             </span>
-                    Genres</a>
+                    Genres
+                </div>
 
-                <div class="navbar-dropdown has-text-centered is-z-1000">
+                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="genre-menu">
                     <a class="navbar-item" href="{% url 'games' %}?genre=action&sort=name&direction=asc">Action</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=adventure&sort=name&direction=asc">Adventure</a>
+                    <a class="navbar-item"
+                       href="{% url 'games' %}?genre=adventure&sort=name&direction=asc">Adventure</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=casual&sort=name&direction=asc">Casual</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=education&sort=name&direction=asc">Education</a>
+                    <a class="navbar-item"
+                       href="{% url 'games' %}?genre=education&sort=name&direction=asc">Education</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=indie&sort=name&direction=asc">Indie</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=rpg&sort=name&direction=asc">RPG</a>
-                    <a class="navbar-item" href="{% url 'games' %}?genre=simulation&sort=name&direction=asc">Simulation</a>
+                    <a class="navbar-item"
+                       href="{% url 'games' %}?genre=simulation&sort=name&direction=asc">Simulation</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=sports&sort=name&direction=asc">Sports</a>
                     <a class="navbar-item" href="{% url 'games' %}?genre=strategy&sort=name&direction=asc">Strategy</a>
                 </div>
@@ -146,22 +121,50 @@
 
             <!-- Specials Menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
-                <a class="navbar-link has-text-weight-bold">
+                <div class="navbar-link has-text-weight-bold" id="specials-btn">
                                 <span class="icon mr-2 has-text-success">
                             <i class="fas fa-piggy-bank"></i>
                             </span>
                     Specials
-                </a>
+                </div>
 
-                <div class="navbar-dropdown has-text-centered is-z-1000">
+                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="specials-menu">
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=featured&sort=name&direction=asc">Featured</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted&sort=name&direction=asc">Discounted</a>
                 </div>
             </div>
             <!-- END: Specials Menu -->
 
+            <!-- Account Menu (mobile only)-->
+            <div class="navbar-item has-dropdown is-hoverable has-text-centered mb-4 is-hidden-desktop">
+                <div class="navbar-link has-text-weight-bold" id="account-btn">
+                                <span class="icon mr-2 has-text-info-dark">
+                            <i class="fas fa-user-circle"></i>
+                            </span>
+                    Account
+                </div>
+
+                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="account-menu">
+                    {% if request.user.is_authenticated %}
+                        <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user|truncatechars:15 }}</p>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'dashboard' %}" class="navbar-item mx-auto px-3">Admin
+                                Dashboard</a>
+                            <hr class="navbar-divider">
+                        {% endif %}
+                        <a href="{% url 'profile' %}" class="navbar-item bg-light">Profile</a>
+                        <a href="{% url 'account_logout' %}" class="navbar-item">Logout</a>
+                    {% else %}
+                        <a href="{% url 'account_signup' %}" class="navbar-item">Register</a>
+                        <a href="{% url 'account_login' %}" class="navbar-item">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- END: Account Menu (mobile only) -->
+
+
             <!-- Socials (mobile only) -->
-            <div class="columns is-mobile is-multiline has-background-black-ter" id="social-buttons-bar">
+            <div class="columns is-mobile is-multiline has-background-black-ter my-0 py-0" id="social-buttons-bar">
                 <div class="column is-3 is-z-70 has-text-centered pr-0">
                     <!-- Discord link -->
                     <a class="has-text-weight-bold has-text-centered discord-hover" href="https://discord.com"
