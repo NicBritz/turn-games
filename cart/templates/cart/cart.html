@@ -132,7 +132,7 @@
                         <!-- Empty cart  -->
                         <div class="columns">
                             <div class="column is-12 has-text-centered">
-                                <p class="has-text-white">There are items in your cart.</p>
+                                <p class="has-text-white">There are no games in your cart.</p>
                                 <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
                             </div>
                         </div>
@@ -195,13 +195,13 @@
                         <tr>
                             <!-- secure checkout button -->
                             <td colspan="3">
-                                    <a class="button is-warning is-outlined is-pulled-right"
-                                       href="{% url 'checkout' %}">
+                                <a class="button is-warning is-outlined is-pulled-right"
+                                   href="{% url 'checkout' %}">
                                         <span class="icon is-small mr-3 ">
                                         <i class="fas fa-lock"></i>
                                          </span>
-                                        Checkout
-                                    </a>
+                                    Checkout
+                                </a>
                             </td>
 
                         </tr>
@@ -216,10 +216,10 @@
                     </table>
                     </div>
                 {% else %}
-                    <!-- Empty cart  -->
+                    <!-- Empty cart (mobile only)  -->
                     <div class="columns">
                         <div class="column is-12 has-text-centered">
-                            <p class="has-text-white">There are items in your cart.</p>
+                            <p class="has-text-white">There are no games in your cart.</p>
                             <a class="button is-outlined is-info mt-3" href="{% url 'games' %}">Keep Shopping</a>
                         </div>
                     </div>

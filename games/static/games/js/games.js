@@ -1,5 +1,5 @@
-$(document).ready(function () {
-
+$(window).on('load', function () {
+    $('#sort-dropdown').prop("disabled", false);
 // Sort Dropdown script
     $("#sort-dropdown").change(function () {
         let sort, direction;

@@ -14,8 +14,6 @@ def add_to_cart(request, game_id):
     try:
         game = get_object_or_404(Game, pk=game_id)
 
-        # a redirect url to do back to the previous page
-        redirect_url = request.POST.get("redirect_url")
         # get the cart list from the session or create one
         cart = request.session.get("cart", [])
 
@@ -35,7 +33,7 @@ def add_to_cart(request, game_id):
         messages.error(request, f"Error adding item: {e}")
         return HttpResponse(status=500)
 
-    return redirect(redirect_url)
+    return redirect("/cart/")
 
 
 def remove_from_cart(request, game_id):
