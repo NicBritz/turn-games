@@ -27,7 +27,7 @@
             <!-- Search bar (mobile only) -->
             <div class="columns is-mobile is-multiline has-background-black-ter is-justified-center"
                  id="mobile-search-and-buttons-bar">
-                <!-- END: Basket button -->
+
                 <!-- Search bar (mobile only) -->
                 <div class="column is-10 is-z-70">
                     <form method="GET" action="{% url 'games' %}">
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <!-- END: Search bar (mobile only) -->
-            <!-- Basket link -->
+            <!-- Basket link (mobile only)-->
             <a class="navbar-item has-text-weight-bold has-text-centered is-hidden-desktop"
                href="{% url 'view_cart' %}">
                            <span class="icon has-text-success">
@@ -129,6 +129,7 @@
                 </div>
 
                 <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="specials-menu">
+                    <a class="navbar-item" href="{% url 'games' %}?special_offers=free&sort=name&direction=asc">Free</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=featured&sort=name&direction=asc">Featured</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted&sort=name&direction=asc">Discounted</a>
                 </div>
@@ -251,7 +252,7 @@
                     £0.00
                 {% endif %}
             </a>
-            <div class="navbar-dropdown has-text-centered is-right dropdown-content is-z-1000">
+            <div class="navbar-dropdown has-text-centered is-right dropdown-content is-z-1000 ">
                 <p class="has-text-centered has-background-black-ter has-text-white is-size-5 mb-4">Cart</p>
                 {% if cart_items|length > 0 %}
                     <!-- render games in cart -->

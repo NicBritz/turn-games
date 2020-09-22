@@ -40,15 +40,16 @@
                         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
                 {% endif %}
             </div>
-            <div class="column is-10 has-text-left">
+            <div class="column is-10 has-text-left mb-3">
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                     {% endif %}
-                    <a class="is-info pt-6"
-                       href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                <p class="my-4">
+                    <a class="is-info " href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </p>
                     <button class="button is-outlined is-success is-fullwidth mt-5" type="submit">{% trans "Sign In" %}</button>
                 </form>
             </div>

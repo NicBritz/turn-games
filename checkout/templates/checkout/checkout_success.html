@@ -107,7 +107,7 @@
                             <!-- grand total -->
                             <p class="has-text-white is-size-5">
                                 Grand Total:
-                                <span class="is-pulled-right">{{ order.grand_total }}</span>
+                                <span class="is-pulled-right">{{ order.grand_total|floatformat:2 }}</span>
                             </p>
                         </div>
                         {% if  from_profile %}

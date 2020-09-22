@@ -68,6 +68,10 @@ def all_games(request):
                 games = games.filter(featured=True)
                 current_selection = "Featured"
 
+            elif offer == "free":
+                games = games.filter(price=0)
+                current_selection = "Free"
+
         # check if it is a search query
         if "q" in request.GET:
             query = request.GET["q"]
