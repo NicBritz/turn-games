@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="section mt-5 mb-0 pb-0">
+            <div class="columns is-mobile is-multiline is-justified-center">
+                <div class="column is-6-desktop is-12-mobile">
+                    <!-- 500 error image -->
+                    <img class="image has-background-white is-fullwidth" src="https://res.cloudinary.com/dajuujhvs/image/upload/v1592233768/errors/500-internal-server-error_ami3tj.png"
+                         alt="500 server error image">
+                    <a href="{% url 'home' %}" class="button is-dark is-fullwidth">Go Back Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
