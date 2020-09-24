@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", 'b5b^_$^7d_ox8aq(a+s#qt6aaqwvy_1knooi3!4yox27rw3dve')
 
 # only use debug if there is a development variable
-DEBUG = "DEVELOPMENT" in os.environ
+# DEBUG = "DEVELOPMENT" in os.environ
 
 ALLOWED_HOSTS = ["turn-games.herokuapp.com", "localhost", "127.0.0.1"]
 
