@@ -25,6 +25,8 @@ def all_games(request):
         if "sort" in request.GET:
             sort_key = request.GET["sort"]
             sort = sort_key
+            if sort == 'price':
+                sort_key = 'price_discounted'
 
             if "direction" in request.GET:
                 direction = request.GET["direction"]

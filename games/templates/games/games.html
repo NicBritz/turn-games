@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load  static %}
-{% load mathfilters %}
 
 {% block content %}
     <div class="container game-selection-container mb-2">
@@ -84,11 +83,7 @@
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">
-                                                    {% with discount_amount=game.discount_percent|div:100 %}
-                                                        {% with discounted_value=game.price|mul:discount_amount %}
-                                                            £ {{ game.price|sub:discounted_value|floatformat:2 }}
-                                                        {% endwith %}
-                                                    {% endwith %}
+                                                £ {{ game.price_discounted }}
                                                 </p>
                                                 <!-- END: discount calculations -->
                                             {% else %}
