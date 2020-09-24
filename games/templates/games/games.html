@@ -50,12 +50,16 @@
                                     <div class="content px-3 mb-3">
                                         <div class="is-size-6">
                                             {{ game.release_date }}
-                                            <!-- Discount -->
-                                            <span class=" is-size-4 has-text-success has-text-weight-bold is-pulled-right pr-5">
-                                                {% if game.discounted %}
-                                                    - {{ game.discount_percent|floatformat }}%
-                                                {% endif %}
-                                            </span>
+                                            <!-- Discount Ribbon-->
+                                            <div class="ribbon-box">
+                                                <div class="ribbon">
+                                                    <span>
+                                                        {% if game.discounted %}
+                                                            - {{ game.discount_percent|floatformat }}%
+                                                        {% endif %}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- END: Game release date -->
@@ -76,7 +80,7 @@
                                         <div class="card-footer-item has-background-black px-0">
                                             <!-- discount calculations -->
                                             {% if game.discounted %}
-                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price">
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price mb-1">
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">

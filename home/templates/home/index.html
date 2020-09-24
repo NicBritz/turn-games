@@ -20,10 +20,10 @@
         <!-- main flickity carousel slider -->
         <div class="section mt-5 mb-0 pb-0">
             <div class="columns is-mobile is-multiline is-justified-center">
-                <div class="column is-6-desktop">
+                <div class="column is-9-desktop">
                     <div class=" main-slider ">
                         <div class="carousel">
-                            <!-- random 10 games in main slider -->
+                             <!-- random 10 games in main slider -->
                             {% for game in random_slider_content %}
                                 <a class="carousel-cell has-background-black-bis "
                                    href="{% url 'games' %}{{ game.id }}">
@@ -85,12 +85,16 @@
                                     <div class="content px-3 mb-3">
                                         <div class="is-size-6">
                                             {{ game.release_date }}
-                                            <!-- Discount -->
-                                            <span class=" is-size-4 has-text-success has-text-weight-bold is-pulled-right pr-5">
-                                                {% if game.discounted %}
-                                                    - {{ game.discount_percent|floatformat }}%
-                                                {% endif %}
-                                            </span>
+                                            <!-- Discount Ribbon-->
+                                            <div class="ribbon-box">
+                                                <div class="ribbon">
+                                                    <span>
+                                                        {% if game.discounted %}
+                                                            - {{ game.discount_percent|floatformat }}%
+                                                        {% endif %}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- END: Game release date -->
@@ -111,7 +115,7 @@
                                         <div class="card-footer-item has-background-black px-0">
                                             <!-- discount calculations -->
                                             {% if game.discounted %}
-                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price">
+                                                <p class=" is-size-6 has-text-danger has-line-through mr-3 old-price mb-1">
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">
