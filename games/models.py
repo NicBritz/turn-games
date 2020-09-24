@@ -70,7 +70,7 @@ class Game(models.Model):
         max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    price_calculated = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    price_calculated = models.DecimalField(max_digits=6, decimal_places=2, default=0, null=True, blank=True,)
     featured = models.BooleanField(default=False)
     discounted = models.BooleanField(default=False)
     discount_percent = models.DecimalField(
