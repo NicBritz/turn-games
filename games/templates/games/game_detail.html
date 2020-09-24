@@ -57,6 +57,16 @@
                                      alt="{{ game.name }} image">
                             </a>
                         </div>
+                        <!-- Discount Ribbon-->
+                        <div class="ribbon-box">
+                            <div class="ribbon ribbon-detail">
+                                <span>
+                                    {% if game.discounted %}
+                                        - {{ game.discount_percent|floatformat }}%
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
                         <!-- description section -->
                         <div class="column is-12 has-text-white has-text-left pt-0">
                             <p class="is-size-6 has-text-grey">Description:</p>

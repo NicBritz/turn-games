@@ -20,7 +20,7 @@ def dashboard(request):
 
     # redirect to home if not superuser
     if not request.user.is_superuser:
-        messages.error(request, "Sorry, only admin uses can do that.")
+        messages.error(request, "Sorry, only admin users can do that.")
         return redirect(reverse("home"))
 
     # log entry src https://stackoverflow.com/questions/5746624/showing-django-admin-actions-on-template

@@ -1,3 +1,4 @@
+
 $(window).on('load', function () {
     $('#sort-dropdown').prop("disabled", false);
 // Sort Dropdown script
