@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Django-3.1-orange)
 
-![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948382/turn-games-full-logo_x4wpja.webp)
+[![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948601/Turn_GAmes_uquoab.png)](https://turn-games.herokuapp.com/)
 
 ------
 
