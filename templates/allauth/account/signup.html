@@ -24,11 +24,14 @@
     <div class="columns is-mobile is-multiline is-justified-center">
         <div class="column is-10">
             <p class="has-text-white">{% blocktrans %}Already have an account? Then please
-                <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+                <a href="{{ login_url }}" class="has-text-weight-medium">sign in</a> or{% endblocktrans %}
             </p>
-        </div>
-        <div class="column is-10">
-            <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="button is-outlined is-info mt-5 is-fullwidth" >Sign in with facebook</a>
+        <a  class="button is-danger is-google my-3"
+               href="{% provider_login_url "google" %}">
+                <i class="fab fa-google mr-3"></i>
+                Log in with Google</a>
+        <div class="login-or has-text-grey">{% trans 'or' %}</div>
+
         </div>
         <div class="column is-10 has-text-left">
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
