@@ -63,10 +63,12 @@ html {
 /* back to top button */
 .top-button {
     position: fixed;
-    bottom: 10px;
-    right: 60px;
+    bottom: 80px;
+    right: 10px;
     z-index: 60;
 }
+
+
 
 /* site background */
 .cover {
