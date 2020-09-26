@@ -143,7 +143,7 @@ html {
 
 /* game detail page ribbon */
 .ribbon-detail {
-    right: 7px;
+    right: -6px;
     top: -6px;
 }
 
@@ -151,6 +151,12 @@ html {
 .ribbon-card {
     right: -5px;
     top: -6px;
+}
+
+/* slider ribbon */
+.ribbon-slider {
+    right: -12px;
+    top: -245px;
 }
 
 /* Form Styles */
@@ -252,6 +258,10 @@ html {
 
 .is-z-1000 {
     z-index: 1000;
+}
+
+.is-max-500{
+    max-width: 500px;
 }
 
 .section {

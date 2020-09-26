@@ -21,6 +21,26 @@
     background: #fff;
 }
 
+/* slider image */
+.slider-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+/* slider text */
+.slider-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+}
+
+.container{
+    max-width: 1152px;
+}
+
 /* image container */
 .carousel-cell {
     display: block;
@@ -32,4 +52,9 @@
 /* image */
 .carousel-cell img {
     display: block;
+}
+
+/* slider arrows */
+.flickity-button{
+    background: none;
 }
