@@ -1,5 +1,7 @@
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% load i18n %}
 
@@ -25,16 +27,19 @@
                 <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
             </p>
         </div>
+        <div class="column is-10">
+            <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="button is-outlined is-info mt-5 is-fullwidth" >Sign in with facebook</a>
+        </div>
         <div class="column is-10 has-text-left">
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
-                {{ form|crispy}}
+                {{ form|crispy }}
                 {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
-                <button class="button is-outlined is-success mt-5 is-fullwidth"  type="submit">{% trans "Sign Up" %}</button>
+                <button class="button is-outlined is-success mt-5 is-fullwidth"
+                        type="submit">{% trans "Sign Up" %}</button>
             </form>
-
         </div>
     </div>
 
