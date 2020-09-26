@@ -3,6 +3,8 @@
     box-sizing: border-box;
     /* main font */
     font-family: 'Montserrat', serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* smooth scroll*/
@@ -149,6 +151,14 @@ html {
     top: -6px;
 }
 
+/* Form Styles */
+.invalid-feedback strong{
+    color: #f14668;
+}
+
+.asteriskField{
+    color: #f14668;
+}
 /* FOOTER */
 
 /* Discord social link (brand colors)*/

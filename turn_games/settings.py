@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", 'b5b^_$^7d_ox8aq(a+s#qt6aaqwvy_1knooi3!4yox27rw3dve')
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "b5b^_$^7d_ox8aq(a+s#qt6aaqwvy_1knooi3!4yox27rw3dve"
+)
 
 # only use debug if there is a development variable
 DEBUG = "DEVELOPMENT" in os.environ
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     "home",
     "profiles",
     "games",
@@ -48,7 +51,10 @@ INSTALLED_APPS = [
     "dashboard",
     "mathfilters",
     "storages",
+    "crispy_forms",
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -106,6 +112,13 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email",],
+        "AUTH_PARAMS": {"access_type": "online",},
+    }
+}
+
 WSGI_APPLICATION = "turn_games.wsgi.application"
 
 # Database
@@ -130,9 +143,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 # Internationalization
@@ -157,29 +170,29 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-if 'AWS' in os.environ:
+if "AWS" in os.environ:
     # Cache static files for long time
     AWS_S3_OBJECT_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000',
+        "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
+        "CacheControl": "max-age=94608000",
     }
 
     # Bucket Configuration
-    AWS_STORAGE_BUCKET_NAME = 'turn-games'
-    AWS_S3_REGION_NAME = 'eu-west-1'
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_STORAGE_BUCKET_NAME = "turn-games"
+    AWS_S3_REGION_NAME = "eu-west-1"
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
     # Static and media files
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
+    STATICFILES_STORAGE = "custom_storages.StaticStorage"
+    STATICFILES_LOCATION = "static"
+    DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
+    MEDIAFILES_LOCATION = "media"
 
     # Override static and media URLs in production
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
 
 TAX_PERCENTAGE = 0.2
 
@@ -193,14 +206,14 @@ STRIPE_CURRENCY = "gbp"
 DEFAULT_FROM_EMAIL = "turngames@example.com"
 
 # Email setup
-if 'DEVELOPMENT' in os.environ:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'turngames@example.com'
+if "DEVELOPMENT" in os.environ:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    DEFAULT_FROM_EMAIL = "turngames@example.com"
 else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST')
-    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST")
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_USER")
