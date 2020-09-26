@@ -159,6 +159,10 @@ html {
 .asteriskField{
     color: #f14668;
 }
+
+.is-google{
+    background-color: #de5246;
+}
 /* FOOTER */
 
 /* Discord social link (brand colors)*/
