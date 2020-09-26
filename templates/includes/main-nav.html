@@ -1,4 +1,3 @@
-{% load static %}
 
 <nav class="navbar is-dark has-background-black-ter is-fixed-top pt-4 is-spaced pl-0" role="navigation"
      aria-label="main navigation">
@@ -6,7 +5,7 @@
     <!-- Main Logo -->
     <div class="navbar-brand px-3">
         <a class="navbar-item main-logo-container is-flex is-justified-center is-baseline " href="{% url 'home' %}">
-            <img class="main-logo-image" id="logo-image" src="{% static 'images/turn-games-full-logo.webp' %} "
+            <img class="main-logo-image" id="logo-image" src="https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948382/turn-games-full-logo_x4wpja.webp"
                  alt="turn games logo">
         </a>
         <!-- END: Main Logo -->
@@ -224,7 +223,7 @@
                 <span class="minify">Account</span></a>
             <div class="navbar-dropdown has-text-centered is-right is-z-1000">
                 {% if request.user.is_authenticated %}
-                    <p class="has-text-centered has-background-black-ter has-text-white is-size-5">{{ request.user }}</p>
+                    <p class="has-text-centered has-background-black-ter has-text-white is-size-5">{{ request.user|title }}</p>
                     {% if request.user.is_superuser %}
                         <a href="{% url 'dashboard' %}" class="navbar-item">Admin
                             Dashboard</a>

@@ -45,14 +45,14 @@
                                 <div class="column is-12 py-1">
                                     <p class="has-text-white has-text-grey">Name:</p>
                                     <p class="has-text-white has-text-white">
-                                        {{ order.full_name }}
+                                        {{ order.full_name|title }}
                                     </p>
                                 </div>
                                 <!-- email -->
                                 <div class="column is-12 py-1">
                                     <p class="has-text-white has-text-grey">Email:</p>
                                     <p class="has-text-white has-text-white">
-                                        {{ order.email }}
+                                        {{ order.email|lower }}
                                     </p>
                                 </div>
                                 <!-- number -->
@@ -89,7 +89,7 @@
                         {% for item in order.line_items.all %}
                             <div class="column is-12">
                                 <p class="has-text-white ">
-                                    {{ item.game.name }}
+                                    {{ item.game.name|title }}
                                     <span class="is-pulled-right"> £{{ item.game.price }} </span>
                                 </p>
                             </div>

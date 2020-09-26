@@ -126,7 +126,7 @@
                                                     </td>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
                                                         <a
-                                                                href="{% url 'game_detail' game.id %}">{{ game.name }}
+                                                                href="{% url 'game_detail' game.id %}">{{ game.name|title }}
                                                         </a>
                                                     </td>
                                                     <td class="has-text-centered is-vcentered">
@@ -140,12 +140,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <footer class="card-footer">
-                                    <a href="{% url 'games_management' %}" class="card-footer-item">View All</a>
-                                </footer>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
