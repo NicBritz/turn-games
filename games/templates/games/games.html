@@ -29,6 +29,16 @@
                     <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
                         <a href="{% url 'game_detail' game.id %}" class="game-card">
                             <div class="card">
+                                <!-- Discount Ribbon-->
+                                <div class="ribbon-box">
+                                    <div class="ribbon ribbon-card">
+                                                    <span>
+                                                        {% if game.discounted %}
+                                                            - {{ game.discount_percent|floatformat }}%
+                                                        {% endif %}
+                                                    </span>
+                                    </div>
+                                </div>
                                 <!-- Game header image -->
                                 <div class="card-image">
                                     <figure class="image is-fullwidth ">
@@ -49,16 +59,6 @@
                                     <div class="content px-3 mb-3">
                                         <div class="is-size-6">
                                             {{ game.release_date }}
-                                            <!-- Discount Ribbon-->
-                                            <div class="ribbon-box">
-                                                <div class="ribbon">
-                                                    <span>
-                                                        {% if game.discounted %}
-                                                            - {{ game.discount_percent|floatformat }}%
-                                                        {% endif %}
-                                                    </span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- END: Game release date -->
@@ -83,7 +83,7 @@
                                                     £ {{ game.price }}
                                                 </p>
                                                 <p class=" is-size-4 has-text-white ">
-                                                £ {{ game.price_discounted }}
+                                                    £ {{ game.price_discounted }}
                                                 </p>
                                                 <!-- END: discount calculations -->
                                             {% else %}

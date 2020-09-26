@@ -143,6 +143,12 @@ html {
     top: -6px;
 }
 
+/* game card ribbon */
+.ribbon-card {
+    right: -5px;
+    top: -6px;
+}
+
 /* FOOTER */
 
 /* Discord social link (brand colors)*/

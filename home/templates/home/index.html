@@ -23,7 +23,7 @@
                 <div class="column is-9-desktop">
                     <div class=" main-slider ">
                         <div class="carousel">
-                             <!-- random 10 games in main slider -->
+                            <!-- random 10 games in main slider -->
                             {% for game in random_slider_content %}
                                 <a class="carousel-cell has-background-black-bis "
                                    href="{% url 'games' %}{{ game.id }}">
@@ -65,6 +65,16 @@
                     <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
                         <a href="{% url 'game_detail' game.id %}" class="game-card">
                             <div class="card">
+                                <!-- Discount Ribbon-->
+                                <div class="ribbon-box">
+                                    <div class="ribbon ribbon-card">
+                                                    <span>
+                                                        {% if game.discounted %}
+                                                            - {{ game.discount_percent|floatformat }}%
+                                                        {% endif %}
+                                                    </span>
+                                    </div>
+                                </div>
                                 <!-- Game header image -->
                                 <div class="card-image">
                                     <figure class="image is-fullwidth ">
@@ -85,16 +95,6 @@
                                     <div class="content px-3 mb-3">
                                         <div class="is-size-6">
                                             {{ game.release_date }}
-                                            <!-- Discount Ribbon-->
-                                            <div class="ribbon-box">
-                                                <div class="ribbon">
-                                                    <span>
-                                                        {% if game.discounted %}
-                                                            - {{ game.discount_percent|floatformat }}%
-                                                        {% endif %}
-                                                    </span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- END: Game release date -->
