@@ -1,26 +1,8 @@
-{% extends "base.html" %}
+{% extends "dashboard/dashboard_base.html" %}
 {% load  static %}
-
-<!-- custom css imports -->
-{% block custom-css %}
-    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
-{% endblock %}
-
-<!-- custom pre javascript imports -->
-{% block custom-js %}
-    <!-- Cloudinary script -->
-    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-{% endblock %}
-
-<!-- Dashboard Navbar -->
-{% block header %}
-    {% include 'includes/dashboard_nav.html' %}
-{% endblock %}
-
 
 {% block content %}
     <div class="container pt-3">
-
         <div class="section pb-3">
             <div class="columns mb-0">
                 <div class="column ">
@@ -194,4 +176,5 @@
     {{ block.super }}
     {#  cloadinary Script src: https://cloudinary.com/documentation/upload_widget #}
     <script type="text/javascript" src="{% static 'dashboard/js/cloudinary.js' %}"></script>
+
 {% endblock %}

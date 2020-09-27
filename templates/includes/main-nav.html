@@ -64,8 +64,7 @@
             <!-- home link -->
             <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
                            <span class="icon has-text-info">
-                            <i class="fas fa-home fa-lg is-hidden-mobile"></i>
-                            <i class="fas fa-home is-hidden-desktop mr-2"></i>
+                            <i class="fas fa-home  hide-desktop mr-3"></i>
                             </span><span class="is-hidden-desktop">Home</span>
             </a>
 
@@ -76,7 +75,7 @@
                         class="fas fa-gamepad"></i></span>Category
                 </div>
 
-                <div class="navbar-dropdown is-z-1000 is-hidden-mobile" id="category-menu">
+                <div class="navbar-dropdown is-z-70 hide-mobile" id="category-menu">
                     <a class="navbar-item" href="{% url 'games' %}?sort=name&direction=asc">All</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=single_player&sort=name&direction=asc">Single-player</a>
                     <a class="navbar-item" href="{% url 'games' %}?category=co_op&sort=name&direction=asc">Co-op</a>
@@ -101,7 +100,7 @@
                     Genres
                 </div>
 
-                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="genre-menu">
+                <div class="navbar-dropdown has-text-centered is-z-70 hide-mobile" id="genre-menu">
                     <a class="navbar-item" href="{% url 'games' %}?genre=action&sort=name&direction=asc">Action</a>
                     <a class="navbar-item"
                        href="{% url 'games' %}?genre=adventure&sort=name&direction=asc">Adventure</a>
@@ -127,7 +126,7 @@
                     Specials
                 </div>
 
-                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="specials-menu">
+                <div class="navbar-dropdown has-text-centered is-z-70 hide-mobile" id="specials-menu">
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=free&sort=name&direction=asc">Free</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=featured&sort=name&direction=asc">Featured</a>
                     <a class="navbar-item" href="{% url 'games' %}?special_offers=discounted&sort=name&direction=asc">Discounted</a>
@@ -144,7 +143,7 @@
                     Account
                 </div>
 
-                <div class="navbar-dropdown has-text-centered is-z-70 is-hidden-mobile" id="account-menu">
+                <div class="navbar-dropdown has-text-centered is-z-70 hide-mobile" id="account-menu">
                     {% if request.user.is_authenticated %}
                         <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user|truncatechars:15 }}</p>
                         {% if request.user.is_superuser %}

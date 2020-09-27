@@ -28,7 +28,7 @@ def profile(request):
         profile_form = UserProfileForm(instance=profile)
 
     # find all previous orders
-    previous_orders = profile.orders.all()
+    previous_orders = profile.orders.all().order_by('-date')
 
     template = "profiles/profile.html"
     context = {"profile_form": profile_form, "previous_orders": previous_orders}

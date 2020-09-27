@@ -24,7 +24,7 @@ def dashboard(request):
         return redirect(reverse("home"))
 
     # log entry src https://stackoverflow.com/questions/5746624/showing-django-admin-actions-on-template
-    logs = LogEntry.objects.select_related().all().order_by("-id")[:5]
+    logs = LogEntry.objects.select_related().all().order_by("-id")[:10]
 
     all_games = Game.objects.all()
     all_users = User.objects.all()
