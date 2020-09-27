@@ -107,3 +107,26 @@ def game_detail(request, game_id):
     }
 
     return render(request, "games/game_detail.html", context)
+
+
+def rate_game(request, game_id, rating):
+    """ Adds a rating to a game """
+
+    game = get_object_or_404(Game, pk=game_id)
+
+    if request.user.is_authenticated:
+        if rating == '1':
+            game.positive_ratings += 1
+            messages.success(request, "Added a positive rating!")
+            game.save()
+        elif rating == '0':
+            game.negative_ratings += 1
+            messages.success(request, "Added a negative rating!")
+            game.save()
+        else:
+            messages.error(request, "No ratings changed!")
+            return redirect(reverse("games"))
+    else:
+        messages.error(request, "You must be logged in to rate this game!")
+
+    return redirect("game_detail", game_id)
