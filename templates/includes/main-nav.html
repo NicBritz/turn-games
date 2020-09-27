@@ -1,11 +1,11 @@
-
-<nav class="navbar is-dark has-background-black-ter is-fixed-top pt-4 is-spaced pl-0" role="navigation"
+<div class="navbar is-dark has-background-black-ter is-fixed-top pt-4 is-spaced pl-0" role="navigation"
      aria-label="main navigation">
 
     <!-- Main Logo -->
     <div class="navbar-brand px-3">
         <a class="navbar-item main-logo-container is-flex is-justified-center is-baseline " href="{% url 'home' %}">
-            <img class="main-logo-image" id="logo-image" src="https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948382/turn-games-full-logo_x4wpja.webp"
+            <img class="main-logo-image" id="logo-image"
+                 src="https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948382/turn-games-full-logo_x4wpja.webp"
                  alt="turn games logo">
         </a>
         <!-- END: Main Logo -->
@@ -33,7 +33,7 @@
                         <div class="field has-addons is-justified-center py-0 px-0">
                             <div class="control">
                                 <input aria-label="search input" class="input" type="text"
-                                       placeholder="Search for games" name="q">
+                                       placeholder="Search Games" name="q">
                             </div>
                             <button class="control button is-link" type="submit">
                                 <span class="icon">
@@ -47,25 +47,27 @@
             <!-- END: Search bar (mobile only) -->
             <!-- Basket link (mobile only)-->
             <a class="navbar-item has-text-weight-bold has-text-centered is-hidden-desktop"
-               href="{% url 'view_cart' %}">
+               href="{% url 'view_cart' %}" aria-label="basket link">
                            <span class="icon has-text-success">
                             <i class="fas fa-shopping-cart "></i>
-                            </span><span>
-                {% if grand_total %}
-                    £{{ grand_total|floatformat:2 }}
-                {% else %}
-                    £0.00
-                {% endif %}
-            </span>
+                            </span>
+                <span>
+                    {% if grand_total %}
+                        £{{ grand_total|floatformat:2 }}
+                    {% else %}
+                        £0.00
+                    {% endif %}
+                </span>
             </a>
             <hr class="dropdown-divider">
 
-
             <!-- home link -->
-            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
+            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}"
+               aria-label="home link">
                            <span class="icon has-text-info">
                             <i class="fas fa-home  hide-desktop mr-3"></i>
-                            </span><span class="is-hidden-desktop">Home</span>
+                            </span>
+                <span class="is-hidden-desktop">Home</span>
             </a>
 
 
@@ -94,9 +96,9 @@
             <!-- Genre Menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
                 <div class="navbar-link has-text-weight-bold" id="genre-btn">
-                                <span class="icon has-text-warning mr-2">
-                            <i class="fas fa-dice"></i>
-                            </span>
+                    <span class="icon has-text-warning mr-2">
+                        <i class="fas fa-dice"></i>
+                    </span>
                     Genres
                 </div>
 
@@ -120,9 +122,9 @@
             <!-- Specials Menu -->
             <div class="navbar-item has-dropdown is-hoverable has-text-centered">
                 <div class="navbar-link has-text-weight-bold" id="specials-btn">
-                                <span class="icon mr-2 has-text-success">
+                    <span class="icon mr-2 has-text-success">
                             <i class="fas fa-piggy-bank"></i>
-                            </span>
+                    </span>
                     Specials
                 </div>
 
@@ -221,8 +223,10 @@
                             </span>
                 <span class="minify">Account</span></a>
             <div class="navbar-dropdown has-text-centered is-right is-z-1000">
+                <!-- user is logged in  -->
                 {% if request.user.is_authenticated %}
                     <p class="has-text-centered has-background-black-ter has-text-white is-size-5">{{ request.user|title }}</p>
+                    <!-- user is a admin -->
                     {% if request.user.is_superuser %}
                         <a href="{% url 'dashboard' %}" class="navbar-item">Admin
                             Dashboard</a>
@@ -241,9 +245,9 @@
         <!-- Basket menu (desktop only) -->
         <div class="navbar-item has-dropdown is-hoverable has-text-centered hide-mobile" id="cart-menu">
             <a class="navbar-link has-text-weight-bold has-text-white" href="{% url 'view_cart' %}">
-                                <span class="icon mr-2 has-text-success">
-                            <i class="fas fa-shopping-cart fa-lg"></i>
-                            </span>
+                <span class="icon mr-2 has-text-success">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                </span>
                 {% if grand_total %}
                     £{{ grand_total|floatformat:2 }}
                 {% else %}
@@ -284,4 +288,4 @@
         <!-- END: Basket Menu  (desktop only) -->
     </div>
 
-</nav>
+</div>
