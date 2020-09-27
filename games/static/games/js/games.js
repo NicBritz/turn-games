@@ -11,6 +11,7 @@ $(window).on('load', function () {
         let selectionDropdown = $(this);
         let selectedVal = selectionDropdown.val();
 
+
         if (selectedVal !== "none") {
             // make a list of the values by their names
             let values = selectedVal.split("_");
@@ -31,6 +32,7 @@ $(window).on('load', function () {
             // default to base url with no sorting
             currentUrl.searchParams.delete("sort");
             currentUrl.searchParams.delete("direction");
+
 
             window.location.replace(currentUrl);
         }

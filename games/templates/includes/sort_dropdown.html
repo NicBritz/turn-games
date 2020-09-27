@@ -54,29 +54,30 @@
         <div class="field">
             <div class="control is-dark">
                 <div class="select is-info ">
-                    <select aria-label="sort selection" disabled id="sort-dropdown" class="has-background-black has-text-light">
+                    <select aria-label="sort selection" disabled id="sort-dropdown"
+                            class="has-background-black {% if sorting != 'None_None' %}has-text-light{% else %}has-text-grey-dark{% endif %}">
                         <option value="none" {% if sorting == 'None_None' %}selected{% endif %}
                                 class="has-text-grey-dark">
                             Sort by...
                         </option>
-                        <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>
+                        <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %} class="has-text-light">
                             Price (High - Low)
                         </option>
-                        <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>
+                        <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %} class="has-text-light">
                             Price (Low - High)
                         </option>
                         <option value="positive_ratings_desc"
-                                {% if sorting == 'positive_ratings_desc' %}selected{% endif %}>
+                                {% if sorting == 'positive_ratings_desc' %}selected{% endif %} class="has-text-light">
                             Rating (High - Low)
                         </option>
                         <option value="positive_ratings_asc"
-                                {% if sorting == 'positive_ratings_asc' %}selected{% endif %}>
+                                {% if sorting == 'positive_ratings_asc' %}selected{% endif %} class="has-text-light">
                             Rating (Low - High)
                         </option>
-                        <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>
+                        <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %} class="has-text-light">
                             Title (Z - A)
                         </option>
-                        <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>
+                        <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %} class="has-text-light">
                             Title (A - Z)
                         </option>
                     </select>
