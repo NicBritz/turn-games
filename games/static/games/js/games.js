@@ -1,5 +1,5 @@
-
 $(window).on('load', function () {
+    // enable dropdown once loaded
     $('#sort-dropdown').prop("disabled", false);
 // Sort Dropdown script
     $("#sort-dropdown").change(function () {
@@ -11,7 +11,6 @@ $(window).on('load', function () {
         let selectionDropdown = $(this);
         let selectedVal = selectionDropdown.val();
 
-
         if (selectedVal !== "none") {
             // make a list of the values by their names
             let values = selectedVal.split("_");
@@ -20,8 +19,8 @@ $(window).on('load', function () {
                 sort = values[0];
                 direction = values[1];
             } else {
-                sort = `${values[0]}_${values[1]}`
-                direction = values[2]
+                sort = `${values[0]}_${values[1]}`;
+                direction = values[2];
             }
             // add the relevant search params to the url
             currentUrl.searchParams.set("sort", sort);
@@ -33,10 +32,7 @@ $(window).on('load', function () {
             currentUrl.searchParams.delete("sort");
             currentUrl.searchParams.delete("direction");
 
-
             window.location.replace(currentUrl);
         }
-    })
-
-
+    });
 });

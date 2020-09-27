@@ -5,11 +5,13 @@ import datetime
 
 # Category Model
 class Category(models.Model):
+    """ This model handles all the fields for a game category """
+
     # clean up group name in Django admin area
     class Meta:
         verbose_name_plural = "Categories"
 
-    """ This model handles all the fields for a game category"""
+    # fields
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -24,6 +26,7 @@ class Category(models.Model):
 class Genre(models.Model):
     """ This model handles all the fields for a game genre """
 
+    # fields
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -38,6 +41,7 @@ class Genre(models.Model):
 class Tag(models.Model):
     """ This model handles all the fields for a game tag """
 
+    # fields
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -52,6 +56,7 @@ class Tag(models.Model):
 class Game(models.Model):
     """ This model handles all the fields for a game entry """
 
+    # fields
     name = models.CharField(max_length=254)
     description = models.TextField()
     header_image_url = models.URLField(
@@ -71,7 +76,9 @@ class Game(models.Model):
         max_digits=10, decimal_places=0, null=True, blank=True, default=0
     )
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    price_discounted = models.DecimalField(max_digits=6, decimal_places=2, default=0, editable=False)
+    price_discounted = models.DecimalField(
+        max_digits=6, decimal_places=2, default=0, editable=False
+    )
     featured = models.BooleanField(default=False)
     discounted = models.BooleanField(default=False)
     discount_percent = models.DecimalField(
