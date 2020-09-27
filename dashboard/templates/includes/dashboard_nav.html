@@ -23,7 +23,7 @@
         <div class="navbar-start mx-auto px-1 ">
 
             <!-- site home link -->
-            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'home' %}">
+            <a class="navbar-item has-text-weight-bold has-text-centered" href="{% url 'home' %}">
                            <span class="icon has-text-info mr-2">
                             <i class="fas fa-home "></i>
                             </span>
@@ -31,7 +31,7 @@
             </a>
 
             <!-- Dashboard link -->
-            <a class="navbar-item has-text-weight-bold has-text-centered " href="{% url 'dashboard' %}">
+            <a class="navbar-item has-text-weight-bold has-text-centered" href="{% url 'dashboard' %}">
                            <span class="icon has-text-warning mr-2">
                                <i class="fas fa-chart-line"></i>
 
@@ -40,11 +40,11 @@
             </a>
 
             <!-- Games menu -->
-            <div class="navbar-item has-dropdown is-hoverable has-text-centered">
+            <div class="navbar-item has-dropdown is-hoverable has-text-centered" id="management-btn">
                 <a class="navbar-link has-text-weight-bold"><span class="icon has-text-danger mr-2"> <i
                         class="fas fa-tools "></i></span>Management</a>
 
-                <div class="navbar-dropdown is-z-60">
+                <div class="navbar-dropdown is-z-60 hide-mobile" id="management-menu">
                     <a class="navbar-item" href="{% url 'games_management' %}">Game Management</a>
                     <a class="navbar-item" href="{% url 'user_management' %}">User Management</a>
                     <a class="navbar-item" href="{% url 'order_management' %}">Order Management</a>
@@ -53,7 +53,7 @@
             <!-- END: Game menu -->
 
             <!-- Socials (mobile only) -->
-            <div class="columns is-mobile is-multiline has-background-black-ter" id="social-buttons-bar">
+            <div class="columns is-mobile is-multiline has-background-black-ter mt-4" id="social-buttons-bar">
                 <div class="column is-3 is-z-70 has-text-centered pr-0">
                     <!-- Discord link -->
                     <a class="has-text-weight-bold has-text-centered discord-hover" href="https://discord.com"

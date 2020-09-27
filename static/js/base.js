@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // remove notification after a few seconds
         setTimeout(function () {
-            $notification.parentNode.removeChild($notification);
+            if ($notification.parentNode !== null) {
+                $notification.parentNode.removeChild($notification);
+            }
         }, 3000);
 
     });
@@ -39,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //dropdowns
     $('#category-btn').click(function () {
-        $('#category-menu').toggleClass('is-hidden-mobile');
+        $('#category-menu').toggleClass('hide-mobile');
     })
     $('#genre-btn').click(function () {
-        $('#genre-menu').toggleClass('is-hidden-mobile');
+        $('#genre-menu').toggleClass('hide-mobile');
     })
     $('#specials-btn').click(function () {
-        $('#specials-menu').toggleClass('is-hidden-mobile');
+        $('#specials-menu').toggleClass('hide-mobile');
     })
     $('#account-btn').click(function () {
-        $('#account-menu').toggleClass('is-hidden-mobile');
+        $('#account-menu').toggleClass('hide-mobile');
     })
 
 // Back to top script

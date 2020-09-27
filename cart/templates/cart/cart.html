@@ -89,7 +89,7 @@
                                     </td>
                                     <!-- Game discount amount -->
                                     <td class="is-vcentered px-0">
-                                        {% if  item.game.discount_percent|floatformat != "0" %}
+                                        {% if  item.game.discounted %}
                                             <p class="has-text-danger has-text-centered">
                                                 - {{ item.game.discount_percent|floatformat }}%</p>
                                         {% endif %}

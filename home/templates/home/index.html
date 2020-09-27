@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load  static %}
-{% load mathfilters %}
 
 <!-- custom css imports -->
 {% block custom-css %}
@@ -46,7 +45,8 @@
                                         </div>
                                     </div>
                                     <div class="hide-desktop show-mobile-block">
-                                        <img class="image is-fullwidth slider-img mx-auto" src="{{ game.header_image_url }}"
+                                        <img class="image is-fullwidth slider-img mx-auto"
+                                             src="{{ game.header_image_url }}"
                                              alt="{{ game.name }}"/>
                                         <p class="has-text-white is-z-60 is-line-1 my-3 px-5 py-3 has-background-black-bis
                                     is-size-6 has-text-weight-medium">
@@ -144,12 +144,7 @@
                                                             £ {{ game.price }}
                                                         </p>
                                                         <p class=" is-size-4 has-text-white ">
-                                                            {% with discount_amount=game.discount_percent|div:100 %}
-                                                                {% with discounted_value=game.price|mul:discount_amount %}
-                                                                    £
-                                                                    {{ game.price|sub:discounted_value|floatformat:2 }}
-                                                                {% endwith %}
-                                                            {% endwith %}
+                                                            £ {{ game.price_discounted }}
                                                         </p>
                                                         <!-- END: discount calculations -->
                                                     {% else %}
