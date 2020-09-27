@@ -68,6 +68,12 @@ html {
     z-index: 60;
 }
 
+/* position remember me checkbox */
+#id_remember {
+    position: relative;
+    left: 162px;
+    top: 48px;
+}
 
 
 /* site background */
@@ -160,17 +166,18 @@ html {
 }
 
 /* Form Styles */
-.invalid-feedback strong{
+.invalid-feedback strong {
     color: #f14668;
 }
 
-.asteriskField{
+.asteriskField {
     color: #f14668;
 }
 
-.is-google{
+.is-google {
     background-color: #de5246;
 }
+
 /* FOOTER */
 
 /* Discord social link (brand colors)*/
@@ -260,7 +267,7 @@ html {
     z-index: 1000;
 }
 
-.is-max-500{
+.is-max-500 {
     max-width: 500px;
 }
 

@@ -65,7 +65,7 @@
                                     {% endif %}
                                 </span>
                                 </div>
-                            <p class=" is-size-6 px-3 py-3 mt-1 has-text-white has-background-black-bis"> {{ game.description }} </p>
+                                <p class=" is-size-6 px-3 py-3 mt-1 has-text-white has-background-black-bis"> {{ game.description }} </p>
                             </div>
                         </div>
                     </div>
@@ -77,15 +77,19 @@
                             <div class="column is-6 has-text-white has-text-centered pt-0 ">
                                 <p class="is-size-6 has-text-grey">Ratings:</p>
                                 <p class=" is-size-6 l pt-1">
+                                    <a href="{% url 'rate_game' game.id '1' %}">
                                 <span>
                                     <i class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i>
                                 </span>
+                                    </a>
                                     {{ game.positive_ratings }}
                                 </p>
                                 <p class=" is-size-6 has-text-weight-normal pt-1 ">
+                                    <a href="{% url 'rate_game' game.id '0' %}">
                                 <span>
                                 <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
                                 </span>
+                                    </a>
                                     {{ game.negative_ratings }}
                                 </p>
                             </div>
