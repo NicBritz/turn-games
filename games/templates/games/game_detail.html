@@ -125,15 +125,15 @@
                         <!-- END: Game pricing -->
                         <!-- Buy button  -->
                         <div class="column is-12 has-text-white has-text-centered pt-0 ">
-                            <form action="{% url 'add_to_cart' game.id %}" method="POST">
-                                {% csrf_token %}
-                                <button class="button is-success is-outlined" id="buy-button" type="submit">
+{#                            <form action="{% url 'add_to_cart' game.id %}" method="POST">#}
+{#                                {% csrf_token %}#}
+                                <a  href="{% url 'add_to_cart' game.id %}" class="button is-success is-outlined" id="buy-button" type="submit">
                                 <span class="icon">
                                   <i class="fas fa-cart-plus"></i>
                                 </span>
                                     <span>Buy</span>
-                                </button>
-                            </form>
+                                </a>
+{#                            </form>#}
                         </div>
                         <hr class="has-background-grey-dark mt-3">
                     </div>

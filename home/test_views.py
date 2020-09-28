@@ -2,6 +2,8 @@ from django.test import TestCase
 
 
 class TestHomeViews(TestCase):
+    """ Tests for Home Views """
+
     # get index page response good
     def test_get_index_page(self):
         response = self.client.get("/")
