@@ -65,21 +65,21 @@
                                 Details
                             </legend>
                             <!-- Name -->
-                            <label for="order_form.full_name.id_for_label"
+                            <label for="{{order_form.full_name.id_for_label}}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Full Name
                                 <span class="has-text-danger"> * </span>
                             </label>
                             {{ order_form.full_name }}
                             <!-- Email -->
-                            <label for="order_form.email.id_for_label"
+                            <label for="{{ order_form.email.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Email Address
                                 <span class="has-text-danger"> *</span>
                             </label>
                             {{ order_form.email }}
                             <!-- Phone Number -->
-                            <label for="order_form.phone_number.id_for_label"
+                            <label for="{{ order_form.phone_number.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Phone Number
                                 <span class="has-text-danger"> *</span>
@@ -91,40 +91,40 @@
                                 Details
                             </legend>
                             <!-- Address 1 -->
-                            <label for="order_form.street_address1.id_for_label"
+                            <label for="{{ order_form.street_address1.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Address 1
                                 <span class="has-text-danger"> *</span>
                             </label>
                             {{ order_form.street_address1 }}
                             <!-- Address 2 -->
-                            <label for="order_form.street_address2.id_for_label"
+                            <label for="{{ order_form.street_address2.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Address 2
                             </label>
                             {{ order_form.street_address2 }}
                             <!-- Town -->
-                            <label for="order_form.town.id_for_label"
+                            <label for="{{ order_form.town_or_city.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Town / City
                                 <span class="has-text-danger"> *</span>
                             </label>
                             {{ order_form.town_or_city }}
                             <!-- Postcode -->
-                            <label for="order_form.postcode.id_for_label"
+                            <label for="{{ order_form.postcode.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Postcode
                                 <span class="has-text-danger"> *</span>
                             </label>
                             {{ order_form.postcode }}
                             <!-- County -->
-                            <label for="order_form.county.id_for_label"
+                            <label for="{{ order_form.county.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 County
                             </label>
                             {{ order_form.county }}
                             <!-- Country -->
-                            <label for="order_form.country.id_for_label"
+                            <label for="{{ order_form.country.id_for_label }}"
                                    class="label has-text-white mt-3 has-text-weight-medium">
                                 Country
                                 <span class="has-text-danger"> *</span>
@@ -143,7 +143,7 @@
                                 Details
                             </legend>
                             <!-- Card Details -->
-                            <label for="card-element" class="label has-text-white mt-3 has-text-weight-medium">
+                            <label aria-label="card-element" class="label has-text-white mt-3 has-text-weight-medium">
                                 Card Details
                                 <span class="has-text-danger"> *</span>
                             </label>

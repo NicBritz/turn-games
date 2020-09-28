@@ -35,7 +35,6 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-
 def checkout(request):
     """ Adds a checkout view """
 
@@ -102,7 +101,7 @@ def checkout(request):
         # if the cart is empty
         if not cart:
             messages.error(request, "Your cart is currently empty")
-            return redirect(reverse("games"))
+            return redirect(reverse("home"))
 
         # Stripe setup
         # get the current total and convert it for stripe
@@ -138,15 +137,13 @@ def checkout(request):
         else:
             order_form = OrderForm()
 
-        template = "checkout/checkout.html"
-
         context = {
             "order_form": order_form,
             "stripe_public_key": stripe_public_key,
             "client_secret": intent.client_secret,
         }
 
-        return render(request, template, context)
+        return render(request, "checkout/checkout.html", context)
 
 
 def checkout_success(request, order_number):

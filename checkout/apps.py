@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class CheckoutConfig(AppConfig):
-    name = 'checkout'
+    name = "checkout"
 
     # Activate signals once ready
     def ready(self):
