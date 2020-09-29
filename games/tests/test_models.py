@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Game
+from games.models import Game
 
 
 class TestGameModels(TestCase):

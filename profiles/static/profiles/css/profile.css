@@ -4,14 +4,13 @@
     right: .5rem;
 }
 
-.form-control
-{
+.form-control {
     color: #000000;
     border: 1px solid #000000;
 }
 
 select,
-select option{
+select option {
     color: #000000;
 }
 

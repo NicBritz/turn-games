@@ -13,7 +13,7 @@ class UserProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
 
-        # Make the fullname autofocused
+        # Make the phone number autofocused
         self.fields["default_phone_number"].widget.attrs["autofocus"] = True
 
         for field in self.fields:

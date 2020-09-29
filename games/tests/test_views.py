@@ -1,11 +1,10 @@
 from django.test import TestCase
-from .models import Game
+from games.models import Game
 from django.contrib.auth import get_user_model
 
 
 class TestGameViews(TestCase):
     """ Tests for Game Views """
-
     def setUp(self):
         user_model = get_user_model()
         user = user_model.objects.create_user(

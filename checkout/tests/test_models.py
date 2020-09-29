@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Order, OrderLineItem
+from checkout.models import Order, OrderLineItem
 from games.models import Game
 from decimal import Decimal
 
