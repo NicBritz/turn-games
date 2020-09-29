@@ -1,5 +1,6 @@
 $(document).ready(function () {
     // src: https://cloudinary.com/documentation/upload_widget
+    // upload image to cloudinary
     let myWidget = cloudinary.createUploadWidget({
             cloudName: 'dauzoqnfv',
             uploadPreset: 'zvcpxnbx',
@@ -11,11 +12,11 @@ $(document).ready(function () {
                 $('#current-image').attr('src', result.info.secure_url);
             }
         }
-    )
+    );
 
     document.getElementById("upload_widget").addEventListener("click", function () {
         myWidget.open();
     }, false);
 
-})
+});
 

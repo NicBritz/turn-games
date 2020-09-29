@@ -6,6 +6,7 @@
         <div class="section">
             <div class="columns">
                 <div class="column is-12">
+                    <!-- hero heading -->
                     <section class="hero is-info welcome is-small mb-4">
                         <div class="hero-body ">
                             <div class="container">
@@ -15,38 +16,10 @@
                             </div>
                         </div>
                     </section>
-                    <section class="info-tiles">
-                        <div class="tile is-ancestor has-text-centered">
+                    <!-- end: hero heading -->
 
-                            <a class="tile is-parent" href="{% url 'user_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_users.count }}</p>
-                                    <p class="subtitle">Users</p>
-                                </article>
-                            </a>
-
-                            <a class="tile is-parent" href="{% url 'games_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_games.count }}</p>
-                                    <p class="subtitle">Games</p>
-                                </article>
-                            </a>
-
-                            <a class="tile is-parent" href="{% url 'order_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_orders.count }}</p>
-                                    <p class="subtitle">Orders</p>
-                                </article>
-                            </a>
-
-                            <div class="tile is-parent">
-                                <article class="tile is-child box">
-                                    <p class="title">£ {{ total_sales }}</p>
-                                    <p class="subtitle">Total Sales</p>
-                                </article>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- include info tiles -->
+                    {% include 'includes/info_tiles.html' %}
 
                     <div class="columns is-multiline is-mobile is-justified-center">
                         <div class="my-3">
@@ -67,11 +40,14 @@
                         <div class="column is-12">
                             <div class="card events-card">
                                 <header class="card-header ">
+                                    <!-- Add game button -->
                                     <a href="{% url 'add_game' %}" class="button is-success mx-3 my-3 px-1"
                                        aria-label="more options">
                                         <i class="fa fa-plus px-1" aria-hidden="true"></i> <span
                                             class="is-hidden-mobile">Add</span>
                                     </a>
+                                    <!-- end: Add game button -->
+                                    <!-- search bar -->
                                     <form method="GET" action="{% url 'games_management' %}">
                                         <div class="field has-addons is-justified-center mx-3 my-3">
                                             <div class="control">
@@ -85,11 +61,13 @@
                                             </button>
                                         </div>
                                     </form>
+                                    <!-- end: search bar -->
                                 </header>
+
                                 <div class="card-table">
                                     <div class="content">
-                                        <table class="table is-fullwidth is-striped"
-                                               aria-describedby="table of all games in database">
+                                        <!-- game table -->
+                                        <table class="table is-fullwidth is-striped">
                                             <tr>
                                                 <th scope="col" class="has-text-centered px-0 mx-0 ">Edit</th>
                                                 <th scope="col" class="has-text-centered px-0 mx-0 is-hidden-mobile">
@@ -101,20 +79,24 @@
                                             <tbody>
                                             {% for game in filtered_games %}
                                                 <tr>
+                                                    <!-- edit button -->
                                                     <td class="has-text-centered is-vcentered">
                                                         <a href="{% url 'edit_game' game.id %}">
                                                             <i class="fas fa-edit has-text-warning"></i>
                                                         </a>
                                                     </td>
+                                                    <!-- game image -->
                                                     <td class="has-text-centered is-vcentered is-hidden-mobile">
-                                                        <img src="{{ game.header_image_url }}" width="200px"
+                                                        <img class="image-small" src="{{ game.header_image_url }}"
                                                              alt="{{ game.name }} thumbnail">
                                                     </td>
+                                                    <!-- game title -->
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
                                                         <a
                                                                 href="{% url 'game_detail' game.id %}">{{ game.name|title }}
                                                         </a>
                                                     </td>
+                                                    <!-- delete button -->
                                                     <td class="has-text-centered is-vcentered">
                                                         <a href="{% url 'delete_game' game.id %}">
                                                             <i class="far fa-trash-alt has-text-danger"></i>
@@ -124,6 +106,7 @@
                                             {% endfor %}
                                             </tbody>
                                         </table>
+                                        <!-- game table -->
                                     </div>
                                 </div>
                             </div>

@@ -3,13 +3,24 @@ from games.models import Game, Category, Genre, Tag
 
 
 class GameForm(forms.ModelForm):
-
     class Meta:
         model = Game
-        fields = ('name', 'header_image_url', 'release_date',
-                  'developer', 'publisher', 'platforms', 'price',
-                  'discount_percent', 'categories', 'genres', 'featured', 'discounted',
-                  'tags', 'description',)
+        fields = (
+            "name",
+            "header_image_url",
+            "release_date",
+            "developer",
+            "publisher",
+            "platforms",
+            "price",
+            "discount_percent",
+            "categories",
+            "genres",
+            "featured",
+            "discounted",
+            "tags",
+            "description",
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -31,11 +42,22 @@ class GameForm(forms.ModelForm):
         # Make the fullname autofocused
         self.fields["name"].widget.attrs["autofocus"] = True
 
-        inputs = ['name', 'header_image_url', 'release_date',
-                  'developer', 'publisher', 'platforms', 'price', 'discount_percent']
-        multiples = ['categories', 'genres', 'tags']
-        checkboxes = ['featured', 'discounted', ]
-        text_areas = ['description']
+        inputs = [
+            "name",
+            "header_image_url",
+            "release_date",
+            "developer",
+            "publisher",
+            "platforms",
+            "price",
+            "discount_percent",
+        ]
+        multiples = ["categories", "genres", "tags"]
+        checkboxes = [
+            "featured",
+            "discounted",
+        ]
+        text_areas = ["description"]
 
         for field_name, field in self.fields.items():
             if field_name in inputs:
@@ -51,12 +73,11 @@ class GameForm(forms.ModelForm):
                 field.widget.attrs["multiple"] = True
                 field.widget.attrs["size"] = 6
 
-            if field_name in 'category_multi':
+            if field_name in "category_multi":
                 field.choices = categories_friendly_names
 
-            if field_name in 'genre_multi':
+            if field_name in "genre_multi":
                 field.choices = genres_friendly_names
 
-            if field_name in 'tag_multi':
+            if field_name in "tag_multi":
                 field.choices = tags_friendly_names
-

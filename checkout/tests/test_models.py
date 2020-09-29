@@ -41,6 +41,9 @@ class TestCheckoutModels(TestCase):
             country="United Kingdom",
         )
         temp_line_item = OrderLineItem.objects.create(order=temp_order, game=temp_game)
-        self.assertEqual(temp_line_item.line_item_total.quantize(two_dec_places), temp_game.price.quantize(two_dec_places))
+        self.assertEqual(
+            temp_line_item.line_item_total.quantize(two_dec_places),
+            temp_game.price.quantize(two_dec_places),
+        )
         self.assertEqual(temp_line_item.order.order_number, temp_order.order_number)
         self.assertEqual(temp_line_item.order.line_items.count(), 1)

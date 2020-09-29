@@ -1,0 +1,36 @@
+<div class="info-tiles">
+    <div class="tile is-ancestor has-text-centered">
+        <!-- all users link -->
+        <a class="tile is-parent" href="{% url 'user_management' %}">
+            <div class="tile is-child box">
+                <p class="title">{{ all_users.count }}</p>
+                <p class="subtitle">Users</p>
+            </div>
+        </a>
+
+        <!-- all games link -->
+        <a class="tile is-parent" href="{% url 'games_management' %}">
+            <div class="tile is-child box">
+                <p class="title">{{ all_games.count }}</p>
+                <p class="subtitle">Games</p>
+            </div>
+        </a>
+
+        <!-- all orders link -->
+        <a class="tile is-parent" href="{% url 'order_management' %}">
+            <div class="tile is-child box">
+                <p class="title">{{ all_orders.count }}</p>
+                <p class="subtitle">Orders</p>
+            </div>
+        </a>
+
+        <!-- Total sales -->
+        <div class="tile is-parent">
+            <div class="tile is-child box">
+                <p class="title">£ {{ total_sales }}</p>
+                <p class="subtitle">Total Sales</p>
+            </div>
+        </div>
+
+    </div>
+</div>

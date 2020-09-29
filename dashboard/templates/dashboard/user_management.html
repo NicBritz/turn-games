@@ -15,36 +15,9 @@
                             </div>
                         </div>
                     </section>
-                    <section class="info-tiles">
-                        <div class="tile is-ancestor has-text-centered">
 
-                            <a class="tile is-parent" href="{% url 'user_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_users.count }}</p>
-                                    <p class="subtitle">Users</p>
-                                </article>
-                            </a>
-
-                            <a class="tile is-parent" href="{% url 'games_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_games.count }}</p>
-                                    <p class="subtitle">Games</p>
-                                </article>
-                            </a>
-                            <a class="tile is-parent" href="{% url 'order_management' %}">
-                                <article class="tile is-child box">
-                                    <p class="title">{{ all_orders.count }}</p>
-                                    <p class="subtitle">Orders</p>
-                                </article>
-                            </a>
-                            <div class="tile is-parent">
-                                <article class="tile is-child box">
-                                    <p class="title">£ {{ total_sales }}</p>
-                                    <p class="subtitle">Total Sales</p>
-                                </article>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- include info tiles -->
+                    {% include 'includes/info_tiles.html' %}
 
                     <div class="columns is-multiline is-mobile is-justified-center">
                         <div class="my-3">
@@ -92,7 +65,7 @@
                                             {% for user in filtered_users %}
                                                 <tr>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium ">
-                                                                {{ user.username|title }}
+                                                        {{ user.username|title }}
                                                     </td>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
                                                         {{ user.last_login }}
