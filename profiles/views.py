@@ -9,13 +9,14 @@ from .forms import UserProfileForm
 @login_required
 def profile(request):
     """
-    Display the user's profile
+    Display the user's profile page
     """
     # get the users profile
-    profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
-        profile_form = UserProfileForm(request.POST, instance=profile)
+        # update the users profile
+        profile_form = UserProfileForm(request.POST, instance=user_profile)
         if profile_form.is_valid():
             profile_form.save()
             messages.success(request, "Profile updated successfully!")
@@ -25,19 +26,21 @@ def profile(request):
             )
     else:
         # add users data to the profile form
-        profile_form = UserProfileForm(instance=profile)
+        profile_form = UserProfileForm(instance=user_profile)
 
     # find all previous orders
-    previous_orders = profile.orders.all().order_by('-date')
+    previous_orders = user_profile.orders.all().order_by("-date")
 
-    template = "profiles/profile.html"
     context = {"profile_form": profile_form, "previous_orders": previous_orders}
 
-    return render(request, template, context)
+    return render(request, "profiles/profile.html", context)
 
 
 @login_required
 def order_history(request, order_number):
+    """
+        display a previously successful order
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(

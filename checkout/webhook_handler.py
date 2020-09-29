@@ -97,7 +97,7 @@ class StripeWH_Handler:
                     # get the game record
                     game = Game.objects.get(id=current_game)
                     # add a record to the line items
-                    order_line_item = OrderLineItem(order=order, game=game, )
+                    order_line_item = OrderLineItem(order=order, game=game,)
                     # save the record
                     order_line_item.save()
             except Exception as e:

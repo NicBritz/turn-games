@@ -5,7 +5,7 @@ from .models import Game, Category, Genre, Tag
 
 
 def all_games(request):
-    """ returns the all products view  """
+    """ returns the all games view filter dependant """
 
     query = None
     category = None
@@ -17,22 +17,21 @@ def all_games(request):
     direction = None
 
     games = Game.objects.all()
-
     # check if the request is a get request
     if request.GET:
-
         # sorting and ordering
         if "sort" in request.GET:
             sort_key = request.GET["sort"]
             sort = sort_key
-            if sort == 'price':
-                sort_key = 'price_discounted'
+            # factor in discounts when sorting
+            if sort == "price":
+                sort_key = "price_discounted"
 
             if "direction" in request.GET:
                 direction = request.GET["direction"]
                 if direction == "desc":
                     sort_key = f"-{sort_key}"
-            # order teh games according to the selection
+            # order the games according to the selection
             games = games.order_by(sort_key)
 
         # check if filtering by category
@@ -40,7 +39,6 @@ def all_games(request):
             category = request.GET["category"]
 
             if category == "all":
-                games = Game.objects.all()
                 current_selection = "All"
             else:
                 games = games.filter(categories__name__iexact=category)
@@ -58,7 +56,7 @@ def all_games(request):
             games = games.filter(tags__name__iexact=tag)
             current_selection = Tag.objects.filter(name__iexact=tag)
 
-        # check if filtering by discount1
+        # check if filtering by discount
         if "special_offers" in request.GET:
             offer = request.GET["special_offers"]
 
@@ -99,7 +97,6 @@ def all_games(request):
 
 def game_detail(request, game_id):
     """ returns the game detail view with all the games information """
-
     game = get_object_or_404(Game, pk=game_id)
 
     context = {
@@ -110,16 +107,16 @@ def game_detail(request, game_id):
 
 
 def rate_game(request, game_id, rating):
-    """ Adds a rating to a game """
+    """ Adds a rating to a game as long as the user is logged in """
 
     game = get_object_or_404(Game, pk=game_id)
 
     if request.user.is_authenticated:
-        if rating == '1':
+        if rating == "1":
             game.positive_ratings += 1
             messages.success(request, "Added a positive rating!")
             game.save()
-        elif rating == '0':
+        elif rating == "0":
             game.negative_ratings += 1
             messages.success(request, "Added a negative rating!")
             game.save()

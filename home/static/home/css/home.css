@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* flickity - main slider */
 
 /* Main container */
@@ -13,12 +20,12 @@
     bottom: -15px;
 }
 
-/* dots are lines */
+/* dots are small */
 .flickity-page-dots .dot {
     height: 5px;
     width: 5px;
     margin: 5px;
-    background: #fff;
+    background: #cdcdcd;
 }
 
 /* slider image */
@@ -37,7 +44,8 @@
     width: 50%;
 }
 
-.container{
+/* restrict container */
+.container {
     max-width: 1152px;
 }
 
@@ -55,6 +63,6 @@
 }
 
 /* slider arrows */
-.flickity-button{
+.flickity-button {
     background: none;
 }

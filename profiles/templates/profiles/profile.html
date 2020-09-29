@@ -3,7 +3,7 @@
 
 <!-- custom css imports -->
 {% block custom-css %}
-    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}" xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}" >
 {% endblock %}
 
 {% block content %}
@@ -51,43 +51,43 @@
                             <form action="{% url "profile" %}" method="POST" id="profile-form">
                                 {% csrf_token %}
                                 <!-- Phone Number -->
-                                <label for="profile_form.default_phone_number id_for_label"
+                                <label for="{{ profile_form.default_phone_number.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Phone Number
                                 </label>
                                 {{ profile_form.default_phone_number }}
                                 <!-- default street address1 -->
-                                <label for="profile_form.default_street_address1.id_for_label"
+                                <label for="{{ profile_form.default_street_address1.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Street Address 1
                                 </label>
                                 {{ profile_form.default_street_address1 }}
                                 <!-- default street address2 -->
-                                <label for="profile_form.default_street_address2.id_for_label"
+                                <label for="{{ profile_form.default_street_address2.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Street Address 2
                                 </label>
                                 {{ profile_form.default_street_address2 }}
                                 <!-- Town or city -->
-                                <label for="profile_form.default_town_or_city.id_for_label"
+                                <label for="{{ profile_form.default_town_or_city.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Town or City
                                 </label>
                                 {{ profile_form.default_town_or_city }}
                                 <!-- County -->
-                                <label for="profile_form.default_county.id_for_label"
+                                <label for="{{ profile_form.default_county.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     County
                                 </label>
                                 {{ profile_form.default_county }}
                                 <!-- Postcode -->
-                                <label for="profile_form.default_postcode.id_for_label"
+                                <label for="{{ profile_form.default_postcode.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Postcode
                                 </label>
                                 {{ profile_form.default_postcode }}
                                 <!-- Country -->
-                                <label for="order_form.default_country.id_for_label"
+                                <label for="{{ profile_form.default_country.id_for_label }}"
                                        class="label has-text-grey mt-3 has-text-weight-medium">
                                     Country
                                 </label>
@@ -107,8 +107,7 @@
                 </div>
                 <div class="column is-10-mobile is-8-desktop has-text-grey mt-3 ">
                     <h3 class="has-text-white is-size-4 has-text-weight-medium mb-4">Previous Orders</h3>
-                    <table class="table has-background-black-ter has-text-white is-fullwidth "
-                           aria-describedby="table of previous orders">
+                    <table class="table has-background-black-ter has-text-white is-fullwidth">
                         <tr>
                             <!-- Orders table headers -->
                             <th scope="col" class="has-text-white">Order Number</th>
@@ -136,5 +135,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

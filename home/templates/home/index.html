@@ -5,10 +5,11 @@
 {% block custom-css %}
     <!-- Flickity - css for image slider -->
     <link rel="stylesheet" href="{% static 'home/css/flickity.css' %}">
+    <!-- homepage css -->
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
-<!-- custom pre javascript imports -->
+<!-- custom preload javascript imports -->
 {% block custom-js %}
     <!-- Flickity JavaScript src: https://flickity.metafizzy.co/ -->
     <script src="{% static 'home/js/flickity.pkgd.min.js' %}"></script>
@@ -20,43 +21,47 @@
         <div class="section mt-5 mb-0 pb-0">
             <div class="columns is-mobile is-multiline is-justified-center">
                 <div class="column is-12">
-                    <div class=" main-slider ">
+                    <div class="main-slider">
                         <div class="carousel has-background-black-bis">
-
                             <!-- random 10 games in main slider -->
                             {% for game in random_slider_content %}
-                                <a class="carousel-cell has-text-left px-3 py-3 " href="{% url 'games' %}{{ game.id }}">
+                                <a class="carousel-cell has-text-left px-3 py-3"
+                                   href="{% url 'games' %}{{ game.id }}" aria-label="link to game">
+                                    <!-- Desktop View -->
                                     <div class="hide-mobile">
+                                        <!-- slider image -->
                                         <img class="image slider-img" src="{{ game.header_image_url }}"
-                                             alt="{{ game.name }}"/>
+                                             alt="{{ game.name }} image"/>
+                                        <!-- slider description -->
                                         <span class="has-text-white is-right has-background-black-bis
                                     is-size-6 has-text-weight-medium slider-text pr-6 pl-3 py-6">
                                         {{ game.description }}
                                     </span>
-                                        <!-- Discount Ribbon-->
+                                        <!-- Discount Ribbon -->
                                         <div class="ribbon-box">
                                             <div class="ribbon ribbon-slider">
-                                                    <span>
-                                                        {% if game.discounted %}
-                                                            - {{ game.discount_percent|floatformat }}%
-                                                        {% endif %}
-                                                    </span>
+                                                <span>
+                                                    {% if game.discounted %}
+                                                        - {{ game.discount_percent|floatformat }}%
+                                                    {% endif %}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- END: Desktop View -->
+                                    <!-- Mobile View -->
                                     <div class="hide-desktop show-mobile-block">
                                         <img class="image is-fullwidth slider-img mx-auto"
                                              src="{{ game.header_image_url }}"
-                                             alt="{{ game.name }}"/>
-                                        <p class="has-text-white is-z-60 is-line-1 my-3 px-5 py-3 has-background-black-bis
+                                             alt="{{ game.name }} image"/>
+                                        <p class="has-text-white is-z-60 my-3 px-5 py-3 has-background-black-bis
                                     is-size-6 has-text-weight-medium">
                                             {{ game.description }}
                                         </p>
                                     </div>
-
                                 </a>
-
                             {% endfor %}
+                            <!-- END: random 10 games in main slider -->
                         </div>
                     </div>
                 </div>
@@ -64,10 +69,10 @@
         </div>
         <!-- END: main flickity carousel slider -->
 
+        <!-- heading section -->
         <div class="section mt-0 pt-0">
             <div class="columns mb-0">
-                <!-- hearer section -->
-                <div class="column ">
+                <div class="column">
                     <hr class="has-background-grey-lighter my-1">
                 </div>
                 <div class="column has-text-centered is-narrow">
@@ -77,8 +82,8 @@
                     <hr class="has-background-grey-lighter my-1">
                 </div>
             </div>
-            <!-- END: hearer section -->
         </div>
+        <!-- END: heading section -->
 
         <!-- Game cards section -->
         <div class="section py-0 mt-0">
@@ -87,7 +92,8 @@
                     <div class="columns is-multiline is-mobile is-justified-center">
                         {% for game in featured_specials %}
                             <div class="column is-10-mobile is-8-tablet is-4-desktop">
-                                <a href="{% url 'game_detail' game.id %}" class="game-card">
+                                <a href="{% url 'game_detail' game.id %}"
+                                   class="game-card" aria-label="link to game">
                                     <div class="card is-max-500 mx-auto">
                                         <!-- Discount Ribbon-->
                                         <div class="ribbon-box">
@@ -125,14 +131,16 @@
                                             <footer class="card-footer">
                                                 <!-- Game ratings -->
                                                 <div class="card-footer-item has-background-black has-text-white px-0">
-                                                    <p
-                                                            class="pr-2 is-size-7 has-text-weight-medium"><span><i
-                                                            class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i></span>{{ game.positive_ratings }}
+                                                    <p class="pr-2 is-size-7 has-text-weight-medium">
+                                                        <span>
+                                                            <i class="fas fa-thumbs-up mr-1 has-text-success is-size-6"></i>
+                                                        </span>
+                                                        {{ game.positive_ratings }}
                                                     </p>
                                                     <p class="pr-3 is-size-7 has-text-weight-medium">
-                                                <span>
-                                                <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
-                                            </span>{{ game.negative_ratings }}
+                                                        <span>
+                                                        <i class="fas fa-thumbs-down mr-1 has-text-danger-dark is-size-6"></i>
+                                                        </span>{{ game.negative_ratings }}
                                                     </p>
                                                 </div>
                                                 <!-- END: Game ratings -->
@@ -174,12 +182,10 @@
         </div>
         <!-- END: Game cards section -->
     </div>
-
-
 {% endblock %}
 
 {% block post-custom-js %}
     {{ block.super }}
-    {#  Homepage Script #}
+    <!-- Homepage Script -->
     <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}

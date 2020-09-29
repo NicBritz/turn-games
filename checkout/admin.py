@@ -11,6 +11,8 @@ class OrderLineItemAdminInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """  setup teh order database in the admin panel """
+
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = (
@@ -19,7 +21,7 @@ class OrderAdmin(admin.ModelAdmin):
         "order_total",
         "grand_total",
         "stripe_pid",
-        "original_cart"
+        "original_cart",
     )
 
     fields = (
@@ -38,7 +40,7 @@ class OrderAdmin(admin.ModelAdmin):
         "postcode",
         "county",
         "country",
-        "original_cart"
+        "original_cart",
     )
 
     list_display = (

@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
 from games.models import Game
 
 
@@ -31,7 +30,7 @@ def add_to_cart(request, game_id):
 
     except Exception as e:
         messages.error(request, f"Error adding item: {e}")
-        return HttpResponse(status=500)
+        return redirect("/cart/")
 
     return redirect("/cart/")
 
@@ -39,7 +38,7 @@ def add_to_cart(request, game_id):
 def remove_from_cart(request, game_id):
     """ Removes a game from the cart using the game_id """
     try:
-
+        # get the game if it exists
         game = get_object_or_404(Game, pk=game_id)
 
         cart = request.session.get("cart", [])
@@ -50,11 +49,11 @@ def remove_from_cart(request, game_id):
             messages.warning(request, f"Removed {game.name} from your cart!")
         else:
             # Error message
-            messages.error(request, f"Game not found in your cart!")
+            messages.error(request, "Game not found in your cart!")
         # update the session list
         request.session["cart"] = cart
     except Exception as e:
         messages.error(request, f"Error removing item: {e}")
-        return HttpResponse(status=500)
+        return redirect("/cart/")
 
     return redirect("/cart/")

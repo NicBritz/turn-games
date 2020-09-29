@@ -1,0 +1,232 @@
+.
+├── cart
+│   ├── admin.py
+│   ├── apps.py
+│   ├── contexts.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── models.py
+│   ├── templates
+│   │   └── cart
+│   │       └── cart.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── checkout
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── models.py
+│   ├── signals.py
+│   ├── static
+│   │   └── checkout
+│   │       ├── css
+│   │       │   └── checkout.css
+│   │       └── js
+│   │           └── stripe_elements.js
+│   ├── templates
+│   │   └── checkout
+│   │       ├── checkout.html
+│   │       ├── checkout_success.html
+│   │       └── confirmation_emails
+│   │           ├── confirmation_body.txt
+│   │           └── confirmation_subject.txt
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── webhook_handler.py
+│   └── webhooks.py
+├── custom_storages.py
+├── dashboard
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── models.py
+│   ├── static
+│   │   └── dashboard
+│   │       ├── css
+│   │       │   └── dashboard.css
+│   │       └── js
+│   │           ├── cloudinary.js
+│   │           └── dashboard.js
+│   ├── templates
+│   │   ├── dashboard
+│   │   │   ├── add_game.html
+│   │   │   ├── dashboard_base.html
+│   │   │   ├── dashboard.html
+│   │   │   ├── edit_game.html
+│   │   │   ├── games_management.html
+│   │   │   ├── order_management.html
+│   │   │   ├── order_view.html
+│   │   │   └── user_management.html
+│   │   └── includes
+│   │       └── dashboard_nav.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── docs
+├── games
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   ├── categories.json
+│   │   ├── games.json
+│   │   ├── genres.json
+│   │   └── tags.json
+│   ├── __init__.py
+│   ├── migrations  
+│   ├── models.py
+│   ├── static
+│   │   └── games
+│   │       └── js
+│   │           └── games.js
+│   ├── templates
+│   │   ├── games
+│   │   │   ├── game_detail.html
+│   │   │   └── games.html
+│   │   └── includes
+│   │       └── sort_dropdown.html
+│   ├── test_models.py
+│   ├── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── home
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── static
+│   │   └── home
+│   │       ├── css
+│   │       │   ├── flickity.css
+│   │       │   └── home.css
+│   │       └── js
+│   │           ├── flickity.pkgd.min.js
+│   │           └── home.js
+│   ├── templates
+│   │   └── home
+│   │       └── index.html
+│   ├── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+├── media
+│   ├── header_cfLI7C5.jpg
+│   └── header.jpg
+├── Procfile
+├── profiles
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── models.py
+│   ├── static
+│   │   └── profiles
+│   │       └── css
+│   │           └── profile.css
+│   ├── templates
+│   │   └── profiles
+│   │       └── profile.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── __pycache__
+│   └── custom_storages.cpython-38.pyc
+├── README.md
+├── requirements.txt
+├── static
+│   ├── css
+│   │   ├── all_auth.css
+│   │   └── base.css
+│   ├── images
+│   │   ├── turn-games-full-logo.webp
+│   │   ├── turn-games-logo.svg
+│   │   ├── turn-games-text.png
+│   │   └── turn-games-text.webp
+│   └── js
+│       └── base.js
+├── templates
+│   ├── 404.html
+│   ├── 500.html
+│   ├── allauth
+│   │   ├── account
+│   │   │   ├── account_inactive.html
+│   │   │   ├── base.html
+│   │   │   ├── email
+│   │   │   │   ├── email_confirmation_message.txt
+│   │   │   │   ├── email_confirmation_signup_message.txt
+│   │   │   │   ├── email_confirmation_signup_subject.txt
+│   │   │   │   ├── email_confirmation_subject.txt
+│   │   │   │   ├── password_reset_key_message.txt
+│   │   │   │   └── password_reset_key_subject.txt
+│   │   │   ├── email_confirm.html
+│   │   │   ├── email.html
+│   │   │   ├── login.html
+│   │   │   ├── logout.html
+│   │   │   ├── messages
+│   │   │   │   ├── cannot_delete_primary_email.txt
+│   │   │   │   ├── email_confirmation_sent.txt
+│   │   │   │   ├── email_confirmed.txt
+│   │   │   │   ├── email_deleted.txt
+│   │   │   │   ├── logged_in.txt
+│   │   │   │   ├── logged_out.txt
+│   │   │   │   ├── password_changed.txt
+│   │   │   │   ├── password_set.txt
+│   │   │   │   ├── primary_email_set.txt
+│   │   │   │   └── unverified_primary_email.txt
+│   │   │   ├── password_change.html
+│   │   │   ├── password_reset_done.html
+│   │   │   ├── password_reset_from_key_done.html
+│   │   │   ├── password_reset_from_key.html
+│   │   │   ├── password_reset.html
+│   │   │   ├── password_set.html
+│   │   │   ├── signup_closed.html
+│   │   │   ├── signup.html
+│   │   │   ├── snippets
+│   │   │   │   └── already_logged_in.html
+│   │   │   ├── verification_sent.html
+│   │   │   └── verified_email_required.html
+│   │   ├── base.html
+│   │   └── socialaccount
+│   │       ├── authentication_error.html
+│   │       ├── base.html
+│   │       ├── connections.html
+│   │       ├── login_cancelled.html
+│   │       ├── messages
+│   │       │   ├── account_connected_other.txt
+│   │       │   ├── account_connected.txt
+│   │       │   ├── account_connected_updated.txt
+│   │       │   └── account_disconnected.txt
+│   │       ├── signup.html
+│   │       └── snippets
+│   │           ├── login_extra.html
+│   │           └── provider_list.html
+│   ├── base.html
+│   └── includes
+│       ├── footer.html
+│       ├── main-nav.html
+│       ├── messages
+│       │   ├── message_error.html
+│       │   ├── message_info.html
+│       │   ├── message_success.html
+│       │   └── message_warning.html
+│       └── messages.html
+├── tree.txt
+└── turn_games
+    ├── asgi.py
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-38.pyc
+    │   ├── settings.cpython-38.pyc
+    │   ├── urls.cpython-38.pyc
+    │   └── wsgi.cpython-38.pyc
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+
+78 directories, 282 files

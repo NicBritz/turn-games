@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-{% load  static %}
 
 {% block content %}
     <div class="container pt-3">
         <div class="section mt-0 pt-0">
             <div class="columns mb-0">
-                <!-- hearer section -->
+                <!-- heading section -->
                 <div class="column ">
                     <hr class="has-background-grey-lighter">
                 </div>
@@ -16,7 +15,7 @@
                     <hr class="has-background-grey-lighter">
                 </div>
             </div>
-            <!-- END: hearer section -->
+            <!-- END: heading section -->
             <!-- Checkout Steps -->
             <div class="columns is-mobile">
                 <div class="column">
@@ -55,8 +54,7 @@
                 <!-- Cart table (excl. mobile) -->
                 <div class="column is-8 hide-mobile show-desktop-block">
                     {% if cart_items %}
-                        <table class="table has-background-black-ter has-text-white is-fullwidth "
-                               aria-describedby="table of items in shopping cart">
+                        <table class="table has-background-black-ter has-text-white is-fullwidth ">
                             <tr>
                                 <!-- Cart table headers -->
                                 <th scope="col"></th>
@@ -74,10 +72,12 @@
                                             <i class="fas fa-times has-text-danger mr-1"></i>
                                         </a>
                                     </td>
-                                    <!-- Game image -->
+                                    <!-- Game image link -->
                                     <td class="is-vcentered image-small px-0">
-                                        <img class="image " src="{{ item.game.header_image_url }}"
-                                             alt="{{ item.game.name }} image">
+                                        <a href="{% url 'game_detail' item.game.id %}">
+                                            <img class="image " src="{{ item.game.header_image_url }}"
+                                                 alt="{{ item.game.name }} image">
+                                        </a>
                                     </td>
                                     <!-- Game name -->
                                     <td class="is-vcentered px-0">
@@ -141,8 +141,7 @@
             <!-- Cart table ( mobile) -->
             <div class="column is-12 hide-desktop show-mobile-block">
                 {% if cart_items %}
-                    <table class="table has-background-black-ter has-text-white is-fullwidth"
-                           aria-describedby="table of items in shopping cart">
+                    <table class="table has-background-black-ter has-text-white is-fullwidth">
                         <tr>
                             <!-- Cart table headers -->
                             <th scope="col" class="has-text-white"></th>

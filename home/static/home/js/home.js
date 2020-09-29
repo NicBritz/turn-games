@@ -7,6 +7,5 @@ $(document).ready(function () {
         autoPlay: 5000,
         wrapAround: true,
     });
-
 });
 

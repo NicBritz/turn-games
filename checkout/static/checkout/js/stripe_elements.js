@@ -114,7 +114,7 @@ paymentForm.addEventListener('submit', function (event) {
     }).fail(function () {
         // reload the page if all else fails
         location.reload();
-    })
+    });
 });
 
 

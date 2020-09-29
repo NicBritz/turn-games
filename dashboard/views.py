@@ -32,7 +32,7 @@ def dashboard(request):
     orders_per_month = []
 
     last_month = timezone.now() - timedelta(days=30)
-
+    # calculate the number of orders per day
     orders_per_day = (
         all_orders.filter(date__gt=last_month)
         .extra(select={"day": "date(date)"})
@@ -70,7 +70,8 @@ def add_game(request):
         return redirect(reverse("home"))
 
     if request.method == "POST":
-        game_form = GameForm(request.POST, request.FILES)
+        # add a game using the game form data
+        game_form = GameForm(request.POST)
         if game_form.is_valid():
             game = game_form.save()
             messages.success(request, "Successfully added the Game!")
@@ -100,6 +101,7 @@ def edit_game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
 
     if request.method == "POST":
+        # edit a game using the form data
         game_form = GameForm(request.POST, request.FILES, instance=game)
         if game_form.is_valid():
             game = game_form.save()
@@ -139,6 +141,11 @@ def delete_game(request, game_id):
 
 @login_required
 def games_management(request):
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     """ Game management view """
     all_games = Game.objects.all()
     all_users = User.objects.all()
@@ -177,6 +184,11 @@ def games_management(request):
 
 @login_required
 def user_management(request):
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     """ User management view """
     all_games = Game.objects.all()
     all_users = User.objects.all()
@@ -231,6 +243,11 @@ def delete_user(request, user_id):
 @login_required
 def order_management(request):
     """ User management view """
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     all_games = Game.objects.all()
     all_users = User.objects.all()
     all_orders = Order.objects.all()
@@ -248,7 +265,7 @@ def order_management(request):
         # If the user has not entered any text display an error
         if not query:
             messages.error(request, "No search text entered!")
-            return redirect(reverse("user_management"))
+            return redirect(reverse("order_management"))
 
         # filter search based on name
         filtered_orders = all_orders.filter(Q(order_number__icontains=query))
@@ -268,6 +285,12 @@ def order_management(request):
 @login_required
 def order_view(request, order_number):
     """ render the success view """
+
+    # redirect to home if not superuser
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only admin uses can do that.")
+        return redirect(reverse("home"))
+
     order = get_object_or_404(Order, order_number=order_number)
     order_tax = order.grand_total - order.order_total
 

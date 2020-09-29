@@ -5,7 +5,7 @@ from games.models import Game
 
 
 def cart_contents(request):
-    """ bag contents context processor to keep track of bag items """
+    """ contents context processor to keep track of cart items """
     cart = request.session.get("cart", [])
     cart_items = []
     total = 0
@@ -20,7 +20,6 @@ def cart_contents(request):
         discounted_price = game.price - discount
         # add the price to the total
         total += discounted_price
-
         # append the values to the cart items list
         cart_items.append(
             {"game_id": game.id, "game_discount_price": discounted_price, "game": game,}
