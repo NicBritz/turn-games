@@ -26,7 +26,8 @@ class GameForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # make category list friendly names
         categories = Category.objects.all()
-        categories_friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
+        categories_friendly_names = [
+            (c.id, c.get_friendly_name()) for c in categories]
         self.fields["categories"].choices = categories_friendly_names
 
         # make genre list friendly names

@@ -10,7 +10,7 @@ class TestProfileViews(TestCase):
     def setUp(self):
         """ Create a temporary user """
         user_model = get_user_model()
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             "bobby", "temporary@gmail.com", "temporary"
         )
 
@@ -49,7 +49,7 @@ class TestProfileViews(TestCase):
         """ invalid updates the userprofile """
         self.client.login(username="bobby", password="temporary")
         data = {
-            "default_phone_number": "123454444445358390458903859038905839085093895034"
+            "default_phone_number": "12345444444535839045890"
         }
         response = self.client.post("/profile/", data, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -89,7 +89,8 @@ class TestProfileViews(TestCase):
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "info")
         self.assertTrue(
-            f"This is a past confirmation for order number {temp_order.order_number}."
+            f"This is a past confirmation for order number "
+            f"{temp_order.order_number}."
             in message.message
         )
         self.assertTemplateUsed(response, "checkout/checkout_success.html")

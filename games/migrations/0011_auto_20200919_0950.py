@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='game',
             name='release_date',
-            field=models.DateField(blank=True, default=datetime.date.today, null=True),
+            field=models.DateField(
+                blank=True, default=datetime.date.today, null=True),
         ),
     ]

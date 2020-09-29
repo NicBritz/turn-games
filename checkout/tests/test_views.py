@@ -10,7 +10,7 @@ class TestCheckoutViews(TestCase):
     def setUp(self):
         """ Create a temporary user """
         user_model = get_user_model()
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             "bobby", "temporary@gmail.com", "temporary"
         )
 
@@ -49,7 +49,8 @@ class TestCheckoutViews(TestCase):
         )
         OrderLineItem.objects.create(order=temp_order, game=temp_game)
         response = self.client.get(
-            f"/checkout/checkout_success/{temp_order.order_number}", follow=True
+            f"/checkout/checkout_success/{temp_order.order_number}",
+            follow=True
         )
         self.assertEqual(response.status_code, 200)
         # get message from context and check that expected text is there

@@ -1,6 +1,7 @@
 /* Global styles */
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     /* main font */
     font-family: 'Montserrat', serif;
     margin: 0;
@@ -40,6 +41,8 @@ html {
 }
 
 .dropdown-content {
+    width: -webkit-max-content;
+    width: -moz-max-content;
     width: max-content;
     max-width: 250px;
     max-height: 60vh;
@@ -111,13 +114,17 @@ html {
     text-transform: uppercase;
     text-align: center;
     line-height: 21px;
-    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     width: 100px;
     display: block;
     background: #79A70A;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9BC90D), to(#79A70A));
+    background: -o-linear-gradient(#9BC90D 0%, #79A70A 100%);
     background: linear-gradient(#9BC90D 0%, #79A70A 100%);
-    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+            box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
     position: absolute;
     top: 19px;
     right: -21px;
@@ -212,6 +219,8 @@ html {
 
 /* show account and cart buttons in navbar */
 .button-navbar {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
 }
 
@@ -228,8 +237,11 @@ html {
 }
 
 .card:hover, .box:hover {
-    box-shadow: 0 0 8px 4px #393939;
-    transform: scale(1.01);
+    -webkit-box-shadow: 0 0 8px 4px #393939;
+            box-shadow: 0 0 8px 4px #393939;
+    -webkit-transform: scale(1.01);
+        -ms-transform: scale(1.01);
+            transform: scale(1.01);
 }
 
 .old-price {
@@ -243,7 +255,9 @@ html {
 }
 
 .is-justified-center {
-    justify-content: center !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
 }
 
 .mx-auto {
@@ -330,6 +344,8 @@ html {
 
     /* enable mobile search form */
     #mobile-search-and-buttons-bar, #social-buttons-bar {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
 
@@ -360,7 +376,9 @@ html {
     }
 
     .menu-button-group {
-        justify-content: normal !important;
+        -webkit-box-pack: normal !important;
+            -ms-flex-pack: normal !important;
+                justify-content: normal !important;
     }
 
     .menu-button {
@@ -394,5 +412,4 @@ html {
         margin: 0;
     }
 }
-
 

@@ -34,5 +34,8 @@ class TestDashboardForms(TestCase):
         self.assertEqual(form.errors["name"][0], "This field is required.")
 
     def test_valid_form(self):
-        form = GameForm({"name": "test", "description": "test data", "price": "10.00", })
+        form = GameForm({"name": "test",
+                         "description": "test data",
+                         "price": "10.00",
+                         })
         self.assertTrue(form.is_valid())

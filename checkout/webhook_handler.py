@@ -21,7 +21,8 @@ class StripeWH_Handler:
         """
         customer_email = order.email
         subject = render_to_string(
-            "checkout/confirmation_emails/confirmation_subject.txt", {"order": order}
+            "checkout/confirmation_emails/confirmation_subject.txt",
+            {"order": order}
         )
         body = render_to_string(
             "checkout/confirmation_emails/confirmation_body.txt",
@@ -59,7 +60,9 @@ class StripeWH_Handler:
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    grand_total=grand_total, stripe_pid=intent_id, original_cart=cart,
+                    grand_total=grand_total,
+                    stripe_pid=intent_id,
+                    original_cart=cart,
                 )
                 order_exists = True
                 break
@@ -72,7 +75,8 @@ class StripeWH_Handler:
             # send confirmation email
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} | '
+                        f'SUCCESS: Verified order already in database',
                 status=200,
             )
         else:
@@ -109,7 +113,8 @@ class StripeWH_Handler:
                 )
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} '
+                    f'| SUCCESS: Created order in webhook',
             status=200,
         )
 
@@ -117,4 +122,5 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.payment_failed webhook from Stripe
         """
-        return HttpResponse(content=f'webhook received: {event["type"]}', status=200)
+        return HttpResponse(content=f'webhook received: {event["type"]}',
+                            status=200)

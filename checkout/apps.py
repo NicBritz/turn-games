@@ -6,4 +6,4 @@ class CheckoutConfig(AppConfig):
 
     # Activate signals once ready
     def ready(self):
-        import checkout.signals
+        import checkout.signals  # noqa: F401

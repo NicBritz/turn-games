@@ -13,6 +13,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='game',
             name='discounted_price',
-            field=models.DecimalField(blank=True, decimal_places=2, default=0, editable=False, max_digits=6, null=True),
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                default=0,
+                editable=False,
+                max_digits=6,
+                null=True),
         ),
     ]

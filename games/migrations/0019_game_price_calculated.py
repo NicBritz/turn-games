@@ -13,6 +13,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='game',
             name='price_calculated',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=6),
+            field=models.DecimalField(
+                decimal_places=2,
+                default=0,
+                max_digits=6),
         ),
     ]

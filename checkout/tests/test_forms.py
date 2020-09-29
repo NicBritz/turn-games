@@ -36,7 +36,8 @@ class TestCheckoutForms(TestCase):
         )
         self.assertFalse(form.is_valid())
         self.assertIn("full_name", form.errors.keys())
-        self.assertEqual(form.errors["full_name"][0], "This field is required.")
+        self.assertEqual(
+            form.errors["full_name"][0], "This field is required.")
 
     def test_valid_form(self):
         form = OrderForm(

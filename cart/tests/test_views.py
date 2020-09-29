@@ -13,6 +13,7 @@ class TestCartViews(TestCase):
 
     # return 404 if url incorrect
     def test_get_view_cart_404(self):
+        # noinspection SpellCheckingInspection
         response = self.client.get("/cart/afsd")
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, "404.html")
@@ -27,7 +28,8 @@ class TestCartViews(TestCase):
         # get message from context and check that expected text is there
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "success")
-        self.assertTrue(f"Added {temp_game.name} to your cart!" in message.message)
+        self.assertTrue(f"Added {temp_game.name} "
+                        f"to your cart!" in message.message)
         self.assertTemplateUsed(response, "cart/cart.html")
 
     def test_add_to_cart_twice(self):
@@ -41,7 +43,8 @@ class TestCartViews(TestCase):
         # get message from context and check that expected text is there
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")
-        self.assertTrue(f"{temp_game.name} is already in your cart!" in message.message)
+        self.assertTrue(f"{temp_game.name} "
+                        f"is already in your cart!" in message.message)
         self.assertTemplateUsed(response, "cart/cart.html")
 
     def test_bad_add_to_cart(self):
@@ -67,7 +70,8 @@ class TestCartViews(TestCase):
         # get message from context
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "warning")
-        self.assertTrue(f"Removed {temp_game.name} from your cart!" in message.message)
+        self.assertTrue(f"Removed {temp_game.name} "
+                        f"from your cart!" in message.message)
         self.assertTemplateUsed(response, "cart/cart.html")
         # attempt to remove game no longer in cart
         response = self.client.get(f"/cart/remove/{temp_game.id}", follow=True)

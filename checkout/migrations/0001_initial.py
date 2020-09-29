@@ -16,23 +16,47 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order_number', models.CharField(editable=False, max_length=32)),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('order_number', models.CharField(
+                    editable=False,
+                    max_length=32)),
                 ('full_name', models.CharField(max_length=50)),
                 ('email', models.EmailField(max_length=254)),
                 ('phone_number', models.CharField(max_length=20)),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('order_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
-                ('grand_total', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
+                ('order_total', models.DecimalField(
+                    decimal_places=2,
+                    default=0,
+                    max_digits=10)),
+                ('grand_total', models.DecimalField(
+                    decimal_places=2,
+                    default=0,
+                    max_digits=10)),
             ],
         ),
         migrations.CreateModel(
             name='OrderLineItem',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('line_item_total', models.DecimalField(decimal_places=2, editable=False, max_digits=6)),
-                ('game', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='games.game')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='line_items', to='checkout.order')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('line_item_total', models.DecimalField(
+                    decimal_places=2,
+                    editable=False,
+                    max_digits=6)),
+                ('game', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='games.game')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='line_items',
+                    to='checkout.order')),
             ],
         ),
     ]

@@ -63,9 +63,13 @@ class Game(models.Model):
         max_length=1024,
         null=True,
         blank=True,
-        default="https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg",
+        default="https://res.cloudinary.com/dajuujhvs/image/"
+                "upload/v1600508372/turn_games/placeholder_if4uza.jpg",
     )
-    release_date = models.DateField(null=True, blank=True, default=datetime.date.today)
+    release_date = models.DateField(
+        null=True,
+        blank=True,
+        default=datetime.date.today)
     developer = models.CharField(max_length=254, null=True, blank=True)
     publisher = models.CharField(max_length=254, null=True, blank=True)
     platforms = models.CharField(max_length=254, null=True, blank=True)

@@ -33,7 +33,7 @@ card.mount("#card-element");
 card.addEventListener("change", function (event) {
     let errorDiv = document.getElementById("card-errors");
     if (event.error) {
-        var html = `
+        let html = `
             <span class="icon" role="alert">
                 <i class="fas fa-times"></i>
             </span>

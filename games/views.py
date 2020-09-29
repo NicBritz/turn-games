@@ -8,10 +8,6 @@ def all_games(request):
     """ returns the all games view filter dependant """
 
     query = None
-    category = None
-    genre = None
-    tag = None
-    search_term = None
     current_selection = None
     sort = None
     direction = None
@@ -42,7 +38,8 @@ def all_games(request):
                 current_selection = "All"
             else:
                 games = games.filter(categories__name__iexact=category)
-                current_selection = Category.objects.filter(name__iexact=category)
+                current_selection = Category.objects.filter(
+                    name__iexact=category)
 
         # check if filtering by Genre
         if "genre" in request.GET:
@@ -81,8 +78,8 @@ def all_games(request):
                 return redirect(reverse("games"))
 
             # filter search based on name or description
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
-            games = games.filter(queries)
+            ques = Q(name__icontains=query) | Q(description__icontains=query)
+            games = games.filter(ques)
 
     sorting = f"{sort}_{direction}"
 

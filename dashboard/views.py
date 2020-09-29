@@ -23,7 +23,9 @@ def dashboard(request):
         messages.error(request, "Sorry, only admin users can do that.")
         return redirect(reverse("home"))
 
-    # log entry src https://stackoverflow.com/questions/5746624/showing-django-admin-actions-on-template
+    # log entry
+    # src https://stackoverflow.com/questions/5746624
+    # /showing-django-admin-actions-on-template
     logs = LogEntry.objects.select_related().all().order_by("-id")[:10]
 
     all_games = Game.objects.all()
@@ -78,7 +80,8 @@ def add_game(request):
             return redirect(reverse("game_detail", args=[game.id]))
         else:
             messages.error(
-                request, "Failed to add the Game. Please ensure the form is valid!"
+                request, "Failed to add the Game. "
+                         "Please ensure the form is valid!"
             )
     else:
         game_form = GameForm()
@@ -109,7 +112,8 @@ def edit_game(request, game_id):
             return redirect(reverse("game_detail", args=[game.id]))
         else:
             messages.error(
-                request, "Failed to update the Game. Please ensure the form is valid!"
+                request, "Failed to update the Game. "
+                         "Please ensure the form is valid!"
             )
     else:
         game_form = GameForm(instance=game)

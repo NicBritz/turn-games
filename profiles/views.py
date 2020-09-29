@@ -22,7 +22,8 @@ def profile(request):
             messages.success(request, "Profile updated successfully!")
         else:
             messages.error(
-                request, "Update failed. Please insure the form information is valid."
+                request, "Update failed. "
+                         "Please insure the form information is valid."
             )
     else:
         # add users data to the profile form
@@ -31,7 +32,10 @@ def profile(request):
     # find all previous orders
     previous_orders = user_profile.orders.all().order_by("-date")
 
-    context = {"profile_form": profile_form, "previous_orders": previous_orders}
+    context = {
+        "profile_form": profile_form,
+        "previous_orders": previous_orders
+    }
 
     return render(request, "profiles/profile.html", context)
 
@@ -44,7 +48,8 @@ def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(
-        request, f"This is a past confirmation for order number {order_number}."
+        request, f"This is a past confirmation for order number "
+                 f"{order_number}."
     )
 
     template = "checkout/checkout_success.html"

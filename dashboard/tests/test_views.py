@@ -12,8 +12,16 @@ class TestDashboardViews(TestCase):
     def setUp(self):
         """ setup users """
         user_model = get_user_model()
-        user_model.objects.create_user("temporary", "temporary@gmail.com", "temporary")
-        user_model.objects.create_superuser("admin", "admin@gmail.com", "admin")
+        user_model.objects.create_user(
+            "temporary",
+            "temporary@gmail.com",
+            "temporary"
+        )
+        user_model.objects.create_superuser(
+            "admin",
+            "admin@gmail.com",
+            "admin"
+        )
 
     def test_un_authorised_get_dashboard_page(self):
         """ un-authorised user attempt to view dashboard """
@@ -23,13 +31,14 @@ class TestDashboardViews(TestCase):
         # error message: only admin can do that
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")
-        self.assertTrue("Sorry, only admin users can do that." in message.message)
+        self.assertTrue(
+            "Sorry, only admin users can do that." in message.message)
         self.assertRedirects(response, "/")
 
     def test_authorised_get_dashboard_page(self):
         """ authorised user access dashboard """
         self.client.login(username="admin", password="admin")
-        response = self.client.get("/dashboard/",)
+        response = self.client.get("/dashboard/", )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "dashboard/dashboard.html")
 
@@ -91,8 +100,11 @@ class TestDashboardViews(TestCase):
         # redirect to game details
         self.assertTemplateUsed(response, "games/game_detail.html")
 
-    def test_edit_game_from_view_invalid_form(self):
-        """ edit a game in the database through the edit game view invalid form"""
+    def test_edit_game_invalid_form(self):
+        """
+        edit a game in the database
+        through the edit game view invalid form
+        """
         self.client.login(username="admin", password="admin")
         Game.objects.create(name="test", description="test_game")
         temp_game = get_object_or_404(Game, pk=1)
@@ -112,7 +124,10 @@ class TestDashboardViews(TestCase):
         self.assertTemplateUsed(response, "dashboard/edit_game.html")
 
     def test_un_authorised_edit_game_from_view(self):
-        """ attempt edit a game in the database through the edit game view non admin user"""
+        """
+        attempt edit a game in the database
+        through the edit game view non admin user
+        """
         self.client.login(username="temporary", password="temporary")
         response = self.client.get("/dashboard/edit_game/1/", follow=True)
         self.assertEqual(response.status_code, 200)
@@ -156,7 +171,9 @@ class TestDashboardViews(TestCase):
         """ authorised user access games management """
         self.client.login(username="admin", password="admin")
         # invalid search
-        response = self.client.get("/dashboard/games_management/?q", follow=True)
+        response = self.client.get(
+            "/dashboard/games_management/?q",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         # no search text entered message
         self.assertEqual(message.tags, "error")
@@ -183,7 +200,9 @@ class TestDashboardViews(TestCase):
         """ authorised user access user management """
         self.client.login(username="admin", password="admin")
         # invalid search
-        response = self.client.get("/dashboard/user_management/?q", follow=True)
+        response = self.client.get(
+            "/dashboard/user_management/?q",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         # no search text entered message
         self.assertEqual(message.tags, "error")
@@ -213,7 +232,7 @@ class TestDashboardViews(TestCase):
     def test_un_authorised_delete_user_from_view(self):
         """ see previous order view """
         self.client.login(username="temporary", password="temporary")
-        response = self.client.get(f"/dashboard/delete_user/1", follow=True)
+        response = self.client.get("/dashboard/delete_user/1", follow=True)
         self.assertEqual(response.status_code, 200)
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")
@@ -230,7 +249,9 @@ class TestDashboardViews(TestCase):
         """ authorised user access order management """
         self.client.login(username="admin", password="admin")
         # invalid search
-        response = self.client.get("/dashboard/order_management/?q", follow=True)
+        response = self.client.get(
+            "/dashboard/order_management/?q",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         # no search text entered message
         self.assertEqual(message.tags, "error")
@@ -271,7 +292,7 @@ class TestDashboardViews(TestCase):
     def test_un_authorised_get_order_view(self):
         """ see previous order view """
         self.client.login(username="temporary", password="temporary")
-        response = self.client.get(f"/dashboard/order_view/1", follow=True)
+        response = self.client.get("/dashboard/order_view/1", follow=True)
         self.assertEqual(response.status_code, 200)
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")

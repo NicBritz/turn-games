@@ -26,11 +26,14 @@ class TestCheckoutModels(TestCase):
 
     def test_order_line_item_add(self):
         """ Tests adding a line item """
-        # src: https://stackoverflow.com/questions/17314028/compare-decimals-in-python
+        # src: https://stackoverflow.com/questions/17314028
+        # /compare-decimals-in-python
         # sets decimal to 2 places for testing
         two_dec_places = Decimal(10) ** -2
         temp_game = Game.objects.create(
-            name="test_game", description="test_description", price=Decimal(23.99)
+            name="test_game",
+            description="test_description",
+            price=Decimal(23.99)
         )
 
         temp_order = Order.objects.create(
@@ -42,14 +45,18 @@ class TestCheckoutModels(TestCase):
             postcode="123jdf",
             country="United Kingdom",
         )
-        temp_line_item = OrderLineItem.objects.create(order=temp_order, game=temp_game)
+        temp_line_item = OrderLineItem.objects.create(
+            order=temp_order,
+            game=temp_game)
         self.assertEqual(
             temp_line_item.line_item_total.quantize(two_dec_places),
             temp_game.price.quantize(two_dec_places),
         )
-        self.assertEqual(temp_line_item.order.order_number, temp_order.order_number)
+        self.assertEqual(
+            temp_line_item.order.order_number,
+            temp_order.order_number)
         self.assertEqual(temp_line_item.order.line_items.count(), 1)
         # Check models string method
-        self.assertTrue(f"Game ID {temp_game.id} on order {temp_order.order_number}" in temp_line_item.__str__())
-
-
+        self.assertTrue(
+            f"Game ID {temp_game.id} on order "
+            f"{temp_order.order_number}" in temp_line_item.__str__())

@@ -9,7 +9,10 @@ def view_cart(request):
 
 
 def add_to_cart(request, game_id):
-    """ Adds a game to the shopping cart using the game_id passed from the games detail page """
+    """
+    Adds a game to the shopping cart using the game_id
+     passed from the games detail page
+    """
     try:
         game = get_object_or_404(Game, pk=game_id)
 

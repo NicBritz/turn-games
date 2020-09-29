@@ -7,7 +7,7 @@ class TestUserProfileModels(TestCase):
     def setUp(self):
         """ Create a temporary user """
         user_model = get_user_model()
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             "bobby", "temporary@gmail.com", "temporary"
         )
 

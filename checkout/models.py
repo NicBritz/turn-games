@@ -36,7 +36,11 @@ class Order(models.Model):
     # Original Cart
     original_cart = models.TextField(null=False, blank=False, default="")
     # Payment id
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default="")
+    stripe_pid = models.CharField(
+        max_length=254,
+        null=False,
+        blank=False,
+        default="")
 
     # Order Information
     order_total = models.DecimalField(
@@ -58,7 +62,8 @@ class Order(models.Model):
         accounting for tax.
         """
         self.order_total = (
-            self.line_items.aggregate(Sum("line_item_total"))["line_item_total__sum"]
+            self.line_items.aggregate(
+                Sum("line_item_total"))["line_item_total__sum"]
             or 0
         )
         # calculate the tax
@@ -90,7 +95,11 @@ class OrderLineItem(models.Model):
         on_delete=models.CASCADE,
         related_name="line_items",
     )
-    game = models.ForeignKey(Game, null=False, blank=False, on_delete=models.CASCADE)
+    game = models.ForeignKey(
+        Game,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE)
     line_item_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False
     )
@@ -101,9 +110,9 @@ class OrderLineItem(models.Model):
         with discounted pricing.
         """
         # calculate the discount
-        discount = self.game.price * (self.game.discount_percent / Decimal(100))
+        disc = self.game.price * (self.game.discount_percent / Decimal(100))
         # calculate the discounted price as line total
-        self.line_item_total = self.game.price - discount
+        self.line_item_total = self.game.price - disc
         super().save(*args, **kwargs)
 
     def __str__(self):

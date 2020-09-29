@@ -29,7 +29,8 @@ class TestGameModels(TestCase):
             name="test_category", friendly_name="test category",
         )
         self.assertEqual(str(temp_category), "test_category")
-        self.assertEqual(str(temp_category.get_friendly_name()), "test category")
+        self.assertEqual(str(
+            temp_category.get_friendly_name()), "test category")
 
     def test_genre_string_method(self):
         """ test the genre strings """
@@ -38,7 +39,6 @@ class TestGameModels(TestCase):
         )
         self.assertEqual(str(temp_genre), "test_genre")
         self.assertEqual(str(temp_genre.get_friendly_name()), "test genre")
-
 
     def test_tag_string_method(self):
         """ test the tag strings """

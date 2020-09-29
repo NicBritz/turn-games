@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse # noqa E501
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import OrderForm
@@ -30,7 +30,8 @@ def cache_checkout_data(request):
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(
-            request, "We were unable to process your order. Please try again later."
+            request, "We were unable to process your order. "
+                     "Please try again later."
         )
         return HttpResponse(content=e, status=400)
 
@@ -81,13 +82,15 @@ def checkout(request):
                 except Game.DoesNotExist:
                     # print a error if failed
                     messages.error(
-                        request, "A game in your cart was not found in our database!"
+                        request, "A game in your cart was "
+                                 "not found in our database!"
                     )
                     # delete the order
                     order.delete()
                     return redirect(reverse("view_cart"))
             # Success page
-            return redirect(reverse("checkout_success", args=[order.order_number]))
+            return redirect(
+                reverse("checkout_success", args=[order.order_number]))
         else:
             messages.error(
                 request,

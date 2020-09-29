@@ -7,22 +7,25 @@ class TestGameViews(TestCase):
     def setUp(self):
         """ Tests for Game Views """
         user_model = get_user_model()
-        user = user_model.objects.create_user(
+        user_model.objects.create_user(
             "temporary", "temporary@gmail.com", "temporary"
         )
 
     def test_get_all_games_page(self):
         """ get game page response good """
         # filter by All
-        response = self.client.get("/games/?category=all&sort=price&direction=asc")
+        response = self.client.get(
+            "/games/?category=all&sort=price&direction=asc")
         ctx = response.context.get("sorting")
         self.assertEqual(response.status_code, 200)
         # filter by category
-        response = self.client.get("/games/?category=co_op&sort=price&direction=asc")
+        response = self.client.get(
+            "/games/?category=co_op&sort=price&direction=asc")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(ctx, "price_asc")
         # filter by genre
-        response = self.client.get("/games/?genre=action&sort=name&direction=desc")
+        response = self.client.get(
+            "/games/?genre=action&sort=name&direction=desc")
         ctx = response.context.get("sorting")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(ctx, "name_desc")
@@ -77,11 +80,15 @@ class TestGameViews(TestCase):
         temp_game = Game.objects.create(
             name="test_game", description="test_description", price=0
         )
-        response = self.client.get(f"/games/rate_game/{temp_game.id}/1/", follow=True)
+        response = self.client.get(
+            f"/games/rate_game/{temp_game.id}/1/",
+            follow=True)
         # get message from context and check that expected text is there
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")
-        self.assertTrue("You must be logged in to rate this game!" in message.message)
+        self.assertTrue(
+            "You must be logged in to "
+            "rate this game!" in message.message)
         self.assertTemplateUsed(response, "games/game_detail.html")
 
     # rate pass when logged in
@@ -92,19 +99,25 @@ class TestGameViews(TestCase):
             name="test_game", description="test_description", price=0
         )
         # positive rating
-        response = self.client.get(f"/games/rate_game/{temp_game.id}/1/", follow=True)
+        response = self.client.get(
+            f"/games/rate_game/{temp_game.id}/1/",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "success")
         self.assertTrue("Added a positive rating!" in message.message)
         self.assertTemplateUsed(response, "games/game_detail.html")
         # negative rating
-        response = self.client.get(f"/games/rate_game/{temp_game.id}/0/", follow=True)
+        response = self.client.get(
+            f"/games/rate_game/{temp_game.id}/0/",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "success")
         self.assertTrue("Added a negative rating!" in message.message)
         self.assertTemplateUsed(response, "games/game_detail.html")
         # error rating
-        response = self.client.get(f"/games/rate_game/{temp_game.id}/g/", follow=True)
+        response = self.client.get(
+            f"/games/rate_game/{temp_game.id}/g/",
+            follow=True)
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "error")
         self.assertTrue("No ratings changed!" in message.message)

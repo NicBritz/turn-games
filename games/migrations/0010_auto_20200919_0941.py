@@ -13,6 +13,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='game',
             name='header_image_url',
-            field=models.URLField(blank=True, default='https://res.cloudinary.com/dajuujhvs/image/upload/v1600508372/turn_games/placeholder_if4uza.jpg', max_length=1024, null=True),
+            field=models.URLField(
+                blank=True,
+                default='https://res.cloudinary.com/dajuujhvs/image/upload/'
+                        'v1600508372/turn_games/placeholder_if4uza.jpg',
+                max_length=1024, null=True),
         ),
     ]

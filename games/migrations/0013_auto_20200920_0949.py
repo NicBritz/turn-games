@@ -13,11 +13,19 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='game',
             name='negative_ratings',
-            field=models.DecimalField(blank=True, decimal_places=0, default=0, max_digits=10, null=True),
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=0,
+                default=0,
+                max_digits=10,
+                null=True),
         ),
         migrations.AlterField(
             model_name='game',
             name='price',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=6),
+            field=models.DecimalField(
+                decimal_places=2,
+                default=0,
+                max_digits=6),
         ),
     ]

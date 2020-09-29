@@ -34,29 +34,28 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#search-modal').addClass("is-active");
         $("#search-field:text").focus();
     });
-
     $('.modal-close').click(function () {
         $("#search-modal").removeClass('is-active');
-    })
+    });
 
-    //dropdowns
+    // mobile menu dropdowns
     $('#category-btn').click(function () {
         $('#category-menu').toggleClass('hide-mobile');
-    })
+    });
     $('#genre-btn').click(function () {
         $('#genre-menu').toggleClass('hide-mobile');
-    })
+    });
     $('#specials-btn').click(function () {
         $('#specials-menu').toggleClass('hide-mobile');
-    })
+    });
     $('#account-btn').click(function () {
         $('#account-menu').toggleClass('hide-mobile');
-    })
+    });
 
-// Back to top script
+// Back to top button
     $('#top-button').click(function () {
-        window.scrollTo(0, 0)
-    })
+        window.scrollTo(0, 0);
+    });
 
     window.onscroll = function () {
         if (pageYOffset >= 200) {
