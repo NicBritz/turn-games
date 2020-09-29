@@ -15,3 +15,6 @@ class TestHomeViews(TestCase):
         response = self.client.get("/afsd")
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, "404.html")
+
+
+

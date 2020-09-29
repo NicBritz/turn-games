@@ -265,7 +265,7 @@ def order_management(request):
         # If the user has not entered any text display an error
         if not query:
             messages.error(request, "No search text entered!")
-            return redirect(reverse("user_management"))
+            return redirect(reverse("order_management"))
 
         # filter search based on name
         filtered_orders = all_orders.filter(Q(order_number__icontains=query))

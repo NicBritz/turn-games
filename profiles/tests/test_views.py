@@ -39,10 +39,27 @@ class TestProfileViews(TestCase):
         data = {"default_phone_number": "12345"}
         response = self.client.post("/profile/", data, follow=True)
         self.assertEqual(response.status_code, 200)
-        # get message from context and check that expected text is there
+        # successful update
         message = list(response.context.get("messages"))[0]
         self.assertEqual(message.tags, "success")
         self.assertTrue("Profile updated successfully!" in message.message)
+        self.assertTemplateUsed(response, "profiles/profile.html")
+
+    def test_invalid_update_user_profile(self):
+        """ invalid updates the userprofile """
+        self.client.login(username="bobby", password="temporary")
+        data = {
+            "default_phone_number": "123454444445358390458903859038905839085093895034"
+        }
+        response = self.client.post("/profile/", data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        # invalid form update
+        message = list(response.context.get("messages"))[0]
+        self.assertEqual(message.tags, "error")
+        self.assertTrue(
+            "Update failed. Please insure the form information is valid."
+            in message.message
+        )
         self.assertTemplateUsed(response, "profiles/profile.html")
 
     def test_order_history_view(self):

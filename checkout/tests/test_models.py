@@ -21,6 +21,8 @@ class TestCheckoutModels(TestCase):
         self.assertEqual(temp_order.original_cart, "")
         self.assertEqual(temp_order.order_total, 0)
         self.assertEqual(temp_order.grand_total, 0)
+        # Check models string method
+        self.assertEqual(temp_order.__str__(), temp_order.order_number)
 
     def test_order_line_item_add(self):
         """ Tests adding a line item """
@@ -47,3 +49,7 @@ class TestCheckoutModels(TestCase):
         )
         self.assertEqual(temp_line_item.order.order_number, temp_order.order_number)
         self.assertEqual(temp_line_item.order.line_items.count(), 1)
+        # Check models string method
+        self.assertTrue(f"Game ID {temp_game.id} on order {temp_order.order_number}" in temp_line_item.__str__())
+
+

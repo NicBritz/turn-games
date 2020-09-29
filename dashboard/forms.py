@@ -72,12 +72,3 @@ class GameForm(forms.ModelForm):
             if field_name in multiples:
                 field.widget.attrs["multiple"] = True
                 field.widget.attrs["size"] = 6
-
-            if field_name in "category_multi":
-                field.choices = categories_friendly_names
-
-            if field_name in "genre_multi":
-                field.choices = genres_friendly_names
-
-            if field_name in "tag_multi":
-                field.choices = tags_friendly_names
