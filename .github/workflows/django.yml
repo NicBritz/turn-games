@@ -31,7 +31,7 @@ jobs:
         flake8 . 
     - name: Run Tests
       env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+#         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
         EMAIL_USER: ${{ secrets.EMAIL_USER }}
