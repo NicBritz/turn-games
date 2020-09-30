@@ -147,7 +147,7 @@
 
                 <div class="navbar-dropdown has-text-centered is-z-70 hide-mobile" id="account-menu">
                     {% if request.user.is_authenticated %}
-                        <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user|truncatechars:15 }}</p>
+                        <p class="has-text-centered has-background-black-bis has-text-white is-size-5">{{ request.user|title|truncatechars:15 }}</p>
                         {% if request.user.is_superuser %}
                             <a href="{% url 'dashboard' %}" class="navbar-item mx-auto px-3">Admin
                                 Dashboard</a>
