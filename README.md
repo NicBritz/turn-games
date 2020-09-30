@@ -8,9 +8,11 @@
 
 Turn Games is en e-commerce digital video game store, the site offers a wide variety of visual entertainment content. Users can browse the sites extensive inventory and filter down the content for easier navigation. Users are also able to search the site by use of a search bar that is always readily available. 
 
-The landing page will show any content that the site owner has added the featured option to and will randomly select a few of the featured content to display on the main page image slider.
+The landing page will show any content that the site owner has added to the featured or discounted sections. It will randomly select ten titles to display on the main page image slider.
 
 Users are easily able to view more information about the game simply by selecting the content card. In the game inspection area a user can either rate a game with a thumbs up or a thumbs down and add the game to their basket for purchase once they have finished browsing.
+
+[![Home page](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)
 
 ## Table of Contents
 
@@ -67,18 +69,77 @@ Users are easily able to view more information about the game simply by selectin
 
 ## UX
 
-### User
+### User Stories
 
-As a user I would like...
+#### Viewing and Navigation
+| Done | As a... | I would like to be able to... | So that I may...|
+| ---- | ------- | ----------------------------- | --------------- |
+| &checkmark; | user | view a list of available games.  | Select some to purchase.|
+| &checkmark; | user | view individual game details.  | view the price, description, game rating.|
+| &checkmark; | user | quickly identify discounts and special offers. | take advantage of savings on games that id like to purchase.|
+| &checkmark; | user | easily View the total of my cart at any time. | avoid over spending.|
+
+#### Registration and User Accounts
+| Done | As a... | I would like to be able to... | So that I may...|
+| ---- | ------- | ----------------------------- | --------------- |
+| &checkmark; | user | easily register for an account. | have a personal account to be able to view my profile.|
+| &checkmark; | user | easily login or logout. | access my personal account information.|
+| &checkmark; | user | log into my account using Google. | easily access my profile without site registration.|
+| &checkmark; | user | easily recover my password. | recover access to my account if I forget my credentials.|
+| &checkmark; | user | receive an email confirmation after registering. | verify that my account registration was successful.|
+| &checkmark; | user | have a personalized user profile. | view my personal order history and order confirmations, and save my payment information.|
+
+#### Scrolling and Searching
+| Done | As a... | I would like to be able to... | So that I may...|
+| ---- | ------- | ----------------------------- | --------------- |
+| &checkmark; | user | sort the list of available games. | easily identify the best rated, best priced games.|
+| &checkmark; | user | sort by a specific genre of game. | find the best-priced or best-rated product in a specific genre.|
+| &checkmark; | user | sort by a specific category of game. | find the best-priced or best-rated product in a specific category.|
+| &checkmark; | user | sort by a specific game tag. | find the best-priced or best-rated product with a specific tag.|
+| &checkmark; | user | search for a product by name or description. | find a specific product I would like to purchase.|
+| &checkmark; | user | easily see what I have searched for and the number of results. | quickly decide whether the product I want is available.|
+
+#### Purchasing and Checkout
+| Done | As a... | I would like to be able to... | So that I may...|
+| ---- | ------- | ----------------------------- | --------------- |
+| &checkmark; | user | easily add or remove the game I want purchase. | easily make changes to my purchase before checkout.|
+| &checkmark; | user | view items in my bag to be purchased. | identify the total cost of my purchase and all the games I will receive.|
+| &checkmark; | user | easily enter my payment information. | checkout quickly with no hassles.|
+| &checkmark; | user | feel my personal and payment information is safe and secure. | confidently provide the needed information to make a purchase.|
+| &checkmark; | user | view an order confirmation after checkout. | verify that I have not made any errors.|
+| &checkmark; | user | receive an email confirmation after checking out. | keep the confirmation of what I have purchased for my records.|
+
+#### Admin and Store Management
+| Done | As a... | I would like to be able to... | So that I may...|
+| ---- | ------- | ----------------------------- | --------------- |
+| &checkmark; | user | add a game. | add new games to my store.|
+| &checkmark; | user | edit a game. | change product prices, descriptions, images and other criteria.|
+| &checkmark; | user | delete a game. | remove games that are no longer for sale.|
+| &checkmark; | user | have access to an admin dashboard. | manage users games and orders.|
+| &checkmark; | user | view any previous order made. | see what was purchased and when.|
+| &checkmark; | user | see a chart with the past 30 days sales. | see how the site is doing financially.|
+
+
 
 
 ### Design
 
-The goal of this project was 
+The goal of this project was to create a digital game e-commerce store that makes use of Django as its primary technology. The site is designed to be responsive and neat without compromising on the primary goal of selling games. There are subtle visual elements added to purposely attract the eye to important things like discounts and price total.
 
 ### Wireframes
+Before starting the project I used [figma](https://www.figma.com/) to create the wireframe mockups for the project. This was an instrumental step to ensure a clear design direction. The site did not end up looking exactly like the mockups in the end but the general design is visible in the final result.
 
 #### Home page
+
+[![Home page](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601465525/Wireframe_Home_Page_zncp8i.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601465525/Wireframe_Home_Page_zncp8i.png)
+
+#### All Games
+
+[![All Games](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601465525/Wireframes_Games_arjtyd.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601465525/Wireframes_Games_arjtyd.png)
+
+#### Game Details
+
+[![Game Details](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601465525/Wireframes_Details_ebw9mf.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601465525/Wireframes_Details_ebw9mf.png)
 
 
 ### Trello
