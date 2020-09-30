@@ -4,43 +4,59 @@
 ## Overview 
 [![Home page](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)
 
-[![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_209/v1601468661/turn_games_logo_cn5k5t.png)](https://turn-games.herokuapp.com/) is an e-commerce digital video game store, the site offers a wide variety of visual entertainment content. Users can browse the sites extensive inventory and filter down the content for easier navigation. Users are also able to search the site by use of a search bar that is always readily available. 
+[![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_209/v1601468661/turn_games_logo_cn5k5t.png)](https://turn-games.herokuapp.com/) is an e-commerce digital video game store, the site offers a wide variety of visual entertainment content. Users can browse the sites extensive inventory and filter down the content for easier navigation. Users are also able to search the site by the use of a search bar that is always readily available. 
 
 The landing page will show any content that the site owner has added to the featured or discounted sections. It will randomly select ten titles to display on the main page image slider.
 
-Users are easily able to view more information about the game simply by selecting the content card. In the game inspection area a user can either rate a game with a thumbs up or a thumbs down and add the game to their basket for purchase once they have finished browsing. You can view the site by following [this link.](https://turn-games.herokuapp.com/)
+Users are easily able to view more information about the game simply by selecting the content card. In the game inspection area, a user can either rate a game with a thumbs up or a thumbs down and add the game to their basket for purchase once they have finished browsing. You can view the site by following [this link.](https://turn-games.herokuapp.com/)
 
 
 ## Table of Contents
 
 - [Overview](#Overview)
 - [UX](#ux)
-  - [user](#User)
-  - [design](#design)
+  - [User Stories](#User-Stories)
+    - [Viewing and Navigation](#Viewing-and-Navigation)
+    - [Registration and User Accounts](#Registration-and-User-Accounts)
+    - [Scrolling and Searching](#Scrolling-and-Searching)
+    - [Purchasing and Checkout](#Purchasing-and-Checkout)
+    - [Admin and Store Management](#Admin-and-Store-Management)
+  - [Design](#Design)
   - [Wireframes](#wireframes)
-   - [Home page](#Home-page)
+    - [Home page](#Home-page)
+    - [All Games](#All-Games)
+    - [Game Details](#Game-Details)
   - [Trello](#Trello)
   - [Database Schema](#Database-Schema)
 - [Features](#Features)
   - [The navigation bar](#The-navigation-bar)
-  - [Main Slider](#Main-Slider)
-  - [Game cards](#Game-cards)
-  - [Pagination](#Pagination)
+  - [Account Menu](#Account-Menu)
+  - [Shopping Cart button](#Shopping-Cart-button)
+  - [Home Page Slider](#Home-Page-Slider)
+  - [Game Cards](#Game-Cards)
+  - [Content Filtering](#Content-Filtering)
+  - [Game Details](#Game-Details)
   - [Footer](#Footer)
   - [Sign-in](#Sign-in)
-  - [Registration](#Registration)
-  - [Game view](#Game-view)
+  - [User Profile](#User-Profile)
+  - [Shopping cart](#Shopping-cart)
+  - [Checkout View](#Checkout-View)
+  - [Checkout Success](#Checkout-Success)
+  - [Administrator Dashboard](#Administrator-Dashboard)
+  - [User Management](#User-Management)
+  - [Game Management](#Game-Management)
+  - [Add or Edit Game](#Add-or-Edit-Game)
   - [Error handling](#Error-handling)
   - [Code structure](#Code-structure)
+  - [Stripe Payments](#Stripe-Payments)
   - [Features Left to Implement](#Features-Left-to-Implement)
 - [Technologies Used](#Technologies-Used)
-  - [Other Tools](#Other-Tools)
+- [Other Tools](#Other-Tools)
 - [Testing](#Testing)
  - [W3C Markup](#W3C-Markup)
  - [W3C CSS](#W3C-CSS)
  - [Autoprefixer](#Autoprefixer)
  - [Unit Testing](#Unit-Testing)
- - [CI/CD](#CI/CD)
  - [Google Lighthouse](#Google-Lighthouse)
  - [Browser and Device Testing](#Browser-and-Device-Testing)
  - [User Testing](#User-Testing)
@@ -48,14 +64,14 @@ Users are easily able to view more information about the game simply by selectin
  - [Prerequisites](#Prerequisites)
  - [Development](#Development)
  - [Cloning](#Cloning)
- - [Requirements](#Requirements)
+ - [Requirements.txt](#Requirements.txt)
  - [Environment Variables](#Environment-Variables)
  - [Contribution](#Contribution)
-- [Deployment](#Deployment)
- - [Credits](#Credits)
-   - [Content](#Content)
+ - [Site Deployment](#Site-Deployment)
+- [Credits](#Credits)
+  - [Content](#Content)
    - [Media](#Media)
-    - [Images](#Images)
+   - [Images](#Images)
  - [Acknowledgements](#Acknowledgements)
    - [Inspiration](#Inspiration)
    - [code](#code)
@@ -74,22 +90,22 @@ Users are easily able to view more information about the game simply by selectin
 | &checkmark; | user | view a list of available games.  | Select some to purchase.|
 | &checkmark; | user | view individual game details.  | view the price, description, game rating.|
 | &checkmark; | user | quickly identify discounts and special offers. | take advantage of savings on games that id like to purchase.|
-| &checkmark; | user | easily View the total of my cart at any time. | avoid over spending.|
+| &checkmark; | user | easily View the total of my cart at any time. | avoid overspending.|
 
 #### Registration and User Accounts
 | Done | As a... | I would like to be able to... | So that I may...|
 | ---- | ------- | ----------------------------- | --------------- |
 | &checkmark; | user | easily register for an account. | have a personal account to be able to view my profile.|
-| &checkmark; | user | easily login or logout. | access my personal account information.|
+| &checkmark; | user | easily login or logout. | access my account information.|
 | &checkmark; | user | log into my account using Google. | easily access my profile without site registration.|
 | &checkmark; | user | easily recover my password. | recover access to my account if I forget my credentials.|
 | &checkmark; | user | receive an email confirmation after registering. | verify that my account registration was successful.|
-| &checkmark; | user | have a personalized user profile. | view my personal order history and order confirmations, and save my payment information.|
+| &checkmark; | user | have a personalized user profile. | view my order history and order confirmations and save my payment information.|
 
 #### Scrolling and Searching
 | Done | As a... | I would like to be able to... | So that I may...|
 | ---- | ------- | ----------------------------- | --------------- |
-| &checkmark; | user | sort the list of available games. | easily identify the best rated, best priced games.|
+| &checkmark; | user | sort the list of available games. | easily identify the best rated, best-priced games.|
 | &checkmark; | user | sort by a specific genre of game. | find the best-priced or best-rated product in a specific genre.|
 | &checkmark; | user | sort by a specific category of game. | find the best-priced or best-rated product in a specific category.|
 | &checkmark; | user | sort by a specific game tag. | find the best-priced or best-rated product with a specific tag.|
@@ -99,9 +115,9 @@ Users are easily able to view more information about the game simply by selectin
 #### Purchasing and Checkout
 | Done | As a... | I would like to be able to... | So that I may...|
 | ---- | ------- | ----------------------------- | --------------- |
-| &checkmark; | user | easily add or remove the game I want purchase. | easily make changes to my purchase before checkout.|
+| &checkmark; | user | easily add or remove the game I want to purchase. | easily make changes to my purchase before checkout.|
 | &checkmark; | user | view items in my bag to be purchased. | identify the total cost of my purchase and all the games I will receive.|
-| &checkmark; | user | easily enter my payment information. | checkout quickly with no hassles.|
+| &checkmark; | user | easily enter my payment information. | check out quickly with no hassles.|
 | &checkmark; | user | feel my personal and payment information is safe and secure. | confidently provide the needed information to make a purchase.|
 | &checkmark; | user | view an order confirmation after checkout. | verify that I have not made any errors.|
 | &checkmark; | user | receive an email confirmation after checking out. | keep the confirmation of what I have purchased for my records.|
@@ -115,8 +131,6 @@ Users are easily able to view more information about the game simply by selectin
 | &checkmark; | user | have access to an admin dashboard. | manage users games and orders.|
 | &checkmark; | user | view any previous order made. | see what was purchased and when.|
 | &checkmark; | user | see a chart with the past 30 days sales. | see how the site is doing financially.|
-
-
 
 
 ### Design
@@ -147,19 +161,18 @@ To keep track of the project I made use of a Trello board. The board was used to
 
 
 ### Database Schema
-The database used for development of the project was [SQLite](https://www.sqlite.org/index.html) which was later moved to [Heroku](https://www.heroku.com/) using the postgres addon. Below is a visualisation of the database schema.
+The database used for the development of the project was [SQLite](https://www.sqlite.org/index.html) which was later moved to [Heroku](https://www.heroku.com/) using the Postgres add-on. Below is a visualisation of the database schema.
 [![Trello Board](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601470354/Database_Diagram_mvltor.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601470354/Database_Diagram_mvltor.png)
 
 ## Features
 
 ### The navigation bar
 
-
-I created a favicon ![favicon](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_24/v1601471645/turn-games-favicon_yjuqcj.png) with the logo that I designed for the site, it feel it just gives the site a more finished look. 
+I created a favicon ![favicon](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_24/v1601471645/turn-games-favicon_yjuqcj.png) with the logo that I designed for the site, it feels it just gives the site a more finished look. 
 
 [![NAv Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601471156/Navbar_vzeonj.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601471156/Navbar_vzeonj.png)
 
-The navigation bar was designed to look neat and only show the minimum amount of menu items possible. In a desktop environment this navigation menu has the logo which is also a link to the home page. I added small coloured icons to give the site a 'gamey feel', as I felt it would be suitable for the sites intended audience. There are dropdown menus to navigate the site and filter through the various game categories and genres. I have also added the account menu here for easy access as well as a shopping cart button that shows the current value if the items in the cart.
+The navigation bar was designed to look neat and only show the minimum amount of menu items possible. In a desktop environment, this navigation menu has the logo which is also a link to the home page. I added small coloured icons to give the site a 'gamey feel', as I felt it would be suitable for the sites intended audience. There are dropdown menus to navigate the site and filter through the various game categories and genres. I have also added the account menu here for easy access as well as a shopping cart button that shows the current value if the items in the cart.
 
 [![NAv Mobile](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_50/v1601472692/mobile_Nav_uc2dp9.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601472692/mobile_Nav_uc2dp9.png)
 [![Mobile Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_172/v1601473355/mobile_menu_l0u2ys.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_172/v1601473355/mobile_menu_l0u2ys.png)
@@ -189,13 +202,13 @@ The account menu changes dynamically depending on the following factors:
 
 When choosing to purchase items from the site they will get added to your shopping cart. The button will update its label to display the current value of the games in your cart. 
 
-Hovering over the menu on a desktop will present the above pictured menu, here you can preview the items currently in your cart as well a select an item to link back to it. I decided to exclude this feature fom the mobile versions as it was looking a bit cluttered.
+Hovering over the menu on a desktop will present the above-pictured menu, here you can preview the items currently in your cart as well a select an item to link back to it. I decided to exclude this feature from the mobile versions as it was looking a bit cluttered.
 
 ### Home Page Slider
 
 [![MAin Slider](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601475345/slider_yf5mvc.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601475345/slider_yf5mvc.png)
 
-Using a css library called [Flickety](https://flickity.metafizzy.co/) I implemented a slider for the home page. I wanted it not only to be responsive but also make use of the ability to drag through slides on mobile devices. 
+Using a CSS library called [Flickety](https://flickity.metafizzy.co/) I implemented a slider for the home page. I wanted it not only to be responsive but also make use of the ability to drag through slides on mobile devices. 
 
 Hovering over a slide will also stop the slides from scrolling automatically. The layout of this slider will also change depending on the device its viewed on, again this was a decision based on keeping the site looking neat. 
 
@@ -203,19 +216,19 @@ Hovering over a slide will also stop the slides from scrolling automatically. Th
 
 [![Game Card](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476112/card_o80dfe.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476112/card_o80dfe.png)
 
-The game cards are the main way a game is chosen to be purchased. I tried to keep them looking as simple as possible. The cards are also direct links to the more detailed game view. The ratings are clearly displayed on the footer of each card as well as the prices. If a card has a discount attached to it there will be a ribbon in the top right corner indicating the discount percent. There will also be a red price indicating the old / new prices.
+The game cards are the main way a game is chosen to be purchased. I tried to keep them looking as simple as possible. The cards are also direct links to the more detailed game view. The ratings are displayed on the footer of each card as well as the prices. If a card has a discount attached to it there will be a ribbon in the top right corner indicating the discount percent. There will also be a red price indicating the old/new prices.
 
 ### Content Filtering
 
 [![Game Card](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601476847/filtering_wxoc3p.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476847/filtering_wxoc3p.png)
 
-If a users chooses any filers in the main navigation menu or chooses to search the site for a particular game, they will be presented with a new view. This is essentially a view that contains all the games and it can be sorted in various ways using th sort dropdown. There is also an indication on the current filter ie: Adventure as above picture indicates. Here you will also see the number of results found under the current search criteria by pressing the red cross users can clear all filters. 
+If a user chooses any filers in the main navigation menu or chooses to search the site for a particular game, they will be presented with a new view. This is essentially a view that contains all the games and it can be sorted in various ways using the sort dropdown. There is also an indication on the current filter ie: Adventure as above picture indicates. Here you will also see the number of results found under the current search criteria by pressing the red cross users can clear all filters. 
 
 ### Game Details
 
 [![Game Details](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601477446/details_f2ekjo.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601477446/details_f2ekjo.png)
 
-The game details page gives the user a final overview of the game. This includes things the description, developer information and any associated tags. These tags, categories and genres are also links so that a user can easily view more games like the one they are currently interested in. This is also where the Buy button resides. clicking this will of course add the game you the cart. If a user tries to add more than one of the same game in the cart they will be presented with a message that the game is already in the cart. This is by design as this is essentially a digital app store so you would not buy a game you already own.   
+The game details page gives the user a final overview of the game. This includes things the description, developer information and any associated tags. These tags, categories and genres are also links so that a user can easily view more games like the one they are currently interested in. This is also where the Buy button resides. clicking this will, of course, add the game you the cart. If a user tries to add more than one of the same game in the cart they will be presented with a message that the game is already in the cart. This is by design as this is essentially a digital app store so you would not buy a game you already own.   
 
 In the case of a site administrator using the detailed game view will show an edit button so that the game can easily be edited without having to access the game through the administrator dashboard. 
 
@@ -223,15 +236,15 @@ In the case of a site administrator using the detailed game view will show an ed
 
 [![Footer](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601478449/footer_wt7ejk.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601478449/footer_wt7ejk.png)
 
-The footer is simple by design and only contains some social links. hovering over the links will change their colours to the correct brand specific colours. Clicking them will open the relevant social page in a new tab. 
+The footer is simple by design and only contains some social links. hovering over the links will change their colours to the correct brand-specific colours. Clicking them will open the relevant social page in a new tab. 
 
-On mobile devices the footer has been moved inside the hamburger menu to make use of maximum screen space for site content.
+On mobile devices, the footer has been moved inside the hamburger menu to make use of maximum screen space for site content.
 
 ### Sign-in
 
 [![Sign in](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601478940/Sign_in_ldzvxz.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601478940/Sign_in_ldzvxz.png)
 
-The site makes use of Django allauth to handle its user login authentication. I have styled all the standard allauth templates to align with the sites design. I have also implemented the ability to sign in with your Google account. This makes site registration and login very simple. 
+The site makes use of Django allauth to handle its user login authentication. I have styled all the standard allauth templates to align with the design of the site. I have also implemented the ability to sign in with your Google account. This makes site registration and login very simple. 
 
 ### User Profile
 
@@ -243,33 +256,33 @@ The profile page features the ability to add your personal information to make t
 
 [![Cart](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601479575/shopping_cart_aqjqbc.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601479575/shopping_cart_aqjqbc.png)
 
-The shopping cart view displays all the games in your cart in detail. from this view you can start the checkout process or go back to browse the store. Games can also be removed from your cart in this view by selecting the red cross situated to the left of the games image. There is also an indication oof the total value of the items in the cart taking the tax percentage into account. 
+The shopping cart view displays all the games in your cart in detail. from this view, you can start the checkout process or go back to browse the store. Games can also be removed from your cart in this view by selecting the red cross situated to the left of the game's image. There is also an indication of the total value of the items in the cart taking the tax percentage into account. 
 
-There is a step indication at he top of the view to show the current progress ing the checkout process. By selecting the secure checkout button a user can begin the checkout process.
+There is a step indication at the top of the view to show the current progressing the checkout process. By selecting the secure checkout button a user can begin the checkout process.
 
 #### Checkout View
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601480219/Checkout_qtof8r.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601480219/Checkout_qtof8r.png)
 
-Here a user can fill in their information to make payment for the items in their cart. Required information is indicated with a red astrix. The credit card section makes use of [stripe](https://stripe.com/) as the payment technology. 
+Here a user can fill in their information to make payment for the items in their cart. Required information is indicated with a red asterisk. The credit card section makes use of [stripe](https://stripe.com/) as the payment technology. 
 
-If all the information is correct and the user chooses to submit, then the payment intent will be sent to stripe for processing. There is a webhook implemented as a precaution against errors during this process. The submit button is disabled and replaced with a loading indicator to show there is an action in progress. 
+If all the information is correct and the user chooses to submit, then the payment intent will be sent to Stripe for processing. There is a webhook implemented as a precaution against errors during this process. The submit button is disabled and replaced with a loading indicator to show there is an action in progress. 
 
 ### Checkout Success
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601481147/success_jophri.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601481147/success_jophri.png)
 
-Upon successful completion of the order a user will be presented with the above success screen. The customer will get an email also at this point confirming their order. If the user is logged in as a registered user a copy of the order will also mow be available in their profile page. This is also the same page layout used when viewing any previous orders.
+Upon successful completion of the order, a user will be presented with the above success screen. The customer will get an email also at this point confirming their order. If the user is logged in as a registered user a copy of the order will also now be available on their profile page. This is also the same page layout used when viewing any previous orders.
 
 ### Administrator Dashboard
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601486394/dashboard_ppi6tt.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601486394/dashboard_ppi6tt.png)
 
-The Administrator Dashboard acts as a central hub for site administrators to manage the site. The dashboard page features a chart that shows the value of sales over the past 30 days. I used a JS library to achieve this and display it in a canvas element. Here you are also able to see the last 10 database logs with icons that indicate weather it was an edit, delete, add or just general information. 
+The Administrator Dashboard acts as a central hub for site administrators to manage the site. The dashboard page features a chart that shows the value of sales over the past 30 days. I used a JS library to achieve this and display it in a canvas element. Here you are also able to see the last 10 database logs with icons that indicate whether it was an edit, delete, add or just general information. 
 
-Just below the heading section there are four cards indicating some site information. 
+Just below the heading section, four cards are indicating some site information. 
 
-Here you are able to see: 
+Here you can see: 
 - The current number of registered site users.
 - The total amount of games currently in the database.
 - The number of orders to date.
@@ -281,25 +294,25 @@ These are also links to the relevant management views, these links can also be f
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487178/users_vgqosg.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601486394/dashboard_ppi6tt.png)
 
-In this section of the admin dashboard, site admins can see all currently registered users. Administrators can search for users by name using the searchbar at the top of the table to filter the list. From this view you can see the username, date last seen and you can delete users by selecting the trash can to the right of the user you would like to delete. I have disabled the delete functionality in this view for site admins to avoid accidental deletions.
+In this section of the admin dashboard, site admins can see all currently registered users. Administrators can search for users by name using the search bar at the top of the table to filter the list. From this view you can see the username, date last seen and you can delete users by selecting the trash can to the right of the user you would like to delete. I have disabled the delete functionality in this view for site admins to avoid accidental deletions.
 
 ### Game Management
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487281/game_management_vh6jsb.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601487281/game_management_vh6jsb.png)
 
-The game management page allows the admin user to manage the current games in the database. This view also features a search bar for filtering game titles. Game are listed in a table with an edit button to the left of each row for easy game editing and delete button to the right tp delete the game from the database. 
+The game management page allows the admin user to manage the current games in the database. This view also features a search bar for filtering game titles. Game is listed in a table with an edit button to the left of each row for easy game editing and deletes button to the right to delete the game from the database. 
 
-On the top left of the table there is an add button where an admin can add a new game to the database.
+On the top left of the table, there is an add button where an admin can add a new game to the database.
 
 ### Add or Edit Game
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487775/edit_t4eenz.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601487775/edit_t4eenz.png)
 
-Adding or editing a gme is done in the the same way. Administrators are presented with the form view pictured above. Here they are able to fill in or edit game details. Games marked with the featured checkmark or discounted checkmark will be added to the home pages and may be randomly selected to be featured on the main page slider. 
+Adding or editing a game is done in the the same way. Administrators are presented with the form view pictured above. Here they are able to fill in or edit game details. Games marked with the featured checkmark or discounted checkmark will be added to the home pages and may be randomly selected to be featured on the main page slider. 
 
 [![upload](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601488118/cloudinary_ffmlsl.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601488118/cloudinary_ffmlsl.png)
 
-I am using Cloaudinary(https://cloudinary.com/) ad my CDN to manage the sites media. For this site I have implemented their media upload widget as it is a very powerful javascript tool. I have set the tool up to resize any images to the correct size for the website.   
+I am using Cloudinary(https://cloudinary.com/) ad my CDN to manage the sites media. For this site, I have implemented their media upload widget as it is a very powerful javascript tool. I have set the tool up to resize any images to the correct size for the website.   
 
 ### Error handling
 
@@ -309,249 +322,249 @@ I have implemented custom error pages to keep with the site theme, images are fr
 
 ### Code structure
 
-Below is an outline of the file and folder structure of the project as a whole. I have tried to keep things as organised as possible although the amount on files are overwhelming at times.
+Below is an outline of the file and folder structure of the project as a whole. I have tried to keep things as organised as possible although the number of files is overwhelming at times.
 
 ``` txt
 .
 ├── cart
-│   ├── apps.py
-│   ├── contexts.py
-│   ├── __init__.py
-│   ├── migrations
-│   ├── templates
-│   │   └── cart
-│   │       └── cart.html
-│   ├── tests
-│   │   ├── __init__.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   └── views.py
+│   ├── apps.py
+│   ├── contexts.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── templates
+│   │   └── cart
+│   │       └── cart.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
 ├── checkout
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── 0006_order_user_profile.py
-│   │   ├── __init__.py
-│   ├── models.py
-│   ├── signals.py
-│   ├── static
-│   │   └── checkout
-│   │       ├── css
-│   │       │   └── checkout.css
-│   │       └── js
-│   │           └── stripe_elements.js
-│   ├── templates
-│   │   └── checkout
-│   │       ├── checkout.html
-│   │       ├── checkout_success.html
-│   │       └── confirmation_emails
-│   │           ├── confirmation_body.txt
-│   │           └── confirmation_subject.txt
-│   ├── tests
-│   │   ├── __init__.py
-│   │   ├── test_forms.py
-│   │   ├── test_models.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   ├── views.py
-│   ├── webhook_handler.py
-│   └── webhooks.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0006_order_user_profile.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── static
+│   │   └── checkout
+│   │       ├── css
+│   │       │   └── checkout.css
+│   │       └── js
+│   │           └── stripe_elements.js
+│   ├── templates
+│   │   └── checkout
+│   │       ├── checkout.html
+│   │       ├── checkout_success.html
+│   │       └── confirmation_emails
+│   │           ├── confirmation_body.txt
+│   │           └── confirmation_subject.txt
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── webhook_handler.py
+│   └── webhooks.py
 ├── custom_storages.py
 ├── dashboard
-│   ├── apps.py
-│   ├── forms.py
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── __init__.py
-│   ├── static
-│   │   └── dashboard
-│   │       ├── css
-│   │       │   └── dashboard.css
-│   │       └── js
-│   │           ├── cloudinary.js
-│   │           └── dashboard.js
-│   ├── templates
-│   │   ├── dashboard
-│   │   │   ├── add_game.html
-│   │   │   ├── dashboard_base.html
-│   │   │   ├── dashboard.html
-│   │   │   ├── edit_game.html
-│   │   │   ├── games_management.html
-│   │   │   ├── order_management.html
-│   │   │   ├── order_view.html
-│   │   │   └── user_management.html
-│   │   └── includes
-│   │       ├── dashboard_nav.html
-│   │       └── info_tiles.html
-│   ├── tests
-│   │   ├── __init__.py
-│   │   ├── test_forms.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   └── views.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   ├── static
+│   │   └── dashboard
+│   │       ├── css
+│   │       │   └── dashboard.css
+│   │       └── js
+│   │           ├── cloudinary.js
+│   │           └── dashboard.js
+│   ├── templates
+│   │   ├── dashboard
+│   │   │   ├── add_game.html
+│   │   │   ├── dashboard_base.html
+│   │   │   ├── dashboard.html
+│   │   │   ├── edit_game.html
+│   │   │   ├── games_management.html
+│   │   │   ├── order_management.html
+│   │   │   ├── order_view.html
+│   │   │   └── user_management.html
+│   │   └── includes
+│   │       ├── dashboard_nav.html
+│   │       └── info_tiles.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
 ├── db.sqlite3
 ├── games
-│   ├── admin.py
-│   ├── apps.py
-│   ├── fixtures
-│   │   ├── categories.json
-│   │   ├── games.json
-│   │   ├── genres.json
-│   │   └── tags.json
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── 0025_game_price_discounted.py
-│   │   ├── __init__.py
-│   ├── models.py
-│   ├── static
-│   │   └── games
-│   │       └── js
-│   │           └── games.js
-│   ├── templates
-│   │   ├── games
-│   │   │   ├── game_detail.html
-│   │   │   └── games.html
-│   │   └── includes
-│   │       └── sort_dropdown.html
-│   ├── tests
-│   │   ├── __init__.py
-│   │   ├── test_models.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   └── views.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   ├── categories.json
+│   │   ├── games.json
+│   │   ├── genres.json
+│   │   └── tags.json
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0025_game_price_discounted.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── static
+│   │   └── games
+│   │       └── js
+│   │           └── games.js
+│   ├── templates
+│   │   ├── games
+│   │   │   ├── game_detail.html
+│   │   │   └── games.html
+│   │   └── includes
+│   │       └── sort_dropdown.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
 ├── home
-│   ├── apps.py
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── __init__.py
-│   ├── static
-│   │   └── home
-│   │       ├── css
-│   │       │   ├── flickity.css
-│   │       │   └── home.css
-│   │       └── js
-│   │           ├── flickity.pkgd.min.js
-│   │           └── home.js
-│   ├── templates
-│   │   └── home
-│   │       └── index.html
-│   ├── tests
-│   │   ├── __init__.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   └── views.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   ├── static
+│   │   └── home
+│   │       ├── css
+│   │       │   ├── flickity.css
+│   │       │   └── home.css
+│   │       └── js
+│   │           ├── flickity.pkgd.min.js
+│   │           └── home.js
+│   ├── templates
+│   │   └── home
+│   │       └── index.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
 ├── htmlcov
-│   ├── coverage_html.js
-│   ├── index.html
-│   ├── status.json
-│   └── style.css
+│   ├── coverage_html.js
+│   ├── index.html
+│   ├── status.json
+│   └── style.css
 ├── manage.py
 ├── media
-│   └── header.jpg
+│   └── header.jpg
 ├── Procfile
 ├── profiles
-│   ├── apps.py
-│   ├── forms.py
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── 0001_initial.py
-│   │   ├── __init__.py
-│   ├── models.py
-│   ├── static
-│   │   └── profiles
-│   │       └── css
-│   │           └── profile.css
-│   ├── templates
-│   │   └── profiles
-│   │       └── profile.html
-│   ├── tests
-│   │   ├── __init__.py
-│   │   ├── test_forms.py
-│   │   ├── test_models.py
-│   │   └── test_views.py
-│   ├── urls.py
-│   └── views.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── static
+│   │   └── profiles
+│   │       └── css
+│   │           └── profile.css
+│   ├── templates
+│   │   └── profiles
+│   │       └── profile.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
 ├── README.md
 ├── requirements.txt
 ├── static
-│   ├── css
-│   │   ├── all_auth.css
-│   │   └── base.css
-│   ├── images
-│   │   ├── turn-games-full-logo.webp
-│   │   ├── turn-games-logo.svg
-│   │   ├── turn-games-text.png
-│   │   └── turn-games-text.webp
-│   └── js
-│       └── base.js
+│   ├── css
+│   │   ├── all_auth.css
+│   │   └── base.css
+│   ├── images
+│   │   ├── turn-games-full-logo.webp
+│   │   ├── turn-games-logo.svg
+│   │   ├── turn-games-text.png
+│   │   └── turn-games-text.webp
+│   └── js
+│       └── base.js
 ├── templates
-│   ├── 404.html
-│   ├── 500.html
-│   ├── allauth
-│   │   ├── account
-│   │   │   ├── account_inactive.html
-│   │   │   ├── base.html
-│   │   │   ├── email
-│   │   │   │   ├── email_confirmation_message.txt
-│   │   │   │   ├── email_confirmation_signup_message.txt
-│   │   │   │   ├── email_confirmation_signup_subject.txt
-│   │   │   │   ├── email_confirmation_subject.txt
-│   │   │   │   ├── password_reset_key_message.txt
-│   │   │   │   └── password_reset_key_subject.txt
-│   │   │   ├── email_confirm.html
-│   │   │   ├── email.html
-│   │   │   ├── login.html
-│   │   │   ├── logout.html
-│   │   │   ├── messages
-│   │   │   │   ├── cannot_delete_primary_email.txt
-│   │   │   │   ├── email_confirmation_sent.txt
-│   │   │   │   ├── email_confirmed.txt
-│   │   │   │   ├── email_deleted.txt
-│   │   │   │   ├── logged_in.txt
-│   │   │   │   ├── logged_out.txt
-│   │   │   │   ├── password_changed.txt
-│   │   │   │   ├── password_set.txt
-│   │   │   │   ├── primary_email_set.txt
-│   │   │   │   └── unverified_primary_email.txt
-│   │   │   ├── password_change.html
-│   │   │   ├── password_reset_done.html
-│   │   │   ├── password_reset_from_key_done.html
-│   │   │   ├── password_reset_from_key.html
-│   │   │   ├── password_reset.html
-│   │   │   ├── password_set.html
-│   │   │   ├── signup_closed.html
-│   │   │   ├── signup.html
-│   │   │   ├── snippets
-│   │   │   │   └── already_logged_in.html
-│   │   │   ├── verification_sent.html
-│   │   │   └── verified_email_required.html
-│   │   ├── base.html
-│   │   └── socialaccount
-│   │       ├── authentication_error.html
-│   │       ├── base.html
-│   │       ├── connections.html
-│   │       ├── login_cancelled.html
-│   │       ├── messages
-│   │       │   ├── account_connected_other.txt
-│   │       │   ├── account_connected.txt
-│   │       │   ├── account_connected_updated.txt
-│   │       │   └── account_disconnected.txt
-│   │       ├── signup.html
-│   │       └── snippets
-│   │           ├── login_extra.html
-│   │           └── provider_list.html
-│   ├── base.html
-│   └── includes
-│       ├── footer.html
-│       ├── main-nav.html
-│       ├── messages
-│       │   ├── message_error.html
-│       │   ├── message_info.html
-│       │   ├── message_success.html
-│       │   └── message_warning.html
-│       └── messages.html
+│   ├── 404.html
+│   ├── 500.html
+│   ├── allauth
+│   │   ├── account
+│   │   │   ├── account_inactive.html
+│   │   │   ├── base.html
+│   │   │   ├── email
+│   │   │   │   ├── email_confirmation_message.txt
+│   │   │   │   ├── email_confirmation_signup_message.txt
+│   │   │   │   ├── email_confirmation_signup_subject.txt
+│   │   │   │   ├── email_confirmation_subject.txt
+│   │   │   │   ├── password_reset_key_message.txt
+│   │   │   │   └── password_reset_key_subject.txt
+│   │   │   ├── email_confirm.html
+│   │   │   ├── email.html
+│   │   │   ├── login.html
+│   │   │   ├── logout.html
+│   │   │   ├── messages
+│   │   │   │   ├── cannot_delete_primary_email.txt
+│   │   │   │   ├── email_confirmation_sent.txt
+│   │   │   │   ├── email_confirmed.txt
+│   │   │   │   ├── email_deleted.txt
+│   │   │   │   ├── logged_in.txt
+│   │   │   │   ├── logged_out.txt
+│   │   │   │   ├── password_changed.txt
+│   │   │   │   ├── password_set.txt
+│   │   │   │   ├── primary_email_set.txt
+│   │   │   │   └── unverified_primary_email.txt
+│   │   │   ├── password_change.html
+│   │   │   ├── password_reset_done.html
+│   │   │   ├── password_reset_from_key_done.html
+│   │   │   ├── password_reset_from_key.html
+│   │   │   ├── password_reset.html
+│   │   │   ├── password_set.html
+│   │   │   ├── signup_closed.html
+│   │   │   ├── signup.html
+│   │   │   ├── snippets
+│   │   │   │   └── already_logged_in.html
+│   │   │   ├── verification_sent.html
+│   │   │   └── verified_email_required.html
+│   │   ├── base.html
+│   │   └── socialaccount
+│   │       ├── authentication_error.html
+│   │       ├── base.html
+│   │       ├── connections.html
+│   │       ├── login_cancelled.html
+│   │       ├── messages
+│   │       │   ├── account_connected_other.txt
+│   │       │   ├── account_connected.txt
+│   │       │   ├── account_connected_updated.txt
+│   │       │   └── account_disconnected.txt
+│   │       ├── signup.html
+│   │       └── snippets
+│   │           ├── login_extra.html
+│   │           └── provider_list.html
+│   ├── base.html
+│   └── includes
+│       ├── footer.html
+│       ├── main-nav.html
+│       ├── messages
+│       │   ├── message_error.html
+│       │   ├── message_info.html
+│       │   ├── message_success.html
+│       │   └── message_warning.html
+│       └── messages.html
 └── turn_games
     ├── asgi.py
     ├── __init__.py
@@ -570,7 +583,7 @@ Using [Stripe](https://stripe.com/) I was able to implement a payment system, th
 
 ### Features Left to Implement
 
-This project was a lot of fun and there are just so many features i would like to have implemented but ran short on time, I listed some of the key features below.
+This project was a lot of fun and there are just so many features I would like to have implemented but ran short on time, I listed some of the key features below.
 
 - setting up cards to all fave a fixed max size
 - more work on rating system and user profile areas
@@ -650,11 +663,11 @@ Testing and error checking was undertaken throughout the development process. Wi
 
 #### [W3C Markup](https://validator.w3.org/)
 
-Even though using this validator would understandably show errors for the jinja code I managed to catch some small mistakes by validating all the individual html files.
+Even though using this validator would understandably show errors for the jinja code I managed to catch some small mistakes by validating all the individual Html files.
 
 ####  [W3C CSS](https://jigsaw.w3.org/css-validator/)
 
-I tested all the CSS files in the project using W3C CSS validator with no errors as per image below.
+I tested all the CSS files in the project using W3C CSS validator with no errors as per the image below.
 
 #### [Autoprefixer](https://autoprefixer.github.io/)
 
@@ -707,7 +720,7 @@ Using the development tools inside chrome and google lighthouse I was able to fi
 
 #### User Testing
 
-This was probably the most useful of all, I had a number of friends and family test the application. This helped me get feedback and find bugs I had missed. Some included styling issues on different devices to some UX ideas to make it a bit more intuitive. Unfortunately I could not implement all the suggested features in time but the feedback was invaluable. Below are some of the feedback images I received and consequently fixed.
+This was probably the most useful of all, I had several friends and family test the application. This helped me get feedback and find bugs I had missed. Some included styling issues on different devices to some UX ideas to make it a bit more intuitive. Unfortunately, I could not implement all the suggested features in time but the feedback was invaluable. Below are some of the feedback images I received and consequently fixed.
 
 [![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0007_l1yzpo.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0007_l1yzpo.jpg)
 [![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0006_t4yrmg.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0006_t4yrmg.jpg)
@@ -719,7 +732,6 @@ This was probably the most useful of all, I had a number of friends and family t
 [Contents](#Table-of-Contents)
 
 ------
-
 
 
 ### Deployment
@@ -737,14 +749,14 @@ The Deployment of this site uses the following web technology therefore you will
 
 #### Prerequisites
 
-In order to contribute to this repository you will need to have the following installed:
+To contribute to this repository you will need to have the following installed:
 
 - [Python](https://www.python.org/) 3.8.3 or higher
 - [Git](https://git-scm.com/) version control
 - Code editor - [Pycharm](https://www.jetbrains.com/pycharm/) or [VS Code](https://code.visualstudio.com/) is recommended
 
 #### Development
-There are a number of steps required to deploy a local version of this project.
+There are several steps required to deploy a local version of this project.
 
 ##### Cloning
 
@@ -758,24 +770,24 @@ There are a number of steps required to deploy a local version of this project.
 
 ##### Requirements.txt
 
-Next you will need to install all the projects dependencies type `pip install -r requirements.txt` or `pip3 install -r requirements.txt`. If you add or update any packages in the project or add any new ones then use `pip freeze --local > requirements.txt` to update the [requirements.txt](https://github.com/Frozenaught/turn-games/blob/master/requirements.txt) file with the new dependencies.
+Next, you will need to install all the projects dependencies type `pip install -r requirements.txt` or `pip3 install -r requirements.txt`. If you add or update any packages in the project or add any new ones then use `pip freeze --local > requirements.txt` to update the [requirements.txt](https://github.com/Frozenaught/turn-games/blob/master/requirements.txt) file with the new dependencies.
 
 
 ##### Environment Variables
 
-You will need to setup the following environment variables on your system.
+You will need to set up the following environment variables on your system.
 
 | Variable name         | Used for                 | Notes                                                        |
 | --------------------- | ------------------------ | ------------------------------------------------------------ |
-| EMAIL_HOST_USER |  Sending notification emails | Can be created under the security tab inside a gmail account |
-| EMAIL_HOST_PASSWORD | Sending notification emails | Can be created under the security tab inside a gmail account |
+| EMAIL_HOST_USER |  Sending notification emails | Can be created under the security tab inside a Gmail account |
+| EMAIL_HOST_PASSWORD | Sending notification emails | Can be created under the security tab inside a Gmail account |
 | STRIPE_PUBLIC_KEY | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
 | STRIPE_SECRET_KEY | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
 | STRIPE_WH_SECRET | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
 | AWS_ACCESS_KEY_ID | Needed for the S3 Bucket static files | available when creating the S3 bucket |
 | AWS_SECRET_ACCESS_KEY | Needed for the S3 Bucket static files | available when creating the S3 bucket |
-| AWS | Deployment only - to tell django to use s3 instead of local static files | Should be used in deployment and set to True |
-| DATABASE_URL | Deployment only - sets hosted postgres database | Found in heroku under resources/ Heroku Postgres / Settings |
+| AWS | Deployment only - to tell Django to use s3 instead of local static files | Should be used in the deployment and set to True |
+| DATABASE_URL | Deployment only - sets hosted Postgres database | Found in Heroku under resources/ Heroku Postgres / Settings |
 | SECRET_KEY | used by Django as a salt to generate hashes | can easily be generated [here](https://miniwebtool.com/django-secret-key-generator/)|
 
 ##### Contribution
@@ -790,7 +802,7 @@ You will need to setup the following environment variables on your system.
 - submit the pull request and switch back to the master branch.
 - now I will have the option to merge the pull request and you will be done.
 
-##### Deployment
+##### Site Deployment
 
 [![code](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601499589/deploy_tvl4yh.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601499589/deploy_tvl4yh.png)
 
@@ -802,25 +814,38 @@ The easiest way to deploy the project to Heroku is to set your connect method to
 
 ## Credits
 
-The bulk of the credits should really go to the documentation of the various technologist I used and of course to teh excellent course content provided by the code institute.
+The bulk of the credits should go to the documentation of the various technologist I used and of course to the excellent course content provided by the Code Institute.
 
 ### Content
 
-The content on the site all comes from this [dataset](https://www.kaggle.com/nikdavis/steam-store-games) that was found on [Kaggel](https://www.kaggle.com/), I had to clean it up and take only what I needed to allow fixtures to easily load the data into my models. I created this [fixture_scripts]() folder with some python scripts to achieve this, it will only work for this purpose but it can be adapted for any dataset with a bit more time.
+The content on the site all comes from this [dataset](https://www.kaggle.com/nikdavis/steam-store-games) that was found on [Kaggle](https://www.kaggle.com/), I had to clean it up and take only what I needed to allow fixtures to easily load the data into my models. I created this [fixture_scripts](https://github.com/Frozenaught/turn-games/tree/master/fixture_scripts) folder with some python scripts to achieve this, it will only work for this purpose but it can be adapted for any dataset with a bit more time. Executing `main_csv_to_django` will create the fixture files. I used [this repo](https://gist.github.com/jalopez/705004) as a guide on what I was trying to achieve.
 
 ### Media
 
 #### Images
+- All the images used on the site were extracted from the [Kaggle](https://www.kaggle.com/nikdavis/steam-store-games) dataset. 
+
+- The logo was created by me using pixlr editor and gimp.
+
+- Error Images - [Drlinkcheck](https://www.drlinkcheck.com/blog/free-http-error-images)
+
 
 ### Acknowledgements
 
-Along the development process I saved all references I used to the References area in my [Trello Board](https://trello.com/b/dRoiHJLF/milestone-4-turn-games)
+Along the development process, I saved all references I used to the References area in my [Trello Board](https://trello.com/b/dRoiHJLF/milestone-4-turn-games)
 
 #### Inspiration
 
 - Used to help with ideas for web design
+    - [Steam](https://store.steampowered.com/)
+    - [Game](https://www.game.co.uk/en/games/final-fantasy/online/)
+    - [Colorlib](https://colorlib.com/wp/gaming-html-website-templates/)
  
 
 #### Code
+
+- [Help with google login System](https://medium.com/@whizzoe/in-5-mins-set-up-google-login-to-sign-up-users-on-django-e71d5c38f5d5)
+- [Cloudinary image upload](https://cloudinary.com/documentation/upload_widget)
+- [General queries Stack overflow](https://stackoverflow.com/)
 
 [Contents](#Table-of-Contents)
