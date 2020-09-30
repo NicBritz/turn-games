@@ -1,7 +1,7 @@
 /* Global styles */
 * {
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     /* main font */
     font-family: 'Montserrat', serif;
     margin: 0;
@@ -115,7 +115,7 @@ html {
     text-align: center;
     line-height: 21px;
     -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
+    transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     width: 100px;
     display: block;
@@ -124,7 +124,7 @@ html {
     background: -o-linear-gradient(#9BC90D 0%, #79A70A 100%);
     background: linear-gradient(#9BC90D 0%, #79A70A 100%);
     -webkit-box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
-            box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
     position: absolute;
     top: 19px;
     right: -21px;
@@ -238,10 +238,10 @@ html {
 
 .card:hover, .box:hover {
     -webkit-box-shadow: 0 0 8px 4px #393939;
-            box-shadow: 0 0 8px 4px #393939;
+    box-shadow: 0 0 8px 4px #393939;
     -webkit-transform: scale(1.01);
-        -ms-transform: scale(1.01);
-            transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
 }
 
 .old-price {
@@ -256,8 +256,8 @@ html {
 
 .is-justified-center {
     -webkit-box-pack: center !important;
-        -ms-flex-pack: center !important;
-            justify-content: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
 }
 
 .mx-auto {
@@ -377,8 +377,8 @@ html {
 
     .menu-button-group {
         -webkit-box-pack: normal !important;
-            -ms-flex-pack: normal !important;
-                justify-content: normal !important;
+        -ms-flex-pack: normal !important;
+        justify-content: normal !important;
     }
 
     .menu-button {
