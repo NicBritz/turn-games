@@ -68,7 +68,7 @@
                                                         {{ user.username|title }}
                                                     </td>
                                                     <td class="is-size-6-mobile is-size-5-desktop is-vcentered has-text-weight-medium px-0">
-                                                        {{ user.last_login }}
+                                                        {{ user.last_login.date }}
                                                     </td>
                                                     <td class="has-text-centered is-vcentered">
                                                         {% if not user.is_superuser %}

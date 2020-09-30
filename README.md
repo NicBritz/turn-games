@@ -261,15 +261,318 @@ If all the information is correct and the user chooses to submit, then the payme
 
 Upon successful completion of the order a user will be presented with the above success screen. The customer will get an email also at this point confirming their order. If the user is logged in as a registered user a copy of the order will also mow be available in their profile page. This is also the same page layout used when viewing any previous orders.
 
-## Admin Dashboard
+### Administrator Dashboard
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601486394/dashboard_ppi6tt.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601486394/dashboard_ppi6tt.png)
+
+The Administrator Dashboard acts as a central hub for site administrators to manage the site. The dashboard page features a chart that shows the value of sales over the past 30 days. I used a JS library to achieve this and display it in a canvas element. Here you are also able to see the last 10 database logs with icons that indicate weather it was an edit, delete, add or just general information. 
+
+Just below the heading section there are four cards indicating some site information. 
+
+Here you are able to see: 
+- The current number of registered site users.
+- The total amount of games currently in the database.
+- The number of orders to date.
+- The total value of all sales.
+
+These are also links to the relevant management views, these links can also be found in the management dropdown in the main nav-bar.
+
+### User Management
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487178/users_vgqosg.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601486394/dashboard_ppi6tt.png)
+
+In this section of the admin dashboard, site admins can see all currently registered users. Administrators can search for users by name using the searchbar at the top of the table to filter the list. From this view you can see the username, date last seen and you can delete users by selecting the trash can to the right of the user you would like to delete. I have disabled the delete functionality in this view for site admins to avoid accidental deletions.
+
+### Game Management
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487281/game_management_vh6jsb.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601487281/game_management_vh6jsb.png)
+
+The game management page allows the admin user to manage the current games in the database. This view also features a search bar for filtering game titles. Game are listed in a table with an edit button to the left of each row for easy game editing and delete button to the right tp delete the game from the database. 
+
+On the top left of the table there is an add button where an admin can add a new game to the database.
+
+### Add or Edit Game
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487775/edit_t4eenz.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601487775/edit_t4eenz.png)
+
+Adding or editing a gme is done in the the same way. Administrators are presented with the form view pictured above. Here they are able to fill in or edit game details. Games marked with the featured checkmark or discounted checkmark will be added to the home pages and may be randomly selected to be featured on the main page slider. 
+
+[![upload](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601488118/cloudinary_ffmlsl.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601488118/cloudinary_ffmlsl.png)
+
+I am using Cloaudinary(https://cloudinary.com/) ad my CDN to manage the sites media. For this site I have implemented their media upload widget as it is a very powerful javascript tool. I have set the tool up to resize any images to the correct size for the website.   
+
+### Error handling
+
+[![404](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601488938/404_xuo7jx.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601488938/404_xuo7jx.png)
+
+I have implemented custom error pages to keep with the site theme, images are from [Drlinkcheck](https://www.drlinkcheck.com/blog/free-http-error-images).
 
 ### Code structure
 
+Below is an outline of the file and folder structure of the project as a whole. I have tried to keep things as organised as possible although the amount on files are overwhelming at times.
 
-### Code structure
+``` txt
+.
+├── cart
+│   ├── apps.py
+│   ├── contexts.py
+│   ├── __init__.py
+│   ├── migrations
+│   ├── templates
+│   │   └── cart
+│   │       └── cart.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── checkout
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0006_order_user_profile.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── signals.py
+│   ├── static
+│   │   └── checkout
+│   │       ├── css
+│   │       │   └── checkout.css
+│   │       └── js
+│   │           └── stripe_elements.js
+│   ├── templates
+│   │   └── checkout
+│   │       ├── checkout.html
+│   │       ├── checkout_success.html
+│   │       └── confirmation_emails
+│   │           ├── confirmation_body.txt
+│   │           └── confirmation_subject.txt
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── webhook_handler.py
+│   └── webhooks.py
+├── custom_storages.py
+├── dashboard
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   ├── static
+│   │   └── dashboard
+│   │       ├── css
+│   │       │   └── dashboard.css
+│   │       └── js
+│   │           ├── cloudinary.js
+│   │           └── dashboard.js
+│   ├── templates
+│   │   ├── dashboard
+│   │   │   ├── add_game.html
+│   │   │   ├── dashboard_base.html
+│   │   │   ├── dashboard.html
+│   │   │   ├── edit_game.html
+│   │   │   ├── games_management.html
+│   │   │   ├── order_management.html
+│   │   │   ├── order_view.html
+│   │   │   └── user_management.html
+│   │   └── includes
+│   │       ├── dashboard_nav.html
+│   │       └── info_tiles.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── games
+│   ├── admin.py
+│   ├── apps.py
+│   ├── fixtures
+│   │   ├── categories.json
+│   │   ├── games.json
+│   │   ├── genres.json
+│   │   └── tags.json
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0025_game_price_discounted.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── static
+│   │   └── games
+│   │       └── js
+│   │           └── games.js
+│   ├── templates
+│   │   ├── games
+│   │   │   ├── game_detail.html
+│   │   │   └── games.html
+│   │   └── includes
+│   │       └── sort_dropdown.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── home
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   ├── static
+│   │   └── home
+│   │       ├── css
+│   │       │   ├── flickity.css
+│   │       │   └── home.css
+│   │       └── js
+│   │           ├── flickity.pkgd.min.js
+│   │           └── home.js
+│   ├── templates
+│   │   └── home
+│   │       └── index.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── htmlcov
+│   ├── coverage_html.js
+│   ├── index.html
+│   ├── status.json
+│   └── style.css
+├── manage.py
+├── media
+│   └── header.jpg
+├── Procfile
+├── profiles
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── static
+│   │   └── profiles
+│   │       └── css
+│   │           └── profile.css
+│   ├── templates
+│   │   └── profiles
+│   │       └── profile.html
+│   ├── tests
+│   │   ├── __init__.py
+│   │   ├── test_forms.py
+│   │   ├── test_models.py
+│   │   └── test_views.py
+│   ├── urls.py
+│   └── views.py
+├── README.md
+├── requirements.txt
+├── static
+│   ├── css
+│   │   ├── all_auth.css
+│   │   └── base.css
+│   ├── images
+│   │   ├── turn-games-full-logo.webp
+│   │   ├── turn-games-logo.svg
+│   │   ├── turn-games-text.png
+│   │   └── turn-games-text.webp
+│   └── js
+│       └── base.js
+├── templates
+│   ├── 404.html
+│   ├── 500.html
+│   ├── allauth
+│   │   ├── account
+│   │   │   ├── account_inactive.html
+│   │   │   ├── base.html
+│   │   │   ├── email
+│   │   │   │   ├── email_confirmation_message.txt
+│   │   │   │   ├── email_confirmation_signup_message.txt
+│   │   │   │   ├── email_confirmation_signup_subject.txt
+│   │   │   │   ├── email_confirmation_subject.txt
+│   │   │   │   ├── password_reset_key_message.txt
+│   │   │   │   └── password_reset_key_subject.txt
+│   │   │   ├── email_confirm.html
+│   │   │   ├── email.html
+│   │   │   ├── login.html
+│   │   │   ├── logout.html
+│   │   │   ├── messages
+│   │   │   │   ├── cannot_delete_primary_email.txt
+│   │   │   │   ├── email_confirmation_sent.txt
+│   │   │   │   ├── email_confirmed.txt
+│   │   │   │   ├── email_deleted.txt
+│   │   │   │   ├── logged_in.txt
+│   │   │   │   ├── logged_out.txt
+│   │   │   │   ├── password_changed.txt
+│   │   │   │   ├── password_set.txt
+│   │   │   │   ├── primary_email_set.txt
+│   │   │   │   └── unverified_primary_email.txt
+│   │   │   ├── password_change.html
+│   │   │   ├── password_reset_done.html
+│   │   │   ├── password_reset_from_key_done.html
+│   │   │   ├── password_reset_from_key.html
+│   │   │   ├── password_reset.html
+│   │   │   ├── password_set.html
+│   │   │   ├── signup_closed.html
+│   │   │   ├── signup.html
+│   │   │   ├── snippets
+│   │   │   │   └── already_logged_in.html
+│   │   │   ├── verification_sent.html
+│   │   │   └── verified_email_required.html
+│   │   ├── base.html
+│   │   └── socialaccount
+│   │       ├── authentication_error.html
+│   │       ├── base.html
+│   │       ├── connections.html
+│   │       ├── login_cancelled.html
+│   │       ├── messages
+│   │       │   ├── account_connected_other.txt
+│   │       │   ├── account_connected.txt
+│   │       │   ├── account_connected_updated.txt
+│   │       │   └── account_disconnected.txt
+│   │       ├── signup.html
+│   │       └── snippets
+│   │           ├── login_extra.html
+│   │           └── provider_list.html
+│   ├── base.html
+│   └── includes
+│       ├── footer.html
+│       ├── main-nav.html
+│       ├── messages
+│       │   ├── message_error.html
+│       │   ├── message_info.html
+│       │   ├── message_success.html
+│       │   └── message_warning.html
+│       └── messages.html
+└── turn_games
+    ├── asgi.py
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+
+90 directories, 398 files
+```
 
 
 ### Features Left to Implement
+
+This project was a lot of fun and there are just so many features i would like to have implemented but ran short on time, I listed some of the key features below.
+
+- setting up cards to all fave a fixed max size
+- more work on rating system and user profile areas
+- avatars for user profiles
+- more charts and greater control of content in the admin dashboard
+- printing of order forms
+
 
 [Contents](#Table-of-Contents)
 
@@ -282,6 +585,8 @@ The following is a list of tools and technologies I used to create this website:
 
 - [Python 3.8.3](https://www.python.org/)
   - Used for backend data manipulation
+- [Django 3.1.1](https://www.djangoproject.com/)
+  - Used as main python framework
 - [Jinja2 2.11.2](https://pypi.org/project/Jinja2/)
   - Used as the main templating language for template manipulation
 - [Cloudinary 1.21.0](https://cloudinary.com/)
@@ -302,12 +607,18 @@ The following is a list of tools and technologies I used to create this website:
   - Used to host the website
 - [GitHub](https://github.com/)
   - Used to store my project source code
+- [Bulma](https://bulma.io/)
+  - Used as the sites main css framework
+- [Flickety](https://flickity.metafizzy.co/)
+  - Used to create the main slider on the homepage
+- [Stripe](https://stripe.com/)
+  - Used for secure credit card payments
 
 ### Other Tools
 
 - [Pycharm](https://www.jetbrains.com/pycharm/)
   - This is the main IDE I used to build the website.
-- [Adobe Photoshop](https://www.adobe.com/uk/products/photoshop.html?gclid=CjwKCAjwvOHzBRBoEiwA48i6AtbSWstaKzHCUaUKzSlnKYFxv7dELw1rAOJgZhYShhzdXSxrCp3JHxoCnG4QAvD_BwE&sdid=88X75SKR&mv=search&ef_id=CjwKCAjwvOHzBRBoEiwA48i6AtbSWstaKzHCUaUKzSlnKYFxv7dELw1rAOJgZhYShhzdXSxrCp3JHxoCnG4QAvD_BwE:G:s&s_kwcid=AL!3085!3!340669891884!e!!g!!photoshop)
+- [Pixlr](https://pixlr.com/)
   - Used to manipulate and create content for the website.
 - [Grammarly](https://www.grammarly.com/)
   - Used to double-check all my spelling and grammar.
@@ -317,6 +628,8 @@ The following is a list of tools and technologies I used to create this website:
   - Used this to check the validity of my CSS.
 - [jshint](https://jshint.com/)
   - Used to validate JavaScript.
+- [black](https://black.readthedocs.io/en/stable/)
+  - Used for formatting python code.
 - [Autoprefixer](https://autoprefixer.github.io/)
   - I used this tool to make sure I did not miss any prefixing in my code.
 
@@ -342,18 +655,27 @@ After finishing up my CSS and before the validation of CSS I used this tool to m
 
 #### Unit Testing
 
-#### CI/CD
+[![testing](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601490544/tests_dwe31t.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601490544/tests_dwe31t.png)
 
-As an extra test I used [github actions](https://github.com/features/actions) to set up continuous integration tests when ever I create a pull request. This was just in case I broke something. It was good to check before merging to the master branch.
+[![Coverage](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601490781/coverage_rr9wpm.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601490781/coverage_rr9wpm.png)
+
+With the use of Django unit tests and coverage I created tests for my codebase, interestingly I discovered some bugs when implementing the tests that I believe I would have otherwise missed. 
 
 #### Google Lighthouse
 
+[![lighthouse](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601491051/lighthouse_eimfjg.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601491051/lighthouse_eimfjg.png)
+
+Using the development tools inside chrome and google lighthouse I was able to fix some of my sites performance issues. 
+
 #### Browser and Device Testing
 
-| **Browser**      | **Device** | **Compatibility**                                            | **Version**            |
-| :--------------- | :--------- | :----------------------------------------------------------- | :--------------------- |
-| Google Chrome    | PC         | ?????????                                                    | Version 83.0.4103.106  |
-     |
+| **Browser** | **Device** | **Compatibility** | **Version**|
+|-------------| ---------- | ----------------- | ---------- |
+| Google Chrome | Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 85.0.4183.121  |
+| Firefox | Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 81.0  |
+| Edge| Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 85.0.564.63  |
+| Samsung Internet | Galaxy S8  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 12.1.2.5  |
+
 
 - [ ] Test links to all pages
 - [ ] Test errors by typing in random page redirects
