@@ -1,18 +1,15 @@
 ![](https://img.shields.io/badge/Django-3.1-orange)
 
-[![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/f_auto/v1600948601/Turn_GAmes_uquoab.png)](https://turn-games.herokuapp.com/)
-
-------
 
 ## Overview 
+[![Home page](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)
 
-Turn Games is en e-commerce digital video game store, the site offers a wide variety of visual entertainment content. Users can browse the sites extensive inventory and filter down the content for easier navigation. Users are also able to search the site by use of a search bar that is always readily available. 
+[![turn games](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_209/v1601468661/turn_games_logo_cn5k5t.png)](https://turn-games.herokuapp.com/) is an e-commerce digital video game store, the site offers a wide variety of visual entertainment content. Users can browse the sites extensive inventory and filter down the content for easier navigation. Users are also able to search the site by use of a search bar that is always readily available. 
 
 The landing page will show any content that the site owner has added to the featured or discounted sections. It will randomly select ten titles to display on the main page image slider.
 
-Users are easily able to view more information about the game simply by selecting the content card. In the game inspection area a user can either rate a game with a thumbs up or a thumbs down and add the game to their basket for purchase once they have finished browsing.
+Users are easily able to view more information about the game simply by selecting the content card. In the game inspection area a user can either rate a game with a thumbs up or a thumbs down and add the game to their basket for purchase once they have finished browsing. You can view the site by following [this link.](https://turn-games.herokuapp.com/)
 
-[![Home page](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601467361/f7355fb508f84512843864bb5a26ba30_1_1920_y9dqug.jpg)
 
 ## Table of Contents
 
@@ -146,29 +143,131 @@ Before starting the project I used [figma](https://www.figma.com/) to create the
 
 To keep track of the project I made use of a Trello board. The board was used to keep track of progress add ideas when they spring to mind and keep track of online resources. You can view the board [here](https://trello.com/b/dRoiHJLF/milestone-4-turn-games)
 
+[![Trello Board](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601467944/Trello_bdvuax.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601467944/Trello_bdvuax.png)
+
+
 ### Database Schema
+The database used for development of the project was [SQLite](https://www.sqlite.org/index.html) which was later moved to [Heroku](https://www.heroku.com/) using the postgres addon. Below is a visualisation of the database schema.
+[![Trello Board](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601470354/Database_Diagram_mvltor.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601470354/Database_Diagram_mvltor.png)
 
 ## Features
 
 ### The navigation bar
 
-### Main Slider
 
-### View  filtering
+I created a favicon ![favicon](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,f_auto,w_24/v1601471645/turn-games-favicon_yjuqcj.png) with the logo that I designed for the site, it feel it just gives the site a more finished look. 
 
-### Game cards
+[![NAv Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601471156/Navbar_vzeonj.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601471156/Navbar_vzeonj.png)
+
+The navigation bar was designed to look neat and only show the minimum amount of menu items possible. In a desktop environment this navigation menu has the logo which is also a link to the home page. I added small coloured icons to give the site a 'gamey feel', as I felt it would be suitable for the sites intended audience. There are dropdown menus to navigate the site and filter through the various game categories and genres. I have also added the account menu here for easy access as well as a shopping cart button that shows the current value if the items in the cart.
+
+[![NAv Mobile](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_50/v1601472692/mobile_Nav_uc2dp9.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601472692/mobile_Nav_uc2dp9.png)
+[![Mobile Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_172/v1601473355/mobile_menu_l0u2ys.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_172/v1601473355/mobile_menu_l0u2ys.png)
+
+When viewing the website on a mobile device the menu completely collapses into an animated hamburger menu. There are some slight changes to the items in the menu on mobile devices, this was a decision made to keep the site neat.
+
+### Account Menu
+
+[![Account Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_172/v1601473834/account_menu_znxppe.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601473834/account_menu_znxppe.png)
+
+The account menu changes dynamically depending on the following factors:
+
+- User not logged in
+    - Menu displays: `login` & `Register`
+    
+- Standard user logged in
+    - Title displays: `your-usersname`
+    - Menu displays: `Profile` & `Logout`
+
+- Admin user logged in
+    - Title displays: `your-usersname`
+    - Menu displays: `Admin Dashboard` & `Profile` & `Logout` 
+
+### Shopping Cart button
+
+[![Account Menu](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601474862/cart_fr7k19.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601474862/cart_fr7k19.png)
+
+When choosing to purchase items from the site they will get added to your shopping cart. The button will update its label to display the current value of the games in your cart. 
+
+Hovering over the menu on a desktop will present the above pictured menu, here you can preview the items currently in your cart as well a select an item to link back to it. I decided to exclude this feature fom the mobile versions as it was looking a bit cluttered.
+
+### Home Page Slider
+
+[![MAin Slider](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601475345/slider_yf5mvc.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601475345/slider_yf5mvc.png)
+
+Using a css library called [Flickety](https://flickity.metafizzy.co/) I implemented a slider for the home page. I wanted it not only to be responsive but also make use of the ability to drag through slides on mobile devices. 
+
+Hovering over a slide will also stop the slides from scrolling automatically. The layout of this slider will also change depending on the device its viewed on, again this was a decision based on keeping the site looking neat. 
+
+### Game Cards
+
+[![Game Card](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476112/card_o80dfe.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476112/card_o80dfe.png)
+
+The game cards are the main way a game is chosen to be purchased. I tried to keep them looking as simple as possible. The cards are also direct links to the more detailed game view. The ratings are clearly displayed on the footer of each card as well as the prices. If a card has a discount attached to it there will be a ribbon in the top right corner indicating the discount percent. There will also be a red price indicating the old / new prices.
+
+### Content Filtering
+
+[![Game Card](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601476847/filtering_wxoc3p.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476847/filtering_wxoc3p.png)
+
+If a users chooses any filers in the main navigation menu or chooses to search the site for a particular game, they will be presented with a new view. This is essentially a view that contains all the games and it can be sorted in various ways using th sort dropdown. There is also an indication on the current filter ie: Adventure as above picture indicates. Here you will also see the number of results found under the current search criteria by pressing the red cross users can clear all filters. 
+
+### Game Details
+
+[![Game Details](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601477446/details_f2ekjo.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601477446/details_f2ekjo.png)
+
+The game details page gives the user a final overview of the game. This includes things the description, developer information and any associated tags. These tags, categories and genres are also links so that a user can easily view more games like the one they are currently interested in. This is also where the Buy button resides. clicking this will of course add the game you the cart. If a user tries to add more than one of the same game in the cart they will be presented with a message that the game is already in the cart. This is by design as this is essentially a digital app store so you would not buy a game you already own.   
+
+In the case of a site administrator using the detailed game view will show an edit button so that the game can easily be edited without having to access the game through the administrator dashboard. 
 
 ### Footer
 
+[![Footer](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_1024/v1601478449/footer_wt7ejk.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601478449/footer_wt7ejk.png)
+
+The footer is simple by design and only contains some social links. hovering over the links will change their colours to the correct brand specific colours. Clicking them will open the relevant social page in a new tab. 
+
+On mobile devices the footer has been moved inside the hamburger menu to make use of maximum screen space for site content.
+
 ### Sign-in
 
-### Registration
+[![Sign in](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601478940/Sign_in_ldzvxz.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601478940/Sign_in_ldzvxz.png)
 
-#### Image tab
+The site makes use of Django allauth to handle its user login authentication. I have styled all the standard allauth templates to align with the sites design. I have also implemented the ability to sign in with your Google account. This makes site registration and login very simple. 
 
-### Game view
+### User Profile
+
+[![Profile](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601479205/profile_louz26.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601479205/profile_louz26.png)
+
+The profile page features the ability to add your personal information to make the checkout process faster. From here users can also view all their previous orders and update their email and password. By selecting the order number a user can see a more detailed view of the order. 
+
+### Shopping cart 
+
+[![Cart](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601479575/shopping_cart_aqjqbc.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601479575/shopping_cart_aqjqbc.png)
+
+The shopping cart view displays all the games in your cart in detail. from this view you can start the checkout process or go back to browse the store. Games can also be removed from your cart in this view by selecting the red cross situated to the left of the games image. There is also an indication oof the total value of the items in the cart taking the tax percentage into account. 
+
+There is a step indication at he top of the view to show the current progress ing the checkout process. By selecting the secure checkout button a user can begin the checkout process.
+
+#### Checkout View
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601480219/Checkout_qtof8r.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601480219/Checkout_qtof8r.png)
+
+Here a user can fill in their information to make payment for the items in their cart. Required information is indicated with a red astrix. The credit card section makes use of [stripe](https://stripe.com/) as the payment technology. 
+
+If all the information is correct and the user chooses to submit, then the payment intent will be sent to stripe for processing. There is a webhook implemented as a precaution against errors during this process. The submit button is disabled and replaced with a loading indicator to show there is an action in progress. 
+
+### Checkout Success
+
+[![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601481147/success_jophri.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601481147/success_jophri.png)
+
+Upon successful completion of the order a user will be presented with the above success screen. The customer will get an email also at this point confirming their order. If the user is logged in as a registered user a copy of the order will also mow be available in their profile page. This is also the same page layout used when viewing any previous orders.
+
+## Admin Dashboard
 
 ### Code structure
+
+
+### Code structure
+
 
 ### Features Left to Implement
 
