@@ -562,6 +562,11 @@ Below is an outline of the file and folder structure of the project as a whole. 
 90 directories, 398 files
 ```
 
+### Stripe Payments
+
+[![stripe](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601498410/stripe_p1kqus.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601498410/stripe_p1kqus.png)
+
+Using [Stripe](https://stripe.com/) I was able to implement a payment system, the above image shows the successful transaction history.
 
 ### Features Left to Implement
 
@@ -613,6 +618,8 @@ The following is a list of tools and technologies I used to create this website:
   - Used to create the main slider on the homepage
 - [Stripe](https://stripe.com/)
   - Used for secure credit card payments
+- [Kaggel](https://www.kaggle.com/nikdavis/steam-store-games)
+  - Used to get some data for the site
 
 ### Other Tools
 
@@ -669,20 +676,45 @@ Using the development tools inside chrome and google lighthouse I was able to fi
 
 #### Browser and Device Testing
 
-| **Browser** | **Device** | **Compatibility** | **Version**|
-|-------------| ---------- | ----------------- | ---------- |
+| **Browser** | **Device** | **Compatibility** | **Version**| **Notes**|
+|-------------| ---------- | ----------------- | ---------- |-------|
 | Google Chrome | Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 85.0.4183.121  |
 | Firefox | Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 81.0  |
 | Edge| Desktop  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 85.0.564.63  |
 | Samsung Internet | Galaxy S8  | &#9733;&#9733;&#9733;&#9733;&#9733; | Version 12.1.2.5  |
+| Safari | iPhone 8  | &#9733;&#9733;&#9733;&#9733;&#9734; | Version 14.0  | Some small styling differences & google sign in incompatibility|
 
 
-- [ ] Test links to all pages
-- [ ] Test errors by typing in random page redirects
-- [ ] Try to access the user area without signing in
-- [ ] Test filtering dropdowns
+- [x] Test links to all pages
+- [x] Test errors by typing in random page redirects
+- [x] Try to access the user area without signing in
+- [x] Test filtering dropdowns
+- [x] Test searching
+- [x] Test clearing search
+- [x] Test card links
+- [x] Test social links
+- [x] Test ratings
+- [x] Test adding and removing items from cart
+- [x] Test checkout process
+- [x] Test user login
+- [x] Test editing user profile
+- [x] Test dashboard view
+- [x] Test add game
+- [x] Test edit game
+- [x] Test delete game
+- [x] Test add featured and discounted game
+
 
 #### User Testing
+
+This was probably the most useful of all, I had a number of friends and family test the application. This helped me get feedback and find bugs I had missed. Some included styling issues on different devices to some UX ideas to make it a bit more intuitive. Unfortunately I could not implement all the suggested features in time but the feedback was invaluable. Below are some of the feedback images I received and consequently fixed.
+
+[![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0007_l1yzpo.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0007_l1yzpo.jpg)
+[![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0006_t4yrmg.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0006_t4yrmg.jpg)
+[![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0011_ejothe.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0011_ejothe.jpg)
+[![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495309/IMG-20200920-WA0026_rdhqen.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495309/IMG-20200920-WA0026_rdhqen.jpg)
+[![error](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_250/v1601495589/IMG-20200930-WA0003_djlgsh.jpg)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601495589/IMG-20200930-WA0003_djlgsh.jpg)
+
 
 [Contents](#Table-of-Contents)
 
@@ -692,13 +724,42 @@ Using the development tools inside chrome and google lighthouse I was able to fi
 
 ### Deployment
 
+The Deployment of this site uses the following web technology therefore you will need the appropriate accounts:
+
+- [GitHub](https://github.com/) - For hosting this site's Repository
+- [Heroku](https://www.heroku.com/) - To host the website
+- [Postgresql](https://www.postgresql.org/) - To host the database though addon in Heroku
+- [AWS S3](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23storage&trk=ps_a134p000004f2XNAAY&trkCampaign=acq_paid_search_brand&sc_channel=PS&sc_campaign=acquisition_EMEA&sc_publisher=Google&sc_category=Storage&sc_country=EMEA&sc_geo=EMEA&sc_outcome=acq&sc_detail=aws%20s3&sc_content=S3_e&sc_matchtype=e&sc_segment=468762436981&sc_medium=ACQ-P|PS-GO|Brand|Desktop|SU|Storage|S3|EMEA|EN|Text|xx|EU&s_kwcid=AL!4422!3!468762436981!e!!g!!aws%20s3&ef_id=CjwKCAjw2dD7BRASEiwAWCtCbwYYQwQbIMou2UIrjOgrezSe1BPJF1YLrthdwDUBmz35GRk4gDL2YRoCTLoQAvD_BwE:G:s&s_kwcid=AL!4422!3!468762436981!e!!g!!aws%20s3) - Storage for the sites static files
+- [Cloudinary](https://cloudinary.com/) - For hosting the websites images.
+- [Stripe](https://stripe.com/) - For the payment system.
+
+
+
 #### Prerequisites
 
+In order to contribute to this repository you will need to have the following installed:
+
+- [Python](https://www.python.org/) 3.8.3 or higher
+- [Git](https://git-scm.com/) version control
+- Code editor - [Pycharm](https://www.jetbrains.com/pycharm/) or [VS Code](https://code.visualstudio.com/) is recommended
+
 #### Development
+There are a number of steps required to deploy a local version of this project.
 
 ##### Cloning
 
-##### Requirements
+[![code](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601496664/code_btn_rpimid.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601496664/code_btn_rpimid.png)
+
+- At the top of the repository click on the Code button as shown above.
+- Copy the path to the repo [https://github.com/Frozenaught/turn-games.git](https://github.com/Frozenaught/turn-games.git).
+- In your command-line, navigate to the folder where you would like to make a copy of this repository ie: `c:\MyRepos>` or `~/Documents ❯ `.
+- Type the following to clone the repo `c:\MyRepos> git clone https://github.com/Frozenaught/turn-games.git` or `~/Documents ❯ git clone https://github.com/Frozenaught/turn-games.git`
+- Now you can navigate to the newly created directory `c:\MyRepos\turn-game>` or `~/Documents/turn-games ❯` 
+
+##### Requirements.txt
+
+Next you will need to install all the projects dependencies type `pip install -r requirements.txt` or `pip3 install -r requirements.txt`. If you add or update any packages in the project or add any new ones then use `pip freeze --local > requirements.txt` to update the [requirements.txt](https://github.com/Frozenaught/turn-games/blob/master/requirements.txt) file with the new dependencies.
+
 
 ##### Environment Variables
 
@@ -706,15 +767,20 @@ You will need to setup the following environment variables on your system.
 
 | Variable name         | Used for                 | Notes                                                        |
 | --------------------- | ------------------------ | ------------------------------------------------------------ |
-
-
-
-
-> Note: you will need to add these environment variable to your GitHub repo in `settings -> secrets` and Heroku  in `settings -> config vars` 
+| EMAIL_HOST_USER |  Sending notification emails | Can be created under the security tab inside a gmail account |
+| EMAIL_HOST_PASSWORD | Sending notification emails | Can be created under the security tab inside a gmail account |
+| STRIPE_PUBLIC_KEY | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
+| STRIPE_SECRET_KEY | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
+| STRIPE_WH_SECRET | Needed for the stripe payment system | Can be created under the developer tab on your stripe dashboard |
+| AWS_ACCESS_KEY_ID | Needed for the S3 Bucket static files | available when creating the S3 bucket |
+| AWS_SECRET_ACCESS_KEY | Needed for the S3 Bucket static files | available when creating the S3 bucket |
+| AWS | Deployment only - to tell django to use s3 instead of local static files | Should be used in deployment and set to True |
+| DATABASE_URL | Deployment only - sets hosted postgres database | Found in heroku under resources/ Heroku Postgres / Settings |
+| SECRET_KEY | used by Django as a salt to generate hashes | can easily be generated [here](https://miniwebtool.com/django-secret-key-generator/)|
 
 ##### Contribution
 
-- If you chose to make changes to the website I would recommend using separate branches so that you can go back to the original master branch if the changes don't work as expected.
+- If you choose to make changes to the website I would recommend using separate branches so that you can go back to the original master branch if the changes don't work as expected.
 - Use `git checkout -b <brancname>` to create a new branch and edit the files accordingly.
 - If you are happy with the changes to use `git commit -m "my commit message of changes I have made"` to commit the changes.
 - Use `git push `to push the changes to the repository.
@@ -726,6 +792,8 @@ You will need to setup the following environment variables on your system.
 
 ##### Deployment
 
+[![code](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601499589/deploy_tvl4yh.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601499589/deploy_tvl4yh.png)
+
 The easiest way to deploy the project to Heroku is to set your connect method to GitHub and link the repository master branch. If you set the project up for automatic deploys it will deploy once the master branch is updated.
 
 [Contents](#Table-of-Contents)
@@ -734,10 +802,11 @@ The easiest way to deploy the project to Heroku is to set your connect method to
 
 ## Credits
 
-The bulk of the credits should really go to the documentation of the various technologist I used, I managed to get most of what I needed from there.
+The bulk of the credits should really go to the documentation of the various technologist I used and of course to teh excellent course content provided by the code institute.
 
 ### Content
 
+The content on the site all comes from this [dataset](https://www.kaggle.com/nikdavis/steam-store-games) that was found on [Kaggel](https://www.kaggle.com/), I had to clean it up and take only what I needed to allow fixtures to easily load the data into my models. I created this [fixture_scripts]() folder with some python scripts to achieve this, it will only work for this purpose but it can be adapted for any dataset with a bit more time.
 
 ### Media
 
