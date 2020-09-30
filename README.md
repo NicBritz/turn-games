@@ -209,7 +209,7 @@ The game cards are the main way a game is chosen to be purchased. I tried to kee
 
 [![Game Card](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,w_512/v1601476847/filtering_wxoc3p.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601476847/filtering_wxoc3p.png)
 
-If a users chooses any filers in the main navigation menu or chooses to search the site for a particular game, they will be presented with a new view. This is essentially a view that contains all the games and it can be sorted in various ways using th sort dropdown. There is also an indication on the current filter ie: Adventure as above picture indicates. Here you will also see the number of results found under the current search criteria by pressing the red cross users can clear all filters. 
+If a users chooses any filers in the main navigation menu or chooses to search the site for a particular game, they will be presented with a new view. This is essentially a view that contains all the games and it can be sorted in various ways using the sort dropdown. There is also an indication on the current filter ie: Adventure as above picture indicates. Here you will also see the number of results found under the current search criteria by pressing the red cross users can clear all filters. 
 
 ### Game Details
 
@@ -295,7 +295,7 @@ On the top left of the table there is an add button where an admin can add a new
 
 [![Checkout](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_512/v1601487775/edit_t4eenz.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601487775/edit_t4eenz.png)
 
-Adding or editing a gme is done in the the same way. Administrators are presented with the form view pictured above. Here they are able to fill in or edit game details. Games marked with the featured checkmark or discounted checkmark will be added to the home pages and may be randomly selected to be featured on the main page slider. 
+Adding or editing a gme is done in the same way. Administrators are presented with the form view pictured above. Here they are able to fill in or edit game details. Games marked with the featured checkmark or discounted checkmark will be added to the home pages and may be randomly selected to be featured on the main page slider. 
 
 [![upload](https://res.cloudinary.com/dauzoqnfv/image/upload/c_scale,h_150/v1601488118/cloudinary_ffmlsl.png)](https://res.cloudinary.com/dauzoqnfv/image/upload/v1601488118/cloudinary_ffmlsl.png)
 
@@ -309,7 +309,7 @@ I have implemented custom error pages to keep with the site theme, images are fr
 
 ### Code structure
 
-Below is an outline of the file and folder structure of the project as a whole. I have tried to keep things as organised as possible although the amount on files are overwhelming at times.
+Below is an outline of the file and folder structure of the project as a whole. I have tried to keep things as organized as possible although the amount on files are overwhelming at times.
 
 ``` txt
 .
