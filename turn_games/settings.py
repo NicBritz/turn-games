@@ -174,45 +174,22 @@ if "AWS" in os.environ:
 
 
 
-    # Bucket Configuration
+   # Bucket Configuration
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = "turn-games-bucket"
     AWS_S3_ENDPOINT_URL = 'https://s3.filebase.com'
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.filebase.com"
 
-
-    STATICFILES_DORS = [
-        os.path.join(BASE_DIR, '/static'),
-    ]
-
-  
-    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-  
-    # Cache static files for long time
-    # AWS_S3_OBJECT_PARAMETERS = {
-    #     "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
-    #     "CacheControl": "max-age=94608000",
-    # }
-
-    # # Bucket Configuration
-    # AWS_STORAGE_BUCKET_NAME = "turn-games-bucket"
-    # AWS_S3_REGION_NAME = "us-east-1"
-    # AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    # AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    # AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.filebase.com"
-
-    # # Static and media files
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # Static and media files
+    STATICFILES_STORAGE = "custom_storages.StaticStorage"
     STATICFILES_LOCATION = "static"
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
     MEDIAFILES_LOCATION = "media"
 
-    # # Override static and media URLs in production
-    # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
-    # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
-    STATIC_URL = 'https://someshit.s3.amazonaws.com/'
-    MEDIA_URL = 'https://someshit.s3.amazonaws.com/'
+    # Override static and media URLs in production
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
 
 
 
