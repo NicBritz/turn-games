@@ -177,7 +177,7 @@ if "AWS" in os.environ:
    # Bucket Configuration
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = "turn-games-bucket"
+    AWS_STORAGE_BUCKET_NAME = "turn-games-static"
     AWS_S3_ENDPOINT_URL = 'https://s3.filebase.com'
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.filebase.com"
 
