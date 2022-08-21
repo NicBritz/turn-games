@@ -129,10 +129,11 @@ if "DATABASE_URL" in os.environ:
 else:
     DATABASES = {
         # Adding the local database
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+        # "default": {
+            # "ENGINE": "django.db.backends.sqlite3",
+            # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "default": dj_database_url.parse('postgres://nhafovraydvjxy:1df289a4cecf7b5521953244c71b79b397a09ecdf8dc3170b087e552f51bb519@ec2-54-155-199-134.eu-west-1.compute.amazonaws.com:5432/d45se74fb8n4vh')    
+        # }
        
     }
 
