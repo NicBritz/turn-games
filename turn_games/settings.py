@@ -179,7 +179,7 @@ if "AWS" in os.environ:
     }
     AWS_STATIC = 'static'
     
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC)
+    STATIC_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     
   
