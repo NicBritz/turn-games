@@ -161,7 +161,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
@@ -173,15 +173,18 @@ if "AWS" in os.environ:
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = 'turn-games-bucket'
+    AWS_S3_ENDPOINT_URL = 'https://s3.filebase.com'
+
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.filebase.com' % AWS_STORAGE_BUCKET_NAME
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
-    AWS_STATIC = 'static'
-    
-    STATIC_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, AWS_STATIC)
+
+    AWS_LOCATION = 'static'
+
+    STATICFILES_DORS = [
+        os.path.join(BASE_DIR, '/static'),
+    ]
+
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    
   
     # Cache static files for long time
     # AWS_S3_OBJECT_PARAMETERS = {
