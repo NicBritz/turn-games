@@ -1,5 +1,7 @@
+from distutils.debug import DEBUG
 import os
 from pathlib import Path
+from stat import FILE_ATTRIBUTE_ARCHIVE
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -10,8 +12,10 @@ SECRET_KEY = os.environ.get(
     "SECRET_KEY", "SECRET_KEY_DEV"
 )
 
+
 # only use debug if there is a development variable
 DEBUG = "DEVELOPMENT" in os.environ
+
 
 ALLOWED_HOSTS = ["turn-games.herokuapp.com", "localhost", "127.0.0.1"]
 
@@ -118,7 +122,7 @@ WSGI_APPLICATION = "turn_games.wsgi.application"
 if "DATABASE_URL" in os.environ:
     # Adding the remote database on heroku
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))    
     }
 else:
     DATABASES = {
@@ -127,6 +131,7 @@ else:
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
+       
     }
 
 # Password validation
@@ -191,6 +196,7 @@ TAX_PERCENTAGE = 0.2
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY", "")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
 STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET", "")
+
 STRIPE_CURRENCY = "gbp"
 
 # default email for confirmation
@@ -208,3 +214,4 @@ else:
     EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST")
     DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_USER")
+

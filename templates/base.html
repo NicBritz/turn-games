@@ -1,15 +1,23 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-
+  <head>
     <!-- Main Meta tags -->
     {% block meta %}
-        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta name="Description" content="Your one stop digital game store, with all your favourite titles.">
-        <meta name="google-site-verification" content="Hu_9qtkPOyEginXp8OqvRWLuFtjzQJ045IOY8YHfIxo" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="Description"
+      content="Your one stop digital game store, with all your favourite titles."
+    />
+    <meta
+      name="google-site-verification"
+      content="Hu_9qtkPOyEginXp8OqvRWLuFtjzQJ045IOY8YHfIxo"
+    />
     {% endblock %}
 
     <!-- Custom Meta tags -->
@@ -17,17 +25,28 @@
 
     <!-- Main CSS and fonts block-->
     {% block core-css %}
-        <!-- Bulma - main CSS framework -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-        <!-- Bulma Steps - extension for checkout steps -->
-        <link rel="stylesheet" href="https://cdn.rawgit.com/octoshrimpy/bulma-o-steps/master/bulma-steps.css">
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{% static 'images/turn-games-logo.svg' %}"/>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-              rel="stylesheet">
-        <!-- Base CSS -->
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Bulma - main CSS framework -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+    <!-- Bulma Steps - extension for checkout steps -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/octoshrimpy/bulma-o-steps/master/bulma-steps.css"
+    />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="{% static 'images/turn-games-logo.svg' %}"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% endblock %}
     <!-- END: Main CSS and fonts -->
 
@@ -36,14 +55,20 @@
 
     <!-- Preload JS -->
     {% block core-js %}
-        <!-- Font Awesome kit -->
-        <script src="https://kit.fontawesome.com/aca960b3f7.js" crossorigin="anonymous"></script>
-        <!-- Jquery JavaScript -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <!-- Stripe Payment system -->
-        <script src="https://js.stripe.com/v3/"></script>
-        <!-- Lazy Loading -->
+    <!-- Font Awesome kit -->
+    <script
+      src="https://kit.fontawesome.com/bd6196b773.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Jquery JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Stripe Payment system -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Lazy Loading -->
 
     {% endblock %}
     <!-- END: Preload JS -->
@@ -53,76 +78,74 @@
 
     <!-- Tab Title with optional customization -->
     <title>Turn Games {% block custom-page-title %}{% endblock %}</title>
+  </head>
+  <body>
+    <!-- main header section -->
+    <header>
+      {% block header %}
+      <!-- navbar -->
+      {% include 'includes/main-nav.html' %} {% endblock %}
+    </header>
 
-</head>
-<body>
+    <!-- Background cover -->
+    <div class="cover"></div>
 
-<!-- main header section -->
-<header>
-    {% block header %}
-        <!-- navbar -->
-        {% include 'includes/main-nav.html' %}
-    {% endblock %}
-</header>
+    <!-- Spacer section to drop content bellow navbar -->
+    <div class="section"></div>
 
-<!-- Background cover -->
-<div class="cover">
-</div>
-
-<!-- Spacer section to drop content bellow navbar -->
-<div class="section"></div>
-
-<!-- Search modal (desktop only)-->
-<div class="modal" id="search-modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-        <p class="has-text-centered mb-3 has-text-white is-size-4">Search for games</p>
+    <!-- Search modal (desktop only)-->
+    <div class="modal" id="search-modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <p class="has-text-centered mb-3 has-text-white is-size-4">
+          Search for games
+        </p>
         <!-- search form -->
         <form method="GET" action="{% url 'games' %}" is="search-form">
-            <div class="field has-addons is-justified-center">
-                <div class="control">
-                    <input aria-label="search input" class="input has-background-black-bis has-text-white"
-                           id="search-field" type="text"
-                           name="q"/>
-                </div>
-                <button class="control button is-link" type="submit">
-                                <span class="icon"><i class="fas fa-search"></i>
-                                </span>
-                </button>
+          <div class="field has-addons is-justified-center">
+            <div class="control">
+              <input
+                aria-label="search input"
+                class="input has-background-black-bis has-text-white"
+                id="search-field"
+                type="text"
+                name="q"
+              />
             </div>
+            <button class="control button is-link" type="submit">
+              <span class="icon"><i class="fas fa-search"></i> </span>
+            </button>
+          </div>
         </form>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-</div>
-<!-- END: Desktop search modal -->
+    <!-- END: Desktop search modal -->
 
-<!-- Information messages -->
-{% include 'includes/messages.html' %}
+    <!-- Information messages -->
+    {% include 'includes/messages.html' %}
 
-<!-- page main content -->
-{% block content %}
-{% endblock %}
+    <!-- page main content -->
+    {% block content %} {% endblock %}
 
-<!-- Display back to top button -->
-<div>
-    <button id='top-button' class="button top-button is-dark is-hidden">
-                <span class="icon is-small ">
-                  <i class="fas fa-angle-up fa-lg"></i>
-                </span>
-    </button>
-</div>
-<!-- Spacer section to lift content above footer navbar -->
-<div class="section"></div>
+    <!-- Display back to top button -->
+    <div>
+      <button id="top-button" class="button top-button is-dark is-hidden">
+        <span class="icon is-small">
+          <i class="fas fa-angle-up fa-lg"></i>
+        </span>
+      </button>
+    </div>
+    <!-- Spacer section to lift content above footer navbar -->
+    <div class="section"></div>
 
-<!-- footer (desktop only)-->
-{% include 'includes/footer.html' %}
+    <!-- footer (desktop only)-->
+    {% include 'includes/footer.html' %}
 
-<!-- custom post load js -->
-{% block post-custom-js %}
+    <!-- custom post load js -->
+    {% block post-custom-js %}
     <!-- Base JS -->
     <script src="{% static 'js/base.js' %}"></script>
-{% endblock %}
-
-</body>
-
+    {% endblock %}
+  </body>
 </html>
