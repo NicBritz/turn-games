@@ -189,8 +189,8 @@ if "AWS" in os.environ:
     # Override static and media URLs in production
     # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}"
     # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}"
-    STATIC_URL = os.environ.get("STATIC_URL")
-    MEDIA_URL = os.environ.get("MEDIA_URL")
+    STATIC_URL = "https://ipfs.filebase.io/ipfs/QmaLRD6srBCua7XHQpYQJnwAV8f8GwCdjPUWEXpHmBsEFn/"
+    MEDIA_URL = "https://ipfs.filebase.io/ipfs/QmTB6etrr8KmBiMcXKZvSZoHzH4pSQTpxHsXWXEJm7jf3u/"
 
 
 
