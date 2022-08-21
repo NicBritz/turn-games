@@ -180,7 +180,7 @@ if "AWS" in os.environ:
     AWS_LOCATION = 'static'
 
     STATICFILES_DORS = [
-        os.path.join(BASE_DIR, '/static'),
+        os.path.join(BASE_DIR, 'turn-games.herokuapp.com/static'),
     ]
 
     STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
