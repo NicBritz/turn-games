@@ -181,7 +181,7 @@ if "AWS" in os.environ:
     AWS_LOCATION = 'static'
 
     STATICFILES_DORS = [
-        os.path.join(BASE_DIR, 'turn-games.herokuapp.com/static'),
+        os.path.join(BASE_DIR, '/static'),
     ]
 
   
@@ -209,8 +209,8 @@ if "AWS" in os.environ:
     # # Override static and media URLs in production
     # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
     # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    STATIC_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    MEDIA_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 
 
